@@ -38,7 +38,7 @@ Some modifications require throughout testing (modifying logic in core python mo
     │       'aws-c-common.dll'
     │       'aws-c-event-stream.dll'
     │       'aws-checksums.dll'
-	│       ...
+    │       ...
     │
     ├───docs (Here you can find the python scripting API docs. It is updated automatically)
     │       'docs.html' # valkyrie module docs generated with python pdoc package
