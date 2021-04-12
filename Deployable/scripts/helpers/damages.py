@@ -192,6 +192,9 @@ DamageExtractors = {
 	'dianaorbs'              : lambda calc, champ, skill: MagicDamage(calc.totalmaxdamage(champ, skill)),
 	'dianateleport'          : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'dianar'                 : lambda calc, champ, skill: DianaRDamage(calc.rexplosiondamage(champ, skill), calc.rmultihitamplification(champ, skill)),
+
+        # Draven
+	'dravenrcast'            : lambda calc, champ, skill: PhysDamage(calc.rcalculateddamage(champ, skill)),
 	
 	# Ezreal
 	'ezrealq'                : lambda calc, champ, skill: PhysDamage(calc.damage(champ, skill)),
