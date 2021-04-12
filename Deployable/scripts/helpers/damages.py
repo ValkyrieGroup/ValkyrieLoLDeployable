@@ -76,6 +76,16 @@ class TwitchExpungeDamage(MixedDamage):
 		
 		return self.base.calc_against(ctx, attacker, target) + stacks*self.phys.calc_against(ctx, attacker, target) + stacks*self.magic.calc_against(ctx, attacker, target)
 
+class KalistaExpungeWrapperDamage(PhysDamage):
+	def __init__(self, base, phys):
+		self.base = base
+		self.phys = phys
+		
+	def calc_against(self, ctx, attacker, target):
+		stacks = target.num_buff_stacks('kalistaexpungemarker')
+		
+		return self.base.calc_against(ctx, attacker, target) + stacks*self.phys.calc_against(ctx, attacker, target)
+
 class CassiopeiaEDamage(MagicDamage):
 	def __init__(self, base, bonus):
 		self.base = base
@@ -168,6 +178,9 @@ DamageExtractors = {
 	'ahrifoxfire'            : lambda calc, champ, skill: MagicDamage(calc.singlefiredamage(champ, skill) + calc.multifiredamage(champ, skill)*2.0),
 	'ahriseduce'             : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'ahritumble'             : lambda calc, champ, skill: MagicDamage(calc.rcalculateddamage(champ, skill) * 3.0),
+
+        # Chogath
+	'feast'                  : lambda calc, champ, skill: TrueDamage(calc.rdamage(champ, skill)),
 	
 	# Darius
 	'dariuscleave'           : lambda calc, champ, skill: PhysDamage(calc.bladedamage(champ, skill)),
@@ -190,6 +203,9 @@ DamageExtractors = {
 	'fioraq'                 : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
 	'fioraw'                 : lambda calc, champ, skill: MagicDamage(calc.stabdamage(champ, skill)),
 	'fiorar'                 : lambda calc, champ, skill: WrapMaxHP(TrueDamage(4.0 * Calculations['fiorapassive'].passivedamagetotal(champ, skill))),
+
+        # Kalista
+	'kalistaexpungewrapper'  : lambda calc, champ, skill: KalistaExpungeWrapperDamage(PhysDamage(calc.basedamage[skill.lvl - 1]), PhysDamage(calc.additionaldamage(champ, skill))),
 	
 	# Irelia
 	'ireliaq'                : lambda calc, champ, skill: PhysDamage(calc.championdamage(champ, skill)),
@@ -216,6 +232,9 @@ DamageExtractors = {
 	'kogmawq'                : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'kogmawvoidooze'         : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'kogmawlivingartillery'  : lambda calc, champ, skill: KogMawRDamage(calc.basedamagecalc(champ, skill)),
+
+        # Pyke
+	'pyker'                  : lambda calc, champ, skill: PhysDamage(calc.rdamage(champ, skill)),
 					          				
 	# Samira                 
 	'samiraq'                : lambda calc, champ, skill: PhysDamage(calc.damagecalc(champ, skill)),
