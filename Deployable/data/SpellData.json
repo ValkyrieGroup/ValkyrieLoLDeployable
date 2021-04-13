@@ -23830,7 +23830,7 @@
         "parent": "",
         "icon": "malphite_groundslam",
         "castTime": 0.2418999969959259,
-        "castRange": 100.0,
+        "castRange": 400.0,
         "castRadius": 400.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
