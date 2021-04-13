@@ -4,6 +4,7 @@ This is the repository with valkyrie data (images, jsons, scripts etc) which is 
 Some modifications require throughout testing (modifying logic in core python modules/scripts) and some don't (adding a image / modifying spell database). 
 
 ## Some rules before you start modifying stuff
+- USE PULL REQUESTS ! DONT PUSH DIRECTLY TO MASTER OR YOU WILL BE KICKED !
 - If you modify core scripts/helper modules please make sure you test throughly that you did not broke anything
 - Do not manually modify the following files SpellCalculations.json, ItemData.json, SkinInfo.json these files are automatically updated
 - Please respect the coding formatting/style used (so if everywhere variables are named `like_this` don't start naming variable `likeThis`, also tabs instead of spaces)
