@@ -17894,7 +17894,7 @@
         "parent": "",
         "icon": "kassadin_w",
         "castTime": 0,
-        "castRange": 1.0,
+        "castRange": 300.0,
         "castRadius": 100.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
