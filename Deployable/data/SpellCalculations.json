@@ -2068,7 +2068,7 @@
             ]
         },
         "calcs": {
-            "{8e266472}": "self.basedamage[skill.lvl] +  (self.totaladratio[skill.lvl] * champ.atk) +  (self.{d5c06e27}[skill.lvl] * champ.ap)",
+            "e1damage": "self.basedamage[skill.lvl] +  (self.totaladratio[skill.lvl] * champ.atk) +  (self.{d5c06e27}[skill.lvl] * champ.ap)",
             "e2damagecalc": "self.basedamage[skill.lvl] +  (self.totaladratio[skill.lvl] * champ.atk) +  (self.{d5c06e27}[skill.lvl] * champ.ap)"
         }
     },
@@ -2273,13 +2273,13 @@
                 375.0
             ],
             "Effect1": [
-                15.0,
+                20.0,
                 60.0,
-                105.0,
-                150.0,
-                195.0,
-                240.0,
-                285.0
+                100.0,
+                140.0,
+                180.0,
+                220.0,
+                260.0
             ],
             "Effect2": [
                 1.0,
@@ -2379,6 +2379,7 @@
                 15.0
             ],
             "PreCalculated0": [
+                20.0,
                 35.0,
                 50.0,
                 65.0,
@@ -2395,8 +2396,7 @@
                 230.0,
                 245.0,
                 260.0,
-                275.0,
-                290.0
+                275.0
             ]
         },
         "calcs": {
@@ -4135,13 +4135,13 @@
                 0.05999999865889549
             ],
             "apperrank": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
+                3.5,
+                3.5,
+                3.5,
+                3.5,
+                3.5,
+                3.5,
+                3.5
             ]
         },
         "calcs": {
@@ -4149,7 +4149,7 @@
             "attackspeedmax": "(self.maxranksperstat[skill.lvl]) * (self.asperrank[skill.lvl])",
             "attackdamage": "self.adperrank[skill.lvl] * champ.num_buffs({eb906dca})",
             "attackdamagemax": "(self.maxranksperstat[skill.lvl]) * (self.adperrank[skill.lvl])",
-            "{82b20f0c}": "self.apperrank[skill.lvl] * champ.num_buffs({f79080ae})",
+            "arpenbonus": "self.apperrank[skill.lvl] * champ.num_buffs({f79080ae})",
             "arpenbonusmax": "(self.maxranksperstat[skill.lvl]) * (self.apperrank[skill.lvl])"
         }
     },
@@ -4165,31 +4165,31 @@
                 375.0
             ],
             "severumrhealbonus": [
-                125.0,
-                250.0,
-                375.0,
-                500.0,
-                625.0,
-                750.0,
-                875.0
+                150.0,
+                275.0,
+                400.0,
+                525.0,
+                650.0,
+                775.0,
+                900.0
             ],
             "calibrumrmarkbonusdamage": [
-                10.0,
-                40.0,
-                70.0,
-                100.0,
-                130.0,
-                160.0,
-                190.0
+                20.0,
+                50.0,
+                80.0,
+                110.0,
+                140.0,
+                170.0,
+                200.0
             ],
             "crescendumrbonusminis": [
                 0.0,
-                4.0,
-                4.0,
-                4.0,
-                4.0,
-                4.0,
-                4.0
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
             ],
             "infernumrbonusdamagebase": [
                 0.0,
@@ -4219,13 +4219,13 @@
                 -0.550000011920929
             ],
             "gravitumrrootduration": [
-                1.25,
-                1.25,
-                1.25,
-                1.25,
-                1.25,
-                1.25,
-                1.25
+                1.350000023841858,
+                1.350000023841858,
+                1.350000023841858,
+                1.350000023841858,
+                1.350000023841858,
+                1.350000023841858,
+                1.350000023841858
             ]
         },
         "calcs": {
@@ -4233,7 +4233,7 @@
             "infernumrbonusdamage": "self.infernumrbonusdamagebase[skill.lvl] +  (0.25 * champ.bonus_atk)",
             "gravitumrbonusslow": "self.gravitumrbonusslowbase[skill.lvl]",
             "critdamagemodtooltip": "self.critdamagemod[skill.lvl] +  (1.0 * champ.crit_multi)",
-            "infernumrpenalty": "0.8500000238418579"
+            "infernumrpenalty": "0.8999999761581421"
         }
     },
     "ApheliosGravitumLineAttack": {
@@ -4430,7 +4430,7 @@
             ]
         },
         "calcs": {
-            "{ec7f3348}": "1.0 +  (self.{e537be7a}[skill.lvl] * champ.bonus_atk_speed)",
+            "numattacks": "1.0 +  (self.{e537be7a}[skill.lvl] * champ.bonus_atk_speed)",
             "{9480e64f}": "self.PreCalculated0[champ.lvl] +  ((self.PreCalculated1[champ.lvl]) * champ.bonus_atk)",
             "totaldamage": "(1.0 +  (self.{e537be7a}[skill.lvl] * champ.bonus_atk_speed)) * (self.PreCalculated2[champ.lvl]) + ( ((self.PreCalculated3[champ.lvl]) * champ.bonus_atk))",
             "haste": "0.20000000298023224 +  (0.0010000000474974513 * champ.ap)",
@@ -4441,7 +4441,7 @@
             "{3f4c2ea7}": "25.0",
             "{c4ea7103}": "self.PreCalculated6[champ.lvl] + self.{4d7969b7}[skill.lvl]",
             "{31c5a522}": "35.0 + (champ.lvl) * 3.611111111111111",
-            "{68b17ab1}": "0.25"
+            "onhitdamagereduction": "0.25"
         }
     },
     "EnchantedCrystalArrow": {
@@ -5551,7 +5551,7 @@
             ]
         },
         "calcs": {
-            "{44338913}": "self.PreCalculated0[champ.lvl]",
+            "secondarytargetdamagemod": "self.PreCalculated0[champ.lvl]",
             "totaldamage": "self.PreCalculated1[champ.lvl] +  (0.6000000238418579 * champ.ap)"
         }
     },
@@ -6021,8 +6021,8 @@
             ]
         },
         "calcs": {
-            "{2d31a671}": "self.Effect4[skill.lvl] +  (0.30000001192092896 * champ.ap)",
-            "{767abcdf}": "self.Effect5[skill.lvl] +  (0.6000000238418579 * champ.ap)"
+            "initialheal": "self.Effect4[skill.lvl] +  (0.30000001192092896 * champ.ap)",
+            "maxheal": "self.Effect5[skill.lvl] +  (0.6000000238418579 * champ.ap)"
         }
     },
     "BardQ": {
@@ -6231,10 +6231,10 @@
             ]
         },
         "calcs": {
-            "{7403ef80}": "self.{bd14fb1f}[skill.lvl] +  (0.30000001192092896 * champ.ap)",
-            "{b8b8a3ea}": "self.{d75a5249}[skill.lvl]",
-            "{f5ca5217}": "self.{d75a5249}[skill.lvl]",
-            "{4afa6dd7}": "self.{d75a5249}[skill.lvl]"
+            "meepdamagenochime": "self.{bd14fb1f}[skill.lvl] +  (0.30000001192092896 * champ.ap)",
+            "chimesforslowupgrade": "self.{d75a5249}[skill.lvl]",
+            "chimesforsplashdamageupgrade": "self.{d75a5249}[skill.lvl]",
+            "chimesforsplashareaupgrade": "self.{d75a5249}[skill.lvl]"
         }
     },
     "BardPTooltip_DSM_nD": {
@@ -7390,13 +7390,13 @@
                 0.30000001192092896
             ],
             "firstknockupduration": [
-                0.75,
+                0.5,
                 1.0,
-                1.25,
                 1.5,
-                1.75,
                 2.0,
-                2.25
+                2.5,
+                3.0,
+                3.5
             ],
             "movespeedmod": [
                 30.0,
@@ -7435,13 +7435,13 @@
                 0.30000001192092896
             ],
             "maxknockup": [
-                0.75,
+                0.5,
                 1.0,
-                1.25,
                 1.5,
-                1.75,
                 2.0,
-                2.25
+                2.5,
+                3.0,
+                3.5
             ],
             "maxknockupratio": [
                 0.8999999761581421,
@@ -9446,7 +9446,7 @@
         },
         "calcs": {
             "basedamagetotaltooltip": "self.Effect0[skill.lvl] +  (0.30000001192092896 * champ.ap)",
-            "{441df935}": "self.{31be37df}[skill.lvl] * champ.num_buffs({8682fc00}) + self.{67f2fbec}[skill.lvl]"
+            "maxhealthpercentcalc": "self.{31be37df}[skill.lvl] * champ.num_buffs({8682fc00}) + self.{67f2fbec}[skill.lvl]"
         }
     },
     "Carnivore": {
@@ -10276,9 +10276,9 @@
             ]
         },
         "calcs": {
-            "damagepersecond": "self.basedamagepertick[skill.lvl] +  (0.10000000149011612 * champ.bonus_atk)",
-            "totaldamagepersecond": "(self.basedamagepertick[skill.lvl] +  (0.10000000149011612 * champ.bonus_atk)) * 2.0",
-            "totaldamage": "(self.basedamagepertick[skill.lvl] +  (0.10000000149011612 * champ.bonus_atk)) * (2.0) * (self.tickspersecond[skill.lvl])"
+            "totaldamagepersecond": "self.basedamagepertick[skill.lvl] +  (0.10000000149011612 * champ.bonus_atk)",
+            "{ed03988c}": "(self.basedamagepertick[skill.lvl] +  (0.10000000149011612 * champ.bonus_atk)) * self.Effect6[skill.lvl]",
+            "{3add534b}": "(self.basedamagepertick[skill.lvl] +  (0.10000000149011612 * champ.bonus_atk)) * self.Effect7[skill.lvl]"
         }
     },
     "DariusHemoInternal": {
@@ -10556,13 +10556,13 @@
     "DariusHemoMarker": {
         "data_vals": {
             "monstermod": [
-                1.75,
-                1.75,
-                1.75,
-                1.75,
-                1.75,
-                1.75,
-                1.75
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
             ],
             "secondspertick": [
                 1.2599999904632568,
@@ -11027,42 +11027,6 @@
                 3.0
             ],
             "monstermod": [
-                1.5,
-                1.5,
-                1.5,
-                1.5,
-                1.5,
-                1.5,
-                1.5
-            ],
-            "Effect0": [
-                0.20000000298023224,
-                0.20000000298023224,
-                0.20000000298023224,
-                0.20000000298023224,
-                0.20000000298023224,
-                0.20000000298023224,
-                0.20000000298023224
-            ],
-            "Effect1": [
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0
-            ],
-            "Effect2": [
-                2.0,
-                4.0,
-                6.0,
-                8.0,
-                10.0,
-                12.0,
-                14.0
-            ],
-            "Effect3": [
                 3.0,
                 3.0,
                 3.0,
@@ -11092,24 +11056,24 @@
                 45.0
             ],
             "PreCalculated1": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612,
-                0.15000000223517418,
-                0.15000000223517418,
-                0.15000000223517418,
                 0.20000000298023224,
                 0.20000000298023224,
                 0.20000000298023224,
-                0.2500000037252903,
-                0.2500000037252903,
-                0.2500000037252903,
-                0.30000000447034836,
-                0.30000000447034836,
-                0.30000000447034836,
-                0.3500000052154064,
-                0.3500000052154064,
-                0.3500000052154064
+                0.23330000415444374,
+                0.23330000415444374,
+                0.23330000415444374,
+                0.26660000532865524,
+                0.26660000532865524,
+                0.26660000532865524,
+                0.29990000650286674,
+                0.29990000650286674,
+                0.29990000650286674,
+                0.33320000767707825,
+                0.33320000767707825,
+                0.33320000767707825,
+                0.36650000885128975,
+                0.36650000885128975,
+                0.36650000885128975
             ]
         },
         "calcs": {
@@ -12187,22 +12151,22 @@
                 25.0
             ],
             "Effect3": [
-                60.0,
-                60.0,
-                90.0,
-                120.0,
-                150.0,
-                180.0,
-                210.0
+                50.0,
+                50.0,
+                80.0,
+                110.0,
+                140.0,
+                170.0,
+                200.0
             ],
             "Effect4": [
-                40.0,
-                40.0,
-                55.0,
-                70.0,
-                85.0,
-                100.0,
-                115.0
+                30.0,
+                30.0,
+                45.0,
+                60.0,
+                75.0,
+                90.0,
+                105.0
             ],
             "Effect5": [
                 5.0,
@@ -12437,13 +12401,13 @@
                 2.0
             ],
             "Effect5": [
-                250.0,
+                100.0,
+                100.0,
+                200.0,
                 300.0,
-                350.0,
                 400.0,
-                450.0,
                 500.0,
-                550.0
+                600.0
             ],
             "Effect6": [
                 0.5,
@@ -13219,7 +13183,7 @@
             ]
         },
         "calcs": {
-            "{0cfcfe7f}": "self.Effect5[skill.lvl] +  (0.029999999329447746 * champ.ap)"
+            "totalpercentdamage": "self.Effect5[skill.lvl] +  (0.029999999329447746 * champ.ap)"
         }
     },
     "EliseSpiderQ": {
@@ -13548,7 +13512,7 @@
             ]
         },
         "calcs": {
-            "{c3b38d01}": "self.Effect1[skill.lvl] +  (0.949999988079071 * champ.ap)"
+            "totalspiderdamage": "self.Effect1[skill.lvl] +  (0.949999988079071 * champ.ap)"
         }
     },
     "EliseHumanQ": {
@@ -13715,9 +13679,9 @@
             ]
         },
         "calcs": {
-            "{e1cf22a1}": "self.passivebonusdamage[skill.lvl] +  (0.30000001192092896 * champ.ap)",
-            "{401ea716}": "self.passivehealing[skill.lvl] +  (0.10000000149011612 * champ.ap)",
-            "{bf8f2fdf}": "self.Effect0[skill.lvl] +  (0.15000000596046448 * champ.ap)"
+            "passivetotaldamage": "self.passivebonusdamage[skill.lvl] +  (0.30000001192092896 * champ.ap)",
+            "passivetotalhealing": "self.passivehealing[skill.lvl] +  (0.10000000149011612 * champ.ap)",
+            "spidertotaldamage": "self.Effect0[skill.lvl] +  (0.15000000596046448 * champ.ap)"
         }
     },
     "EliseRSpider": {
@@ -15556,7 +15520,7 @@
         "calcs": {
             "passivehealamount": "40.0 + (champ.lvl) * 4.166666666666667",
             "passivedamagetotal": "self.passivedamagebase[skill.lvl] +  (self.passivedamageadratio[skill.lvl] * champ.bonus_atk)",
-            "{048abdca}": "(self.passivedamagebase[skill.lvl] +  (self.passivedamageadratio[skill.lvl] * champ.bonus_atk)) * 4.0"
+            "rdamagetotal": "(self.passivedamagebase[skill.lvl] +  (self.passivedamageadratio[skill.lvl] * champ.bonus_atk)) * 4.0"
         }
     },
     "FioraW": {
@@ -17982,13 +17946,13 @@
             ]
         },
         "calcs": {
-            "{9fe02272}": "0.0 + (champ.lvl) * 5.555555555555555",
+            "totalattackrange": "0.0 + (champ.lvl) * 5.555555555555555",
             "totalms": "self.PreCalculated0[champ.lvl]",
-            "{ffa2fca5}": "0.054999999701976776 + (champ.lvl) * 0.051944444990820356",
-            "{1f1f3eb7}": "100.0 + (champ.lvl) * 40.611111111111114",
-            "{5cd1befc}": "3.5 + (champ.lvl) * 2.8333333333333335",
-            "{b8c660a6}": "3.5 + (champ.lvl) * 3.3055555555555554",
-            "{cae49210}": "6.0 + (champ.lvl) * 2.361111111111111"
+            "totalas": "0.054999999701976776 + (champ.lvl) * 0.051944444990820356",
+            "totalmegagnarhealth": "100.0 + (champ.lvl) * 40.611111111111114",
+            "totalmegagnararmor": "3.5 + (champ.lvl) * 2.8333333333333335",
+            "totalmegagnarmr": "3.5 + (champ.lvl) * 3.3055555555555554",
+            "totalmegagnarad": "6.0 + (champ.lvl) * 2.361111111111111"
         }
     },
     "GnarQ": {
@@ -18129,13 +18093,13 @@
                 700.0
             ],
             "rhypermovementspeedpercent": [
-                30.0,
-                45.0,
+                20.0,
+                40.0,
                 60.0,
-                75.0,
-                90.0,
-                105.0,
-                120.0
+                80.0,
+                100.0,
+                120.0,
+                140.0
             ],
             "rccduration": [
                 1.0,
@@ -19499,6 +19463,317 @@
         },
         "calcs": {}
     },
+    "GwenR": {
+        "data_vals": {
+            "debuffduration": [
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5,
+                1.5
+            ],
+            "slowamount": [
+                0.15000000596046448,
+                0.15000000596046448,
+                0.15000000596046448,
+                0.15000000596046448,
+                0.15000000596046448,
+                0.15000000596046448,
+                0.15000000596046448
+            ],
+            "basedamage": [
+                5.0,
+                30.0,
+                55.0,
+                80.0,
+                105.0,
+                130.0,
+                155.0
+            ],
+            "initialslow": [
+                -0.30000001192092896,
+                -0.4000000059604645,
+                -0.5,
+                -0.6000000238418579,
+                -0.699999988079071,
+                -0.800000011920929,
+                -0.8999999761581421
+            ],
+            "subsequentslow": [
+                -0.10000000149011612,
+                -0.15000000596046448,
+                -0.20000000298023224,
+                -0.25,
+                -0.30000001192092896,
+                -0.3499999940395355,
+                -0.4000000059604645
+            ]
+        },
+        "calcs": {
+            "totaldamage": "self.basedamage[skill.lvl] +  (0.07999999821186066 * champ.ap)",
+            "maxdamage": "(self.basedamage[skill.lvl] +  (0.07999999821186066 * champ.ap)) * 9.0",
+            "{60e63441}": "(self.basedamage[skill.lvl] +  (0.07999999821186066 * champ.ap)) * 3.0",
+            "{62e63767}": "(self.basedamage[skill.lvl] +  (0.07999999821186066 * champ.ap)) * 5.0"
+        }
+    },
+    "GwenW": {
+        "data_vals": {
+            "zone_vars": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "zoneduration": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+            ],
+            "zoneradius": [
+                370.0,
+                370.0,
+                370.0,
+                370.0,
+                370.0,
+                370.0,
+                370.0
+            ],
+            "zonepullspeed": [
+                2000.0,
+                2000.0,
+                2000.0,
+                2000.0,
+                2000.0,
+                2000.0,
+                2000.0
+            ],
+            "pulloffset": [
+                75.0,
+                75.0,
+                75.0,
+                75.0,
+                75.0,
+                75.0,
+                75.0
+            ],
+            "zonewalloffset": [
+                -100.0,
+                -100.0,
+                -100.0,
+                -100.0,
+                -100.0,
+                -100.0,
+                -100.0
+            ],
+            "newdashcooldown": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+            ],
+            "recastdelay": [
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
+            ],
+            "baseresists": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+            ],
+            "dashtargetforgiveness": [
+                125.0,
+                125.0,
+                125.0,
+                125.0,
+                125.0,
+                125.0,
+                125.0
+            ]
+        },
+        "calcs": {
+            "{c7a0c9e4}": "self.baseresists[skill.lvl] +  (0.05000000074505806 * champ.ap)"
+        }
+    },
+    "GwenQ": {
+        "data_vals": {
+            "initialarclength": [
+                475.0,
+                475.0,
+                475.0,
+                475.0,
+                475.0,
+                475.0,
+                475.0
+            ],
+            "swipedamagebase": [
+                26.25,
+                40.0,
+                53.75,
+                67.5,
+                81.25,
+                95.0,
+                108.75
+            ],
+            "minidamageratio": [
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224
+            ],
+            "apratio": [
+                0.25,
+                0.25,
+                0.25,
+                0.25,
+                0.25,
+                0.25,
+                0.25
+            ],
+            "buffduration": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+            ]
+        },
+        "calcs": {
+            "{3ed37366}": "self.{b1217801}[skill.lvl] +  (self.apratio[skill.lvl] * champ.ap)",
+            "{0757f2e1}": "(self.{b1217801}[skill.lvl] +  (self.apratio[skill.lvl] * champ.ap)) * self.{0a5a7462}[skill.lvl]",
+            "maxdamage": "((self.{b1217801}[skill.lvl]) + ( (self.apratio[skill.lvl] * champ.ap))) + (((self.{b1217801}[skill.lvl]) + ( (self.apratio[skill.lvl] * champ.ap))) * ((self.{0a5a7462}[skill.lvl]) * (5.0)))"
+        }
+    },
+    "GwenP": {
+        "data_vals": {
+            "executethreshold": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ]
+        },
+        "calcs": {
+            "healingpercent": "0.699999988079071",
+            "{540bce84}": "1.0 +  (0.00800000037997961 * champ.ap)",
+            "{2e2d4a01}": "12.0 + (champ.lvl) * 1.0 +  (0.07000000029802322 * champ.ap)",
+            "executedamage": "8.0 + (champ.lvl) * 1.2222222222222223",
+            "{a5e6df7c}": "(1.0 +  (0.00800000037997961 * champ.ap)) * 0.009999999776482582",
+            "monsterdamagecap": "10.0 +  (0.25 * champ.ap)",
+            "{4cf085f2}": "(1.0 +  (0.00800000037997961 * champ.ap)) * 0.05999999865889549",
+            "{8277cced}": "(1.0 +  (0.00800000037997961 * champ.ap)) * 0.09000000357627869",
+            "{4197830d}": "(1.0 +  (0.00800000037997961 * champ.ap)) * 0.029999999329447746",
+            "{4097817a}": "(1.0 +  (0.00800000037997961 * champ.ap)) * 0.05000000074505806",
+            "{5bade13c}": "1.0 * champ.num_buffs({9d0c98ec})"
+        }
+    },
+    "GwenE": {
+        "data_vals": {
+            "dashrange": [
+                350.0,
+                350.0,
+                350.0,
+                350.0,
+                350.0,
+                350.0,
+                350.0
+            ],
+            "dashspeed": [
+                800.0,
+                800.0,
+                800.0,
+                800.0,
+                800.0,
+                800.0,
+                800.0
+            ],
+            "wallcheatdistance": [
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0
+            ],
+            "buffduration": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+            ],
+            "baseattackspeed": [
+                30.0,
+                40.0,
+                50.0,
+                60.0,
+                70.0,
+                80.0,
+                90.0
+            ],
+            "cdrefund": [
+                0.0,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
+            ],
+            "bonusattackrange": [
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0
+            ],
+            "basedamage": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+            ]
+        },
+        "calcs": {
+            "bonusattackspeed": "self.{16e025af}[skill.lvl]",
+            "onhitdamage": "self.basedamage[skill.lvl] +  (0.15000000596046448 * champ.ap)"
+        }
+    },
     "HecarimUltMissileSkn4L1": {
         "data_vals": {
             "Effect0": [
@@ -20030,13 +20305,13 @@
                 0.25
             ],
             "maxmovespeed": [
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421
             ],
             "Effect0": [
                 250.0,
@@ -20084,13 +20359,13 @@
                 4.0
             ],
             "Effect5": [
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421,
+                0.6499999761581421
             ],
             "Effect6": [
                 1200.0,
@@ -21262,10 +21537,10 @@
             ]
         },
         "calcs": {
-            "{05eb5327}": "600.0 + (champ.lvl) * 47.22222222222222 +  ((self.PreCalculated0[champ.lvl]) * champ.ap)",
+            "qultturrethealth": "600.0 + (champ.lvl) * 47.22222222222222 +  ((self.PreCalculated0[champ.lvl]) * champ.ap)",
             "qultdamage": "self.qultbasedamage[skill.lvl] +  (0.3499999940395355 * champ.ap)",
             "qultdamagebeam": "self.qultbasedamagebeam[skill.lvl] +  (0.699999988079071 * champ.ap)",
-            "{4c8a6b8c}": "self.wultbasedamage[skill.lvl] +  (0.44999998807907104 * champ.ap)",
+            "wultdamage": "self.wultbasedamage[skill.lvl] +  (0.44999998807907104 * champ.ap)",
             "{a8af07ef}": "self.wultextrahitbasedamage[skill.lvl] +  (0.11999999731779099 * champ.ap)",
             "{f058914b}": "(self.wultextrahitbasedamage[skill.lvl] +  (0.11999999731779099 * champ.ap)) * 0.5",
             "wulttotaldamage": "self.wulttotalbasedamage[skill.lvl] +  (1.8300000429153442 * champ.ap)",
@@ -23087,13 +23362,13 @@
                 0.800000011920929
             ],
             "basedamage": [
-                45.0,
+                50.0,
                 70.0,
-                95.0,
-                120.0,
-                145.0,
-                170.0,
-                195.0
+                90.0,
+                110.0,
+                130.0,
+                150.0,
+                170.0
             ],
             "damageapratio": [
                 0.800000011920929,
@@ -23116,11 +23391,11 @@
             "Effect1": [
                 70.0,
                 70.0,
-                95.0,
-                120.0,
-                145.0,
-                170.0,
-                170.0
+                90.0,
+                110.0,
+                130.0,
+                150.0,
+                150.0
             ],
             "Effect2": [
                 50.0,
@@ -23344,7 +23619,7 @@
                 190.0
             ],
             "Effect3": [
-                44.0,
+                40.0,
                 40.0,
                 36.0,
                 32.0,
@@ -23448,6 +23723,15 @@
                 10.0,
                 11.0
             ],
+            "Effect0": [
+                6.0,
+                6.0,
+                7.0,
+                8.0,
+                9.0,
+                10.0,
+                11.0
+            ],
             "Effect1": [
                 55.0,
                 55.0,
@@ -23486,7 +23770,7 @@
             ]
         },
         "calcs": {
-            "totalms": "self.{2d43847e}[skill.lvl] +  (0.019999999552965164 * champ.ap)",
+            "totalms": "self.mspercent[skill.lvl] +  (0.019999999552965164 * champ.ap)",
             "totaldamage": "self.Effect1[skill.lvl] +  (0.5 * champ.ap)",
             "totalslow": "self.Effect2[skill.lvl] +  (0.05999999865889549 * champ.ap)"
         }
@@ -24729,6 +25013,24 @@
                 3.0,
                 3.0
             ],
+            "gatewidth": [
+                0.0,
+                750.0,
+                750.0,
+                750.0,
+                750.0,
+                750.0,
+                750.0
+            ],
+            "gatevisionsegments": [
+                0.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+            ],
             "Effect0": [
                 25.0,
                 30.0,
@@ -25061,7 +25363,7 @@
             ]
         },
         "calcs": {
-            "actualdamage": "(self.{bcf3fecc}[skill.lvl] * champ.atk)"
+            "actualdamage": "(self.damageperc[skill.lvl] * champ.atk)"
         }
     },
     "JayceShockBlast": {
@@ -32191,7 +32493,7 @@
             "{ba2719ef}": "1.0",
             "{8b6fe763}": "0.0",
             "basedamage": "self.Effect0[skill.lvl] +  (1.2999999523162842 * champ.bonus_atk)",
-            "{6896e0db}": "(self.Effect0[skill.lvl] +  (1.2999999523162842 * champ.bonus_atk)) * 2.0999999046325684"
+            "isodamage": "(self.Effect0[skill.lvl] +  (1.2999999523162842 * champ.bonus_atk)) * 2.0999999046325684"
         }
     },
     "KhazixW": {
@@ -32846,9 +33148,9 @@
             ]
         },
         "calcs": {
-            "{2d15c754}": "0.15000000596046448 * champ.num_buffs({64290302})",
-            "{c77022aa}": "0.009999999776482582 * champ.num_buffs({64290302})",
-            "{e48d9230}": "0.004999999888241291 * champ.num_buffs({64290302})"
+            "qmarkbonus": "0.15000000596046448 * champ.num_buffs({64290302})",
+            "wmarkbonus": "0.009999999776482582 * champ.num_buffs({64290302})",
+            "emarkbonus": "0.004999999888241291 * champ.num_buffs({64290302})"
         }
     },
     "KindredESpellPassive": {
@@ -33010,9 +33312,9 @@
         },
         "calcs": {
             "basebitedamage": "self.basedamage[skill.lvl] +  (0.800000011920929 * champ.bonus_atk)",
-            "{796e1b71}": "0.07999999821186066 + 0.004999999888241291 * champ.num_buffs({64290302})",
+            "percentbitedamage": "0.07999999821186066 + 0.004999999888241291 * champ.num_buffs({64290302})",
             "critdamage": "(0.07999999821186066 + 0.004999999888241291 * champ.num_buffs({64290302})) * (1.5) + ( (1.0 * champ.crit_multi))",
-            "{28b26e8a}": "0.15000000596046448 +  (0.5 * champ.crit)"
+            "healththreshold": "0.15000000596046448 +  (0.5 * champ.crit)"
         }
     },
     "KindredFakeCastTimeSpell": {
@@ -33132,8 +33434,8 @@
             ]
         },
         "calcs": {
-            "{80f05e1b}": "self.Effect6[skill.lvl] + 0.15000000596046448 * champ.num_buffs({64290302})",
-            "totaldamage": "self.Effect0[skill.lvl] +  (0.6499999761581421 * champ.bonus_atk)"
+            "totalqattackspeed": "self.Effect6[skill.lvl] + 0.15000000596046448 * champ.num_buffs({64290302})",
+            "totaldamage": "self.Effect0[skill.lvl] +  (0.75 * champ.bonus_atk)"
         }
     },
     "KindredR": {
@@ -33282,9 +33584,9 @@
             ]
         },
         "calcs": {
-            "{96aef553}": "self.PreCalculated0[champ.lvl]",
-            "{db031319}": "self.Effect4[skill.lvl] +  (0.20000000298023224 * champ.bonus_atk)",
-            "{68dbef2b}": "0.014999999664723873 + 0.009999999776482582 * champ.num_buffs({64290302})"
+            "attackheal": "self.PreCalculated0[champ.lvl]",
+            "basewolfdamage": "self.Effect4[skill.lvl] +  (0.20000000298023224 * champ.bonus_atk)",
+            "percentwolfdamage": "0.014999999664723873 + 0.009999999776482582 * champ.num_buffs({64290302})"
         }
     },
     "KindredE": {
@@ -33440,8 +33742,8 @@
             ]
         },
         "calcs": {
-            "{80f05e1b}": "self.Effect6[skill.lvl] + 0.15000000596046448 * champ.num_buffs({64290302})",
-            "totaldamage": "self.Effect0[skill.lvl] +  (0.6499999761581421 * champ.bonus_atk)"
+            "totalqattackspeed": "self.Effect6[skill.lvl] + 0.15000000596046448 * champ.num_buffs({64290302})",
+            "totaldamage": "self.Effect0[skill.lvl] +  (0.75 * champ.bonus_atk)"
         }
     },
     "KindredRWrapper": {
@@ -33782,7 +34084,7 @@
         },
         "calcs": {
             "totaldamage": "self.Effect0[skill.lvl] +  (0.6000000238418579 * champ.bonus_atk)",
-            "{37e1aba1}": "(self.Effect0[skill.lvl] +  (0.6000000238418579 * champ.bonus_atk)) * self.Effect3[skill.lvl]"
+            "totalyankdamage": "(self.Effect0[skill.lvl] +  (0.6000000238418579 * champ.bonus_atk)) * self.Effect3[skill.lvl]"
         }
     },
     "KledW": {
@@ -33852,7 +34154,7 @@
             ]
         },
         "calcs": {
-            "{43961cf7}": "self.Effect0[skill.lvl] +  (0.05000000074505806 * champ.bonus_atk)"
+            "percentdamage": "self.Effect0[skill.lvl] +  (0.05000000074505806 * champ.bonus_atk)"
         }
     },
     "KledE": {
@@ -34166,9 +34468,9 @@
             ]
         },
         "calcs": {
-            "{c65a0285}": "self.PreCalculated0[champ.lvl]",
-            "{99dceac5}": "400.0 + (champ.lvl) * 56.666666666666664",
-            "{a7a025c5}": "self.PreCalculated1[champ.lvl]"
+            "dismountedms": "self.PreCalculated0[champ.lvl]",
+            "skaarlhealth": "400.0 + (champ.lvl) * 56.666666666666664",
+            "skaarlremounthealth": "self.PreCalculated1[champ.lvl]"
         }
     },
     "KledRDash": {
@@ -34353,8 +34655,8 @@
         "calcs": {
             "{31b91b32}": "(3.0 * champ.bonus_atk)",
             "{598e3ed3}": "self.percenthpbase[skill.lvl] +  (0.03999999910593033 * champ.bonus_atk)",
-            "{72a4baf4}": "(3.0 * champ.bonus_atk) + self.Effect3[skill.lvl]",
-            "{75d4d958}": "self.percenthpbase[skill.lvl] +  (0.03999999910593033 * champ.bonus_atk)"
+            "maximumshield": "(3.0 * champ.bonus_atk) + self.Effect3[skill.lvl]",
+            "maximumchargedamage": "self.percenthpbase[skill.lvl] +  (0.03999999910593033 * champ.bonus_atk)"
         }
     },
     "KogMawIcathianDisplay": {
@@ -34510,7 +34812,7 @@
             ]
         },
         "calcs": {
-            "{f05d4fb6}": "(self.Effect1[skill.lvl]) * (0.009999999776482582) +  (9.999999747378752e-05 * champ.ap)"
+            "totalhealthdamage": "(self.Effect1[skill.lvl]) * (0.009999999776482582) +  (9.999999747378752e-05 * champ.ap)"
         }
     },
     "KogMawCausticSpittle": {
@@ -34837,107 +35139,6 @@
             "totaldamage": "self.Effect0[skill.lvl] +  (0.699999988079071 * champ.ap)"
         }
     },
-    "LeblancRQ": {
-        "data_vals": {
-            "rq1base": [
-                0.0,
-                70.0,
-                140.0,
-                210.0,
-                280.0,
-                350.0,
-                420.0
-            ],
-            "rq2base": [
-                0.0,
-                140.0,
-                280.0,
-                420.0,
-                560.0,
-                700.0,
-                840.0
-            ],
-            "rwbase": [
-                0.0,
-                150.0,
-                300.0,
-                450.0,
-                600.0,
-                750.0,
-                900.0
-            ],
-            "re1base": [
-                0.0,
-                70.0,
-                140.0,
-                210.0,
-                280.0,
-                350.0,
-                420.0
-            ],
-            "re2base": [
-                0.0,
-                140.0,
-                280.0,
-                420.0,
-                560.0,
-                700.0,
-                840.0
-            ],
-            "Effect0": [
-                50.0,
-                100.0,
-                150.0,
-                200.0,
-                250.0,
-                300.0,
-                350.0
-            ],
-            "Effect1": [
-                25.0,
-                50.0,
-                75.0,
-                100.0,
-                125.0,
-                150.0,
-                175.0
-            ],
-            "Effect2": [
-                0.0,
-                100.0,
-                200.0,
-                300.0,
-                0.0,
-                0.0,
-                100.0
-            ],
-            "Effect3": [
-                0.0,
-                100.0,
-                200.0,
-                300.0,
-                0.0,
-                0.0,
-                100.0
-            ],
-            "Effect4": [
-                0.0,
-                150.0,
-                300.0,
-                450.0,
-                0.0,
-                0.0,
-                150.0
-            ]
-        },
-        "calcs": {
-            "rq1damage": "self.rq1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "rq2damage": "self.rq2base[skill.lvl] +  (0.800000011920929 * champ.ap)",
-            "rwdamage": "self.rwbase[skill.lvl] +  (0.75 * champ.ap)",
-            "{608de1e2}": "self.re1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "{3b421aa3}": "self.re2base[skill.lvl] +  (0.800000011920929 * champ.ap)"
-        }
-    },
     "LeblancWMove": {
         "data_vals": {
             "Effect0": [
@@ -35002,258 +35203,6 @@
         },
         "calcs": {}
     },
-    "LeblancRE": {
-        "data_vals": {
-            "rq1base": [
-                0.0,
-                70.0,
-                140.0,
-                210.0,
-                280.0,
-                350.0,
-                420.0
-            ],
-            "rq2base": [
-                0.0,
-                140.0,
-                280.0,
-                420.0,
-                560.0,
-                700.0,
-                840.0
-            ],
-            "rwbase": [
-                0.0,
-                150.0,
-                300.0,
-                450.0,
-                600.0,
-                750.0,
-                900.0
-            ],
-            "re1base": [
-                0.0,
-                70.0,
-                140.0,
-                210.0,
-                280.0,
-                350.0,
-                420.0
-            ],
-            "re2base": [
-                0.0,
-                140.0,
-                280.0,
-                420.0,
-                560.0,
-                700.0,
-                840.0
-            ],
-            "Effect0": [
-                20.0,
-                45.0,
-                70.0,
-                95.0,
-                120.0,
-                145.0,
-                170.0
-            ],
-            "Effect1": [
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0
-            ],
-            "Effect2": [
-                0.0,
-                100.0,
-                200.0,
-                300.0,
-                0.0,
-                0.0,
-                100.0
-            ],
-            "Effect3": [
-                0.0,
-                100.0,
-                200.0,
-                300.0,
-                0.0,
-                0.0,
-                100.0
-            ],
-            "Effect4": [
-                0.0,
-                150.0,
-                300.0,
-                450.0,
-                0.0,
-                0.0,
-                150.0
-            ]
-        },
-        "calcs": {
-            "rq1damage": "self.rq1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "rq2damage": "self.rq2base[skill.lvl] +  (0.800000011920929 * champ.ap)",
-            "rwdamage": "self.rwbase[skill.lvl] +  (0.75 * champ.ap)",
-            "{608de1e2}": "self.re1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "{3b421aa3}": "self.re2base[skill.lvl] +  (0.800000011920929 * champ.ap)"
-        }
-    },
-    "LeblancRW": {
-        "data_vals": {
-            "rq1base": [
-                0.0,
-                70.0,
-                140.0,
-                210.0,
-                280.0,
-                350.0,
-                420.0
-            ],
-            "rq2base": [
-                0.0,
-                140.0,
-                280.0,
-                420.0,
-                560.0,
-                700.0,
-                840.0
-            ],
-            "rwbase": [
-                0.0,
-                150.0,
-                300.0,
-                450.0,
-                600.0,
-                750.0,
-                900.0
-            ],
-            "re1base": [
-                0.0,
-                70.0,
-                140.0,
-                210.0,
-                280.0,
-                350.0,
-                420.0
-            ],
-            "re2base": [
-                0.0,
-                140.0,
-                280.0,
-                420.0,
-                560.0,
-                700.0,
-                840.0
-            ],
-            "Effect0": [
-                20.0,
-                60.0,
-                100.0,
-                140.0,
-                180.0,
-                220.0,
-                260.0
-            ],
-            "Effect1": [
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0
-            ],
-            "Effect2": [
-                0.0,
-                100.0,
-                200.0,
-                300.0,
-                0.0,
-                0.0,
-                100.0
-            ],
-            "Effect3": [
-                0.0,
-                100.0,
-                200.0,
-                300.0,
-                0.0,
-                0.0,
-                100.0
-            ],
-            "Effect4": [
-                0.0,
-                150.0,
-                300.0,
-                450.0,
-                0.0,
-                0.0,
-                150.0
-            ]
-        },
-        "calcs": {
-            "rq1damage": "self.rq1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "rq2damage": "self.rq2base[skill.lvl] +  (0.800000011920929 * champ.ap)",
-            "rwdamage": "self.rwbase[skill.lvl] +  (0.75 * champ.ap)",
-            "{608de1e2}": "self.re1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "{3b421aa3}": "self.re2base[skill.lvl] +  (0.800000011920929 * champ.ap)"
-        }
-    },
-    "LeblancRWReturn": {
-        "data_vals": {
-            "Effect0": [
-                20.0,
-                60.0,
-                100.0,
-                140.0,
-                180.0,
-                220.0,
-                260.0
-            ],
-            "Effect1": [
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0
-            ],
-            "Effect2": [
-                0.0,
-                100.0,
-                200.0,
-                300.0,
-                0.0,
-                0.0,
-                100.0
-            ],
-            "Effect3": [
-                0.0,
-                100.0,
-                200.0,
-                300.0,
-                0.0,
-                0.0,
-                100.0
-            ],
-            "Effect4": [
-                0.0,
-                150.0,
-                300.0,
-                450.0,
-                0.0,
-                0.0,
-                150.0
-            ]
-        },
-        "calcs": {}
-    },
     "LeblancE": {
         "data_vals": {
             "Effect0": [
@@ -35313,7 +35262,7 @@
         },
         "calcs": {
             "initialdamage": "self.Effect0[skill.lvl] +  (0.30000001192092896 * champ.ap)",
-            "{ca38f8d4}": "self.Effect1[skill.lvl] +  (0.699999988079071 * champ.ap)"
+            "delayeddamage": "self.Effect1[skill.lvl] +  (0.699999988079071 * champ.ap)"
         }
     },
     "LeblancRToggle": {
@@ -35498,22 +35447,22 @@
     "LeblancQ": {
         "data_vals": {
             "basedamage": [
-                30.0,
-                55.0,
-                80.0,
-                105.0,
-                130.0,
-                155.0,
-                180.0
+                40.0,
+                65.0,
+                90.0,
+                115.0,
+                140.0,
+                165.0,
+                190.0
             ],
             "basemarkdamage": [
-                30.0,
-                55.0,
-                80.0,
-                105.0,
-                130.0,
-                155.0,
-                180.0
+                40.0,
+                65.0,
+                90.0,
+                115.0,
+                140.0,
+                165.0,
+                190.0
             ],
             "markduration": [
                 3.5,
@@ -35525,22 +35474,22 @@
                 3.5
             ],
             "Effect0": [
-                30.0,
-                55.0,
-                80.0,
-                105.0,
-                130.0,
-                155.0,
-                180.0
+                40.0,
+                65.0,
+                90.0,
+                115.0,
+                140.0,
+                165.0,
+                190.0
             ],
             "Effect1": [
-                30.0,
-                55.0,
-                80.0,
-                105.0,
-                130.0,
-                155.0,
-                180.0
+                40.0,
+                65.0,
+                90.0,
+                115.0,
+                140.0,
+                165.0,
+                190.0
             ],
             "Effect2": [
                 3.5,
@@ -35563,7 +35512,7 @@
         },
         "calcs": {
             "damage": "self.basedamage[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "{85862e11}": "self.basemarkdamage[skill.lvl] +  (0.4000000059604645 * champ.ap)"
+            "markdamage": "self.basemarkdamage[skill.lvl] +  (0.4000000059604645 * champ.ap)"
         }
     },
     "LeblancP": {
@@ -35641,8 +35590,8 @@
             "rq1damage": "self.rq1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
             "rq2damage": "self.rq2base[skill.lvl] +  (0.800000011920929 * champ.ap)",
             "rwdamage": "self.rwbase[skill.lvl] +  (0.75 * champ.ap)",
-            "{608de1e2}": "self.re1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "{3b421aa3}": "self.re2base[skill.lvl] +  (0.800000011920929 * champ.ap)"
+            "re1damage": "self.re1base[skill.lvl] +  (0.4000000059604645 * champ.ap)",
+            "re2damage": "self.re2base[skill.lvl] +  (0.800000011920929 * champ.ap)"
         }
     },
     "LeblancRWMove": {
@@ -37930,13 +37879,13 @@
     "LissandraQ": {
         "data_vals": {
             "Effect0": [
-                40.0,
-                70.0,
-                100.0,
-                130.0,
-                160.0,
-                190.0,
-                220.0
+                50.0,
+                80.0,
+                110.0,
+                140.0,
+                170.0,
+                200.0,
+                230.0
             ],
             "Effect1": [
                 1.5,
@@ -42264,7 +42213,7 @@
         },
         "calcs": {
             "totaldamage": "self.basedamage[skill.lvl] +  (0.800000011920929 * champ.ap)",
-            "{b56e20d7}": "(self.basedamage[skill.lvl] +  (0.800000011920929 * champ.ap)) * self.{80d61c57}[skill.lvl]"
+            "totaldamagemonsters": "(self.basedamage[skill.lvl] +  (0.800000011920929 * champ.ap)) * self.{80d61c57}[skill.lvl]"
         }
     },
     "MonkeyKingNimbusKickClone": {
@@ -42472,13 +42421,13 @@
                 160.0
             ],
             "isolationscalar": [
-                1.25,
-                1.2999999523162842,
                 1.350000023841858,
                 1.399999976158142,
                 1.4500000476837158,
                 1.5,
-                1.5499999523162842
+                1.5499999523162842,
+                1.600000023841858,
+                1.649999976158142
             ],
             "totaladratio": [
                 0.6499999761581421,
@@ -42490,13 +42439,13 @@
                 0.949999988079071
             ],
             "isolationtooltip": [
-                0.25,
-                0.30000001192092896,
                 0.3499999940395355,
                 0.4000000059604645,
                 0.44999998807907104,
                 0.5,
-                0.550000011920929
+                0.550000011920929,
+                0.6000000238418579,
+                0.6499999761581421
             ],
             "PreCalculated0": [
                 5.0,
@@ -42729,24 +42678,24 @@
                 4.994999985694886
             ],
             "PreCalculated2": [
-                28.0,
-                36.0,
-                44.0,
-                52.0,
-                60.0,
-                68.0,
-                76.0,
-                84.0,
-                92.0,
-                100.0,
-                108.0,
-                116.0,
-                124.0,
-                132.0,
-                140.0,
-                148.0,
-                156.0,
-                164.0
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180,
+                180
             ]
         },
         "calcs": {
@@ -42828,13 +42777,13 @@
                 0.05000000074505806
             ],
             "monstermod": [
-                150.0,
-                150.0,
-                150.0,
-                150.0,
-                150.0,
-                150.0,
-                150.0
+                200.0,
+                200.0,
+                200.0,
+                200.0,
+                200.0,
+                200.0,
+                200.0
             ]
         },
         "calcs": {
@@ -43227,7 +43176,7 @@
             ]
         },
         "calcs": {
-            "{c3281ba9}": "self.PreCalculated0[champ.lvl]"
+            "lifestealtooltip": "self.PreCalculated0[champ.lvl]"
         }
     },
     "NasusQAttack": {
@@ -44297,8 +44246,8 @@
             ]
         },
         "calcs": {
-            "{45da6466}": "self.{550605fe}[skill.lvl] +  (0.30000001192092896 * champ.ap)",
-            "{1d7cccfc}": "self.{949a8c34}[skill.lvl] +  (0.44999998807907104 * champ.ap)"
+            "totalpouncedamage": "self.pouncedamage[skill.lvl] +  (0.30000001192092896 * champ.ap)",
+            "totalswipedamage": "self.swipedamage[skill.lvl] +  (0.44999998807907104 * champ.ap)"
         }
     },
     "Swipe": {
@@ -44452,7 +44401,7 @@
             ]
         },
         "calcs": {
-            "{1f79b377}": "self.PreCalculated0[champ.lvl]",
+            "maxtraps": "self.PreCalculated0[champ.lvl]",
             "damagepersecond": "self.Effect4[skill.lvl] +  (0.05000000074505806 * champ.ap)"
         }
     },
@@ -44566,8 +44515,8 @@
             ]
         },
         "calcs": {
-            "{c872b05b}": "self.Effect0[skill.lvl] +  (0.699999988079071 * champ.ap)",
-            "{3301757d}": "(self.Effect0[skill.lvl] +  (0.699999988079071 * champ.ap)) * 3.0",
+            "humanminimumdamage": "self.Effect0[skill.lvl] +  (0.699999988079071 * champ.ap)",
+            "humanmaximumdamage": "(self.Effect0[skill.lvl] +  (0.699999988079071 * champ.ap)) * 3.0",
             "{38f95809}": "self.{15da7626}[skill.lvl]"
         }
     },
@@ -45921,7 +45870,7 @@
             ]
         },
         "calcs": {
-            "{d210ed1c}": "(self.{f9b84b7d}[skill.lvl]) * (100.0)"
+            "maxattackspeed": "(self.attackspeedpermissinghpperc[skill.lvl]) * (100.0)"
         }
     },
     "OrianaRedact": {
@@ -46133,13 +46082,13 @@
                 260.0
             ],
             "Effect1": [
-                5.0,
-                10.0,
-                15.0,
-                20.0,
-                25.0,
+                0.0,
+                6.0,
+                12.0,
+                18.0,
+                24.0,
                 30.0,
-                35.0
+                36.0
             ],
             "Effect2": [
                 30.0,
@@ -46170,8 +46119,8 @@
             ]
         },
         "calcs": {
-            "totaldamagetooltip": "self.Effect0[skill.lvl] +  (0.30000001192092896 * champ.ap)",
-            "totalshieldtooltip": "self.Effect2[skill.lvl] +  (0.5 * champ.ap)"
+            "totaldamagetooltip": "self.Effect2[skill.lvl] +  (0.30000001192092896 * champ.ap)",
+            "totalshieldtooltip": "self.Effect0[skill.lvl] +  (0.5 * champ.ap)"
         }
     },
     "OrianaReturn": {
@@ -47186,7 +47135,7 @@
         },
         "calcs": {
             "damagecalc": "self.basedamage[skill.lvl] +  (1.0 * champ.ap)",
-            "mindamage": "(self.basedamage[skill.lvl] +  (1.0 * champ.ap)) * self.{54aa4d6a}[skill.lvl]"
+            "mindamage": "(self.basedamage[skill.lvl] +  (1.0 * champ.ap)) * self.edgedamagereduction[skill.lvl]"
         }
     },
     "PantheonPassiveReady": {
@@ -47806,7 +47755,7 @@
         "calcs": {
             "bonusarmor": "(self.passiveresistpercent[skill.lvl] * champ.armor)",
             "bonusmr": "(self.passiveresistpercent[skill.lvl] * champ.magic_res)",
-            "{9bd40a81}": "self.Effect4[skill.lvl] +  (0.699999988079071 * champ.ap)"
+            "interruptdamage": "self.Effect4[skill.lvl] +  (0.699999988079071 * champ.ap)"
         }
     },
     "PoppyR": {
@@ -47904,7 +47853,7 @@
         },
         "calcs": {
             "damage": "self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
-            "{6c89ea95}": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.{4107cd86}[skill.lvl]"
+            "halfdamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.{4107cd86}[skill.lvl]"
         }
     },
     "PoppyQ": {
@@ -48026,7 +47975,7 @@
             ]
         },
         "calcs": {
-            "{c4beb97e}": "self.Effect0[skill.lvl] +  (0.5 * champ.atk)"
+            "tackledamage": "self.Effect0[skill.lvl] +  (0.5 * champ.atk)"
         }
     },
     "PykePassive": {
@@ -48087,9 +48036,9 @@
             ]
         },
         "calcs": {
-            "{0e2895a5}": "80.0 +  (8.0 * champ.bonus_atk)",
-            "{b412a9cc}": "self.{9bcc12ad}[skill.lvl] +  (0.0024999999441206455 * 100.0 * champ.lethality)",
-            "{9b62b1ba}": "self.{c208fb33}[skill.lvl] +  (0.004999999888241291 * 100.0 * champ.lethality)"
+            "damagestoragemax": "80.0 +  (8.0 * champ.bonus_atk)",
+            "oneenemycalc": "self.{9bcc12ad}[skill.lvl] +  (0.0024999999441206455 * 100.0 * champ.lethality)",
+            "additionalbonuscalc": "self.{c208fb33}[skill.lvl] +  (0.004999999888241291 * 100.0 * champ.lethality)"
         }
     },
     "PykeW": {
@@ -48198,7 +48147,7 @@
         },
         "calcs": {
             "{601654a1}": "self.PreCalculated0[champ.lvl]",
-            "{9f49799f}": "self.Effect0[skill.lvl] +  (1.5 * 100.0 * champ.lethality)"
+            "movespeed": "self.Effect0[skill.lvl] +  (1.5 * 100.0 * champ.lethality)"
         }
     },
     "PykeQ": {
@@ -48417,7 +48366,7 @@
             "raddamage": "(0.800000011920929 * champ.bonus_atk)",
             "rlethalitydamage": "(1.5 * 100.0 * champ.lethality)",
             "rbasedamage": "self.PreCalculated1[champ.lvl]",
-            "{ba40e56c}": "(self.PreCalculated0[champ.lvl] +  (0.800000011920929 * champ.bonus_atk) +  (1.5 * 100.0 * champ.lethality)) * self.reduceddamage[skill.lvl]"
+            "reduceddamagefinal": "(self.PreCalculated0[champ.lvl] +  (0.800000011920929 * champ.bonus_atk) +  (1.5 * 100.0 * champ.lethality)) * self.reduceddamage[skill.lvl]"
         }
     },
     "QiyanaWMis_Grass": {
@@ -50319,13 +50268,13 @@
     "PuncturingTaunt": {
         "data_vals": {
             "Effect0": [
-                1.25,
-                1.25,
-                1.5,
-                1.75,
+                1.2000000476837158,
+                1.2000000476837158,
+                1.399999976158142,
+                1.600000023841858,
+                1.7999999523162842,
                 2.0,
-                2.25,
-                2.5
+                2.0
             ],
             "Effect1": [
                 20.0,
@@ -50341,24 +50290,6 @@
     },
     "Tremors2": {
         "data_vals": {
-            "damageperpulse": [
-                0.0,
-                30.0,
-                60.0,
-                90.0,
-                120.0,
-                150.0,
-                180.0
-            ],
-            "duration": [
-                7.0,
-                7.0,
-                7.0,
-                7.0,
-                7.0,
-                7.0,
-                7.0
-            ],
             "slowduration": [
                 1.5,
                 1.5,
@@ -50368,14 +50299,14 @@
                 1.5,
                 1.5
             ],
-            "slowperstack": [
-                0.05999999865889549,
-                0.07999999821186066,
-                0.10000000149011612,
-                0.11999999731779099,
-                0.14000000059604645,
-                0.1599999964237213,
-                0.18000000715255737
+            "slowamount": [
+                0.125,
+                0.15000000596046448,
+                0.17499999701976776,
+                0.20000000298023224,
+                0.22499999403953552,
+                0.25,
+                0.2750000059604645
             ],
             "turretdamagemodifier": [
                 2.0,
@@ -50386,22 +50317,159 @@
                 2.0,
                 2.0
             ],
+            "initialdamage": [
+                25.0,
+                100.0,
+                175.0,
+                250.0,
+                325.0,
+                400.0,
+                475.0
+            ],
+            "pulsebasedamage": [
+                10.0,
+                20.0,
+                30.0,
+                40.0,
+                50.0,
+                60.0,
+                70.0
+            ],
             "numberofpulses": [
-                8.0,
-                8.0,
-                8.0,
-                8.0,
-                8.0,
-                8.0,
-                8.0
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+            ],
+            "buffduration": [
+                3.5,
+                3.5,
+                3.5,
+                3.5,
+                3.5,
+                3.5,
+                3.5
+            ],
+            "basecastrange": [
+                600.0,
+                600.0,
+                600.0,
+                600.0,
+                600.0,
+                600.0,
+                600.0
+            ],
+            "tremorsaoerange": [
+                400.0,
+                400.0,
+                400.0,
+                400.0,
+                400.0,
+                400.0,
+                400.0
+            ],
+            "tremorsknockuprange": [
+                200.0,
+                200.0,
+                200.0,
+                200.0,
+                200.0,
+                200.0,
+                200.0
+            ],
+            "knockupduration": [
+                0.75,
+                0.75,
+                0.75,
+                0.75,
+                0.75,
+                0.75,
+                0.75
+            ],
+            "bonusdamagemultiplier": [
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
+            ],
+            "dashrangegrowth": [
+                1.2999999523162842,
+                1.2999999523162842,
+                1.2999999523162842,
+                1.2999999523162842,
+                1.2999999523162842,
+                1.2999999523162842,
+                1.2999999523162842
+            ],
+            "maxrangefordmggrowth": [
+                1700.0,
+                1700.0,
+                1700.0,
+                1700.0,
+                1700.0,
+                1700.0,
+                1700.0
+            ],
+            "dashspeedgrowth": [
+                1.0499999523162842,
+                1.0499999523162842,
+                1.0499999523162842,
+                1.0499999523162842,
+                1.0499999523162842,
+                1.0499999523162842,
+                1.0499999523162842
+            ],
+            "mindashspeed": [
+                700.0,
+                700.0,
+                700.0,
+                700.0,
+                700.0,
+                700.0,
+                700.0
+            ],
+            "maxdashspeed": [
+                1800.0,
+                1800.0,
+                1800.0,
+                1800.0,
+                1800.0,
+                1800.0,
+                1800.0
             ]
         },
         "calcs": {
-            "damagecalc": "self.damageperpulse[skill.lvl] +  (0.20000000298023224 * champ.ap)"
+            "{8a6c2967}": "self.initialdamage[skill.lvl] +  (0.6000000238418579 * champ.ap)",
+            "{7e7cb2e2}": "self.{99b50632}[skill.lvl] +  (0.10000000149011612 * champ.ap)",
+            "{5d820782}": "self.initialdamage[skill.lvl] +  (0.6000000238418579 * champ.ap)"
         }
     },
     "DefensiveBallCurl": {
         "data_vals": {
+            "bonusdurationperauto": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "maxbonusduration": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+            ],
             "Effect0": [
                 30.0,
                 30.0,
@@ -50454,7 +50522,7 @@
                 80.0,
                 90.0,
                 100.0,
-                110.0
+                100.0
             ],
             "Effect6": [
                 30.0,
@@ -50463,7 +50531,7 @@
                 40.0,
                 45.0,
                 50.0,
-                55.0
+                50.0
             ],
             "Effect7": [
                 10.0,
@@ -50485,14 +50553,14 @@
     },
     "PowerBall": {
         "data_vals": {
-            "Effect0": [
+            "qbasedamage": [
+                70.0,
                 100.0,
-                100.0,
-                135.0,
-                170.0,
-                205.0,
-                240.0,
-                275.0
+                130.0,
+                160.0,
+                190.0,
+                220.0,
+                250.0
             ],
             "Effect1": [
                 40.0,
@@ -50576,7 +50644,9 @@
                 1000.0
             ]
         },
-        "calcs": {}
+        "calcs": {
+            "{4d016f96}": "self.qbasedamage[skill.lvl] +  (1.0 * champ.ap)"
+        }
     },
     "RammusPowerBallBot": {
         "data_vals": {
@@ -51036,7 +51106,7 @@
         },
         "calcs": {
             "speedbonus": "self.PreCalculated0[champ.lvl]",
-            "{5f869708}": "self.Effect1[skill.lvl] +  (0.800000011920929 * champ.bonus_atk)"
+            "unburrowdamage": "self.Effect1[skill.lvl] +  (0.800000011920929 * champ.bonus_atk)"
         }
     },
     "RekSaiQ": {
@@ -51098,7 +51168,7 @@
         },
         "calcs": {
             "totaldamagetooltip": "self.Effect0[skill.lvl] +  (0.5 * champ.bonus_atk)",
-            "{7f40a146}": "self.Effect3[skill.lvl] +  (0.5 * champ.bonus_atk) +  (0.699999988079071 * champ.ap)"
+            "burrowdamagetooltip": "self.Effect3[skill.lvl] +  (0.5 * champ.bonus_atk) +  (0.699999988079071 * champ.ap)"
         }
     },
     "RekSaiESpellPassive": {
@@ -52041,13 +52111,13 @@
                 280.0
             ],
             "stunduration": [
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
             ]
         },
         "calcs": {
@@ -52221,9 +52291,9 @@
             "oocms": "self.PreCalculated0[champ.lvl]",
             "{02736914}": "0.20000000298023224 + (champ.lvl) * 0.011111111276679568",
             "speedceiling": "290.0 + (champ.lvl) * 6.111111111111111",
-            "{fbde43a6}": "(self.{98ebbee4}[skill.lvl] * champ.armor)",
-            "{90267308}": "(self.{98ebbee4}[skill.lvl] * champ.magic_res)",
-            "{c3f4264d}": "self.haste[skill.lvl]"
+            "armorincreasetotal": "(self.{98ebbee4}[skill.lvl] * champ.armor)",
+            "mrincreasetotal": "(self.{98ebbee4}[skill.lvl] * champ.magic_res)",
+            "empoweredms": "self.haste[skill.lvl]"
         }
     },
     "RellE_StunCast": {
@@ -52238,13 +52308,13 @@
                 280.0
             ],
             "stunduration": [
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75,
-                0.75
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
             ]
         },
         "calcs": {
@@ -52356,8 +52426,8 @@
             ]
         },
         "calcs": {
-            "{4af44780}": "self.{1157a256}[skill.lvl] +  (1.5 * champ.atk)",
-            "{eb707e28}": "self.{238b41f7}[skill.lvl] +  (2.25 * champ.atk)"
+            "basictotaldamage": "self.baseflatdamage[skill.lvl] +  (1.5 * champ.atk)",
+            "emptotaldamage": "self.{238b41f7}[skill.lvl] +  (2.25 * champ.atk)"
         }
     },
     "RenektonExecute": {
@@ -52733,12 +52803,12 @@
             ]
         },
         "calcs": {
-            "{f9c808a8}": "self.Effect0[skill.lvl] +  (0.800000011920929 * champ.bonus_atk)",
-            "{2ec3ec00}": "self.Effect5[skill.lvl] +  (1.2000000476837158 * champ.atk)",
-            "{d92bf4c3}": "self.Effect1[skill.lvl] +  (0.03999999910593033 * champ.bonus_atk)",
-            "{d1d81a46}": "self.{899e50fa}[skill.lvl] +  (0.1599999964237213 * champ.bonus_atk)",
-            "{89f92883}": "self.Effect6[skill.lvl] +  (0.11999999731779099 * champ.bonus_atk)",
-            "{e08b5a06}": "self.{e83916ba}[skill.lvl] +  (0.47999998927116394 * champ.bonus_atk)"
+            "basicdamage": "self.Effect0[skill.lvl] +  (0.800000011920929 * champ.bonus_atk)",
+            "empdamage": "self.Effect5[skill.lvl] +  (1.2000000476837158 * champ.bonus_atk)",
+            "nonchamphealing": "self.Effect1[skill.lvl] +  (0.03999999910593033 * champ.bonus_atk)",
+            "champhealing": "self.{899e50fa}[skill.lvl] +  (0.1599999964237213 * champ.bonus_atk)",
+            "empnonchamphealing": "self.Effect6[skill.lvl] +  (0.11999999731779099 * champ.bonus_atk)",
+            "empchamphealing": "self.{e83916ba}[skill.lvl] +  (0.47999998927116394 * champ.bonus_atk)"
         }
     },
     "RenektonSliceAndDice": {
@@ -52835,8 +52905,8 @@
             ]
         },
         "calcs": {
-            "{f9c808a8}": "self.Effect0[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
-            "{2ec3ec00}": "self.Effect2[skill.lvl] +  (1.350000023841858 * champ.bonus_atk)"
+            "basicdamage": "self.Effect0[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
+            "empdamage": "self.Effect2[skill.lvl] +  (1.350000023841858 * champ.bonus_atk)"
         }
     },
     "RengarWEmp": {
@@ -53278,7 +53348,7 @@
         "calcs": {
             "empoweredqdamage": "self.PreCalculated0[champ.lvl] +  (1.399999976158142 * champ.atk)",
             "empoweredqas": "self.PreCalculated1[champ.lvl]",
-            "totaldamage": "self.Effect0[skill.lvl] +  (self.{61b6b0cd}[skill.lvl] * champ.atk)"
+            "totaldamage": "self.Effect0[skill.lvl] +  (self.tooltipqadratio[skill.lvl] * champ.atk)"
         }
     },
     "RengarW": {
@@ -53350,9 +53420,9 @@
             ]
         },
         "calcs": {
-            "{93a19cb7}": "65.0 + (champ.lvl) * 3.611111111111111",
+            "bonusmonsterdamage": "65.0 + (champ.lvl) * 3.611111111111111",
             "totaldamage": "self.basedamage[skill.lvl] +  (0.800000011920929 * champ.ap)",
-            "{1369285e}": "self.PreCalculated0[champ.lvl] +  (0.800000011920929 * champ.ap)"
+            "totaldamageempowered": "self.PreCalculated0[champ.lvl] +  (0.800000011920929 * champ.ap)"
         }
     },
     "RengarR": {
@@ -54224,7 +54294,7 @@
             ]
         },
         "calcs": {
-            "{91a97683}": "self.Effect0[skill.lvl] +  (((self.Effect4[skill.lvl]) * (0.009999999776482582)) * champ.atk)"
+            "firstslashdamage": "self.Effect0[skill.lvl] +  (((self.Effect4[skill.lvl]) * (0.009999999776482582)) * champ.atk)"
         }
     },
     "RivenMartyr": {
@@ -54612,8 +54682,8 @@
         },
         "calcs": {
             "totalshield": "self.Effect0[skill.lvl] +  (0.5 * champ.ap)",
-            "{0f94d28c}": "(self.Effect0[skill.lvl] +  (0.5 * champ.ap)) * 1.5",
-            "{c3f4264d}": "self.Effect1[skill.lvl]"
+            "empoweredshield": "(self.Effect0[skill.lvl] +  (0.5 * champ.ap)) * 1.5",
+            "empoweredms": "self.Effect1[skill.lvl]"
         }
     },
     "RumbleCarpetBomb": {
@@ -54675,7 +54745,7 @@
         },
         "calcs": {
             "damagepersecond": "self.basedamagepersecond[skill.lvl] +  (0.3499999940395355 * champ.ap)",
-            "totaldamage": "(self.basedamagepersecond[skill.lvl] +  (0.3499999940395355 * champ.ap)) * self.{4c14f897}[skill.lvl]"
+            "totaldamage": "(self.basedamagepersecond[skill.lvl] +  (0.3499999940395355 * champ.ap)) * self.trailduration[skill.lvl]"
         }
     },
     "RumbleFlameThrower": {
@@ -54761,6 +54831,33 @@
     },
     "RumbleGrenade": {
         "data_vals": {
+            "percmagicpen": [
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612
+            ],
+            "enhancedmagicpen": [
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224
+            ],
+            "shredduration": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+            ],
             "Effect0": [
                 60.0,
                 60.0,
@@ -54809,7 +54906,7 @@
         },
         "calcs": {
             "totaldamage": "self.Effect0[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "{2ec3ec00}": "(self.Effect0[skill.lvl] +  (0.4000000059604645 * champ.ap)) * 1.5"
+            "empdamage": "(self.Effect0[skill.lvl] +  (0.4000000059604645 * champ.ap)) * 1.5"
         }
     },
     "RumbleHeatSystem": {
@@ -54841,29 +54938,36 @@
                 100.0,
                 100.0
             ],
-            "PreCalculated0": [
-                25.0,
-                30.0,
-                35.0,
-                40.0,
-                45.0,
-                50.0,
-                55.0,
-                60.0,
-                65.0,
-                70.0,
-                75.0,
-                80.0,
-                85.0,
-                90.0,
-                95.0,
-                100.0,
-                105.0,
-                110.0
+            "overheatpercbonusdamage": [
+                0.05999999865889549,
+                0.05999999865889549,
+                0.05999999865889549,
+                0.05999999865889549,
+                0.05999999865889549,
+                0.05999999865889549,
+                0.05999999865889549
+            ],
+            "overheatas": [
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
+            ],
+            "monstercap": [
+                120.0,
+                120.0,
+                120.0,
+                120.0,
+                120.0,
+                120.0,
+                120.0
             ]
         },
         "calcs": {
-            "totaldamage": "self.PreCalculated0[champ.lvl] +  (0.30000001192092896 * champ.ap)"
+            "totalbasedamage": "10.0 + (champ.lvl) * 2.2222222222222223 +  (0.30000001192092896 * champ.ap)"
         }
     },
     "RyzeQWrapper": {
@@ -57368,7 +57472,7 @@
             "wmsbonustotal": "self.wmsbonus[skill.lvl] +  (self.wmsbonusapratio[skill.lvl] * champ.ap)",
             "wmissinghpheal": "self.wmissinghpbase[skill.lvl] +  (self.wmissinghpper100ap[skill.lvl] * champ.ap)",
             "hastevalueallies": "(self.wmsbonus[skill.lvl] +  (self.wmsbonusapratio[skill.lvl] * champ.ap)) * self.hastevalueforallies[skill.lvl]",
-            "{7f7df046}": "(self.PreCalculated0[champ.lvl] +  (self.shieldapratio[skill.lvl] * champ.ap)) * self.{0ddd227a}[skill.lvl]"
+            "shieldvalueseraphine": "(self.PreCalculated0[champ.lvl] +  (self.shieldapratio[skill.lvl] * champ.ap)) * self.{0ddd227a}[skill.lvl]"
         }
     },
     "SeraphineE": {
@@ -58066,6 +58170,15 @@
                 2.5,
                 3.0,
                 3.5
+            ],
+            "monstercap": [
+                400.0,
+                400.0,
+                400.0,
+                400.0,
+                400.0,
+                400.0,
+                400.0
             ]
         },
         "calcs": {
@@ -58672,7 +58785,7 @@
         },
         "calcs": {
             "totaldamage": "self.basedamage[skill.lvl] +  (0.25 * champ.bonus_atk)",
-            "{acb91f87}": "(1.2999999523162842) + ( (1.0 * champ.crit_multi))"
+            "qcritdamagemod": "(1.2999999523162842) + ( (1.0 * champ.crit_multi))"
         }
     },
     "TwoShivPoison": {
@@ -58824,7 +58937,7 @@
         "calcs": {
             "aoedamage": "self.aoebasedamage[skill.lvl] +  (0.10000000149011612 * champ.ap)",
             "stdamage": "self.stbasedamage[skill.lvl] +  (0.20000000298023224 * champ.ap)",
-            "{37fb913e}": "self.Effect3[skill.lvl] +  (0.05000000074505806 * champ.ap)"
+            "trapduration": "self.Effect3[skill.lvl] +  (0.05000000074505806 * champ.ap)"
         }
     },
     "ShacoQTrail": {
@@ -59205,9 +59318,9 @@
             ]
         },
         "calcs": {
-            "{1157a256}": "self.PreCalculated0[champ.lvl]",
+            "baseflatdamage": "self.PreCalculated0[champ.lvl]",
             "basepercenthealth": "self.Effect1[skill.lvl] +  (0.014999999664723873 * champ.ap)",
-            "{4395def0}": "self.Effect5[skill.lvl] +  (0.019999999552965164 * champ.ap)"
+            "emppercenthealth": "self.Effect5[skill.lvl] +  (0.019999999552965164 * champ.ap)"
         }
     },
     "ShenR": {
@@ -60123,7 +60236,7 @@
             "dragonexplosioncalc": "self.PreCalculated0[champ.lvl] +  (0.30000001192092896 * champ.ap) +  (0.30000001192092896 * champ.atk)",
             "dragondamagepersecondcalc": "self.PreCalculated1[champ.lvl] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)",
             "dragondamagepertickcalc": "(self.PreCalculated1[champ.lvl] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)) * self.secondspertick[skill.lvl]",
-            "{fb18b452}": "(self.PreCalculated1[champ.lvl] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)) * self.{4a18f12b}[skill.lvl]"
+            "dragondamagetotalcalc": "(self.PreCalculated1[champ.lvl] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)) * self.{4a18f12b}[skill.lvl]"
         }
     },
     "ShyvanaDoubleAttack": {
@@ -60294,7 +60407,7 @@
         "calcs": {
             "damagepertickcalc": "self.damagepertick[skill.lvl] +  (0.20000000298023224 * champ.bonus_atk)",
             "damageonhitcalc": "(self.damagepertick[skill.lvl] +  (0.20000000298023224 * champ.bonus_atk)) * self.percentdpsonhit[skill.lvl]",
-            "{f710d41f}": "self.{2d43847e}[skill.lvl] +  (0.0007999999797903001 * champ.ap)"
+            "finalmsperc": "self.mspercent[skill.lvl] +  (0.0007999999797903001 * champ.ap)"
         }
     },
     "ShyvanaFireballDragon2": {
@@ -62001,7 +62114,7 @@
         },
         "calcs": {
             "qdamagecalc": "(0.20000000298023224 * champ.atk)",
-            "{ba6df21b}": "(0.20000000298023224 * champ.atk) +  (0.30000001192092896 * champ.ap)",
+            "bonusqdamagecalc": "(0.20000000298023224 * champ.atk) +  (0.30000001192092896 * champ.ap)",
             "qbadratiotooltip": "(0.20000000298023224 * champ.atk)",
             "qapratiotooltip": "(0.30000001192092896 * champ.ap)"
         }
@@ -62082,7 +62195,7 @@
             ]
         },
         "calcs": {
-            "{0cb421e5}": "self.Effect0[skill.lvl] +  (0.20000000298023224 * champ.ap)"
+            "totalmagicdamage": "self.Effect0[skill.lvl] +  (0.20000000298023224 * champ.ap)"
         }
     },
     "SkarnerImpale": {
@@ -66083,8 +66196,8 @@
             ]
         },
         "calcs": {
-            "{2d2c833a}": "self.Effect6[skill.lvl] +  (0.6000000238418579 * champ.ap)",
-            "{01489a25}": "self.Effect2[skill.lvl] +  (0.019999999552965164 * champ.ap)"
+            "spitdamage": "self.Effect6[skill.lvl] +  (0.6000000238418579 * champ.ap)",
+            "championhealthdamage": "self.Effect2[skill.lvl] +  (0.019999999552965164 * champ.ap)"
         }
     },
     "TahmKenchQ_URFWrapper": {
@@ -66559,8 +66672,8 @@
             ]
         },
         "calcs": {
-            "{9ab10a2c}": "self.Effect0[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "{ba80e021}": "self.Effect4[skill.lvl] +  (0.30000001192092896 * champ.ap)",
+            "scatterdamage": "self.Effect0[skill.lvl] +  (0.4000000059604645 * champ.ap)",
+            "detonationdamage": "self.Effect4[skill.lvl] +  (0.30000001192092896 * champ.ap)",
             "totalslow": "self.Effect1[skill.lvl] +  (-0.03999999910593033 * champ.ap)"
         }
     },
@@ -66756,7 +66869,7 @@
             ]
         },
         "calcs": {
-            "{b036d3a5}": "self.Effect0[skill.lvl] +  (0.44999998807907104 * champ.ap)",
+            "rockdamage": "self.Effect0[skill.lvl] +  (0.44999998807907104 * champ.ap)",
             "{3db765f6}": "self.Effect0[skill.lvl] +  (0.44999998807907104 * champ.ap)"
         }
     },
@@ -67482,9 +67595,9 @@
             ]
         },
         "calcs": {
-            "{4ecade4a}": "self.{ce80819c}[skill.lvl]",
-            "{fbd179d4}": "self.Effect0[skill.lvl] +  (0.20000000298023224 * champ.ap) +  (0.009999999776482582 * champ.max_health)",
-            "{c222239f}": "self.Effect0[skill.lvl] +  (0.20000000298023224 * champ.ap) +  (0.009999999776482582 * champ.max_health)"
+            "stackcooldown": "self.{ce80819c}[skill.lvl]",
+            "healingperstack": "self.Effect0[skill.lvl] +  (0.20000000298023224 * champ.ap) +  (0.009999999776482582 * champ.max_health)",
+            "maxstackhealing": "self.Effect0[skill.lvl] +  (0.20000000298023224 * champ.ap) +  (0.009999999776482582 * champ.max_health)"
         }
     },
     "TaricR": {
@@ -67713,12 +67826,12 @@
             ],
             "impactbasedamage": [
                 0.0,
-                10.0,
-                20.0,
-                30.0,
-                40.0,
-                50.0,
-                60.0
+                11.0,
+                22.0,
+                33.0,
+                44.0,
+                55.0,
+                66.0
             ],
             "impactapratio": [
                 0.30000001192092896,
@@ -67730,13 +67843,13 @@
                 0.30000001192092896
             ],
             "poisonduration": [
-                4.5,
-                4.5,
-                4.5,
-                4.5,
-                4.5,
-                4.5,
-                4.5
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
             ],
             "tickfrequency": [
                 1.0,
@@ -67842,6 +67955,15 @@
     },
     "Camouflage": {
         "data_vals": {
+            "asduration": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+            ],
             "PreCalculated0": [
                 0.20000000298023224,
                 0.20000000298023224,
@@ -68204,7 +68326,7 @@
             ]
         },
         "calcs": {
-            "{d01f58b4}": "self.{f362a6cc}[skill.lvl] * champ.num_buffs({5fbfbf13})"
+            "currentsoulbonus": "self.statvaluepersoul[skill.lvl] * champ.num_buffs({5fbfbf13})"
         }
     },
     "ThreshE": {
@@ -68274,8 +68396,8 @@
             ]
         },
         "calcs": {
-            "{37958972}": "1.0 * champ.num_buffs({5fbfbf13})",
-            "{41821178}": "1.0 * champ.num_buffs({5fbfbf13}) +  (self.{c8caffbe}[skill.lvl] * champ.atk)",
+            "pattackdamagemin": "1.0 * champ.num_buffs({5fbfbf13})",
+            "pattackdamagemax": "1.0 * champ.num_buffs({5fbfbf13}) +  (self.{c8caffbe}[skill.lvl] * champ.atk)",
             "totaldamage": "self.Effect0[skill.lvl] +  (0.4000000059604645 * champ.ap)"
         }
     },
@@ -68524,13 +68646,13 @@
     "ThreshW": {
         "data_vals": {
             "Effect0": [
-                20.0,
+                30.0,
                 60.0,
-                100.0,
-                140.0,
+                90.0,
+                120.0,
+                150.0,
                 180.0,
-                220.0,
-                260.0
+                210.0
             ],
             "Effect1": [
                 1.0,
@@ -69429,7 +69551,7 @@
             ]
         },
         "calcs": {
-            "totaldamage": "self.Effect0[skill.lvl] +  (self.{61b6b0cd}[skill.lvl] * champ.atk)"
+            "totaldamage": "self.Effect0[skill.lvl] +  (self.tooltipqadratio[skill.lvl] * champ.atk)"
         }
     },
     "TrundleQ": {
@@ -73742,7 +73864,7 @@
             ]
         },
         "calcs": {
-            "totalmovespeed": "self.{9f49799f}[skill.lvl] +  (0.00039999998989515007 * champ.ap)"
+            "totalmovespeed": "self.movespeed[skill.lvl] +  (0.00039999998989515007 * champ.ap)"
         }
     },
     "ViegoRCast": {
@@ -73827,7 +73949,7 @@
         },
         "calcs": {
             "totaldamage": "(1.2000000476837158 * champ.atk) +  (((0.75) * ( (1.2000000476837158 * champ.atk))) * champ.crit)",
-            "{92391038}": "self.maxhealthdamage[skill.lvl] +  (0.029999999329447746 * champ.bonus_atk)"
+            "totalpercenthealth": "self.maxhealthdamage[skill.lvl] +  (0.029999999329447746 * champ.bonus_atk)"
         }
     },
     "ViegoQ": {
@@ -73934,8 +74056,8 @@
         },
         "calcs": {
             "totaldamage": "self.damage[skill.lvl] +  (0.6000000238418579 * champ.atk) +  (((0.75) * ((self.damage[skill.lvl]) + ( (0.6000000238418579 * champ.atk)))) * champ.crit)",
-            "{df8b7a40}": "(0.20000000298023224 * champ.atk) +  (0.15000000596046448 * champ.ap)",
-            "{5b864cf6}": "self.{44056bbe}[skill.lvl]"
+            "secondattackdamage": "(0.20000000298023224 * champ.atk) +  (0.15000000596046448 * champ.ap)",
+            "totalpercenthealthonhit": "self.percenthealthonhit[skill.lvl]"
         }
     },
     "ViegoPassive": {
@@ -74403,7 +74525,7 @@
         },
         "calcs": {
             "initialburstdamage": "self.initialburstbasedamage[skill.lvl] +  (0.5 * champ.ap)",
-            "{d23696db}": "self.subsequentburstbasedamage[skill.lvl] +  (0.44999998807907104 * champ.ap)"
+            "subsequentburstdamage": "self.subsequentburstbasedamage[skill.lvl] +  (0.44999998807907104 * champ.ap)"
         }
     },
     "ViktorChaosStormGuide": {
@@ -74733,8 +74855,8 @@
             "{9aabddee}": "(30.0 + (champ.lvl) * 4.722222222222222 +  (self.shieldapratio[skill.lvl] * champ.ap)) * self.augmentshieldbonus[skill.lvl]",
             "attacktotaldmg": "self.aabonusdamage[skill.lvl] +  (self.hitapratio[skill.lvl] * champ.ap) +  (1.0 * champ.atk)",
             "{147c7de9}": "(1.0 * champ.atk)",
-            "{c3eb8607}": "30.0 + (champ.lvl) * 4.722222222222222 +  (self.shieldapratio[skill.lvl] * champ.ap)",
-            "{fb0f3ced}": "48.0 + (champ.lvl) * 7.555555555555555 +  (0.3199999928474426 * champ.ap)"
+            "shieldlevelscaling": "30.0 + (champ.lvl) * 4.722222222222222 +  (self.shieldapratio[skill.lvl] * champ.ap)",
+            "totalaugmentedshieldvalue": "48.0 + (champ.lvl) * 7.555555555555555 +  (0.3199999928474426 * champ.ap)"
         }
     },
     "VladimirE": {
@@ -75519,11 +75641,11 @@
             "towerdamage": [
                 0.0,
                 300.0,
-                600.0,
+                500.0,
+                700.0,
                 900.0,
-                1200.0,
-                1500.0,
-                1800.0
+                1100.0,
+                1300.0
             ],
             "slowamount": [
                 0.5,
@@ -77493,8 +77615,8 @@
             ]
         },
         "calcs": {
-            "slashdamage": "self.{c3edce86}[skill.lvl] +  (0.30000001192092896 * champ.atk)",
-            "thrustdamage": "self.{54fc360b}[skill.lvl] +  (0.800000011920929 * champ.atk) +  (0.5 * champ.ap)",
+            "slashdamage": "self.slashbasedamage[skill.lvl] +  (0.30000001192092896 * champ.atk)",
+            "thrustdamage": "self.thrustbasedamage[skill.lvl] +  (0.800000011920929 * champ.atk) +  (0.5 * champ.ap)",
             "minionmod": "self.PreCalculated0[champ.lvl]"
         }
     },
@@ -78836,7 +78958,7 @@
         "calcs": {
             "shieldvalue": "self.PreCalculated0[champ.lvl]",
             "{74ce5438}": "self.PreCalculated1[champ.lvl]",
-            "{780548f3}": "(1.0 * champ.crit_multi)"
+            "currentcritdamage": "(1.0 * champ.crit_multi)"
         }
     },
     "YasuoRDummySpell": {
@@ -79663,7 +79785,7 @@
             ]
         },
         "calcs": {
-            "{780548f3}": "(1.0 * champ.crit_multi)"
+            "currentcritdamage": "(1.0 * champ.crit_multi)"
         }
     },
     "YoneE": {
@@ -80005,6 +80127,24 @@
     },
     "YorickE": {
         "data_vals": {
+            "ghoulbonusdamage": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "ghoulbonuscount": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+            ],
             "Effect0": [
                 35.0,
                 70.0,
@@ -80137,24 +80277,24 @@
                 50.0
             ],
             "PreCalculated0": [
-                99.0,
-                104.0,
-                109.0,
-                114.0,
-                119.0,
-                124.0,
-                129.0,
-                134.0,
-                139.0,
-                144.0,
-                149.0,
-                154.0,
-                159.0,
-                164.0,
-                169.0,
-                174.0,
-                179.0,
-                184.0
+                100.0,
+                105.0,
+                110.0,
+                115.0,
+                120.0,
+                125.0,
+                130.0,
+                135.0,
+                140.0,
+                145.0,
+                150.0,
+                155.0,
+                160.0,
+                165.0,
+                170.0,
+                175.0,
+                180.0,
+                185.0
             ],
             "PreCalculated1": [
                 2.0,
@@ -80165,12 +80305,12 @@
                 7.0,
                 8.0,
                 9.0,
-                50.0,
-                56.0,
+                42.0,
+                47.0,
+                52.0,
+                57.0,
                 62.0,
-                68.0,
-                74.0,
-                80.0,
+                67.0,
                 2.0,
                 2.0,
                 2.0,
@@ -80219,7 +80359,7 @@
         },
         "calcs": {
             "yorickpassiveghoulhealth": "self.PreCalculated0[champ.lvl] +  (0.15000000596046448 * champ.max_health)",
-            "yorickpassoveghouldamage": "self.PreCalculated1[champ.lvl] +  (0.30000001192092896 * champ.atk)",
+            "{23634779}": "self.PreCalculated1[champ.lvl] +  (0.25 * champ.atk)",
             "{1d553841}": "self.PreCalculated2[champ.lvl]",
             "unitstograve": "self.PreCalculated3[champ.lvl]"
         }
@@ -80333,6 +80473,24 @@
     },
     "NightmareBotYorickE": {
         "data_vals": {
+            "ghoulbonusdamage": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "ghoulbonuscount": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+            ],
             "Effect0": [
                 35.0,
                 70.0,
@@ -81390,22 +81548,22 @@
     "ZacW": {
         "data_vals": {
             "basedamage": [
-                10.0,
-                25.0,
-                40.0,
-                55.0,
-                70.0,
-                85.0,
-                100.0
+                20.0,
+                35.0,
+                50.0,
+                65.0,
+                80.0,
+                95.0,
+                110.0
             ],
             "apratiotopercentdamage": [
-                0.019999999552965164,
-                0.019999999552965164,
-                0.019999999552965164,
-                0.019999999552965164,
-                0.019999999552965164,
-                0.019999999552965164,
-                0.019999999552965164
+                0.03999999910593033,
+                0.03999999910593033,
+                0.03999999910593033,
+                0.03999999910593033,
+                0.03999999910593033,
+                0.03999999910593033,
+                0.03999999910593033
             ],
             "basemaxhealthdamage": [
                 0.029999999329447746,
@@ -81426,13 +81584,13 @@
                 9.0
             ],
             "Effect0": [
-                25.0,
-                25.0,
-                40.0,
-                55.0,
-                70.0,
-                85.0,
-                100.0
+                35.0,
+                35.0,
+                50.0,
+                65.0,
+                80.0,
+                95.0,
+                110.0
             ],
             "Effect1": [
                 0.03999999910593033,
@@ -82161,23 +82319,14 @@
                 10.0,
                 10.0
             ],
-            "monstermod": [
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0,
-                2.0
-            ],
-            "monstermodfortooltip": [
-                100.0,
-                100.0,
-                100.0,
-                100.0,
-                100.0,
-                100.0,
-                100.0
+            "monsterdamagecap": [
+                300.0,
+                300.0,
+                300.0,
+                300.0,
+                300.0,
+                300.0,
+                300.0
             ],
             "PreCalculated0": [
                 0.05999999865889549,
@@ -82198,31 +82347,10 @@
                 0.07999999821186066,
                 0.07999999821186066,
                 0.09999999776482582
-            ],
-            "PreCalculated1": [
-                200.0,
-                200.0,
-                200.0,
-                200.0,
-                200.0,
-                200.0,
-                200.0,
-                350.0,
-                350.0,
-                350.0,
-                350.0,
-                350.0,
-                350.0,
-                350.0,
-                350.0,
-                350.0,
-                350.0,
-                500.0
             ]
         },
         "calcs": {
-            "maxhpdamage": "self.PreCalculated0[champ.lvl]",
-            "monsterdamagecap": "self.PreCalculated1[champ.lvl]"
+            "maxhpdamage": "self.PreCalculated0[champ.lvl]"
         }
     },
     "ZedWMissile": {
@@ -86435,7 +86563,7 @@
         },
         "calcs": {
             "seedcooldown": "self.PreCalculated0[champ.lvl]",
-            "{90697adf}": "20.0 + (champ.lvl) * 4.444444444444445 +  (0.15000000596046448 * champ.ap)"
+            "plantdamage": "20.0 + (champ.lvl) * 4.444444444444445 +  (0.15000000596046448 * champ.ap)"
         }
     },
     "ZyraR": {

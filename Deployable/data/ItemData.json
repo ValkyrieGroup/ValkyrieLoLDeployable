@@ -561,9 +561,9 @@
     },
     {
         "movementSpeed": 0.0,
-        "health": 350,
+        "health": 200,
         "crit": 0.0,
-        "abilityPower": 0.0,
+        "abilityPower": 40,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
@@ -571,7 +571,7 @@
         "attackSpeed": 0.0,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
-        "movementSpeedPercent": 0.05,
+        "movementSpeedPercent": 0.0,
         "cost": 2500,
         "id": 2065
     },
@@ -819,7 +819,7 @@
         "movementSpeed": 0.0,
         "health": 0.0,
         "crit": 0.0,
-        "abilityPower": 50,
+        "abilityPower": 55,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
@@ -903,7 +903,7 @@
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
-        "physicalDamage": 20,
+        "physicalDamage": 25,
         "attackSpeed": 0.25,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
@@ -935,12 +935,12 @@
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
-        "physicalDamage": 35,
+        "physicalDamage": 30,
         "attackSpeed": 0.0,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2900,
+        "cost": 3000,
         "id": 3036
     },
     {
@@ -988,24 +988,8 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2900,
+        "cost": 3000,
         "id": 3042
-    },
-    {
-        "movementSpeed": 0.0,
-        "health": 0.0,
-        "crit": 0.0,
-        "abilityPower": 0.0,
-        "mana": 860,
-        "armour": 0.0,
-        "magicResist": 0.0,
-        "physicalDamage": 35,
-        "attackSpeed": 0.0,
-        "lifeSteal": 0.0,
-        "hpRegen": 0.0,
-        "movementSpeedPercent": 0.0,
-        "cost": 2600,
-        "id": 3043
     },
     {
         "movementSpeed": 0.0,
@@ -1031,12 +1015,12 @@
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
-        "physicalDamage": 0.0,
-        "attackSpeed": 0.4,
+        "physicalDamage": 20,
+        "attackSpeed": 0.25,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.07,
-        "cost": 2500,
+        "cost": 2600,
         "id": 3046
     },
     {
@@ -1054,22 +1038,6 @@
         "movementSpeedPercent": 0.0,
         "cost": 1100,
         "id": 3047
-    },
-    {
-        "movementSpeed": 0.0,
-        "health": 0.0,
-        "crit": 0.0,
-        "abilityPower": 65,
-        "mana": 860,
-        "armour": 0.0,
-        "magicResist": 0.0,
-        "physicalDamage": 0.0,
-        "attackSpeed": 0.0,
-        "lifeSteal": 0.0,
-        "hpRegen": 0.0,
-        "movementSpeedPercent": 0.0,
-        "cost": 3000,
-        "id": 3048
     },
     {
         "movementSpeed": 0.0,
@@ -1217,7 +1185,7 @@
     },
     {
         "movementSpeed": 0.0,
-        "health": 300,
+        "health": 400,
         "crit": 0.0,
         "abilityPower": 0.0,
         "mana": 0.0,
@@ -1228,7 +1196,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 3300,
+        "cost": 3100,
         "id": 3071
     },
     {
@@ -1319,8 +1287,8 @@
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
-        "physicalDamage": 25,
-        "attackSpeed": 0.35,
+        "physicalDamage": 30,
+        "attackSpeed": 0.3,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
@@ -1368,11 +1336,11 @@
         "armour": 0.0,
         "magicResist": 0.0,
         "physicalDamage": 0.0,
-        "attackSpeed": 0.4,
+        "attackSpeed": 0.45,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.07,
-        "cost": 2500,
+        "cost": 2600,
         "id": 3085
     },
     {
@@ -1404,7 +1372,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 3800,
+        "cost": 3600,
         "id": 3089
     },
     {
@@ -1459,7 +1427,7 @@
         "movementSpeed": 0.0,
         "health": 0.0,
         "crit": 0.0,
-        "abilityPower": 80,
+        "abilityPower": 70,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
@@ -1475,7 +1443,7 @@
         "movementSpeed": 0.0,
         "health": 0.0,
         "crit": 0.0,
-        "abilityPower": 65,
+        "abilityPower": 80,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 45,
@@ -1484,7 +1452,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2500,
+        "cost": 2600,
         "id": 3102
     },
     {
@@ -1564,7 +1532,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2700,
+        "cost": 2500,
         "id": 3110
     },
     {
@@ -1704,7 +1672,7 @@
         "armour": 0.0,
         "magicResist": 0.0,
         "physicalDamage": 0.0,
-        "attackSpeed": 0.4,
+        "attackSpeed": 0.45,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
@@ -1747,7 +1715,7 @@
         "movementSpeed": 0.0,
         "health": 0.0,
         "crit": 0.0,
-        "abilityPower": 65,
+        "abilityPower": 70,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
@@ -1756,7 +1724,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2500,
+        "cost": 2700,
         "id": 3135
     },
     {
@@ -1841,7 +1809,7 @@
     },
     {
         "movementSpeed": 0.0,
-        "health": 350,
+        "health": 250,
         "crit": 0.0,
         "abilityPower": 90,
         "mana": 0.0,
@@ -1865,7 +1833,7 @@
         "magicResist": 0.0,
         "physicalDamage": 40,
         "attackSpeed": 0.25,
-        "lifeSteal": 0.12,
+        "lifeSteal": 0.1,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
         "cost": 3200,
@@ -1900,7 +1868,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 3100,
+        "cost": 2800,
         "id": 3156
     },
     {
@@ -1916,7 +1884,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2500,
+        "cost": 2600,
         "id": 3157
     },
     {
@@ -1932,14 +1900,14 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 900,
+        "cost": 950,
         "id": 3158
     },
     {
         "movementSpeed": 0.0,
         "health": 250,
         "crit": 0.0,
-        "abilityPower": 70,
+        "abilityPower": 80,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
@@ -1975,12 +1943,12 @@
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
-        "physicalDamage": 55,
+        "physicalDamage": 50,
         "attackSpeed": 0.0,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2800,
+        "cost": 2600,
         "id": 3179
     },
     {
@@ -2044,7 +2012,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 900,
+        "cost": 1000,
         "id": 3191
     },
     {
@@ -2199,12 +2167,12 @@
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
-        "physicalDamage": 55,
+        "physicalDamage": 45,
         "attackSpeed": 0.0,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2900,
+        "cost": 2800,
         "id": 3508
     },
     {
@@ -2257,7 +2225,7 @@
     },
     {
         "movementSpeed": 0.0,
-        "health": 475,
+        "health": 400,
         "crit": 0.0,
         "abilityPower": 0.0,
         "mana": 0.0,
@@ -2595,7 +2563,7 @@
         "movementSpeed": 0.0,
         "health": 0.0,
         "crit": 0.0,
-        "abilityPower": 100,
+        "abilityPower": 115,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
@@ -2643,7 +2611,7 @@
         "movementSpeed": 0.0,
         "health": 0.0,
         "crit": 0.0,
-        "abilityPower": 25,
+        "abilityPower": 20,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 25,
@@ -2652,12 +2620,12 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 1200,
+        "cost": 1000,
         "id": 4632
     },
     {
         "movementSpeed": 0.0,
-        "health": 150,
+        "health": 300,
         "crit": 0.0,
         "abilityPower": 80,
         "mana": 0.0,
@@ -2673,7 +2641,7 @@
     },
     {
         "movementSpeed": 0.0,
-        "health": 150,
+        "health": 250,
         "crit": 0.0,
         "abilityPower": 20,
         "mana": 0.0,
@@ -2796,18 +2764,18 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 1200,
+        "cost": 1100,
         "id": 6029
     },
     {
         "movementSpeed": 0.0,
-        "health": 200,
+        "health": 300,
         "crit": 0.0,
         "abilityPower": 0.0,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 35,
-        "physicalDamage": 35,
+        "physicalDamage": 40,
         "attackSpeed": 0.0,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
@@ -2833,7 +2801,7 @@
     },
     {
         "movementSpeed": 0.0,
-        "health": 200,
+        "health": 250,
         "crit": 0.0,
         "abilityPower": 0.0,
         "mana": 0.0,
@@ -2844,14 +2812,14 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2700,
+        "cost": 2600,
         "id": 6609
     },
     {
         "movementSpeed": 0.0,
         "health": 0.0,
         "crit": 0.0,
-        "abilityPower": 60,
+        "abilityPower": 50,
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
@@ -2897,7 +2865,7 @@
     },
     {
         "movementSpeed": 0.0,
-        "health": 300,
+        "health": 200,
         "crit": 0.0,
         "abilityPower": 0.0,
         "mana": 0.0,
@@ -2961,7 +2929,7 @@
     },
     {
         "movementSpeed": 0.0,
-        "health": 200,
+        "health": 250,
         "crit": 0.0,
         "abilityPower": 80,
         "mana": 600,
@@ -2997,14 +2965,14 @@
         "crit": 0.0,
         "abilityPower": 0.0,
         "mana": 0.0,
-        "armour": 50,
+        "armour": 25,
         "magicResist": 25,
         "physicalDamage": 0.0,
         "attackSpeed": 0.0,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 3200,
+        "cost": 2800,
         "id": 6662
     },
     {
@@ -3014,13 +2982,13 @@
         "abilityPower": 0.0,
         "mana": 0.0,
         "armour": 25,
-        "magicResist": 50,
+        "magicResist": 25,
         "physicalDamage": 0.0,
         "attackSpeed": 0.0,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 3200,
+        "cost": 2800,
         "id": 6664
     },
     {
@@ -3079,9 +3047,9 @@
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
-        "physicalDamage": 50,
-        "attackSpeed": 0.15,
-        "lifeSteal": 0.12,
+        "physicalDamage": 55,
+        "attackSpeed": 0.2,
+        "lifeSteal": 0.1,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
         "cost": 3400,
@@ -3196,7 +3164,7 @@
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 3400,
+        "cost": 3200,
         "id": 6694
     },
     {
@@ -3207,12 +3175,12 @@
         "mana": 0.0,
         "armour": 0.0,
         "magicResist": 0.0,
-        "physicalDamage": 60,
+        "physicalDamage": 55,
         "attackSpeed": 0.0,
         "lifeSteal": 0.0,
         "hpRegen": 0.0,
         "movementSpeedPercent": 0.0,
-        "cost": 2800,
+        "cost": 2600,
         "id": 6695
     }
 ]
