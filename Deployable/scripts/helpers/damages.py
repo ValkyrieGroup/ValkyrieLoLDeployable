@@ -179,40 +179,40 @@ class VeigarRDamage(MagicDamage):
 			self.raw_dmg *= 2.0
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 2.0
-		else p < 0.40:
-                        self.raw_dmg *= 1.9
+		elif p < 0.40:
+			self.raw_dmg *= 1.9
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.9
-		else p < 0.4667:
-                        self.raw_dmg *= 1.8
+		elif p < 0.4667:
+			self.raw_dmg *= 1.8
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.8
-		else p < 0.5333:
-                        self.raw_dmg *= 1.7
+		elif p < 0.5333:
+			self.raw_dmg *= 1.7
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.7
-		else p < 0.60:
-                        self.raw_dmg *= 1.6
+		elif p < 0.60:
+			self.raw_dmg *= 1.6
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.6
-		else p < 0.6667:
-                        self.raw_dmg *= 1.5
+		elif p < 0.6667:
+			self.raw_dmg *= 1.5
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.5
-		else p < 0.7333:
-                        self.raw_dmg *= 1.4
+		elif p < 0.7333:
+			self.raw_dmg *= 1.4
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.4
-		else p < 0.80:
-                        self.raw_dmg *= 1.3
+		elif p < 0.80:
+			self.raw_dmg *= 1.3
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.3
-		else p < 0.8667:
-                        self.raw_dmg *= 1.2
+		elif p < 0.8667:
+			self.raw_dmg *= 1.2
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.2
-		else p < 0.9333:
-                        self.raw_dmg *= 1.1
+		elif p < 0.9333:
+			self.raw_dmg *= 1.1
 			dmg = super().calc_against(ctx, attacker, target)
 			self.raw_dmg /= 1.1
 		else:
@@ -325,7 +325,7 @@ DamageExtractors = {
         # Veigar
 	'veigarbalefulstrike'    : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
         'darkmatter'             : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
-        'veigarr'                : lambda calc, champ, skill: VeigarRDamage(calc.mindamagetooltip(champ, skill)),
+        'veigarr'                : lambda calc, champ, skill: VeigarRDamage(calc.maxdamagetooltip(champ, skill)),
 	
 	# Yasuo
 	'yasuoq1wrapper'         : lambda calc, champ, skill: PhysDamage(calc.totaldamagecrit(champ, skill)),
