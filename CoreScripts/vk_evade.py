@@ -72,6 +72,7 @@ enabler            = Enabler(True, KeyInput(0, False))
 always_evade       = False
 extra_evade_length = 50.0
 flash_for_prio     = EvadePriority.Highest
+use_flash          = True
 
 Settings = {
 	'aatrox' : [
@@ -541,13 +542,15 @@ NameToSettings = {}
 #EvadeSettings(name = '',  cast_names = [''], missile_names = [''])
 
 def valkyrie_menu(ctx) :		 
-	global always_evade, enabler, extra_evade_length, flash_for_prio
+	global always_evade, enabler, extra_evade_length, flash_for_prio, use_flash
 	ui = ctx.ui	
 
 	ui.text('Global settings', Col.Purple)
 	enabler.ui(ui)
 	always_evade       = ui.checkbox('Always try to dodge', always_evade)
-	flash_for_prio     = ui.sliderenum('Flash for priority atleast', EvadeSettings.PriorityNames[flash_for_prio], flash_for_prio, EvadePriority.Highest)
+	use_flash          = ui.checkbox('Use flash', use_flash)
+	if use_flash:
+		flash_for_prio = ui.sliderenum('Flash for priority atleast', EvadeSettings.PriorityNames[flash_for_prio], flash_for_prio, EvadePriority.Highest)
 	ui.separator()
 	
 	ui.text('Champions settings', Col.Purple)
@@ -575,13 +578,14 @@ def valkyrie_menu(ctx) :
 		ui.treepop()
 		
 def valkyrie_on_load(ctx) :	 
-	global always_evade, enabler, extra_evade_length, flash_for_prio
+	global always_evade, enabler, extra_evade_length, flash_for_prio, use_flash
 	global Settings, NameToSettings
 	cfg = ctx.cfg
 	
 	enabler        = Enabler.from_str(cfg.get_str('_enabler', str(enabler)))
 	always_evade   = cfg.get_bool('_always_evade', always_evade)
 	flash_for_prio = cfg.get_int('_flash_for_prio', flash_for_prio)
+	use_flash      = cfg.get_bool('_use_flash', use_flash)
 	for champ, settings in Settings.items():
 		for i, default_setting in enumerate(settings):
 			setting = EvadeSettings.from_str(cfg.get_str(default_setting.name, str(default_setting)))
@@ -598,6 +602,7 @@ def valkyrie_on_save(ctx) :
 	cfg.set_str('_enabler', str(enabler))
 	cfg.set_bool('_always_evade', always_evade)
 	cfg.set_int('_flash_for_prio', flash_for_prio)
+	cfg.set_bool('_use_flash', use_flash)
 	for champ, settings in Settings.items():
 		for setting in settings:
 			cfg.set_str(setting.name, str(setting))
@@ -728,7 +733,7 @@ def move(ctx, timenow):
 		last_moved = timenow
 	
 def evade_flash(ctx, player, evade_point, prio):
-	if prio >= flash_for_prio:
+	if use_flash and prio >= flash_for_prio:
 		flash = get_flash_spell(player)
 		if flash and player.can_cast_spell(flash):
 			new_evade_point = player.pos + ((evade_point - player.pos).normalize() * player.pos.distance(evade_point)*2.0)
@@ -790,4 +795,5 @@ def valkyrie_exec(ctx):
 	elif col.spell.static.has_flag(Spell.TypeArea):
 		evade_point = get_area_evade_point(ctx, player, col)
 	
-	try_evade(ctx, player, evade_point, col, prio)
+	if evade_point:
+		try_evade(ctx, player, evade_point, col, prio)

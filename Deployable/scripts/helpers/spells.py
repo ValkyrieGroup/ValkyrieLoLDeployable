@@ -102,6 +102,21 @@ class Buffs:
 		return False
 	
 	@classmethod
+	def has_cc_type(self, champ, cc_type):
+		if type(champ) != ChampionObj:
+			return False
+			
+		for buff in champ.buffs:
+			b = Buffs.get(buff.name)
+			if b.type != BuffType.CC:
+				continue
+			
+			if b.type_info == cc_type:
+				return True
+				
+		return False
+	
+	@classmethod
 	def get(self, buff_name):
 		'''
 			Gets the buff object by name of the buff

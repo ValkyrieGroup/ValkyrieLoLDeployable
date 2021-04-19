@@ -3,7 +3,7 @@ from valkyrie import *
 from .targeting import TargetSelector
 from .flags import Orbwalker
 from .inputs import KeyInput
-from .spells import Buffs, BuffType, SpellCondition
+from .spells import Buffs, BuffType, SpellCondition, CCType
 from .damages import calculate_raw_spell_dmg
 import pickle, base64
 
@@ -175,65 +175,29 @@ class ConditionInFrontOfTarget(SpellCondition):
 	def _get_help(self):
 		return 'Triggers when player is in front of target'
 
-class ConditionTargetStunned(SpellCondition):
-    def _check(self, ctx, player, target, spell):
-        return target.has_buff('Stun')
+class ConditionCC(SpellCondition):
 
-    def _get_name(self):
-        return 'Is stunned'
+	who_names = ['Me', 'Enemy']
+	Me    = 0
+	Enemy = 1
 
-    def _get_help(self):
-        return 'Triggers when target is stunned'
+	def __init__(self, cc_type, who_cced):
+		self.cc_type = cc_type
+		self.enabled = True
+		self.who     = who_cced
 
-class ConditionTargetCharmed(SpellCondition):
-    def _check(self, ctx, player, target, spell):
-        return target.has_buff('Charm')
+	def _check(self, ctx, player, target, spell):
+		return Buffs.has_cc_type(player if self.who == 0 else target, self.cc_type)
 
-    def _get_name(self):
-        return 'Is charmed'
+	def _get_name(self):
+		return 'Is CCed'
 
-    def _get_help(self):
-        return 'Triggers when target is charmed'
-
-class ConditionTargetSuppressed(SpellCondition):
-    def _check(self, ctx, player, target, spell):
-        return target.has_buff('suppression')
-
-    def _get_name(self):
-        return 'Is suppressed'
-
-    def _get_help(self):
-        return 'Triggers when target is suppressed'
-
-class ConditionTargetJhinW(SpellCondition):
-    def _check(self, ctx, player, target, spell):
-        return target.has_buff('JhinW')
-
-    def _get_name(self):
-        return 'Is stunned by JhinW'
-
-    def _get_help(self):
-        return 'Triggers when target is stunned by JhinW'
-
-class ConditionTargetLuxed(SpellCondition):
-    def _check(self, ctx, player, target, spell):
-        return target.has_buff('LuxLightBindingMis')
-
-    def _get_name(self):
-        return 'Is Luxed'
-
-    def _get_help(self):
-        return 'Triggers when target is Luxed'
-
-class ConditionTargetTaunted(SpellCondition):
-    def _check(self, ctx, player, target, spell):
-        return target.has_buff('puncturingtauntattackspeed')
-
-    def _get_name(self):
-        return 'Is taunted'
-
-    def _get_help(self):
-        return 'Triggers when target is taunted'
+	def _get_help(self):
+		return 'Triggers when target has a certain CC'
+		
+	def _ui(self, ctx, ui):
+		self.who = ui.sliderenum('Who CCed', self.who_names[self.who], self.who, 1)
+		self.cc_type = ui.combo('CC Type', list(CCType.Names.values()), self.cc_type)
 	
 class ConditionTargetPoisoned(SpellCondition):
 	def _check(self, ctx, player, target, spell):

@@ -9016,5 +9016,23 @@
             "Unit_Minion",
             "Unit_Minion_Summon"
         ]
+    },
+	{
+        "name": "gwen",
+        "healthBarHeight": 110.0,
+        "baseMoveSpeed": 340.0,
+        "attackRange": 150.0,
+        "attackSpeed": 0.6899999976158142,
+        "attackSpeedRatio": 0.6899999976158142,
+        "acquisitionRange": 600.0,
+        "selectionRadius": 100.0,
+        "pathingRadius": 35.0,
+        "gameplayRadius": 65.0,
+        "basicAtkWindup": 0.19672132236795462,
+        "basicAtkCastTime": 0.30000001192092896,
+        "basicAtk": "gwenbasicattack",
+        "tags": [
+            "Unit_Champion"
+        ]
     }
 ]

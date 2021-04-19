@@ -220,6 +220,16 @@ class VeigarRDamage(MagicDamage):
 		
 		return dmg
 		
+class VeigarRDamage(MagicDamage):
+
+	def calc_against(self, ctx, attacker, target):		
+		p = target.health/target.max_health
+		self.raw_dmg = self.base + self.base * min(0.66, (1.0 - p)*1.5)
+		return super().calc_against(ctx, attacker, target)
+		
+	def __init__(self, base):
+		self.base = base
+
 DamageExtractors = {
 	
 	# Ahri
@@ -255,6 +265,12 @@ DamageExtractors = {
 	'fioraq'                 : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
 	'fioraw'                 : lambda calc, champ, skill: MagicDamage(calc.stabdamage(champ, skill)),
 	'fiorar'                 : lambda calc, champ, skill: WrapMaxHP(TrueDamage(4.0 * Calculations['fiorapassive'].passivedamagetotal(champ, skill))),
+	
+	# Hecarim
+	'hecarimrapidslash'      : lambda calc, champ, skill: PhysDamage(calc.damage(champ, skill)),
+	'hecarimw'               : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+	'hecarimramp'            : lambda calc, champ, skill: PhysDamage(calc.mindamage(champ, skill)),
+	'hecarimult'             : lambda calc, champ, skill: MagicDamage(calc.damagedone(champ, skill)),
 
         # Kalista
 	'kalistaexpungewrapper'  : lambda calc, champ, skill: KalistaExpungeWrapperDamage(PhysDamage(calc.basedamage[skill.lvl - 1]), PhysDamage(calc.additionaldamage(champ, skill))),
@@ -326,6 +342,16 @@ DamageExtractors = {
 	'veigarbalefulstrike'    : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
         'darkmatter'             : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
         'veigarr'                : lambda calc, champ, skill: VeigarRDamage(calc.maxdamagetooltip(champ, skill)),
+	
+	# Vayne
+	'vaynetumble'            : lambda calc, champ, skill: PhysDamage(calc.adratiobonus(champ, skill)),
+	'vaynesilveredbolts'     : lambda calc, champ, skill: WrapMaxHP(TrueDamage(calc.maxhealthratio[skill.lvl - 1])),
+	'vaynecondemn'           : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
+	
+	# Veigar
+	'veigarbalefulstrike'    : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
+	'veigardarkmatter'       : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
+	'veigarr'                : lambda calc, champ, skill: VeigarRDamage(calc.mindamagetooltip(champ, skill)),
 	
 	# Yasuo
 	'yasuoq1wrapper'         : lambda calc, champ, skill: PhysDamage(calc.totaldamagecrit(champ, skill)),
