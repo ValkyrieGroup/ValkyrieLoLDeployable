@@ -148,7 +148,7 @@
         "parent": "",
         "icon": "summoner_mark",
         "castTime": 0.0,
-        "castRange": 0.0,
+        "castRange": 1600.0,
         "castRadius": 0.0,
         "castConeAngle": 0.0,
         "castConeDistance": 0.0,
@@ -157,7 +157,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": [ "CastDirection" ]
+        "flags": [ "CastDirection", "Line", "CollideCommon", "AffectAll" ]
     },
 	{
         "name": "summonermana",
@@ -1775,7 +1775,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastPoint", "AffectAll", "Area"]
     },
     {
         "name": "crystallize",
@@ -1855,7 +1855,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "Cone", "AffectAll"]
     },
     {
         "name": "incinerate",
@@ -1871,7 +1871,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "Cone", "AffectAll"]
     },
     {
         "name": "anniew",
@@ -1951,7 +1951,7 @@
         "speed": 1400.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastTarget"]
     },
     {
         "name": "nightmarebotannieflamingbuildingssource",
@@ -43542,7 +43542,7 @@
         "parent": "",
         "icon": "varuse",
         "castTime": 0.2418999969959259,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 260.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43654,7 +43654,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43782,7 +43782,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43798,7 +43798,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43830,7 +43830,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43846,7 +43846,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 260.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43862,7 +43862,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43878,7 +43878,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43894,7 +43894,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43910,7 +43910,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43926,7 +43926,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -43990,7 +43990,7 @@
         "parent": "",
         "icon": "cryophoenix_frigidorb",
         "castTime": 0.25,
-        "castRange": 1500.0,
+        "castRange": 925.0,
         "castRadius": 210.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -44255,7 +44255,7 @@
         "speed": 2200.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "Line", "CollideCommon", "AffectAll"]
     },
     {
         "name": "veigarpassive",
@@ -44287,7 +44287,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastPoint", "Area", "AffectAll"]
     },
     {
         "name": "veigarbasicattack",
@@ -44319,7 +44319,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastTarget", "CollideWall",]
     },
     {
         "name": "nightmarebotveigarqmis",
@@ -44335,7 +44335,7 @@
         "speed": 2200.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "Line", "CollideCommon", "AffectAll"]
     },
     {
         "name": "veigarbasicattack2",
@@ -44367,7 +44367,7 @@
         "speed": 1200.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "Line", "CollideCommon", "AffectAll"]
     },
     {
         "name": "veigareventhorizon",
@@ -44415,7 +44415,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastPoint", "Area", "AffectAll"]
     },
     {
         "name": "veigardarkmattercastlockout",
