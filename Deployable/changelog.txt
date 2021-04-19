@@ -1,3 +1,12 @@
+[Valkyrie v0.31]
+	+ Now before aimcast or champ scripts cast a spell it will check for obstacles (minion/monster) collisions and not cast if there is one in the way
+	+ Now target selector has a checkbox for manual target selection, if the manual target is not in range it will default to the automatic way
+	+ Added a few more champs in damage library
+
+	+ Scripting API:
+		+ Added raycasting (ctx.raycast), useful for finding collisions with walls/minions (google raycasts to understand them better)
+		+ Added focused champion (ctx.focused), it is the last clicked (left click) object
+
 [Valkyrie v0.30]
 	+ Added default key bindings in case valkyrie fails to read inputs.ini game file
 	+ Improved orbwalker prediction (thanks to csmit195 for the contribution)

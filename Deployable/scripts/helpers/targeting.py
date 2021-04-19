@@ -107,34 +107,43 @@ class TargetSelector:
 		self.target_set        = target_set
 		self.targeters         = self.target_sets[target_set]
 		self.selected_targeter = selected
-	
+		self.prefer_focused    = False
+		
 	def ui(self, label, ctx, ui):
 		ui.pushid(id(self))
 		self.selected_targeter = ui.combo(label, self.targeters, self.selected_targeter)
 		self.targeters[self.selected_targeter].ui(ctx, ui)
+		self.prefer_focused = ui.checkbox('Prefer focused object', self.prefer_focused)
+		ui.help('If enabled the selector will target first the focused object. The focused object is the object last clicked (left click). Click on ground to reset the focused object')
+		
 		ui.popid()
 
 	def get_target(self, ctx, targets):
-		
 		best_target = None
 		min_score   = 10000000
 		for target in targets:
 			
 			score = self.targeters[self.selected_targeter].get_score(ctx, target)
 			if hasattr(target, 'is_clone') and target.is_clone:
-				score += 1000
+				score += 10000
+			if self.prefer_focused and ctx.focused and target.net_id == ctx.focused.net_id:
+				score -= 10000
 				
 			if(score < min_score):
 				min_score = score
 				best_target = target
-				
+		
 		return best_target
 		
 	def __str__(self):
-		return json.dumps([self.selected_targeter, self.target_set])
+		return json.dumps([self.selected_targeter, self.target_set, self.prefer_focused])
 		
 	@classmethod
 	def from_str(self, s):
 		j = json.loads(s)
+		selector = TargetSelector(j[0], j[1])
 		
-		return TargetSelector(*j)
+		if len(j) > 2:
+			selector.prefer_focused = j[2]
+			
+		return selector

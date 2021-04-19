@@ -719,6 +719,16 @@ Predicts a cast point such that the spell will hit the target. Returns None if d
     class boost::python::api::object predict_cast_point(class PyExecutionContext {lvalue},class GameUnit,class GameUnit,class GameSpell const *)
 </code></pre></div>
 </dd>
+<dt id="valkyrie.Context.raycast"><code class="name flex">
+<span>def <span class="ident">raycast</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>raycast( (Context)arg1, (Vec3)arg2, (Vec3)arg3, (float)arg4, (float)arg5, (RayLayer)arg6) -&gt; object :
+Launches a ray that stops on the first object specified by RayLayer</p>
+<pre><code>C++ signature :
+    class boost::python::api::object raycast(class PyExecutionContext {lvalue},struct Vector3,struct Vector3,float,float,enum RaycastLayer)
+</code></pre></div>
+</dd>
 <dt id="valkyrie.Context.rect"><code class="name flex">
 <span>def <span class="ident">rect</span></span>(<span>...)</span>
 </code></dt>
@@ -1051,6 +1061,10 @@ Checks if key was pressed</p>
 </ul>
 <h3>Instance variables</h3>
 <dl>
+<dt id="valkyrie.Obj.bounding_radius"><code class="name">var <span class="ident">bounding_radius</span></code></dt>
+<dd>
+<div class="desc"><p>The bounding radius of the object a.k.a the hitbox (but its actually a circle)</p></div>
+</dd>
 <dt id="valkyrie.Obj.dir"><code class="name">var <span class="ident">dir</span></code></dt>
 <dd>
 <div class="desc"><p>Direction the object is facing as a normalized Vec3</p></div>
@@ -1300,6 +1314,99 @@ Query objects in vision</p>
 <pre><code>C++ signature :
     class ObjectQuery * visible(class ObjectQuery {lvalue})
 </code></pre></div>
+</dd>
+</dl>
+</dd>
+<dt id="valkyrie.RayLayer"><code class="flex name class">
+<span>class <span class="ident">RayLayer</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Represents the objects that a raycast can intercept</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>Boost.Python.enum</li>
+<li>builtins.int</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="valkyrie.RayLayer.All"><code class="name">var <span class="ident">All</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Ally"><code class="name">var <span class="ident">Ally</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Champion"><code class="name">var <span class="ident">Champion</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Enemy"><code class="name">var <span class="ident">Enemy</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Jungle"><code class="name">var <span class="ident">Jungle</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Minion"><code class="name">var <span class="ident">Minion</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Missile"><code class="name">var <span class="ident">Missile</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Other"><code class="name">var <span class="ident">Other</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Turret"><code class="name">var <span class="ident">Turret</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Unit"><code class="name">var <span class="ident">Unit</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.Wall"><code class="name">var <span class="ident">Wall</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.names"><code class="name">var <span class="ident">names</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.RayLayer.values"><code class="name">var <span class="ident">values</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="valkyrie.RaycastResult"><code class="flex name class">
+<span>class <span class="ident">RaycastResult</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Represents the result of a raycast</p>
+<p><strong>init</strong>( (object)arg1) -&gt; None :</p>
+<pre><code>C++ signature :
+    void __init__(struct _object *)
+</code></pre></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>Boost.Python.instance</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="valkyrie.RaycastResult.obj"><code class="name">var <span class="ident">obj</span></code></dt>
+<dd>
+<div class="desc"><p>Object that the raycast collided with. None if it was a wall</p></div>
+</dd>
+<dt id="valkyrie.RaycastResult.point"><code class="name">var <span class="ident">point</span></code></dt>
+<dd>
+<div class="desc"><p>Point of raycast collision</p></div>
 </dd>
 </dl>
 </dd>
@@ -3206,6 +3313,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Context.ping_warn" href="#valkyrie.Context.ping_warn">ping_warn</a></code></li>
 <li><code><a title="valkyrie.Context.player" href="#valkyrie.Context.player">player</a></code></li>
 <li><code><a title="valkyrie.Context.predict_cast_point" href="#valkyrie.Context.predict_cast_point">predict_cast_point</a></code></li>
+<li><code><a title="valkyrie.Context.raycast" href="#valkyrie.Context.raycast">raycast</a></code></li>
 <li><code><a title="valkyrie.Context.rect" href="#valkyrie.Context.rect">rect</a></code></li>
 <li><code><a title="valkyrie.Context.rect_fill" href="#valkyrie.Context.rect_fill">rect_fill</a></code></li>
 <li><code><a title="valkyrie.Context.start_channel" href="#valkyrie.Context.start_channel">start_channel</a></code></li>
@@ -3278,6 +3386,7 @@ Rotates the vector along the z axis</p>
 <h4><code><a title="valkyrie.Obj" href="#valkyrie.Obj">Obj</a></code></h4>
 <ul class="two-column">
 <li><code><a title="valkyrie.Obj.ally_to" href="#valkyrie.Obj.ally_to">ally_to</a></code></li>
+<li><code><a title="valkyrie.Obj.bounding_radius" href="#valkyrie.Obj.bounding_radius">bounding_radius</a></code></li>
 <li><code><a title="valkyrie.Obj.dir" href="#valkyrie.Obj.dir">dir</a></code></li>
 <li><code><a title="valkyrie.Obj.enemy_to" href="#valkyrie.Obj.enemy_to">enemy_to</a></code></li>
 <li><code><a title="valkyrie.Obj.first_seen" href="#valkyrie.Obj.first_seen">first_seen</a></code></li>
@@ -3310,6 +3419,31 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.ObjectQuery.targetable" href="#valkyrie.ObjectQuery.targetable">targetable</a></code></li>
 <li><code><a title="valkyrie.ObjectQuery.untargetable" href="#valkyrie.ObjectQuery.untargetable">untargetable</a></code></li>
 <li><code><a title="valkyrie.ObjectQuery.visible" href="#valkyrie.ObjectQuery.visible">visible</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="valkyrie.RayLayer" href="#valkyrie.RayLayer">RayLayer</a></code></h4>
+<ul class="two-column">
+<li><code><a title="valkyrie.RayLayer.All" href="#valkyrie.RayLayer.All">All</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Ally" href="#valkyrie.RayLayer.Ally">Ally</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Champion" href="#valkyrie.RayLayer.Champion">Champion</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Enemy" href="#valkyrie.RayLayer.Enemy">Enemy</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Jungle" href="#valkyrie.RayLayer.Jungle">Jungle</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Minion" href="#valkyrie.RayLayer.Minion">Minion</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Missile" href="#valkyrie.RayLayer.Missile">Missile</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Other" href="#valkyrie.RayLayer.Other">Other</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Turret" href="#valkyrie.RayLayer.Turret">Turret</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Unit" href="#valkyrie.RayLayer.Unit">Unit</a></code></li>
+<li><code><a title="valkyrie.RayLayer.Wall" href="#valkyrie.RayLayer.Wall">Wall</a></code></li>
+<li><code><a title="valkyrie.RayLayer.names" href="#valkyrie.RayLayer.names">names</a></code></li>
+<li><code><a title="valkyrie.RayLayer.values" href="#valkyrie.RayLayer.values">values</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="valkyrie.RaycastResult" href="#valkyrie.RaycastResult">RaycastResult</a></code></h4>
+<ul class="">
+<li><code><a title="valkyrie.RaycastResult.obj" href="#valkyrie.RaycastResult.obj">obj</a></code></li>
+<li><code><a title="valkyrie.RaycastResult.point" href="#valkyrie.RaycastResult.point">point</a></code></li>
 </ul>
 </li>
 <li>
