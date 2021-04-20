@@ -27510,7 +27510,7 @@
         "parent": "",
         "icon": "olaf_r",
         "castTime": 0.25,
-        "castRange": 100.0,
+        "castRange": 500.0,
         "castRadius": 20.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -44319,7 +44319,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastTarget", "CollideWall",]
+        "flags": ["CastTarget", "CollideWall"]
     },
     {
         "name": "nightmarebotveigarqmis",

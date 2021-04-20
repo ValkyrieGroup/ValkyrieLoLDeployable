@@ -252,6 +252,10 @@ DamageExtractors = {
 	'kogmawvoidooze'         : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'kogmawlivingartillery'  : lambda calc, champ, skill: KogMawRDamage(calc.basedamagecalc(champ, skill)),
 
+	# Olaf
+	'olafaxethrowcast'       : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
+	'olafrecklessstrike'     : lambda calc, champ, skill: TrueDamage(calc.totaldamage(champ, skill)),
+
         # Pyke
 	'pyker'                  : lambda calc, champ, skill: PhysDamage(calc.rdamage(champ, skill)),
 					          				

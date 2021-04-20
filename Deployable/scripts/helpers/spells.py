@@ -53,12 +53,12 @@ class Buffs:
 	AllBuffs = [
 		#    Pretty nam               In game name                 Type              More type info
 		Buff('Charm',                'Charm',                      BuffType.CC,      CCType.Charm),
-		Buff('Stun',                 'Stun',                       BuffType.CC,      CCType.Stun),
 		Buff('Flee',                 'Flee',                       BuffType.CC,      CCType.Fear),
 		Buff('Suppress',             'suppression',                BuffType.CC,      CCType.Suppress),
 		Buff('Taunt',                'puncturingtauntattackspeed', BuffType.CC,      CCType.Taunt),
 
-		# Stuns                                             
+		# Stuns   
+		Buff('Stun',                 'Stun',                       BuffType.CC,      CCType.Stun),
 		Buff('VeigarEStun',          'veigareventhorizonstun',     BuffType.CC,      CCType.Stun),
 		Buff('SonaRStun',            'SonaR',                      BuffType.CC,      CCType.Stun),
 
@@ -236,7 +236,7 @@ class SpellRotation:
 		else:
 			self.mask = mask
 				
-	def find_spell(self, ctx, target_selector):
+	def find_spell(self, ctx, target_selector, target_extractor):
 		'''
 			Gets the next castable spell in the rotation. Returns None if nothing found
 		'''
@@ -251,7 +251,7 @@ class SpellRotation:
 			if not spell.static or not player.can_cast_spell(spell):
 				continue
 				
-			target = target_selector.get_target(ctx, ctx.champs.enemy_to(player).targetable().near(player, spell.static.cast_range).get())
+			target = target_selector.get_target(ctx, target_extractor(ctx, player, spell))
 			if not target:
 				continue
 				
@@ -262,12 +262,12 @@ class SpellRotation:
 		
 		return None, None, None
 		
-	def get_spell(self, ctx, player, target_selector):
+	def get_spell(self, ctx, player, target_selector, target_extractor):
 		if player.curr_casting and player.curr_casting.remaining > 0.0:
 			return None, None
 
 			
-		target, spell, rspell = self.find_spell(ctx, target_selector)
+		target, spell, rspell = self.find_spell(ctx, target_selector, target_extractor)
 		if not spell:
 			return None, None
 		
@@ -277,10 +277,10 @@ class SpellRotation:
 		
 		return spell, point
 		
-	def cast(self, ctx, target_selector):
+	def cast(self, ctx, target_selector, target_extractor):
 		player = ctx.player
 
-		spell, point = self.get_spell(ctx, player, target_selector)
+		spell, point = self.get_spell(ctx, player, target_selector, target_extractor)
 		if spell:
 			ctx.cast_spell(spell, point)
 	

@@ -3,8 +3,9 @@ from valkyrie import *
 from .targeting import TargetSelector
 from .flags import Orbwalker
 from .inputs import KeyInput
-from .spells import Buffs, BuffType, SpellCondition, CCType
+from .spells import Buffs, BuffType, SpellCondition, CCType, SpellRotation
 from .damages import calculate_raw_spell_dmg
+
 import pickle, base64
 
 class Enabler:
@@ -118,41 +119,73 @@ class Attributes:
 
 class ChampionScript:
 	
-	Version = '0.2 alpha'
+	Version = '0.3'
+	MinionSelector = TargetSelector(selected = 1)
 	
-	def __init__(self, passive_trigger, combat_rotation, passive_rotation, combat_distance = None, passive_distance = None):
-		self.passive_trigger = passive_trigger
-		self.combat_rotation = combat_rotation
-		self.passive_rotation = passive_rotation
+	def __init__(self, passive_trigger, combat_rotation, passive_rotation, lasthit_rotation = SpellRotation([]), lanepush_rotation = SpellRotation([]), combat_distance = None, passive_distance = None):
+		self.passive_trigger   = passive_trigger
+		self.combat_rotation   = combat_rotation
+		self.passive_rotation  = passive_rotation
+		self.lasthit_rotation  = lasthit_rotation
+		self.lanepush_rotation = lanepush_rotation
+		
+		self.use_lasthit_rotation  = False
+		self.use_lanepush_rotation = False
 		
 	def ui(self, ctx):
 		ui = ctx.ui
 	
 		ui.text(f'Powered by Valkyrie Champion Script v{self.Version}', Col.Yellow)
 
-		if ui.beginmenu('Orbwalker spell rotation'):
+		if ui.beginmenu('Kite spell rotation'):
 			self.combat_rotation.ui(ctx, ui)
 			ui.endmenu()
-		ui.help('This spell rotation is made for combat using orbwalker')
+		ui.help('This spell rotation is used when kiting with orbwalker')
 		
 		if ui.beginmenu('Passive spell rotation'):
 			self.passive_rotation.ui(ctx, ui)
 			ui.endmenu()
 		ui.help('This spell rotation is made for passive/sniping etc')
+		
+		if ui.beginmenu('Last hit spell rotation'):
+			self.lasthit_rotation.ui(ctx, ui)
+			ui.endmenu()
+		ui.help('This spell rotation is made for last hitting with orbwalker')
+
+		if ui.beginmenu('Lane push spell rotation'):
+			self.lanepush_rotation.ui(ctx, ui)
+			ui.endmenu()
+		ui.help('This spell rotation is made for lane pushing with orbwalker')
 			
 		self.passive_trigger.ui(ui, 'Passive rotation')
 		
+		self.use_lanepush_rotation = ui.checkbox('Use spells in lane push', self.use_lanepush_rotation)
+		self.use_lasthit_rotation  = ui.checkbox('Use spells in last hit',  self.use_lasthit_rotation)
+		
 	def exec(self, ctx):
+		def champion_target_extractor(ctx, player, spell):
+			return ctx.champs.enemy_to(player).targetable().near(player, spell.static.cast_range).get()
+		
+		def minion_target_extractor(ctx, player, spell):
+			return ctx.minions.enemy_to(player).targetable().near(player, spell.static.cast_range).get()
+		
 		player = ctx.player
 		if Orbwalker.CurrentMode:
 			if Orbwalker.CurrentMode == Orbwalker.ModeKite:
-				ctx.pill('SpellKite', Col.Green, Col.Black)
-				self.combat_rotation.cast(ctx, Orbwalker.SelectorChampion)
+				self.combat_rotation.cast(ctx, Orbwalker.SelectorChampion, champion_target_extractor)
+				return
+				
+			elif self.use_lasthit_rotation and Orbwalker.CurrentMode == Orbwalker.ModeLastHit:
+				self.lasthit_rotation.cast(ctx, self.MinionSelector, minion_target_extractor)
+				return
+				
+			elif self.use_lanepush_rotation and Orbwalker.CurrentMode == Orbwalker.ModeLanePush:
+				self.lanepush_rotation.cast(ctx, self.MinionSelector, minion_target_extractor)
 				return
 			
 		if self.passive_trigger.check(ctx) and Orbwalker.ModeKite:
-			ctx.pill('Passive', Col.Purple, Col.Black)
-			self.passive_rotation.cast(ctx, Orbwalker.SelectorChampion)
+			ctx.pill('Passive', Col.Black, Col.White)
+			self.passive_rotation.cast(ctx, Orbwalker.SelectorChampion, champion_target_extractor)
 
 		
 	@classmethod
