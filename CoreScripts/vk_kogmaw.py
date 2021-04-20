@@ -43,8 +43,6 @@ class ConditionKogMawUlt(SpellCondition):
 
 kogmaw = HT.ChampionScript(
 	passive_trigger   = HT.Enabler.default(),
-	combat_distance   = 1800,
-	passive_distance  = 1800,
 	
 	combat_rotation = SpellRotation([
 		RSpell(Slot.Q, HT.MixedConditions([
@@ -55,7 +53,24 @@ kogmaw = HT.ChampionScript(
 		RSpell(Slot.E, HT.ConditionDistanceToTarget(700, 3000)), 
 		RSpell(Slot.R, ConditionKogMawUlt(9, 200)),
 	]),
-
+	
+	lasthit_rotation = SpellRotation([
+		RSpell(Slot.Q, HT.ConditionKillable()),
+		RSpell(Slot.R, HT.MixedConditions(
+			[ConditionKogMawUlt(1, 200), HT.ConditionKillable(), HT.ConditionDistanceToTarget(800.0, 1800.0)],
+			HT.MixedConditions.All)
+		)]
+	),
+	
+	lanepush_rotation = SpellRotation([
+		RSpell(Slot.Q),
+		RSpell(Slot.E),
+		RSpell(Slot.R, HT.MixedConditions(
+			[ConditionKogMawUlt(9, 200), HT.ConditionDistanceToTarget(800.0, 1800.0)],
+			HT.MixedConditions.All)
+		)
+	]),
+	
 	passive_rotation = SpellRotation([
 		RSpell(Slot.R, ConditionKogMawUlt(1, 200))
 	])
