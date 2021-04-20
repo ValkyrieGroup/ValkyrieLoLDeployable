@@ -15,6 +15,7 @@ class CCType:
 	Taunt    = 6
 	Drowsy   = 7
 	Sleep    = 8
+	Airbone  = 9
 	
 	Names = {
 		Charm    : 'Charm',
@@ -25,7 +26,8 @@ class CCType:
 		Root     : 'Root',
 		Taunt    : 'Taunt',
 		Drowsy   : 'Drowsy',
-		Sleep    : 'Sleep'
+		Sleep    : 'Sleep',
+		Airbone  : 'Airbone'
 	}
 
 class BuffType:
@@ -55,16 +57,32 @@ class Buffs:
 		Buff('Flee',                 'Flee',                       BuffType.CC,      CCType.Fear),
 		Buff('Suppress',             'suppression',                BuffType.CC,      CCType.Suppress),
 		Buff('Taunt',                'puncturingtauntattackspeed', BuffType.CC,      CCType.Taunt),
+
+		# Stuns                                             
+		Buff('VeigarEStun',          'veigareventhorizonstun',     BuffType.CC,      CCType.Stun),
+		Buff('SonaRStun',            'SonaR',                      BuffType.CC,      CCType.Stun),
+
+		# Airbones                                             
+		Buff('RivenQKnockback',      'rivenknockback',             BuffType.CC,      CCType.Airbone),
+		Buff('MalphiteRknockupstun', 'UnstoppableForceStun',       BuffType.CC,      CCType.Airbone),
+		Buff('WukongRknockup',       'monkeykingspinknockup',      BuffType.CC,      CCType.Airbone),
+		Buff('XinzhaoQknockup',      'XinZhaoQKnockup',            BuffType.CC,      CCType.Airbone),
+		Buff('XinzhaoRknockback',    'xinzhaorknockback',          BuffType.CC,      CCType.Airbone),
+
+		# Sleeps                                             
+		Buff('ZoeEsleep',            'zoeesleepstun',              BuffType.CC,      CCType.Sleep),
 								     
 		# Slows                                              
 		Buff('Slow',                 'slow',                       BuffType.CC,      CCType.Slow),
 		Buff('WaterDrakeSlow',       'waterdragonslow',            BuffType.CC,      CCType.Slow),
 		Buff('AshePassiveSlow',      'ashepassiveslow',            BuffType.CC,      CCType.Slow),
-								     						      
+														      
 		# Roots                                                    
 		Buff('JhinWRoot',            'JhinW',                      BuffType.CC,      CCType.Root),
 		Buff('LuxQRoot',             'LuxLightBindingMis',         BuffType.CC,      CCType.Root),
-							         
+		Buff('RyzeWRoot',            'ryzewroot',                  BuffType.CC,      CCType.Root),
+		Buff('SingedEWRoot',         'megaadhevisesnare',          BuffType.CC,      CCType.Root),
+								 
 		# Masteries                  
 		Buff('LethalTempo',          'ASSETS/Perks/Styles/Precision/LethalTempo/LethalTempoEmpowered.lua', BuffType.Mastery),
 		 
