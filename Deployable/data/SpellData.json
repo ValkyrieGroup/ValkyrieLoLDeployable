@@ -53015,7 +53015,7 @@
         "speed": 1800.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "AffectAll"]
     },
     {
         "name": "gwenrmis",
@@ -53031,7 +53031,7 @@
         "speed": 1800.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "AffectAll"]
     },
     {
         "name": "gwenr",
@@ -53047,7 +53047,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "AffectAll"]
     },
     {
         "name": "gwenrmis3_visualonly",
@@ -53063,7 +53063,7 @@
         "speed": 1800.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "AffectAll"]
     },
     {
         "name": "gwenrrecast",
@@ -53079,7 +53079,7 @@
         "speed": 1500.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "AffectAll"]
     },
     {
         "name": "gwenwrecast",
@@ -53095,14 +53095,14 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastAnywhere"]
     },
     {
         "name": "gweneempoweredattack",
         "parent": "",
         "icon": "",
         "castTime": 0,
-        "castRange": 100.0,
+        "castRange": 150.0,
         "castRadius": 100.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -53118,7 +53118,7 @@
         "parent": "",
         "icon": "",
         "castTime": 0,
-        "castRange": 100.0,
+        "castRange": 150.0,
         "castRadius": 100.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -53134,7 +53134,7 @@
         "parent": "",
         "icon": "",
         "castTime": 0.32465000450611115,
-        "castRange": 100.0,
+        "castRange": 150.0,
         "castRadius": 100.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -53150,16 +53150,16 @@
         "parent": "",
         "icon": "gwen_w.gwen",
         "castTime": 0,
-        "castRange": 0.0,
+        "castRange": 480.0,
         "castRadius": 500.0,
         "castConeAngle": 0.0,
         "castConeDistance": 0.0,
         "width": 0.0,
         "height": 0.0,
-        "speed": 100000.0,
+        "speed": 2000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastAnywhere"]
     },
     {
         "name": "gwenq",
@@ -53175,7 +53175,7 @@
         "speed": 2000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "AffectAll"]
     },
     {
         "name": "gwenp",
@@ -53198,7 +53198,7 @@
         "parent": "",
         "icon": "",
         "castTime": 0.32465000450611115,
-        "castRange": 100.0,
+        "castRange": 150.0,
         "castRadius": 100.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -53213,8 +53213,8 @@
         "name": "gwene",
         "parent": "",
         "icon": "gwen_e.gwen",
-        "castTime": 0,
-        "castRange": 100.0,
+        "castTime": 0.0,
+        "castRange": 350.0,
         "castRadius": 20.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -53223,7 +53223,7 @@
         "speed": 700.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastPoint", "Dash"]
     },
     {
         "name": "gwenz_generalfunctions",
@@ -53262,7 +53262,7 @@
         "parent": "",
         "icon": "",
         "castTime": 0,
-        "castRange": 100.0,
+        "castRange": 150.0,
         "castRadius": 0.0,
         "castConeAngle": 0.0,
         "castConeDistance": 0.0,
@@ -53278,7 +53278,7 @@
         "parent": "",
         "icon": "",
         "castTime": 0.32465000450611115,
-        "castRange": 100.0,
+        "castRange": 150.0,
         "castRadius": 100.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
@@ -53294,7 +53294,7 @@
         "parent": "",
         "icon": "",
         "castTime": 0.32465000450611115,
-        "castRange": 100.0,
+        "castRange": 150.0,
         "castRadius": 100.0,
         "castConeAngle": 0.0,
         "castConeDistance": 100.0,
