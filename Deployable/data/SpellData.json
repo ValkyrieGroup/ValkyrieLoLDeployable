@@ -15743,7 +15743,7 @@
         "speed": 1750.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastPoint"]
     },
     {
         "name": "jinxbasicattack6",
@@ -15823,7 +15823,7 @@
         "speed": 1200.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "Line", "CollideCommon", "AffectAll"]
     },
     {
         "name": "jinxq",
