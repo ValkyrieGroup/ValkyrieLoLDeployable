@@ -309,6 +309,12 @@ DamageExtractors = {
 	'yasuoq3wrapper'         : lambda calc, champ, skill: PhysDamage(calc.totaldamagecrit(champ, skill)),
 	'yasuoe'                 : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'yasuor'                 : lambda calc, champ, skill: PhysDamage(calc.damage(champ, skill)),
+
+        # Yone
+	'yoneq'                  : lambda calc, champ, skill: PhysDamage(calc.totaldamagecrit(champ, skill)),
+	'yoneq3'                 : lambda calc, champ, skill: PhysDamage(calc.totaldamagecrit(champ, skill)),
+	'yonew'                  : lambda calc, champ, skill: PhysDamage(calc.wdamage(champ, skill)),
+	'yoner'                  : lambda calc, champ, skill: PhysDamage(calc.damage(champ, skill)),
 }
 
 DuplicateMap = {
