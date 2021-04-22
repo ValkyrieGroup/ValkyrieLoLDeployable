@@ -42498,6 +42498,22 @@
         "flags": []
     },
     {
+        "name": "goldcardlock",
+        "parent": "",
+        "icon": "cardmaster_fatesgambit",
+        "castTime": 0.0,
+        "castRange": 2000.0,
+        "castRadius": 100.0,
+        "castConeAngle": 0.0,
+        "castConeDistance": 100.0,
+        "width": 0.0,
+        "height": 0.0,
+        "speed": 1500.0,
+        "travelTime": 0.0,
+        "delay": 0.0,
+        "flags": ["CastAnywhere"]
+    },
+    {
         "name": "twitchsprayandprayattack",
         "parent": "",
         "icon": "",
