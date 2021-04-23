@@ -45503,7 +45503,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastAnywhere", "Area", "AffectAll"]
+        "flags": ["CastAnywhere", "Area", "AffectAll", "CollideCommon"]
     },
     {
         "name": "vladimirq",
@@ -45519,7 +45519,7 @@
         "speed": 1400.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastTarget", "AffectAll"]
     },
     {
         "name": "vladimirrhealmissile",
@@ -45567,7 +45567,7 @@
         "speed": 1600.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastAnywhere", "Area", "AffectAll"]
     },
     {
         "name": "vladimire_temp2",
@@ -45599,7 +45599,7 @@
         "speed": 1100.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastAnywhere", "Area", "AffectAll"]
     },
     {
         "name": "vladimirbloodgorged",
@@ -45695,7 +45695,7 @@
         "speed": 1200.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastPoint", "Area", "AffectAll"]
     },
     {
         "name": "vladimirbasicattack3",
