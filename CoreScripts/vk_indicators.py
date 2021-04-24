@@ -6,10 +6,10 @@ from helpers.damages import calculate_raw_spell_dmg
 from time import time
 import json
 
-player_circle	     = Circle(0.0, 80, 3.0, Col.Green,  False, True)
-turret_circle_enemy  = Circle(0.0, 80, 3.0, Col.Red,    False, True)
-turret_circle_ally   = Circle(0.0, 80, 3.0, Col.Blue,   False, True)
-focused_circle       = Circle(0.0, 80, 3.0, Col.Yellow, False, True)
+player_circle	     = Circle(0.0, 80, 3.0, Col(0.1, 1.0, 0.1, 0.7),  True, True)
+turret_circle_enemy  = Circle(0.0, 80, 3.0, Col(1.0, 0.1, 0.1, 0.7),  True, True)
+turret_circle_ally   = Circle(0.0, 80, 3.0, Col(0.4, 0.2, 1.0, 0.7),  True, True)
+focused_circle       = Circle(0.0, 80, 3.0, Col(0.8, 0.8, 0.1, 0.7),  True, True)
 
 show_minion_hit      = True
 show_casting_spells  = True
