@@ -1,7 +1,11 @@
+[Valkyrie v0.34]
+	+ Added vk_champ_portraits script
+	+ Fixed some small bugs
+
 [Valkyrie v0.33]
-	+ Circle/skillshot indicator drawings now are faster to draw and better looking (should improve performance slightly, this is the beginning of replacing the slow rendering of imgui)
+	+ Circle/skillshot indicator drawings now are faster to draw and better looking (should improve performance, this is the beginning of replacing the slow rendering of imgui)
 	+ Now indicators has a circle option for focused object
-	+ Gwen added in skillshot database, aswell as some other skillshots incorect values were fixed
+	+ Gwen added in skillshot database, aswell as some other skillshots incorrect values were fixed
 
 [Valkyrie v0.32]
 	+ Now skin changer is a python script in order for the skin changer to save the skin for each champion
