@@ -257,7 +257,7 @@ DamageExtractors = {
 	'olafrecklessstrike'     : lambda calc, champ, skill: TrueDamage(calc.totaldamage(champ, skill)),
 
         # Pyke
-	'pyker'                  : lambda calc, champ, skill: PhysDamage(calc.rdamage(champ, skill)),
+	'pyker'                  : lambda calc, champ, skill: TrueDamage(calc.rdamage(champ, skill)),
 					          				
 	# Samira                 
 	'samiraq'                : lambda calc, champ, skill: PhysDamage(calc.damagecalc(champ, skill)),
