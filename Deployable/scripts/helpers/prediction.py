@@ -13,13 +13,14 @@ def predict_minions_lasthit(ctx, enemy_minions, ally_minions, delay_percent = 0.
 	player			 = ctx.player
 	player_range	 = ctx.player.atk_range + ctx.player.static.gameplay_radius
 	basic_atk_speed	 = player.static.basic_atk.speed
-	basic_atk_delay	 = player.static.basic_atk_windup*(1.0 + delay_percent) / player.atk_speed
+	basic_atk_delay	 = player.static.basic_atk_windup / player.atk_speed
 	result = []
 	
 	for enemy_minion in enemy_minions:
 		 
 		hit_dmg		 		= items.get_onhit_physical(player, enemy_minion) + items.get_onhit_magical(player, enemy_minion)
 		t_until_player_hits = basic_atk_delay + player.pos.distance(enemy_minion.pos) / basic_atk_speed
+		t_until_player_hits *= 1.1 
 		enemy_minion_hp		= predict_minion_health(ctx, enemy_minion, ally_minions, t_until_player_hits, delay_percent)
 		
 		if enemy_minion.pos.distance(player.pos) < player_range:
@@ -38,7 +39,7 @@ def predict_minion_health(ctx, enemy_minion, ally_minions, t_future, delay_perce
 		casting = ally_minion.curr_casting
 		if casting and casting.dest_index == enemy_minion.index and casting.static:
 			t_until_ally_hits = (casting.cast_time - (ctx.time - casting.time_begin)) + ally_minion.pos.distance(enemy_minion.pos)/casting.static.speed
-			t_until_ally_hits *= (1.0 - delay_percent)
+			#t_until_ally_hits *= (1.0 - delay_percent)
 			
 			if t_until_ally_hits > 0.0 and t_until_ally_hits < t_future:
 				enemy_minion_hp -= math.floor(enemy_minion.base_atk)
