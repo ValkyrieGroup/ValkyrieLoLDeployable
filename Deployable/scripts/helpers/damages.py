@@ -257,7 +257,7 @@ DamageExtractors = {
 	'olafrecklessstrike'     : lambda calc, champ, skill: TrueDamage(calc.totaldamage(champ, skill)),
 
         # Pyke
-	'pyker'                  : lambda calc, champ, skill: TrueDamage(calc.rdamage(champ, skill)),
+	'pyker'                  : lambda calc, champ, skill: PhysDamage(calc.rdamage(champ, skill)),
 					          				
 	# Samira                 
 	'samiraq'                : lambda calc, champ, skill: PhysDamage(calc.damagecalc(champ, skill)),
@@ -302,6 +302,10 @@ DamageExtractors = {
 	'veigarbalefulstrike'    : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
 	'veigardarkmatter'       : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
 	'veigarr'                : lambda calc, champ, skill: VeigarRDamage(calc.mindamagetooltip(champ, skill)),
+
+	# Vladimir
+	'vladimirq'              : lambda calc, champ, skill: MagicDamage(calc.basedamagetooltip(champ, skill)),
+	'vladimirhemoplague'     : lambda calc, champ, skill: MagicDamage(calc.damage(champ, skill)),
 	
 	# Yasuo
 	'yasuoq1wrapper'         : lambda calc, champ, skill: PhysDamage(calc.totaldamagecrit(champ, skill)),
