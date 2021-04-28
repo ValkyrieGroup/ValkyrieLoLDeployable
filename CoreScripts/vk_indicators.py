@@ -6,9 +6,11 @@ from helpers.damages import calculate_raw_spell_dmg
 from time import time
 import json
 
-player_circle	     = Circle(0.0, 30, 1.0, Col.Green, False, True)
-turret_circle_enemy  = Circle(0.0, 50, 1.0, Col.Red,   False, True)
-turret_circle_ally   = Circle(0.0, 50, 1.0, Col.Blue, False, True)
+player_circle	     = Circle(0.0, 80, 3.0, Col(0.1, 1.0, 0.1, 0.7),  True, True)
+turret_circle_enemy  = Circle(0.0, 80, 3.0, Col(1.0, 0.1, 0.1, 0.7),  True, True)
+turret_circle_ally   = Circle(0.0, 80, 3.0, Col(0.4, 0.2, 1.0, 0.7),  True, True)
+focused_circle       = Circle(0.0, 80, 3.0, Col(0.8, 0.8, 0.1, 0.7),  True, True)
+
 show_minion_hit      = True
 show_casting_spells  = True
 show_missiles        = True
@@ -30,6 +32,7 @@ def valkyrie_menu(ctx):
 	player_circle.ui("Attack range circle settings", ctx)
 	turret_circle_enemy.ui("Enemy turret range circle settings", ctx)
 	turret_circle_ally.ui("Ally turret range circle settings", ctx)
+	focused_circle.ui('Focused object circle settings', ctx)
 	ui.separator()
 	
 	ui.text('Others', Col.Purple)
@@ -57,13 +60,14 @@ def valkyrie_menu(ctx):
 	potential_dmg_mask[3] = ui.checkbox("Include R", potential_dmg_mask[3])
 	
 def valkyrie_on_load(ctx):
-	global player_circle, show_minion_hit, turret_circle_ally, turret_circle_enemy
+	global player_circle, show_minion_hit, turret_circle_ally, turret_circle_enemy, focused_circle
 	global show_casting_spells, show_missiles, show_potential_dmg, potential_dmg_mask
 	cfg = ctx.cfg
 	
 	player_circle         = Circle.from_str(cfg.get_str("player_circle", str(player_circle)))	  
 	turret_circle_enemy   = Circle.from_str(cfg.get_str("turret_circle_enemy", str(turret_circle_enemy)))
 	turret_circle_ally    = Circle.from_str(cfg.get_str("turret_circle_ally", str(turret_circle_ally)))	
+	focused_circle        = Circle.from_str(cfg.get_str("focused_circle", str(focused_circle)))
 	
 	show_minion_hit       = cfg.get_bool("show_minion_hit", show_minion_hit)
 	show_missiles         = cfg.get_bool("show_missiles", show_missiles)
@@ -77,6 +81,8 @@ def valkyrie_on_save(ctx):
 	cfg.set_str("turret_circle_enemy", str(turret_circle_enemy))
 	cfg.set_str("turret_circle_ally", str(turret_circle_ally))
 	cfg.set_str("player_circle", str(player_circle))
+	cfg.set_str("focused_circle", str(focused_circle))
+	
 	cfg.set_bool("show_minion_hit", show_minion_hit)
 	cfg.set_bool("show_missiles", show_missiles)
 	cfg.set_bool("show_casting_spells", show_casting_spells)
@@ -95,7 +101,7 @@ def draw_rect(ctx, start_pos, end_pos, radius, color):
 	p3 = Vec3(end_pos.x + right_dir.x,   end_pos.y + right_dir.y,   end_pos.z + right_dir.z)
 	p4 = Vec3(start_pos.x + right_dir.x, start_pos.y + right_dir.y, start_pos.z + right_dir.z)
 	
-	ctx.rect(p1, p2, p3, p4, 3, color)
+	ctx.image('rect1', p1, p2, p3, p4, color)	
 	
 def cast_draw_line(ctx, cast_info, static, collisions):
 	start = cast_info.start_pos
@@ -110,7 +116,7 @@ def cast_draw_line(ctx, cast_info, static, collisions):
 def cast_draw_area(ctx, cast_info, static):
 	
 	fill_percent = min(1.0, (ctx.time - cast_info.time_begin)/cast_info.cast_time)
-	ctx.circle(cast_info.end_pos, static.cast_radius, 30, 3.0, Col.Gray)
+	ctx.image('circle1', cast_info.end_pos, Vec2(static.cast_radius*2.0, static.cast_radius*2.0), Col.Gray)
 	ctx.circle_fill(cast_info.end_pos, static.cast_radius*fill_percent, 30, Col(0.5, 0.5, 0.5, 0.5))
 	
 def cast_draw_cone(ctx, cast_info, static):
@@ -161,7 +167,7 @@ def draw_missile(ctx, missile):
 	elif static.has_flag(Spell.TypeArea):
 		
 		fill_percent = min(1.0, 1.0 - start.distance(cast_info.end_pos)/cast_info.start_pos.distance(end))
-		ctx.circle(cast_info.end_pos, static.cast_radius, 30, 3.0, Col.Yellow)
+		ctx.image('circle1', cast_info.end_pos, Vec2(static.cast_radius*2.0, static.cast_radius*2.0), Col.Yellow)
 		ctx.circle_fill(cast_info.end_pos, static.cast_radius*fill_percent, 30, Col(1, 1, 0, 0.4))
 	
 def draw_cast(ctx, champ):
@@ -227,10 +233,15 @@ def draw_potential_dmg(ctx):
 			total_dmg += dmg.calc_against(ctx, player, target)
 		ctx.hp_dmg_indicator(target, total_dmg, Col(1.0, 0.5, 0.1, 0.5))
 		
-	
+def draw_focused(ctx):
+	if ctx.focused:
+		focused_circle.radius = ctx.focused.bounding_radius + 50.0
+		focused_circle.draw_at(ctx, ctx.focused.pos)
+		
 def valkyrie_exec(ctx):
 	draw_player_range(ctx)
 	draw_turret_range(ctx)
+	draw_focused(ctx)
 	
 	if show_minion_hit:
 		draw_minion_hit_indicators(ctx)
