@@ -10,55 +10,44 @@ class Circle:
 	filled  = False
 	enabled = True
 	
-	mode_names = ['Primitive (laggier)', 'Rito Style']
-
-	def __init__(self, rad, pts, width, col, fill, enabled, mode = 1):
+	def __init__(self, rad, pts, width, col, fill, enabled):
 		self.radius  = rad
 		self.num_pts = pts
 		self.width   = width
 		self.color   = col
 		self.filled  = fill
 		self.enabled = enabled
-		
-		self.mode = mode
 	
 	def ui(self, label, ctx, fixed_radius = True):
 		ui = ctx.ui
 		
-		ui.image('menu-circle', Vec2(15, 15), self.color)
+		ui.image('menu-circlef' if self.filled else 'menu-circle', Vec2(15, 15), self.color)
 		ui.sameline()
 		if ui.beginmenu(label):
-			self.mode    = ui.combo("Type", self.mode_names, self.mode)
 			self.enabled = ui.checkbox("Enabled", self.enabled)
 			self.filled  = ui.checkbox("Filled", self.filled)
 			if not fixed_radius:
 				self.radius = ui.dragfloat("Radius", self.radius)
-			
-			if self.mode == 0:
-				self.width = ui.sliderfloat('Width', self.width, 1.0, 50.0)
-				self.num_pts = ui.sliderint('Num points', self.num_pts, 4, 100)
-			
-			self.color = ui.colorpick("Color", self.color)
+						
+			self.num_pts = ui.sliderint("Num Points", self.num_pts, 4, 100)
+			self.width   = ui.sliderfloat("Width", self.width, 1.0, 20.0)
+			self.color   = ui.colorpick("Color", self.color)
 			ui.endmenu()
 		
-
 	def draw_at(self, ctx, pos):
 		if self.enabled:
-			if self.mode == 0:
-				if self.filled:
-					ctx.circle_fill(pos, self.radius, self.num_pts, self.color)
-				else:
-					ctx.circle(pos, self.radius, self.num_pts, self.width, self.color)
+			if self.filled:
+				ctx.circle_fill(pos, self.radius, self.num_pts, self.color)
 			else:
-				ctx.image('circle1' if self.filled else 'circle1_nofill', pos, Vec2(self.radius*2.0, self.radius*2.0), self.color)
+				ctx.circle(pos, self.radius, self.num_pts, self.width, self.color)
 	
 	@classmethod
 	def from_str(self, serializable):
 		serializable = json.loads(serializable)
-		return Circle(serializable[0], serializable[1], serializable[2], Col(*(serializable[3])), serializable[4], serializable[5], serializable[6] if len(serializable) > 6 else 1)
+		return Circle(serializable[0], serializable[1], serializable[2], Col(*(serializable[3])), serializable[4], serializable[5])
 	
 	def __str__(self):
-		return json.dumps([self.radius, self.num_pts, self.width, [self.color.r, self.color.g, self.color.b, self.color.a], self.filled, self.enabled, self.mode])
+		return json.dumps([self.radius, self.num_pts, self.width, [self.color.r, self.color.g, self.color.b, self.color.a], self.filled, self.enabled])
 		
 class Line:
 	

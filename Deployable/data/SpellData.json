@@ -53042,12 +53042,12 @@
         "castRadius": 0.0,
         "castConeAngle": 0.0,
         "castConeDistance": 0.0,
-        "width": 50.0,
+        "width": 0.0,
         "height": 100.0,
         "speed": 1800.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "AffectAll", "Line", "CollideWindwall"]
+        "flags": ["CastDirection", "AffectAll"]
     },
     {
         "name": "gwenr",

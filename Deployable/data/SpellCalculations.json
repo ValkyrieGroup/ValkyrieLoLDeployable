@@ -924,7 +924,7 @@
             ]
         },
         "calcs": {
-            "essencetheftbaseheal": "self.PreCalculated0[champ.lvl - 1] +  (0.09000000357627869 * champ.ap)"
+            "essencetheftbaseheal": "self.PreCalculated0[champ.lvl] +  (0.09000000357627869 * champ.ap)"
         }
     },
     "AkaliW": {
@@ -1269,9 +1269,9 @@
             ]
         },
         "calcs": {
-            "energyrestore": "self.PreCalculated0[champ.lvl - 1]",
-            "damage": "self.PreCalculated1[champ.lvl - 1] +  (0.6000000238418579 * champ.bonus_atk) +  (0.4000000059604645 * champ.ap)",
-            "passivespeedbonus": "self.PreCalculated2[champ.lvl - 1]"
+            "energyrestore": "self.PreCalculated0[champ.lvl]",
+            "damage": "self.PreCalculated1[champ.lvl] +  (0.6000000238418579 * champ.bonus_atk) +  (0.4000000059604645 * champ.ap)",
+            "passivespeedbonus": "self.PreCalculated2[champ.lvl]"
         }
     },
     "AkaliQSpellPassive": {
@@ -1392,9 +1392,9 @@
             ]
         },
         "calcs": {
-            "energyrestore": "self.PreCalculated0[champ.lvl - 1]",
-            "damage": "self.PreCalculated1[champ.lvl - 1] +  (0.6000000238418579 * champ.bonus_atk) +  (0.5 * champ.ap)",
-            "passivespeedbonus": "self.PreCalculated2[champ.lvl - 1]"
+            "energyrestore": "self.PreCalculated0[champ.lvl]",
+            "damage": "self.PreCalculated1[champ.lvl] +  (0.6000000238418579 * champ.bonus_atk) +  (0.5 * champ.ap)",
+            "passivespeedbonus": "self.PreCalculated2[champ.lvl]"
         }
     },
     "AkaliWStealthTracker": {
@@ -1574,9 +1574,9 @@
             ]
         },
         "calcs": {
-            "energyrestore": "self.PreCalculated0[champ.lvl - 1]",
-            "damage": "self.PreCalculated1[champ.lvl - 1] +  (0.6000000238418579 * champ.bonus_atk) +  (0.5 * champ.ap)",
-            "passivespeedbonus": "self.PreCalculated2[champ.lvl - 1]"
+            "energyrestore": "self.PreCalculated0[champ.lvl]",
+            "damage": "self.PreCalculated1[champ.lvl] +  (0.6000000238418579 * champ.bonus_atk) +  (0.5 * champ.ap)",
+            "passivespeedbonus": "self.PreCalculated2[champ.lvl]"
         }
     },
     "AkaliR": {
@@ -1864,9 +1864,9 @@
             ]
         },
         "calcs": {
-            "energyrestore": "self.PreCalculated0[champ.lvl - 1]",
-            "damage": "self.PreCalculated1[champ.lvl - 1] +  (0.6000000238418579 * champ.bonus_atk) +  (0.5 * champ.ap)",
-            "passivespeedbonus": "self.PreCalculated2[champ.lvl - 1]"
+            "energyrestore": "self.PreCalculated0[champ.lvl]",
+            "damage": "self.PreCalculated1[champ.lvl] +  (0.6000000238418579 * champ.bonus_atk) +  (0.5 * champ.ap)",
+            "passivespeedbonus": "self.PreCalculated2[champ.lvl]"
         }
     },
     "AkaliWSmokeParent": {
@@ -2223,8 +2223,8 @@
             ]
         },
         "calcs": {
-            "baseheal": "self.PreCalculated0[champ.lvl - 1]",
-            "allyheal": "(self.PreCalculated0[champ.lvl - 1]) * 2.0"
+            "baseheal": "self.PreCalculated0[champ.lvl]",
+            "allyheal": "(self.PreCalculated0[champ.lvl]) * 2.0"
         }
     },
     "Headbutt": {
@@ -2401,7 +2401,7 @@
         },
         "calcs": {
             "totaldamage": "self.Effect0[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "attackbonusdamage": "self.PreCalculated0[champ.lvl - 1]"
+            "attackbonusdamage": "self.PreCalculated0[champ.lvl]"
         }
     },
     "BandageToss": {
@@ -2915,8 +2915,8 @@
             ]
         },
         "calcs": {
-            "bonusresists": "self.PreCalculated0[champ.lvl - 1]",
-            "{1204415e}": "(self.PreCalculated0[champ.lvl - 1]) * -1.0"
+            "bonusresists": "self.PreCalculated0[champ.lvl]",
+            "{1204415e}": "(self.PreCalculated0[champ.lvl]) * -1.0"
         }
     },
     "Frostbite": {
@@ -3440,7 +3440,7 @@
             ]
         },
         "calcs": {
-            "stunduration": "self.PreCalculated0[champ.lvl - 1]"
+            "stunduration": "self.PreCalculated0[champ.lvl]"
         }
     },
     "MoltenShield": {
@@ -3763,9 +3763,9 @@
             "{c61fdd37}": "600.0 +  (self.{a04217a2}[skill.lvl] * champ.bonus_atk_speed)",
             "{bcd584b1}": "(self.{6ff89e76}[skill.lvl] * champ.atk)",
             "{cee928bf}": "(self.{620c1024}[skill.lvl] * champ.atk)",
-            "turretdamage": "self.PreCalculated0[champ.lvl - 1] +  ((self.PreCalculated1[champ.lvl - 1]) * champ.bonus_atk) +  (self.{0211a18d}[skill.lvl] * champ.ap)",
+            "turretdamage": "self.PreCalculated0[champ.lvl] +  ((self.PreCalculated1[champ.lvl]) * champ.bonus_atk) +  (self.{0211a18d}[skill.lvl] * champ.ap)",
             "attackdamage": "(1.0 * champ.atk)",
-            "{0229cdac}": "self.PreCalculated2[champ.lvl - 1]"
+            "{0229cdac}": "self.PreCalculated2[champ.lvl]"
         }
     },
     "ApheliosInfernumQ": {
@@ -3870,12 +3870,12 @@
             ]
         },
         "calcs": {
-            "{48a5a253}": "self.PreCalculated0[champ.lvl - 1]",
-            "{0261ab70}": "self.PreCalculated1[champ.lvl - 1] +  ((self.PreCalculated2[champ.lvl - 1]) * champ.bonus_atk) +  (0.699999988079071 * champ.ap)",
+            "{48a5a253}": "self.PreCalculated0[champ.lvl]",
+            "{0261ab70}": "self.PreCalculated1[champ.lvl] +  ((self.PreCalculated2[champ.lvl]) * champ.bonus_atk) +  (0.699999988079071 * champ.ap)",
             "attackdamage": "(1.0 * champ.atk)",
-            "{3067e711}": "self.PreCalculated3[champ.lvl - 1]",
+            "{3067e711}": "self.PreCalculated3[champ.lvl]",
             "minionpenalty": "self.{81b16d51}[skill.lvl]",
-            "{9ad652b8}": "(self.PreCalculated3[champ.lvl - 1]) * self.{81b16d51}[skill.lvl]"
+            "{9ad652b8}": "(self.PreCalculated3[champ.lvl]) * self.{81b16d51}[skill.lvl]"
         }
     },
     "ApheliosGravitumQ": {
@@ -3963,8 +3963,8 @@
             "{bda221c8}": "0.30000001192092896",
             "{dec81e53}": "0.10000000149011612",
             "attackdamage": "(1.0 * champ.atk)",
-            "damage": "self.PreCalculated0[champ.lvl - 1] +  ((self.PreCalculated1[champ.lvl - 1]) * champ.bonus_atk) +  (0.699999988079071 * champ.ap)",
-            "{8dabf5f0}": "self.PreCalculated2[champ.lvl - 1]"
+            "damage": "self.PreCalculated0[champ.lvl] +  ((self.PreCalculated1[champ.lvl]) * champ.bonus_atk) +  (0.699999988079071 * champ.ap)",
+            "{8dabf5f0}": "self.PreCalculated2[champ.lvl]"
         }
     },
     "ApheliosCalibrumQ": {
@@ -4086,9 +4086,9 @@
         },
         "calcs": {
             "{4547d00d}": "15.0 +  (0.20000000298023224 * champ.bonus_atk)",
-            "spelldamage": "self.PreCalculated0[champ.lvl - 1] +  ((self.PreCalculated1[champ.lvl - 1]) * champ.bonus_atk) +  (1.0 * champ.ap)",
+            "spelldamage": "self.PreCalculated0[champ.lvl] +  ((self.PreCalculated1[champ.lvl]) * champ.bonus_atk) +  (1.0 * champ.ap)",
             "attackdamage": "(1.0 * champ.atk)",
-            "{56751c08}": "self.PreCalculated2[champ.lvl - 1]",
+            "{56751c08}": "self.PreCalculated2[champ.lvl]",
             "{ee06b7fb}": "(15.0 +  (0.20000000298023224 * champ.bonus_atk)) * 0.4000000059604645"
         }
     },
@@ -4431,15 +4431,15 @@
         },
         "calcs": {
             "numattacks": "1.0 +  (self.{e537be7a}[skill.lvl] * champ.bonus_atk_speed)",
-            "{9480e64f}": "self.PreCalculated0[champ.lvl - 1] +  ((self.PreCalculated1[champ.lvl - 1]) * champ.bonus_atk)",
-            "totaldamage": "(1.0 +  (self.{e537be7a}[skill.lvl] * champ.bonus_atk_speed)) * (self.PreCalculated2[champ.lvl - 1]) + ( ((self.PreCalculated3[champ.lvl - 1]) * champ.bonus_atk))",
+            "{9480e64f}": "self.PreCalculated0[champ.lvl] +  ((self.PreCalculated1[champ.lvl]) * champ.bonus_atk)",
+            "totaldamage": "(1.0 +  (self.{e537be7a}[skill.lvl] * champ.bonus_atk_speed)) * (self.PreCalculated2[champ.lvl]) + ( ((self.PreCalculated3[champ.lvl]) * champ.bonus_atk))",
             "haste": "0.20000000298023224 +  (0.0010000000474974513 * champ.ap)",
             "healamount": "0.029999999329447746 + (champ.lvl) * 0.009444444647265805",
             "attackdamage": "(1.0 * champ.atk)",
-            "maxshield": "self.PreCalculated4[champ.lvl - 1] +  (0.05999999865889549 * champ.max_health)",
-            "{a1eb11c4}": "self.PreCalculated5[champ.lvl - 1]",
+            "maxshield": "self.PreCalculated4[champ.lvl] +  (0.05999999865889549 * champ.max_health)",
+            "{a1eb11c4}": "self.PreCalculated5[champ.lvl]",
             "{3f4c2ea7}": "25.0",
-            "{c4ea7103}": "self.PreCalculated6[champ.lvl - 1] + self.{4d7969b7}[skill.lvl]",
+            "{c4ea7103}": "self.PreCalculated6[champ.lvl] + self.{4d7969b7}[skill.lvl]",
             "{31c5a522}": "35.0 + (champ.lvl) * 3.611111111111111",
             "onhitdamagereduction": "0.25"
         }
@@ -5184,9 +5184,9 @@
             ]
         },
         "calcs": {
-            "charleveldamage": "self.PreCalculated0[champ.lvl - 1]",
+            "charleveldamage": "self.PreCalculated0[champ.lvl]",
             "apdamage": "(0.25 * champ.ap)",
-            "totaldamagenow": "(0.25 * champ.ap) + self.PreCalculated1[champ.lvl - 1]"
+            "totaldamagenow": "(0.25 * champ.ap) + self.PreCalculated1[champ.lvl]"
         }
     },
     "AurelionSolRBeamMissile": {
@@ -5551,8 +5551,8 @@
             ]
         },
         "calcs": {
-            "secondarytargetdamagemod": "self.PreCalculated0[champ.lvl - 1]",
-            "totaldamage": "self.PreCalculated1[champ.lvl - 1] +  (0.6000000238418579 * champ.ap)"
+            "secondarytargetdamagemod": "self.PreCalculated0[champ.lvl]",
+            "totaldamage": "self.PreCalculated1[champ.lvl] +  (0.6000000238418579 * champ.ap)"
         }
     },
     "AzirQ": {
@@ -6827,8 +6827,8 @@
             ]
         },
         "calcs": {
-            "manarestore": "self.PreCalculated0[champ.lvl - 1]",
-            "explosiondamage": "self.PreCalculated1[champ.lvl - 1] +  (0.019999999552965164 * champ.ap)"
+            "manarestore": "self.PreCalculated0[champ.lvl]",
+            "explosiondamage": "self.PreCalculated1[champ.lvl] +  (0.019999999552965164 * champ.ap)"
         }
     },
     "NightmareBotBrandW": {
@@ -7842,8 +7842,8 @@
         "calcs": {
             "totaldamage": "self.PreCalculated0[champ.lvl]",
             "onhitdamage": "(self.PreCalculated0[champ.lvl]) * 0.20000000298023224",
-            "stuncd": "self.PreCalculated1[champ.lvl - 1]",
-            "stunduration": "self.PreCalculated2[champ.lvl - 1]"
+            "stuncd": "self.PreCalculated1[champ.lvl]",
+            "stunduration": "self.PreCalculated2[champ.lvl]"
         }
     },
     "BraumEDummyVOAshe": {
@@ -8140,8 +8140,8 @@
             ]
         },
         "calcs": {
-            "headshotbonusdamage": "(((self.PreCalculated0[champ.lvl - 1]) + (((1.25) * ((0.875) + ( (0.5 * champ.crit_multi)))) * ( (1.0 * champ.crit)))) * champ.atk)",
-            "headshotminionbonusdamage": "(((1.0) + ((-1.0) * (self.PreCalculated1[champ.lvl - 1]))) * champ.atk)",
+            "headshotbonusdamage": "(((self.PreCalculated0[champ.lvl]) + (((1.25) * ((0.875) + ( (0.5 * champ.crit_multi)))) * ( (1.0 * champ.crit)))) * champ.atk)",
+            "headshotminionbonusdamage": "(((1.0) + ((-1.0) * (self.PreCalculated1[champ.lvl]))) * champ.atk)",
             "brushattacktotal": "(1.0) + (self.brushstackbonus[skill.lvl])"
         }
     },
@@ -8821,7 +8821,7 @@
             ]
         },
         "calcs": {
-            "damageconversionpercentage": "self.PreCalculated0[champ.lvl - 1]",
+            "damageconversionpercentage": "self.PreCalculated0[champ.lvl]",
             "bonusdamage": "(self.tadratio[skill.lvl] * champ.atk)",
             "empoweredbonusdamage": "((self.tadratio[skill.lvl] * champ.atk)) * self.qempoweredamp[skill.lvl]"
         }
@@ -9034,7 +9034,7 @@
             ]
         },
         "calcs": {
-            "passivecooldown": "self.PreCalculated0[champ.lvl - 1]",
+            "passivecooldown": "self.PreCalculated0[champ.lvl]",
             "shieldamount": "(self.maxhpcoefficient[skill.lvl] * champ.max_health)"
         }
     },
@@ -9062,7 +9062,7 @@
             ]
         },
         "calcs": {
-            "totalmovementspeed": "self.PreCalculated0[champ.lvl - 1]"
+            "totalmovementspeed": "self.PreCalculated0[champ.lvl]"
         }
     },
     "CassiopeiaWSlow": {
@@ -9159,7 +9159,7 @@
         "calcs": {
             "healcalc": "(self.healratio[skill.lvl] * champ.ap)",
             "bouspoisoneddamage": "self.Effect0[skill.lvl] +  (0.6000000238418579 * champ.ap)",
-            "totaldamage": "self.PreCalculated0[champ.lvl - 1] +  (0.10000000149011612 * champ.ap)",
+            "totaldamage": "self.PreCalculated0[champ.lvl] +  (0.10000000149011612 * champ.ap)",
             "healcalcminion": "((self.healratio[skill.lvl] * champ.ap)) * self.minionreductionmodifier[skill.lvl]"
         }
     },
@@ -9529,8 +9529,8 @@
             ]
         },
         "calcs": {
-            "chogathcarnivoreheal": "self.PreCalculated0[champ.lvl - 1]",
-            "chogathcarnivoremana": "self.PreCalculated1[champ.lvl - 1]"
+            "chogathcarnivoreheal": "self.PreCalculated0[champ.lvl]",
+            "chogathcarnivoremana": "self.PreCalculated1[champ.lvl]"
         }
     },
     "FeralScream": {
@@ -10038,7 +10038,7 @@
             ]
         },
         "calcs": {
-            "totaldamagepersecond": "self.PreCalculated0[champ.lvl - 1] +  (2.0 * champ.bonus_atk) +  (0.23999999463558197 * champ.ap)"
+            "totaldamagepersecond": "self.PreCalculated0[champ.lvl] +  (2.0 * champ.bonus_atk) +  (0.23999999463558197 * champ.ap)"
         }
     },
     "PhosphorusBomb": {
@@ -10536,7 +10536,7 @@
         },
         "calcs": {
             "damage": "self.rbasedamage[skill.lvl] +  (0.75 * champ.bonus_atk)",
-            "maximumdamage": "self.rbasedamage[skill.lvl] + (( (1.0 * champ.bonus_atk)) + (self.PreCalculated0[champ.lvl - 1])) * (0.75)"
+            "maximumdamage": "self.rbasedamage[skill.lvl] + (( (1.0 * champ.bonus_atk)) + (self.PreCalculated0[champ.lvl])) * (0.75)"
         }
     },
     "DariusHemoVisual": {
@@ -10614,7 +10614,7 @@
         },
         "calcs": {
             "bleeddamageperstack": "13.0 + (champ.lvl) * 0.9444444444444444 +  (0.30000001192092896 * champ.bonus_atk)",
-            "noxianmightbonusad": "self.PreCalculated0[champ.lvl - 1]"
+            "noxianmightbonusad": "self.PreCalculated0[champ.lvl]"
         }
     },
     "DariusCleave": {
@@ -11077,9 +11077,9 @@
             ]
         },
         "calcs": {
-            "cleavedamage": "self.PreCalculated0[champ.lvl - 1] +  (self.apratio[skill.lvl] * champ.ap)",
-            "bonusas": "self.PreCalculated1[champ.lvl - 1]",
-            "empoweredas": "(self.PreCalculated1[champ.lvl - 1]) * 3.0"
+            "cleavedamage": "self.PreCalculated0[champ.lvl] +  (self.apratio[skill.lvl] * champ.ap)",
+            "bonusas": "self.PreCalculated1[champ.lvl]",
+            "empoweredas": "(self.PreCalculated1[champ.lvl]) * 3.0"
         }
     },
     "DianaTeleport": {
@@ -12970,9 +12970,9 @@
             ]
         },
         "calcs": {
-            "bonusms": "self.PreCalculated0[champ.lvl - 1]",
-            "threehitdamage": "self.PreCalculated1[champ.lvl - 1] +  (0.800000011920929 * champ.ap)",
-            "speedduration": "self.PreCalculated2[champ.lvl - 1]"
+            "bonusms": "self.PreCalculated0[champ.lvl]",
+            "threehitdamage": "self.PreCalculated1[champ.lvl] +  (0.800000011920929 * champ.ap)",
+            "speedduration": "self.PreCalculated2[champ.lvl]"
         }
     },
     "EkkoWMis": {
@@ -14457,7 +14457,7 @@
             ]
         },
         "calcs": {
-            "healingthresholdtooltip": "self.PreCalculated0[champ.lvl - 1] +  (2.5 * champ.ap)",
+            "healingthresholdtooltip": "self.PreCalculated0[champ.lvl] +  (2.5 * champ.ap)",
             "healpersecondtooltip": "15.0 + (champ.lvl) * 3.3333333333333335"
         }
     },
@@ -17517,7 +17517,7 @@
             ]
         },
         "calcs": {
-            "regencalc": "self.PreCalculated0[champ.lvl - 1]"
+            "regencalc": "self.PreCalculated0[champ.lvl]"
         }
     },
     "GarenE": {
@@ -17652,13 +17652,13 @@
             ]
         },
         "calcs": {
-            "totaldamage": "self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl - 1] +  (self.adratiopertick[skill.lvl] * champ.atk)",
-            "{85042ef6}": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl - 1] +  (self.adratiopertick[skill.lvl] * champ.atk)) * self.nearestenemybonus[skill.lvl]",
-            "totaldamagenearest": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl - 1] +  (self.adratiopertick[skill.lvl] * champ.atk)) * (1.0) + (self.nearestenemybonus[skill.lvl])",
-            "totaldamagecrit": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl - 1] +  (self.adratiopertick[skill.lvl] * champ.atk)) * (self.critbasemult[skill.lvl]) + ( (1.0 * champ.crit_multi))",
-            "totaldamagenearestcrit": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl - 1] +  (self.adratiopertick[skill.lvl] * champ.atk)) * ((1.0) + (self.nearestenemybonus[skill.lvl])) * ((self.critbasemult[skill.lvl]) + ( (1.0 * champ.crit_multi)))",
+            "totaldamage": "self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl] +  (self.adratiopertick[skill.lvl] * champ.atk)",
+            "{85042ef6}": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl] +  (self.adratiopertick[skill.lvl] * champ.atk)) * self.nearestenemybonus[skill.lvl]",
+            "totaldamagenearest": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl] +  (self.adratiopertick[skill.lvl] * champ.atk)) * (1.0) + (self.nearestenemybonus[skill.lvl])",
+            "totaldamagecrit": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl] +  (self.adratiopertick[skill.lvl] * champ.atk)) * (self.critbasemult[skill.lvl]) + ( (1.0 * champ.crit_multi))",
+            "totaldamagenearestcrit": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl] +  (self.adratiopertick[skill.lvl] * champ.atk)) * ((1.0) + (self.nearestenemybonus[skill.lvl])) * ((self.critbasemult[skill.lvl]) + ( (1.0 * champ.crit_multi)))",
             "{fbb97428}": "self.numticks[skill.lvl]",
-            "{733c613a}": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl - 1] +  (self.adratiopertick[skill.lvl] * champ.atk)) * (self.nearestenemybonus[skill.lvl]) * ((self.critbasemult[skill.lvl]) + ( (1.0 * champ.crit_multi)))"
+            "{733c613a}": "(self.basedamagepertick[skill.lvl] + self.PreCalculated0[champ.lvl] +  (self.adratiopertick[skill.lvl] * champ.atk)) * (self.nearestenemybonus[skill.lvl]) * ((self.critbasemult[skill.lvl]) + ( (1.0 * champ.crit_multi)))"
         }
     },
     "GarenQ": {
@@ -17947,7 +17947,7 @@
         },
         "calcs": {
             "totalattackrange": "0.0 + (champ.lvl) * 5.555555555555555",
-            "totalms": "self.PreCalculated0[champ.lvl - 1]",
+            "totalms": "self.PreCalculated0[champ.lvl]",
             "totalas": "0.054999999701976776 + (champ.lvl) * 0.051944444990820356",
             "totalmegagnarhealth": "100.0 + (champ.lvl) * 40.611111111111114",
             "totalmegagnararmor": "3.5 + (champ.lvl) * 2.8333333333333335",
@@ -20120,7 +20120,7 @@
             ]
         },
         "calcs": {
-            "bonusad": "((self.PreCalculated0[champ.lvl - 1]) * champ.bonus_move_speed)"
+            "bonusad": "((self.PreCalculated0[champ.lvl]) * champ.bonus_move_speed)"
         }
     },
     "HecarimUltMissileSkn4R2": {
@@ -21092,9 +21092,9 @@
             ]
         },
         "calcs": {
-            "turrethealth": "150.0 + (champ.lvl) * 23.61111111111111 +  ((self.PreCalculated0[champ.lvl - 1]) * champ.ap)",
-            "{f0517331}": "self.PreCalculated1[champ.lvl - 1]",
-            "{8109ae7b}": "self.PreCalculated2[champ.lvl - 1]",
+            "turrethealth": "150.0 + (champ.lvl) * 23.61111111111111 +  ((self.PreCalculated0[champ.lvl]) * champ.ap)",
+            "{f0517331}": "self.PreCalculated1[champ.lvl]",
+            "{8109ae7b}": "self.PreCalculated2[champ.lvl]",
             "kitcooldown": "20.0",
             "beamcooldown": "90.0",
             "damage": "self.basedamage[skill.lvl] +  (0.3499999940395355 * champ.ap)",
@@ -21537,7 +21537,7 @@
             ]
         },
         "calcs": {
-            "qultturrethealth": "600.0 + (champ.lvl) * 47.22222222222222 +  ((self.PreCalculated0[champ.lvl - 1]) * champ.ap)",
+            "qultturrethealth": "600.0 + (champ.lvl) * 47.22222222222222 +  ((self.PreCalculated0[champ.lvl]) * champ.ap)",
             "qultdamage": "self.qultbasedamage[skill.lvl] +  (0.3499999940395355 * champ.ap)",
             "qultdamagebeam": "self.qultbasedamagebeam[skill.lvl] +  (0.699999988079071 * champ.ap)",
             "wultdamage": "self.wultbasedamage[skill.lvl] +  (0.44999998807907104 * champ.ap)",
@@ -21738,9 +21738,9 @@
             ]
         },
         "calcs": {
-            "turrethealth": "150.0 + (champ.lvl) * 23.61111111111111 +  ((self.PreCalculated0[champ.lvl - 1]) * champ.ap)",
-            "{f0517331}": "self.PreCalculated1[champ.lvl - 1]",
-            "{8109ae7b}": "self.PreCalculated2[champ.lvl - 1]",
+            "turrethealth": "150.0 + (champ.lvl) * 23.61111111111111 +  ((self.PreCalculated0[champ.lvl]) * champ.ap)",
+            "{f0517331}": "self.PreCalculated1[champ.lvl]",
+            "{8109ae7b}": "self.PreCalculated2[champ.lvl]",
             "kitcooldown": "20.0",
             "beamcooldown": "90.0",
             "damage": "self.basedamage[skill.lvl] +  (0.3499999940395355 * champ.ap)",
@@ -22224,7 +22224,7 @@
             "leveldamage": "self.PreCalculated1[champ.lvl]",
             "addamage": "(1.2000000476837158 * champ.atk)",
             "apdamage": "(0.4000000059604645 * champ.ap)",
-            "slamdamagetotaltooltip": "self.PreCalculated2[champ.lvl - 1] +  (1.2000000476837158 * champ.atk) +  (0.4000000059604645 * champ.ap)"
+            "slamdamagetotaltooltip": "self.PreCalculated2[champ.lvl] +  (1.2000000476837158 * champ.atk) +  (0.4000000059604645 * champ.ap)"
         }
     },
     "IllaoiE": {
@@ -22414,9 +22414,9 @@
             ]
         },
         "calcs": {
-            "timebetweenvesseltentacleslams": "self.PreCalculated0[champ.lvl - 1]",
+            "timebetweenvesseltentacleslams": "self.PreCalculated0[champ.lvl]",
             "echopercenttooltiponly": "self.basedamagetransferpercent[skill.lvl] +  (self.echotadscalar[skill.lvl] * champ.atk)",
-            "{87aff6dd}": "self.PreCalculated1[champ.lvl - 1]"
+            "{87aff6dd}": "self.PreCalculated1[champ.lvl]"
         }
     },
     "IllaoiQ": {
@@ -22929,8 +22929,8 @@
             ]
         },
         "calcs": {
-            "singlestackas": "self.PreCalculated0[champ.lvl - 1]",
-            "onhitbonus": "self.PreCalculated1[champ.lvl - 1] +  (0.25 * champ.bonus_atk)"
+            "singlestackas": "self.PreCalculated0[champ.lvl]",
+            "onhitbonus": "self.PreCalculated1[champ.lvl] +  (0.25 * champ.bonus_atk)"
         }
     },
     "IvernPCollection": {
@@ -23582,11 +23582,11 @@
             ]
         },
         "calcs": {
-            "harvestduration": "self.PreCalculated0[champ.lvl - 1]",
-            "{60aa666f}": "self.PreCalculated1[champ.lvl - 1]",
-            "{c6433908}": "self.PreCalculated2[champ.lvl - 1]",
-            "healthtooltip": "(self.PreCalculated1[champ.lvl - 1]) *  (0.009999999776482582 * champ.base_health)",
-            "manatooltip": "(self.PreCalculated2[champ.lvl - 1]) * champ.max_mana * 0.009999999776482582"
+            "harvestduration": "self.PreCalculated0[champ.lvl]",
+            "{60aa666f}": "self.PreCalculated1[champ.lvl]",
+            "{c6433908}": "self.PreCalculated2[champ.lvl]",
+            "healthtooltip": "(self.PreCalculated1[champ.lvl]) *  (0.009999999776482582 * champ.base_health)",
+            "manatooltip": "(self.PreCalculated2[champ.lvl]) * champ.max_mana * 0.009999999776482582"
         }
     },
     "IvernW": {
@@ -24158,8 +24158,8 @@
             ]
         },
         "calcs": {
-            "{0e28740c}": "self.PreCalculated0[champ.lvl - 1]",
-            "bonusdamage": "((self.PreCalculated1[champ.lvl - 1]) * champ.bonus_move_speed)"
+            "{0e28740c}": "self.PreCalculated0[champ.lvl]",
+            "bonusdamage": "((self.PreCalculated1[champ.lvl]) * champ.bonus_move_speed)"
         }
     },
     "HowlingGaleSpell": {
@@ -24771,8 +24771,8 @@
             ]
         },
         "calcs": {
-            "attackspeedperstack": "self.PreCalculated0[champ.lvl - 1]",
-            "maxbonusattackspeed": "(self.PreCalculated0[champ.lvl - 1]) * 8.0"
+            "attackspeedperstack": "self.PreCalculated0[champ.lvl]",
+            "maxbonusattackspeed": "(self.PreCalculated0[champ.lvl]) * 8.0"
         }
     },
     "JaxCounterStrike": {
@@ -25227,9 +25227,9 @@
             ]
         },
         "calcs": {
-            "rangedformshred": "self.PreCalculated0[champ.lvl - 1]",
-            "damage": "self.PreCalculated1[champ.lvl - 1] +  (self.adratio[skill.lvl] * champ.bonus_atk)",
-            "resists": "self.PreCalculated2[champ.lvl - 1]"
+            "rangedformshred": "self.PreCalculated0[champ.lvl]",
+            "damage": "self.PreCalculated1[champ.lvl] +  (self.adratio[skill.lvl] * champ.bonus_atk)",
+            "resists": "self.PreCalculated2[champ.lvl]"
         }
     },
     "JaycePassiveMeleeAttack": {
@@ -25893,8 +25893,8 @@
             ]
         },
         "calcs": {
-            "fourthshotexecutepercent": "self.PreCalculated0[champ.lvl - 1]",
-            "totaladpercent": "self.PreCalculated1[champ.lvl - 1] +  (0.30000001192092896 * champ.crit) +  (0.25 * champ.bonus_atk_speed)",
+            "fourthshotexecutepercent": "self.PreCalculated0[champ.lvl]",
+            "totaladpercent": "self.PreCalculated1[champ.lvl] +  (0.30000001192092896 * champ.crit) +  (0.25 * champ.bonus_atk_speed)",
             "critmovespeedpercent": "0.10000000149011612 +  (0.4000000059604645 * champ.bonus_atk_speed)"
         }
     },
@@ -28830,7 +28830,7 @@
             ]
         },
         "calcs": {
-            "spellmantrarefund": "self.PreCalculated0[champ.lvl - 1]"
+            "spellmantrarefund": "self.PreCalculated0[champ.lvl]"
         }
     },
     "KarmaSolKimShield": {
@@ -29949,8 +29949,8 @@
             ]
         },
         "calcs": {
-            "totaldamage": "self.PreCalculated0[champ.lvl] +  (0.75 * champ.bonus_atk) +  ((self.PreCalculated1[champ.lvl - 1]) * champ.ap)",
-            "{e1ba6b0f}": "self.PreCalculated2[champ.lvl - 1]"
+            "totaldamage": "self.PreCalculated0[champ.lvl] +  (0.75 * champ.bonus_atk) +  ((self.PreCalculated1[champ.lvl]) * champ.ap)",
+            "{e1ba6b0f}": "self.PreCalculated2[champ.lvl]"
         }
     },
     "KatarinaW": {
@@ -33584,7 +33584,7 @@
             ]
         },
         "calcs": {
-            "attackheal": "self.PreCalculated0[champ.lvl - 1]",
+            "attackheal": "self.PreCalculated0[champ.lvl]",
             "basewolfdamage": "self.Effect4[skill.lvl] +  (0.20000000298023224 * champ.bonus_atk)",
             "percentwolfdamage": "0.014999999664723873 + 0.009999999776482582 * champ.num_buffs({64290302})"
         }
@@ -34468,9 +34468,9 @@
             ]
         },
         "calcs": {
-            "dismountedms": "self.PreCalculated0[champ.lvl - 1]",
+            "dismountedms": "self.PreCalculated0[champ.lvl]",
             "skaarlhealth": "400.0 + (champ.lvl) * 56.666666666666664",
-            "skaarlremounthealth": "self.PreCalculated1[champ.lvl - 1]"
+            "skaarlremounthealth": "self.PreCalculated1[champ.lvl]"
         }
     },
     "KledRDash": {
@@ -36486,8 +36486,8 @@
             ]
         },
         "calcs": {
-            "energyreturn": "self.PreCalculated0[champ.lvl - 1]",
-            "ttfirsthitenergy": "(self.PreCalculated0[champ.lvl - 1]) * self.firsthitenergymult[skill.lvl]"
+            "energyreturn": "self.PreCalculated0[champ.lvl]",
+            "ttfirsthitenergy": "(self.PreCalculated0[champ.lvl]) * self.firsthitenergymult[skill.lvl]"
         }
     },
     "BlindMonkQTwoDash": {
@@ -37309,9 +37309,9 @@
         },
         "calcs": {
             "{77823978}": "0.05000000074505806 + (champ.lvl) * 0.0033333332588275275",
-            "healpersecond": "self.PreCalculated0[champ.lvl - 1] +  (0.10000000149011612 * champ.ap)",
+            "healpersecond": "self.PreCalculated0[champ.lvl] +  (0.10000000149011612 * champ.ap)",
             "{44c2f9d7}": "self.{2101a92e}[skill.lvl] +  (0.05000000074505806 * champ.ap)",
-            "{8abdf228}": "self.PreCalculated1[champ.lvl - 1] +  (0.10000000149011612 * champ.ap)",
+            "{8abdf228}": "self.PreCalculated1[champ.lvl] +  (0.10000000149011612 * champ.ap)",
             "dotpercenttotal": "self.dotdamagepercent[skill.lvl]",
             "monsterdamagecap": "40.0 + (champ.lvl) * 3.3333333333333335",
             "{18849f10}": "self.{61f03f13}[skill.lvl] +  (0.0024999999441206455 * champ.ap)"
@@ -37752,7 +37752,7 @@
             ]
         },
         "calcs": {
-            "totaldamage": "self.PreCalculated0[champ.lvl - 1] +  (0.5 * champ.ap)"
+            "totaldamage": "self.PreCalculated0[champ.lvl] +  (0.5 * champ.ap)"
         }
     },
     "LissandraRRemoval": {
@@ -38332,8 +38332,8 @@
             ]
         },
         "calcs": {
-            "totaldamage": "((self.PreCalculated0[champ.lvl - 1]) * champ.atk)",
-            "critdamage": "(((self.PreCalculated0[champ.lvl - 1]) * champ.atk)) * (1.75) + ( (1.0 * champ.crit_multi))",
+            "totaldamage": "((self.PreCalculated0[champ.lvl]) * champ.atk)",
+            "critdamage": "(((self.PreCalculated0[champ.lvl]) * champ.atk)) * (1.75) + ( (1.0 * champ.crit_multi))",
             "miniondamage": "(1.0 * champ.atk)",
             "minioncritdamage": "((1.0 * champ.atk)) * (1.75) + ( (1.0 * champ.crit_multi))"
         }
@@ -40122,7 +40122,7 @@
             ]
         },
         "calcs": {
-            "passivecooldown": "self.PreCalculated0[champ.lvl - 1]",
+            "passivecooldown": "self.PreCalculated0[champ.lvl]",
             "totalshield": "(0.10000000149011612 * champ.max_health)"
         }
     },
@@ -40745,7 +40745,7 @@
             ]
         },
         "calcs": {
-            "shieldcooldown": "self.PreCalculated0[champ.lvl - 1]"
+            "shieldcooldown": "self.PreCalculated0[champ.lvl]"
         }
     },
     "MaokaiE": {
@@ -40913,7 +40913,7 @@
             "passivecooldown": "30.0 + (champ.lvl) * -0.5555555555555556",
             "{ab7c3d4b}": "5.0 + (champ.lvl) * 0.4444444444444444",
             "{7797e259}": "(5.0 + (champ.lvl) * 0.4444444444444444) *  (0.009999999776482582 * champ.max_health)",
-            "passivehealingtotal": "self.PreCalculated0[champ.lvl - 1] +  ((self.PreCalculated1[champ.lvl - 1]) * champ.max_health)"
+            "passivehealingtotal": "self.PreCalculated0[champ.lvl] +  ((self.PreCalculated1[champ.lvl]) * champ.max_health)"
         }
     },
     "MaokaiQ": {
@@ -41695,8 +41695,8 @@
             ]
         },
         "calcs": {
-            "totaldamage": "((self.PreCalculated0[champ.lvl - 1]) * champ.atk)",
-            "miniondamage": "(((self.PreCalculated0[champ.lvl - 1]) * champ.atk)) * 0.5"
+            "totaldamage": "((self.PreCalculated0[champ.lvl]) * champ.atk)",
+            "miniondamage": "(((self.PreCalculated0[champ.lvl]) * champ.atk)) * 0.5"
         }
     },
     "MissFortuneViciousStrikes": {
@@ -41883,10 +41883,10 @@
         "calcs": {
             "damagepersecondtotal": "(1.100000023841858 * champ.atk)",
             "{26c20668}": "self.basepercentmaxhpdmgpersec[skill.lvl]",
-            "monstercap": "self.PreCalculated0[champ.lvl - 1]",
+            "monstercap": "self.PreCalculated0[champ.lvl]",
             "totaldamagett": "((1.100000023841858 * champ.atk)) * self.spinduration[skill.lvl]",
             "percenthpdamagett": "(self.basepercentmaxhpdmgpersec[skill.lvl]) * self.spinduration[skill.lvl]",
-            "monstercaptt": "(self.PreCalculated0[champ.lvl - 1]) * self.spinduration[skill.lvl]"
+            "monstercaptt": "(self.PreCalculated0[champ.lvl]) * self.spinduration[skill.lvl]"
         }
     },
     "MonkeyKingSpinToWinLeave": {
@@ -42469,8 +42469,8 @@
             ]
         },
         "calcs": {
-            "qdamage": "self.qbasedamage[skill.lvl] +  (0.6000000238418579 * champ.ap) + self.PreCalculated0[champ.lvl - 1]",
-            "empowereddamagetooltip": "(self.qbasedamage[skill.lvl] +  (0.6000000238418579 * champ.ap) + self.PreCalculated0[champ.lvl - 1]) * self.isolationscalar[skill.lvl]"
+            "qdamage": "self.qbasedamage[skill.lvl] +  (0.6000000238418579 * champ.ap) + self.PreCalculated0[champ.lvl]",
+            "empowereddamagetooltip": "(self.qbasedamage[skill.lvl] +  (0.6000000238418579 * champ.ap) + self.PreCalculated0[champ.lvl]) * self.isolationscalar[skill.lvl]"
         }
     },
     "MordekaiserW": {
@@ -43176,7 +43176,7 @@
             ]
         },
         "calcs": {
-            "lifestealtooltip": "self.PreCalculated0[champ.lvl - 1]"
+            "lifestealtooltip": "self.PreCalculated0[champ.lvl]"
         }
     },
     "NasusQAttack": {
@@ -43691,7 +43691,7 @@
         "calcs": {
             "bonusdamage": "self.PreCalculated0[champ.lvl]",
             "totaldamagetooltip": "self.PreCalculated1[champ.lvl] +  (1.0 * champ.atk)",
-            "rootduration": "self.PreCalculated2[champ.lvl - 1]"
+            "rootduration": "self.PreCalculated2[champ.lvl]"
         }
     },
     "NautilusPiercingGaze": {
@@ -44401,7 +44401,7 @@
             ]
         },
         "calcs": {
-            "maxtraps": "self.PreCalculated0[champ.lvl - 1]",
+            "maxtraps": "self.PreCalculated0[champ.lvl]",
             "damagepersecond": "self.Effect4[skill.lvl] +  (0.05000000074505806 * champ.ap)"
         }
     },
@@ -45956,9 +45956,9 @@
             ]
         },
         "calcs": {
-            "totaldamage": "self.PreCalculated0[champ.lvl - 1] +  (0.15000000596046448 * champ.ap)",
-            "stackdamage": "(self.PreCalculated0[champ.lvl - 1] +  (0.15000000596046448 * champ.ap)) * self.stackmult[skill.lvl]",
-            "stackdamagemax": "(self.PreCalculated0[champ.lvl - 1] +  (0.15000000596046448 * champ.ap)) * (self.stackmult[skill.lvl]) * (2.0)"
+            "totaldamage": "self.PreCalculated0[champ.lvl] +  (0.15000000596046448 * champ.ap)",
+            "stackdamage": "(self.PreCalculated0[champ.lvl] +  (0.15000000596046448 * champ.ap)) * self.stackmult[skill.lvl]",
+            "stackdamagemax": "(self.PreCalculated0[champ.lvl] +  (0.15000000596046448 * champ.ap)) * (self.stackmult[skill.lvl]) * (2.0)"
         }
     },
     "OrianaDissonanceCommand": {
@@ -47502,7 +47502,7 @@
             "shielddamagecalc": "self.shieldbasedamage[skill.lvl] +  (1.5 * champ.bonus_atk)",
             "{e62bc5e9}": "((1.0 * champ.atk)) * 0.16699999570846558",
             "empowereddamagecalc": "((1.0 * champ.atk)) * 1.6699999570846558",
-            "healcalc": "self.PreCalculated0[champ.lvl - 1] +  (1.5 * champ.bonus_atk)"
+            "healcalc": "self.PreCalculated0[champ.lvl] +  (1.5 * champ.bonus_atk)"
         }
     },
     "PantheonRFall": {
@@ -47635,9 +47635,9 @@
             ]
         },
         "calcs": {
-            "actualcooldown": "self.PreCalculated0[champ.lvl - 1]",
+            "actualcooldown": "self.PreCalculated0[champ.lvl]",
             "totaldamage": "20.0 + (champ.lvl) * 8.88888888888889",
-            "shieldvalue": "((self.PreCalculated1[champ.lvl - 1]) * champ.max_health)"
+            "shieldvalue": "((self.PreCalculated1[champ.lvl]) * champ.max_health)"
         }
     },
     "PoppyRSpell": {
@@ -48146,7 +48146,7 @@
             ]
         },
         "calcs": {
-            "{601654a1}": "self.PreCalculated0[champ.lvl - 1]",
+            "{601654a1}": "self.PreCalculated0[champ.lvl]",
             "movespeed": "self.Effect0[skill.lvl] +  (1.5 * 100.0 * champ.lethality)"
         }
     },
@@ -48362,11 +48362,11 @@
             ]
         },
         "calcs": {
-            "rdamage": "self.PreCalculated0[champ.lvl - 1] +  (0.800000011920929 * champ.bonus_atk) +  (1.5 * 100.0 * champ.lethality)",
+            "rdamage": "self.PreCalculated0[champ.lvl] +  (0.800000011920929 * champ.bonus_atk) +  (1.5 * 100.0 * champ.lethality)",
             "raddamage": "(0.800000011920929 * champ.bonus_atk)",
             "rlethalitydamage": "(1.5 * 100.0 * champ.lethality)",
-            "rbasedamage": "self.PreCalculated1[champ.lvl - 1]",
-            "reduceddamagefinal": "(self.PreCalculated0[champ.lvl - 1] +  (0.800000011920929 * champ.bonus_atk) +  (1.5 * 100.0 * champ.lethality)) * self.reduceddamage[skill.lvl]"
+            "rbasedamage": "self.PreCalculated1[champ.lvl]",
+            "reduceddamagefinal": "(self.PreCalculated0[champ.lvl] +  (0.800000011920929 * champ.bonus_atk) +  (1.5 * 100.0 * champ.lethality)) * self.reduceddamage[skill.lvl]"
         }
     },
     "QiyanaWMis_Grass": {
@@ -48733,7 +48733,7 @@
         "calcs": {
             "enchanteddamage": "self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
             "vanilladamage": "self.vanillabase[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
-            "tremordamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.PreCalculated0[champ.lvl - 1]",
+            "tremordamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.PreCalculated0[champ.lvl]",
             "{7dc40c72}": "0.05999999865889549 +  (0.0006000000284984708 * champ.bonus_atk)",
             "falloffdamage": "self.falloffmod[skill.lvl]",
             "enchantedfalloff": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.falloffmod[skill.lvl]",
@@ -48865,7 +48865,7 @@
         "calcs": {
             "enchanteddamage": "self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
             "vanilladamage": "self.vanillabase[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
-            "tremordamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.PreCalculated0[champ.lvl - 1]",
+            "tremordamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.PreCalculated0[champ.lvl]",
             "{7dc40c72}": "0.05999999865889549 +  (0.0006000000284984708 * champ.bonus_atk)",
             "falloffdamage": "self.falloffmod[skill.lvl]",
             "enchantedfalloff": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.falloffmod[skill.lvl]",
@@ -48997,7 +48997,7 @@
         "calcs": {
             "enchanteddamage": "self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
             "vanilladamage": "self.vanillabase[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
-            "tremordamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.PreCalculated0[champ.lvl - 1]",
+            "tremordamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.PreCalculated0[champ.lvl]",
             "{7dc40c72}": "0.05999999865889549 +  (0.0006000000284984708 * champ.bonus_atk)",
             "falloffdamage": "self.falloffmod[skill.lvl]",
             "enchantedfalloff": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.falloffmod[skill.lvl]",
@@ -49129,7 +49129,7 @@
         "calcs": {
             "enchanteddamage": "self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
             "vanilladamage": "self.vanillabase[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)",
-            "tremordamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.PreCalculated0[champ.lvl - 1]",
+            "tremordamage": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.PreCalculated0[champ.lvl]",
             "{7dc40c72}": "0.05999999865889549 +  (0.0006000000284984708 * champ.bonus_atk)",
             "falloffdamage": "self.falloffmod[skill.lvl]",
             "enchantedfalloff": "(self.basedamage[skill.lvl] +  (0.8999999761581421 * champ.bonus_atk)) * self.falloffmod[skill.lvl]",
@@ -49252,9 +49252,9 @@
             ]
         },
         "calcs": {
-            "finaldamage": "self.PreCalculated0[champ.lvl - 1] +  (0.550000011920929 * champ.bonus_atk) +  (0.30000001192092896 * champ.ap)",
+            "finaldamage": "self.PreCalculated0[champ.lvl] +  (0.550000011920929 * champ.bonus_atk) +  (0.30000001192092896 * champ.ap)",
             "icd": "14.0 + (champ.lvl) * 0.0",
-            "{222614ec}": "self.PreCalculated1[champ.lvl - 1]"
+            "{222614ec}": "self.PreCalculated1[champ.lvl]"
         }
     },
     "QiyanaE": {
@@ -49715,7 +49715,7 @@
         },
         "calcs": {
             "totaldamagetooltip": "self.Effect0[skill.lvl] +  (0.6000000238418579 * champ.ap)",
-            "totalhealtooltip": "self.PreCalculated0[champ.lvl - 1] +  (0.699999988079071 * champ.ap)"
+            "totalhealtooltip": "self.PreCalculated0[champ.lvl] +  (0.699999988079071 * champ.ap)"
         }
     },
     "RakanW": {
@@ -49908,8 +49908,8 @@
             ]
         },
         "calcs": {
-            "totalshield": "self.PreCalculated0[champ.lvl - 1] +  (0.8999999761581421 * champ.ap)",
-            "shieldcooldown": "self.PreCalculated1[champ.lvl - 1]"
+            "totalshield": "self.PreCalculated0[champ.lvl] +  (0.8999999761581421 * champ.ap)",
+            "shieldcooldown": "self.PreCalculated1[champ.lvl]"
         }
     },
     "RakanWCast": {
@@ -51105,7 +51105,7 @@
             ]
         },
         "calcs": {
-            "speedbonus": "self.PreCalculated0[champ.lvl - 1]",
+            "speedbonus": "self.PreCalculated0[champ.lvl]",
             "unburrowdamage": "self.Effect1[skill.lvl] +  (0.800000011920929 * champ.bonus_atk)"
         }
     },
@@ -51562,7 +51562,7 @@
             ]
         },
         "calcs": {
-            "healamount": "self.PreCalculated0[champ.lvl - 1]"
+            "healamount": "self.PreCalculated0[champ.lvl]"
         }
     },
     "RekSaiRWrapper": {
@@ -51884,7 +51884,7 @@
             "chargedamage": "self.basedamage[skill.lvl] +  (0.6000000238418579 * champ.ap)",
             "shield": "self.shieldbase[skill.lvl] +  (0.12999999523162842 * champ.max_health)",
             "flipdamage": "self.attackdamage[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "oocms": "self.PreCalculated0[champ.lvl - 1]",
+            "oocms": "self.PreCalculated0[champ.lvl]",
             "{02736914}": "0.20000000298023224 + (champ.lvl) * 0.011111111276679568",
             "speedceiling": "290.0 + (champ.lvl) * 6.111111111111111"
         }
@@ -52288,7 +52288,7 @@
             "chargedamage": "self.basedamage[skill.lvl] +  (0.6000000238418579 * champ.ap)",
             "shield": "self.shieldbase[skill.lvl] +  (0.12999999523162842 * champ.max_health)",
             "flipdamage": "self.attackdamage[skill.lvl] +  (0.4000000059604645 * champ.ap)",
-            "oocms": "self.PreCalculated0[champ.lvl - 1]",
+            "oocms": "self.PreCalculated0[champ.lvl]",
             "{02736914}": "0.20000000298023224 + (champ.lvl) * 0.011111111276679568",
             "speedceiling": "290.0 + (champ.lvl) * 6.111111111111111",
             "armorincreasetotal": "(self.{98ebbee4}[skill.lvl] * champ.armor)",
@@ -53145,7 +53145,7 @@
             ]
         },
         "calcs": {
-            "totalms": "self.PreCalculated0[champ.lvl - 1]"
+            "totalms": "self.PreCalculated0[champ.lvl]"
         }
     },
     "RengarPassiveBuffDash": {
@@ -53346,8 +53346,8 @@
             ]
         },
         "calcs": {
-            "empoweredqdamage": "self.PreCalculated0[champ.lvl - 1] +  (1.399999976158142 * champ.atk)",
-            "empoweredqas": "self.PreCalculated1[champ.lvl - 1]",
+            "empoweredqdamage": "self.PreCalculated0[champ.lvl] +  (1.399999976158142 * champ.atk)",
+            "empoweredqas": "self.PreCalculated1[champ.lvl]",
             "totaldamage": "self.Effect0[skill.lvl] +  (self.tooltipqadratio[skill.lvl] * champ.atk)"
         }
     },
@@ -53669,7 +53669,7 @@
         },
         "calcs": {
             "totaldamage": "self.Effect0[skill.lvl] +  (0.800000011920929 * champ.bonus_atk)",
-            "totalempowereddamage": "self.PreCalculated0[champ.lvl - 1] +  (0.800000011920929 * champ.bonus_atk)"
+            "totalempowereddamage": "self.PreCalculated0[champ.lvl] +  (0.800000011920929 * champ.bonus_atk)"
         }
     },
     "RengarQAttack": {
@@ -54214,7 +54214,7 @@
             ]
         },
         "calcs": {
-            "totaldamage": "((self.PreCalculated0[champ.lvl - 1]) * champ.atk)"
+            "totaldamage": "((self.PreCalculated0[champ.lvl]) * champ.atk)"
         }
     },
     "RivenWindslashMissileLeft": {
@@ -56143,8 +56143,8 @@
             ]
         },
         "calcs": {
-            "queenmaxdashrange": "self.PreCalculated0[champ.lvl - 1]",
-            "bonusmeleedamage": "(0.10000000149011612 * champ.atk) + self.PreCalculated1[champ.lvl - 1]"
+            "queenmaxdashrange": "self.PreCalculated0[champ.lvl]",
+            "bonusmeleedamage": "(0.10000000149011612 * champ.atk) + self.PreCalculated1[champ.lvl]"
         }
     },
     "SamiraPJuggle": {
@@ -56385,9 +56385,9 @@
             ]
         },
         "calcs": {
-            "queenmaxdashrange": "self.PreCalculated0[champ.lvl - 1]",
-            "bonusmeleedamage": "((0.03500000014901161 + (champ.lvl) * 0.0038888886984851626) * champ.atk) + self.PreCalculated1[champ.lvl - 1]",
-            "empoweredmeleedamagetooltip": "(((0.03500000014901161 + (champ.lvl) * 0.0038888886984851626) * champ.atk) + self.PreCalculated1[champ.lvl - 1]) * 2.0"
+            "queenmaxdashrange": "self.PreCalculated0[champ.lvl]",
+            "bonusmeleedamage": "((0.03500000014901161 + (champ.lvl) * 0.0038888886984851626) * champ.atk) + self.PreCalculated1[champ.lvl]",
+            "empoweredmeleedamagetooltip": "(((0.03500000014901161 + (champ.lvl) * 0.0038888886984851626) * champ.atk) + self.PreCalculated1[champ.lvl]) * 2.0"
         }
     },
     "SejuaniR": {
@@ -57041,10 +57041,10 @@
         },
         "calcs": {
             "bonusonhitdamage": "(0.20000000298023224 * champ.atk)",
-            "mssteal": "self.PreCalculated0[champ.lvl - 1]",
+            "mssteal": "self.PreCalculated0[champ.lvl]",
             "{bb59ad08}": "self.adperstack[skill.lvl] * champ.num_buffs({e88568f8})",
-            "bonuscurenthealthdamage": "self.PreCalculated1[champ.lvl - 1]",
-            "debuffduration": "self.PreCalculated2[champ.lvl - 1]"
+            "bonuscurenthealthdamage": "self.PreCalculated1[champ.lvl]",
+            "debuffduration": "self.PreCalculated2[champ.lvl]"
         }
     },
     "SennaE": {
@@ -57468,11 +57468,11 @@
             ]
         },
         "calcs": {
-            "totalshieldstrength": "self.PreCalculated0[champ.lvl - 1] +  (self.shieldapratio[skill.lvl] * champ.ap)",
+            "totalshieldstrength": "self.PreCalculated0[champ.lvl] +  (self.shieldapratio[skill.lvl] * champ.ap)",
             "wmsbonustotal": "self.wmsbonus[skill.lvl] +  (self.wmsbonusapratio[skill.lvl] * champ.ap)",
             "wmissinghpheal": "self.wmissinghpbase[skill.lvl] +  (self.wmissinghpper100ap[skill.lvl] * champ.ap)",
             "hastevalueallies": "(self.wmsbonus[skill.lvl] +  (self.wmsbonusapratio[skill.lvl] * champ.ap)) * self.hastevalueforallies[skill.lvl]",
-            "shieldvalueseraphine": "(self.PreCalculated0[champ.lvl - 1] +  (self.shieldapratio[skill.lvl] * champ.ap)) * self.{0ddd227a}[skill.lvl]"
+            "shieldvalueseraphine": "(self.PreCalculated0[champ.lvl] +  (self.shieldapratio[skill.lvl] * champ.ap)) * self.{0ddd227a}[skill.lvl]"
         }
     },
     "SeraphineE": {
@@ -57661,7 +57661,7 @@
             ]
         },
         "calcs": {
-            "autodamage": "self.PreCalculated0[champ.lvl - 1] +  ((self.PreCalculated1[champ.lvl - 1]) * champ.ap)"
+            "autodamage": "self.PreCalculated0[champ.lvl] +  ((self.PreCalculated1[champ.lvl]) * champ.ap)"
         }
     },
     "SettPassive": {
@@ -57858,9 +57858,9 @@
         "calcs": {
             "healingcalc": "self.PreCalculated0[champ.lvl]",
             "rightpunchbonus": "self.PreCalculated1[champ.lvl] +  (0.5 * champ.bonus_atk)",
-            "{7733e08c}": "self.PreCalculated2[champ.lvl - 1]",
-            "{a156fbdc}": "self.PreCalculated3[champ.lvl - 1]",
-            "tooltipregenpermissinghealthcalc": "(self.PreCalculated2[champ.lvl - 1]) * 5.0"
+            "{7733e08c}": "self.PreCalculated2[champ.lvl]",
+            "{a156fbdc}": "self.PreCalculated3[champ.lvl]",
+            "tooltipregenpermissinghealthcalc": "(self.PreCalculated2[champ.lvl]) * 5.0"
         }
     },
     "SettW": {
@@ -59182,7 +59182,7 @@
             ]
         },
         "calcs": {
-            "energyrefund": "self.PreCalculated0[champ.lvl - 1]",
+            "energyrefund": "self.PreCalculated0[champ.lvl]",
             "tauntdamage": "self.basedamage[skill.lvl] +  (self.bonushpratio[skill.lvl] * champ.bonus_health)"
         }
     },
@@ -59318,7 +59318,7 @@
             ]
         },
         "calcs": {
-            "baseflatdamage": "self.PreCalculated0[champ.lvl - 1]",
+            "baseflatdamage": "self.PreCalculated0[champ.lvl]",
             "basepercenthealth": "self.Effect1[skill.lvl] +  (0.014999999664723873 * champ.ap)",
             "emppercenthealth": "self.Effect5[skill.lvl] +  (0.019999999552965164 * champ.ap)"
         }
@@ -59563,7 +59563,7 @@
         },
         "calcs": {
             "shieldvalue": "self.PreCalculated0[champ.lvl] +  (0.14000000059604645 * champ.bonus_health)",
-            "shieldcooldownreduction": "self.PreCalculated1[champ.lvl - 1]",
+            "shieldcooldownreduction": "self.PreCalculated1[champ.lvl]",
             "{ff986284}": "self.PreCalculated2[champ.lvl] +  (0.07000000029802322 * champ.bonus_health)"
         }
     },
@@ -60233,10 +60233,10 @@
         },
         "calcs": {
             "damagecalc": "self.basedamage[skill.lvl] +  (0.699999988079071 * champ.ap) +  (0.30000001192092896 * champ.atk)",
-            "dragonexplosioncalc": "self.PreCalculated0[champ.lvl - 1] +  (0.30000001192092896 * champ.ap) +  (0.30000001192092896 * champ.atk)",
-            "dragondamagepersecondcalc": "self.PreCalculated1[champ.lvl - 1] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)",
-            "dragondamagepertickcalc": "(self.PreCalculated1[champ.lvl - 1] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)) * self.secondspertick[skill.lvl]",
-            "dragondamagetotalcalc": "(self.PreCalculated1[champ.lvl - 1] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)) * self.{4a18f12b}[skill.lvl]"
+            "dragonexplosioncalc": "self.PreCalculated0[champ.lvl] +  (0.30000001192092896 * champ.ap) +  (0.30000001192092896 * champ.atk)",
+            "dragondamagepersecondcalc": "self.PreCalculated1[champ.lvl] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)",
+            "dragondamagepertickcalc": "(self.PreCalculated1[champ.lvl] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)) * self.secondspertick[skill.lvl]",
+            "dragondamagetotalcalc": "(self.PreCalculated1[champ.lvl] +  (0.20000000298023224 * champ.ap) +  (0.10000000149011612 * champ.atk)) * self.{4a18f12b}[skill.lvl]"
         }
     },
     "ShyvanaDoubleAttack": {
@@ -61787,7 +61787,7 @@
             ]
         },
         "calcs": {
-            "flatms": "self.PreCalculated0[champ.lvl - 1]"
+            "flatms": "self.PreCalculated0[champ.lvl]"
         }
     },
     "SivirQMissileReturnDead": {
@@ -61967,8 +61967,8 @@
             ]
         },
         "calcs": {
-            "crystalas": "self.PreCalculated0[champ.lvl - 1]",
-            "crystalms": "self.PreCalculated1[champ.lvl - 1]"
+            "crystalas": "self.PreCalculated0[champ.lvl]",
+            "crystalms": "self.PreCalculated1[champ.lvl]"
         }
     },
     "SkarnerExoskeleton": {
@@ -62266,8 +62266,8 @@
             ]
         },
         "calcs": {
-            "powerchorddamage": "self.PreCalculated0[champ.lvl - 1] +  (0.20000000298023224 * champ.ap)",
-            "staccatodamage": "(self.PreCalculated0[champ.lvl - 1] +  (0.20000000298023224 * champ.ap)) * 1.399999976158142",
+            "powerchorddamage": "self.PreCalculated0[champ.lvl] +  (0.20000000298023224 * champ.ap)",
+            "staccatodamage": "(self.PreCalculated0[champ.lvl] +  (0.20000000298023224 * champ.ap)) * 1.399999976158142",
             "diminuendoshrinkandweakenpercent": "0.25 +  (0.00039999998989515007 * champ.ap)",
             "tempomovespeedslow": "0.4000000059604645 +  (0.00039999998989515007 * champ.ap)"
         }
@@ -64728,9 +64728,9 @@
             ]
         },
         "calcs": {
-            "calculateddamage": "self.PreCalculated0[champ.lvl - 1] +  (self.apratio[skill.lvl] * champ.ap)",
-            "{7bd67a31}": "self.PreCalculated1[champ.lvl - 1]",
-            "passivehealcalculated": "(self.PreCalculated1[champ.lvl - 1]) *  (1.0 * champ.max_health)"
+            "calculateddamage": "self.PreCalculated0[champ.lvl] +  (self.apratio[skill.lvl] * champ.ap)",
+            "{7bd67a31}": "self.PreCalculated1[champ.lvl]",
+            "passivehealcalculated": "(self.PreCalculated1[champ.lvl]) *  (1.0 * champ.max_health)"
         }
     },
     "SwainPDummyCast": {
@@ -67463,7 +67463,7 @@
             ]
         },
         "calcs": {
-            "totaldamage": "self.PreCalculated0[champ.lvl - 1] +  (0.15000000596046448 * champ.bonus_armor)",
+            "totaldamage": "self.PreCalculated0[champ.lvl] +  (0.15000000596046448 * champ.bonus_armor)",
             "cdr": "(1.0) + ((1.0) + ((champ.cdr) * (-1.0)))"
         }
     },
@@ -67986,7 +67986,7 @@
             ]
         },
         "calcs": {
-            "bonusas": "self.PreCalculated0[champ.lvl - 1]"
+            "bonusas": "self.PreCalculated0[champ.lvl]"
         }
     },
     "MoveQuick": {
@@ -69733,7 +69733,7 @@
         },
         "calcs": {
             "passivecritconversiontooltip": "0.4000000059604645",
-            "{dc63b617}": "self.PreCalculated0[champ.lvl - 1]"
+            "{dc63b617}": "self.PreCalculated0[champ.lvl]"
         }
     },
     "UndyingRage": {
@@ -70528,9 +70528,9 @@
             ]
         },
         "calcs": {
-            "damagepersecond": "self.PreCalculated0[champ.lvl - 1] +  (0.02500000037252903 * champ.ap)",
-            "damagepersecondmax": "(self.PreCalculated0[champ.lvl - 1] +  (0.02500000037252903 * champ.ap)) * self.maxstacks[skill.lvl]",
-            "damagemaxtotal": "(self.PreCalculated0[champ.lvl - 1] +  (0.02500000037252903 * champ.ap)) * (self.duration[skill.lvl]) * (self.maxstacks[skill.lvl])"
+            "damagepersecond": "self.PreCalculated0[champ.lvl] +  (0.02500000037252903 * champ.ap)",
+            "damagepersecondmax": "(self.PreCalculated0[champ.lvl] +  (0.02500000037252903 * champ.ap)) * self.maxstacks[skill.lvl]",
+            "damagemaxtotal": "(self.PreCalculated0[champ.lvl] +  (0.02500000037252903 * champ.ap)) * (self.duration[skill.lvl]) * (self.maxstacks[skill.lvl])"
         }
     },
     "TwitchExpunge": {
@@ -71345,9 +71345,9 @@
             ]
         },
         "calcs": {
-            "perlegcd": "self.PreCalculated0[champ.lvl - 1]",
-            "addamage": "((self.PreCalculated1[champ.lvl - 1]) * champ.atk)",
-            "percenthpratio": "self.PreCalculated2[champ.lvl - 1]",
+            "perlegcd": "self.PreCalculated0[champ.lvl]",
+            "addamage": "((self.PreCalculated1[champ.lvl]) * champ.atk)",
+            "percenthpratio": "self.PreCalculated2[champ.lvl]",
             "monstercap": "100.0 + (champ.lvl) * 14.444444444444445"
         }
     },
@@ -72058,10 +72058,10 @@
         },
         "calcs": {
             "percenthpperstack": "self.basepercenthpperstack[skill.lvl] +  (0.00019999999494757503 * champ.ap)",
-            "qempowerpercenthp": "self.PreCalculated0[champ.lvl - 1]",
+            "qempowerpercenthp": "self.PreCalculated0[champ.lvl]",
             "onhitdamage": "self.varuswonhitdamage[skill.lvl] +  (0.25 * champ.ap)",
             "maxpercenthpperstack": "(self.basepercenthpperstack[skill.lvl] +  (0.00019999999494757503 * champ.ap)) * 3.0",
-            "maxqempowerpercenthp": "(self.PreCalculated0[champ.lvl - 1]) * self.{b910d8aa}[skill.lvl]",
+            "maxqempowerpercenthp": "(self.PreCalculated0[champ.lvl]) * self.{b910d8aa}[skill.lvl]",
             "{1639c982}": "self.varuswonhitdamage[skill.lvl] +  (self.varuswonhitratio[skill.lvl] * champ.ap)"
         }
     },
@@ -73401,7 +73401,7 @@
         },
         "calcs": {
             "totalshield": "(0.15000000596046448 * champ.max_health)",
-            "shieldcooldown": "self.PreCalculated0[champ.lvl - 1]"
+            "shieldcooldown": "self.PreCalculated0[champ.lvl]"
         }
     },
     "ViEFx": {
@@ -75031,7 +75031,7 @@
             "basehealtooltip": "self.Effect1[skill.lvl] +  (0.3499999940395355 * champ.ap)",
             "empowereddamagetooltip": "(self.Effect0[skill.lvl] +  (0.6000000238418579 * champ.ap)) * 1.850000023841858",
             "empoweredhealpercenttooltip": "self.Effect4[skill.lvl] +  (0.03999999910593033 * champ.ap)",
-            "empoweredhealtooltip": "self.PreCalculated0[champ.lvl - 1]"
+            "empoweredhealtooltip": "self.PreCalculated0[champ.lvl]"
         }
     },
     "VladimirHemoplagueMissile": {
@@ -75595,7 +75595,7 @@
         "calcs": {
             "{fa8ad73d}": "self.PreCalculated0[champ.lvl]",
             "apratiotooltip": "(self.apratio[skill.lvl] * champ.ap)",
-            "chainlightningdamagetooltip": "self.PreCalculated1[champ.lvl - 1] +  (self.apratio[skill.lvl] * champ.ap)",
+            "chainlightningdamagetooltip": "self.PreCalculated1[champ.lvl] +  (self.apratio[skill.lvl] * champ.ap)",
             "attackspeedcalc": "self.pattackspeed[skill.lvl] +  (0.00039999998989515007 * champ.ap)",
             "{ebe98aa3}": "self.pattackspeed[skill.lvl] +  (0.03999999910593033 * champ.ap)"
         }
@@ -76280,7 +76280,7 @@
             ]
         },
         "calcs": {
-            "onhitdamage": "self.PreCalculated0[champ.lvl - 1] +  (0.15000000596046448 * champ.bonus_atk) +  (0.10000000149011612 * champ.ap)"
+            "onhitdamage": "self.PreCalculated0[champ.lvl] +  (0.15000000596046448 * champ.bonus_atk) +  (0.10000000149011612 * champ.ap)"
         }
     },
     "WarwickW": {
@@ -77169,8 +77169,8 @@
             ]
         },
         "calcs": {
-            "minionmanarestorett": "self.PreCalculated0[champ.lvl - 1]",
-            "championmanarestorett": "(self.PreCalculated0[champ.lvl - 1]) * 2.0"
+            "minionmanarestorett": "self.PreCalculated0[champ.lvl]",
+            "championmanarestorett": "(self.PreCalculated0[champ.lvl]) * 2.0"
         }
     },
     "XinZhaoQThrust2": {
@@ -77436,7 +77436,7 @@
             ]
         },
         "calcs": {
-            "totaldamage": "((self.PreCalculated0[champ.lvl - 1]) * champ.atk)",
+            "totaldamage": "((self.PreCalculated0[champ.lvl]) * champ.atk)",
             "totalhealing": "self.PreCalculated1[champ.lvl] +  (0.10000000149011612 * champ.atk) +  (0.550000011920929 * champ.ap)"
         }
     },
@@ -77617,7 +77617,7 @@
         "calcs": {
             "slashdamage": "self.slashbasedamage[skill.lvl] +  (0.30000001192092896 * champ.atk)",
             "thrustdamage": "self.thrustbasedamage[skill.lvl] +  (0.800000011920929 * champ.atk) +  (0.5 * champ.ap)",
-            "minionmod": "self.PreCalculated0[champ.lvl - 1]"
+            "minionmod": "self.PreCalculated0[champ.lvl]"
         }
     },
     "XenZhaoThrust": {
@@ -78957,7 +78957,7 @@
         },
         "calcs": {
             "shieldvalue": "self.PreCalculated0[champ.lvl]",
-            "{74ce5438}": "self.PreCalculated1[champ.lvl - 1]",
+            "{74ce5438}": "self.PreCalculated1[champ.lvl]",
             "currentcritdamage": "(1.0 * champ.crit_multi)"
         }
     },
@@ -79714,7 +79714,7 @@
             "wdamage": "self.basedamage[skill.lvl] +  (1.0 * champ.atk)",
             "{8dfeb810}": "(1.0 * champ.atk)",
             "wshield": "40.0 + (champ.lvl) * 1.1111111111111112 +  (0.6000000238418579 * champ.bonus_atk)",
-            "minimumdamageminions": "self.PreCalculated0[champ.lvl - 1]",
+            "minimumdamageminions": "self.PreCalculated0[champ.lvl]",
             "monsterdamagecap": "self.PreCalculated1[champ.lvl]"
         }
     },
@@ -80120,9 +80120,9 @@
             ]
         },
         "calcs": {
-            "qheal": "self.PreCalculated0[champ.lvl - 1]",
+            "qheal": "self.PreCalculated0[champ.lvl]",
             "totaldamage": "self.Effect0[skill.lvl] +  (0.4000000059604645 * champ.atk)",
-            "empoweredqheal": "(self.PreCalculated0[champ.lvl - 1]) * 2.0"
+            "empoweredqheal": "(self.PreCalculated0[champ.lvl]) * 2.0"
         }
     },
     "YorickE": {
@@ -80358,10 +80358,10 @@
             ]
         },
         "calcs": {
-            "yorickpassiveghoulhealth": "self.PreCalculated0[champ.lvl - 1] +  (0.15000000596046448 * champ.max_health)",
-            "{23634779}": "self.PreCalculated1[champ.lvl - 1] +  (0.25 * champ.atk)",
-            "{1d553841}": "self.PreCalculated2[champ.lvl - 1]",
-            "unitstograve": "self.PreCalculated3[champ.lvl - 1]"
+            "yorickpassiveghoulhealth": "self.PreCalculated0[champ.lvl] +  (0.15000000596046448 * champ.max_health)",
+            "{23634779}": "self.PreCalculated1[champ.lvl] +  (0.25 * champ.atk)",
+            "{1d553841}": "self.PreCalculated2[champ.lvl]",
+            "unitstograve": "self.PreCalculated3[champ.lvl]"
         }
     },
     "YorickR": {
@@ -80988,7 +80988,7 @@
             ]
         },
         "calcs": {
-            "attachcooldown": "self.PreCalculated0[champ.lvl - 1]",
+            "attachcooldown": "self.PreCalculated0[champ.lvl]",
             "ccattachlockout": "5.0"
         }
     },
@@ -81156,8 +81156,8 @@
         "calcs": {
             "manarestored": "25.0 + (champ.lvl) * 4.166666666666667",
             "passivecooldown": "18.0 + (champ.lvl) * -0.6666666666666666",
-            "shieldamount": "self.PreCalculated0[champ.lvl - 1] +  (0.30000001192092896 * champ.ap)",
-            "{656dde8a}": "self.PreCalculated1[champ.lvl - 1]",
+            "shieldamount": "self.PreCalculated0[champ.lvl] +  (0.30000001192092896 * champ.ap)",
+            "{656dde8a}": "self.PreCalculated1[champ.lvl]",
             "maxmanarestore": "25.0 + (champ.lvl) * 4.166666666666667 + champ.max_mana * 0.07999999821186066"
         }
     },
@@ -81447,7 +81447,7 @@
         },
         "calcs": {
             "healpercent": "4.0 + (champ.lvl) * 0.0",
-            "reviveblobletduration": "self.PreCalculated0[champ.lvl - 1]"
+            "reviveblobletduration": "self.PreCalculated0[champ.lvl]"
         }
     },
     "ZacQRecast": {
@@ -82350,7 +82350,7 @@
             ]
         },
         "calcs": {
-            "maxhpdamage": "self.PreCalculated0[champ.lvl - 1]"
+            "maxhpdamage": "self.PreCalculated0[champ.lvl]"
         }
     },
     "ZedWMissile": {
@@ -83394,9 +83394,9 @@
             ]
         },
         "calcs": {
-            "totaldamage": "self.PreCalculated0[champ.lvl - 1] +  (0.5 * champ.ap)",
-            "spellcdr": "self.PreCalculated1[champ.lvl - 1]",
-            "structuredamage": "(self.PreCalculated0[champ.lvl - 1] +  (0.5 * champ.ap)) * 2.5"
+            "totaldamage": "self.PreCalculated0[champ.lvl] +  (0.5 * champ.ap)",
+            "spellcdr": "self.PreCalculated1[champ.lvl]",
+            "structuredamage": "(self.PreCalculated0[champ.lvl] +  (0.5 * champ.ap)) * 2.5"
         }
     },
     "OdysseyAugments_ZiggsESeekers": {
@@ -84634,9 +84634,9 @@
             ]
         },
         "calcs": {
-            "{e359ec0d}": "self.PreCalculated0[champ.lvl - 1]",
+            "{e359ec0d}": "self.PreCalculated0[champ.lvl]",
             "totalxp": "1.0 * champ.num_buffs({79ba1a32})",
-            "xpper5": "(self.PreCalculated0[champ.lvl - 1]) * 2.5"
+            "xpper5": "(self.PreCalculated0[champ.lvl]) * 2.5"
         }
     },
     "ZileanQEnemyBomb": {
@@ -85088,8 +85088,8 @@
             ]
         },
         "calcs": {
-            "totaldamagetooltip": "self.Effect0[skill.lvl] + self.PreCalculated0[champ.lvl - 1] +  (0.6000000238418579 * champ.ap)",
-            "maxdamagetooltip": "(self.Effect0[skill.lvl] + self.PreCalculated0[champ.lvl - 1] +  (0.6000000238418579 * champ.ap)) * 2.5"
+            "totaldamagetooltip": "self.Effect0[skill.lvl] + self.PreCalculated0[champ.lvl] +  (0.6000000238418579 * champ.ap)",
+            "maxdamagetooltip": "(self.Effect0[skill.lvl] + self.PreCalculated0[champ.lvl] +  (0.6000000238418579 * champ.ap)) * 2.5"
         }
     },
     "ZoeW": {
@@ -85493,7 +85493,7 @@
             ]
         },
         "calcs": {
-            "passivedamage": "self.PreCalculated0[champ.lvl - 1] +  (0.20000000298023224 * champ.ap)"
+            "passivedamage": "self.PreCalculated0[champ.lvl] +  (0.20000000298023224 * champ.ap)"
         }
     },
     "ZoeQMis2Warning": {
@@ -86562,7 +86562,7 @@
             ]
         },
         "calcs": {
-            "seedcooldown": "self.PreCalculated0[champ.lvl - 1]",
+            "seedcooldown": "self.PreCalculated0[champ.lvl]",
             "plantdamage": "20.0 + (champ.lvl) * 4.444444444444445 +  (0.15000000596046448 * champ.ap)"
         }
     },
