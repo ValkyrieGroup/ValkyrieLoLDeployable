@@ -33,6 +33,12 @@ def onhit_nashors(src, target):
 	
 def onhit_wits_end(src, target):
 	return 15.0 + 3.82 * (src.lvl - 1)
+    
+def onhit_titanic_hydra(src, target):
+    dmg = 3.75 if src.is_ranged else 5
+    dmg += (src.max_health * 0.01125 if src.is_ranged else 0.015)
+    
+    return dmg
 
 OnHit_Physical = {
 	3124: onhit_guinsoo,
@@ -40,7 +46,8 @@ OnHit_Physical = {
 	6670: onhit_noonquiver,
 	1043: onhit_recurve_bow,
 	3153: onhit_botrk,
-	1056: onhit_doran_ring
+	1056: onhit_doran_ring,
+    3748: onhit_titanic_hydra
 }
 
 OnHit_Magical = {
