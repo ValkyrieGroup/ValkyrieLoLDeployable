@@ -100,7 +100,7 @@ def valkyrie_menu(ctx):
 	ui.text('Settings', Col.Purple)
 	target_selector.ui("Champion targeting", ctx, ui)
 	target_selector_monster.ui('Monster targeting', ctx, ui)
-	move_interval  = ui.sliderfloat("Move command interval (ms)", move_interval, 0.05, 0.20)
+	move_interval  = ui.sliderfloat("Move command interval (ms)", move_interval, 0.10, 0.20)
 	ui.help('Cooldown for move commands, the less the more clicks you will do while moving.')
 	
 	delay_percent  = ui.sliderfloat('Delay percent (%)', delay_percent, 0.0, 0.4)

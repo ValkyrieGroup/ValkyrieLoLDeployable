@@ -3,6 +3,10 @@ from helpers.spells import Slot
 from helpers.damages import calculate_raw_spell_dmg
 
 auto_e_killable = True
+collector_id = 6676
+
+def calc_collector_dmg(player):
+	return player.health * 0.05
 
 def valkyrie_menu(ctx) :
 	global auto_e_killable, draw_e_indicator
@@ -21,18 +25,29 @@ def valkyrie_on_save(ctx) :
 	
 	cfg.set_bool('auto_e_killable', auto_e_killable)
 	
-def valkyrie_exec(ctx) :	     
-	
+def valkyrie_exec(ctx) :
 	player = ctx.player
+
 	if not auto_e_killable or player.dead:
 		return
 
 	spell = player.spells[Slot.E]
-	if spell.lvl == 0 or spell.cd > 0.0 or spell.mana > player.mana:
+	if not player.can_cast_spell(spell):
 		return
 	
+	has_collector = False
+	for val in player.item_slots:
+		if val.item and val.item.id == collector_id:
+			has_collector = True
+			break
+	
 	raw_dmg = calculate_raw_spell_dmg(player, spell)
+	collector_dmg = 0
+	 
 	for champ in ctx.champs.enemy_to(player).targetable().near(player, 1200.0).get():
-		if champ.health - raw_dmg.calc_against(ctx, player, champ) <= 0.0:
+		if has_collector:
+			collector_dmg = calc_collector_dmg(champ)
+
+		if champ.health - raw_dmg.calc_against(ctx, player, champ) - collector_dmg <= 0.0:
 			ctx.cast_spell(spell, None)
 			break

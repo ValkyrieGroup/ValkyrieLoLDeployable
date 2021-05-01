@@ -77,8 +77,6 @@ class IreliaEPredictor:
 
 irelia = HT.ChampionScript(
 	passive_trigger   = HT.Enabler.default(),
-	combat_distance   = 1000,
-	passive_distance  = 1000,
 	
 	combat_rotation = SpellRotation([
 		RSpell(Slot.R, ConditionIreliaMark(False)),
@@ -91,6 +89,14 @@ irelia = HT.ChampionScript(
 	]),
 
 	passive_rotation = SpellRotation([	
+	]),
+    
+    lasthit_rotation = SpellRotation([	
+        RSpell(Slot.Q, HT.ConditionKillable())
+	]),
+
+    lanepush_rotation = SpellRotation([	
+        RSpell(Slot.Q, HT.ConditionKillable())
 	])
 )
 

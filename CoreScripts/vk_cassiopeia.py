@@ -22,7 +22,17 @@ cassiopeia = HT.ChampionScript(
 	passive_rotation = SpellRotation([
 		RSpell(Slot.Q), 
 		RSpell(Slot.E, HT.ConditionTargetPoisoned())
-	])
+	]),
+	
+	lasthit_rotation = SpellRotation([
+		RSpell(Slot.E, HT.ConditionKillable())
+	]),
+	
+	lanepush_rotation = SpellRotation([
+		RSpell(Slot.Q),
+		RSpell(Slot.W),
+		RSpell(Slot.E)
+	]),
 )
 
 last_hit_e = True
@@ -32,20 +42,17 @@ def valkyrie_menu(ctx) :
 	ui = ctx.ui					 
 	
 	cassiopeia.ui(ctx)
-	last_hit_e = ui.checkbox('Auto last hit with E (No prediction)', last_hit_e)
 	
 def valkyrie_on_load(ctx) :	 
 	global cassiopeia, last_hit_e
 	cfg = ctx.cfg				 
 	
 	cassiopeia = HT.ChampionScript.from_str(cfg.get_str('cassiopeia', str(cassiopeia)))
-	last_hit_e = cfg.get_bool('last_hit_e', False)
 	
 	
 def valkyrie_on_save(ctx) :	 
 	cfg = ctx.cfg				 
 	
-	cfg.set_bool('last_hit_e', last_hit_e)
 	cfg.set_str('cassiopeia', str(cassiopeia))
 	
 def valkyrie_exec(ctx) :	     
@@ -54,17 +61,4 @@ def valkyrie_exec(ctx) :
 		return
 		
 	cassiopeia.exec(ctx)
-	if last_hit_e and Orbwalker.CurrentMode != Orbwalker.ModeKite:
-		ctx.pill('LastHitE', Col.Green, Col.Black)
-		
-		player = ctx.player
-		targets = ctx.minions.enemy_to(player).targetable().near(player, 700).get()
-		
-		e_spell = player.spells[Slot.E]
-		e_dmg = calculate_raw_spell_dmg(player, e_spell)
-		
-		for target in targets:
-			if target.health < e_dmg.calc_against(ctx, player, target):
-				ctx.cast_spell(e_spell, target.pos)
-				return
 	
