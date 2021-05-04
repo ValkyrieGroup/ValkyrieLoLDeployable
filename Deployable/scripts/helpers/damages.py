@@ -303,6 +303,11 @@ DamageExtractors = {
 	'veigardarkmatter'       : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
 	'veigarr'                : lambda calc, champ, skill: VeigarRDamage(calc.mindamagetooltip(champ, skill)),
 
+        # Viktor
+	'viktorpowertransfer'    : lambda calc, champ, skill: MagicDamage(calc.totalmissiledamage(champ, skill)),
+	'viktordeathray'         : lambda calc, champ, skill: MagicDamage(calc.laserdamage(champ, skill)),
+	'viktorchaosstorm'       : lambda calc, champ, skill: MagicDamage(calc.initialburstdamage(champ, skill)),
+
 	# Vladimir
 	'vladimirq'              : lambda calc, champ, skill: MagicDamage(calc.basedamagetooltip(champ, skill)),
 	'vladimirhemoplague'     : lambda calc, champ, skill: MagicDamage(calc.damage(champ, skill)),
