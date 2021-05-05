@@ -44,7 +44,7 @@ def predict_minions_lasthit(ctx, enemy_minions, ally_minions, delay_percent = 0.
 	
 	player			 = ctx.player
 	player_range	 = ctx.player.atk_range + ctx.player.static.gameplay_radius
-	basic_atk_speed	 = player.static.basic_atk.speed
+	basic_atk_speed	 = player.static.basic_atk.speed if player.is_ranged else 20000.0
 	basic_atk_delay	 = player.static.basic_atk_windup / player.atk_speed
 	result = []
 	
