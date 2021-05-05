@@ -51,8 +51,11 @@ kogmaw = HT.ChampionScript(
 		], HT.MixedConditions.Any)), 
 		RSpell(Slot.W), 
 		RSpell(Slot.E, HT.ConditionDistanceToTarget(700, 3000)), 
-		RSpell(Slot.R, ConditionKogMawUlt(9, 200)),
-	]),
+		RSpell(Slot.R, HT.MixedConditions(
+                       [ConditionKogMawUlt(9, 200), HT.ConditionTargetHPBelow(40)],
+                       HT.MixedConditions.All)
+                )]
+	),
 	
 	lasthit_rotation = SpellRotation([
 		RSpell(Slot.Q, HT.ConditionKillable()),
