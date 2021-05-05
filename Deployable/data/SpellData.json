@@ -45493,7 +45493,7 @@
         "name": "vladimire",
         "parent": "",
         "icon": "vladimire",
-        "castTime": -2.0,
+        "castTime": 1.5,
         "castRange": 600.0,
         "castRadius": 550.0,
         "castConeAngle": 0.0,
@@ -45503,7 +45503,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastAnywhere", "Area", "AffectAll", "CollideCommon"]
+        "flags": ["Channel", "CastAnywhere", "Area", "AffectAll", "CollideCommon"]
     },
     {
         "name": "vladimirq",

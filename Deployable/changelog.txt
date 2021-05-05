@@ -4,10 +4,11 @@
 	* Fixed broken minion health prediction for melee champs
 	* Fixed a bug where skillshots wouldnt cast
 	* Fixed bug where channeled spells would sometimes get cancelled in aimcast	
+	* Halved the internal cast spell cooldown since some spells with cooldown resets would feel a little bit slow
 	* More minor bug fixes
 	
 	+ Now you can set if you want to hold or not the open menu key
-	+ Now aimcast doesnt need separate keys (if script crashes hit "Reset to Defaults")
+	+ Now aimcast doesnt need separate keys (script will crash in first use so hit "Reset to Defaults")
 
 	Scripting API:
 		+ Now reading buffs for every unit in the game
