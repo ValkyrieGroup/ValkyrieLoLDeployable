@@ -1,3 +1,22 @@
+[Valkyrie v0.35]
+	* Fixed a bug where skillshots were being cast way off target (if anyone of you still have this please tell me)
+	* Fixed a prediction bug where units "is_moving" flag was set randomly when they were standing still and attacking
+	* Fixed broken minion health prediction for melee champs
+	* Fixed a bug where skillshots wouldnt cast
+	* Fixed bug where channeled spells would sometimes get cancelled in aimcast	
+	* More minor bug fixes
+	
+	+ Now you can set if you want to hold or not key menu
+	+ Now aimcast doesnt need separate keys
+
+	Scripting API:
+		+ Now reading buffs for every unit in the game
+		+ Now you can get objects by network id
+		+ Changed ingame dev tools (Press F3 to activate)
+	
+	Notes:
+		+ Now for channeled spells in vk_aimcast.py (example Xerath's Q) you will need to press it once and it will start channeling then press again to aimcast
+ 
 [Valkyrie v0.34]
 	+ Added vk_champ_portraits script
 	+ Fixed some small bugs
