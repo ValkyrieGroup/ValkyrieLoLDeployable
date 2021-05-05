@@ -121,16 +121,6 @@ Checks if champion can cast the GameSpell provided</p>
     bool can_cast_spell(class GameChampion {lvalue},class GameSpell const *)
 </code></pre></div>
 </dd>
-<dt id="valkyrie.ChampionObj.has_buff"><code class="name flex">
-<span>def <span class="ident">has_buff</span></span>(<span>...)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>has_buff( (ChampionObj)arg1, (str)arg2) -&gt; bool :
-Check if champion has buff. The buff name is case sensitive</p>
-<pre><code>C++ signature :
-    bool has_buff(class GameChampion {lvalue},char const *)
-</code></pre></div>
-</dd>
 <dt id="valkyrie.ChampionObj.num_buff_stacks"><code class="name flex">
 <span>def <span class="ident">num_buff_stacks</span></span>(<span>...)</span>
 </code></dt>
@@ -361,13 +351,25 @@ Saves a string to the config file</p>
 <dd>
 <div class="desc"><p>Gets the current position of the mouse</p></div>
 </dd>
+<dt id="valkyrie.Context.focused"><code class="name">var <span class="ident">focused</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the game object focused (the object that was last clicked). None if last click was not on a object</p></div>
+</dd>
 <dt id="valkyrie.Context.hovered"><code class="name">var <span class="ident">hovered</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the game object under the mouse</p></div>
 </dd>
+<dt id="valkyrie.Context.hud"><code class="name">var <span class="ident">hud</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the game HUD</p></div>
+</dd>
 <dt id="valkyrie.Context.jungle"><code class="name">var <span class="ident">jungle</span></code></dt>
 <dd>
 <div class="desc"><p>Returns jungle monster query builder</p></div>
+</dd>
+<dt id="valkyrie.Context.keybinds"><code class="name">var <span class="ident">keybinds</span></code></dt>
+<dd>
+<div class="desc"><p>Keybinds for casting spells/items etc</p></div>
 </dd>
 <dt id="valkyrie.Context.minions"><code class="name">var <span class="ident">minions</span></code></dt>
 <dd>
@@ -388,6 +390,10 @@ Saves a string to the config file</p>
 <dt id="valkyrie.Context.player"><code class="name">var <span class="ident">player</span></code></dt>
 <dd>
 <div class="desc"><p>The champion used by the local player. In replays this will be a random champion</p></div>
+</dd>
+<dt id="valkyrie.Context.resources_loaded"><code class="name">var <span class="ident">resources_loaded</span></code></dt>
+<dd>
+<div class="desc"><p>True if all valkyrie resources are loaded (images/jsons etc)</p></div>
 </dd>
 <dt id="valkyrie.Context.time"><code class="name">var <span class="ident">time</span></code></dt>
 <dd>
@@ -523,9 +529,21 @@ Draws an damage indicator with a specified color for an amount of damage on a ch
 <pre><code>C++ signature :
     void image(class PyExecutionContext {lvalue},char const *,struct Vector2,struct Vector2,struct ImVec4)
 </code></pre>
+<p>image( (Context)arg1, (str)arg2, (Vec2)arg3, (Vec2)arg4, (Vec2)arg5, (Vec2)arg6, (Col)arg7) -&gt; None :</p>
+<pre><code>C++ signature :
+    void image(class PyExecutionContext {lvalue},char const *,struct Vector2,struct Vector2,struct Vector2,struct Vector2,struct ImVec4)
+</code></pre>
 <p>image( (Context)arg1, (str)arg2, (Vec2)arg3, (Vec2)arg4, (Col)arg5, (float)arg6) -&gt; None :</p>
 <pre><code>C++ signature :
     void image(class PyExecutionContext {lvalue},char const *,struct Vector2,struct Vector2,struct ImVec4,float)
+</code></pre>
+<p>image( (Context)arg1, (str)arg2, (Vec3)arg3, (Vec2)arg4, (Col)arg5) -&gt; None :</p>
+<pre><code>C++ signature :
+    void image(class PyExecutionContext {lvalue},char const *,struct Vector3,struct Vector2,struct ImVec4)
+</code></pre>
+<p>image( (Context)arg1, (str)arg2, (Vec3)arg3, (Vec3)arg4, (Vec3)arg5, (Vec3)arg6, (Col)arg7) -&gt; None :</p>
+<pre><code>C++ signature :
+    void image(class PyExecutionContext {lvalue},char const *,struct Vector3,struct Vector3,struct Vector3,struct Vector3,struct ImVec4)
 </code></pre></div>
 </dd>
 <dt id="valkyrie.Context.info"><code class="name flex">
@@ -627,6 +645,16 @@ Moves the player to where the mouse cursor is</p>
 Moves the mouse location to the specified game world coordinate</p>
 <pre><code>C++ signature :
     void move_mouse(class PyExecutionContext {lvalue},struct Vector3)
+</code></pre></div>
+</dd>
+<dt id="valkyrie.Context.obj_by_net_id"><code class="name flex">
+<span>def <span class="ident">obj_by_net_id</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>obj_by_net_id( (Context)arg1, (StyleVar)arg2) -&gt; object :
+Returns the objects with the specified network id or None</p>
+<pre><code>C++ signature :
+    class boost::python::api::object obj_by_net_id(class PyExecutionContext {lvalue},int)
 </code></pre></div>
 </dd>
 <dt id="valkyrie.Context.pill"><code class="name flex">
@@ -751,6 +779,16 @@ Launches a ray that stops on the first object specified by RayLayer</p>
     void rect_fill(class PyExecutionContext {lvalue},struct Vector2,struct Vector2,struct ImVec4 [,float])
 </code></pre></div>
 </dd>
+<dt id="valkyrie.Context.set_key_active"><code class="name flex">
+<span>def <span class="ident">set_key_active</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>set_key_active( (Context)arg1, (Key)arg2, (bool)arg3) -&gt; None :
+Programatically disable/enable game keys. This means nothing will happen in game when the key gets pressed but valkyrie will still recognize that key. Use ctx.keybinds to get keys</p>
+<pre><code>C++ signature :
+    void set_key_active(class PyExecutionContext {lvalue},enum HKey,bool)
+</code></pre></div>
+</dd>
 <dt id="valkyrie.Context.start_channel"><code class="name flex">
 <span>def <span class="ident">start_channel</span></span>(<span>...)</span>
 </code></dt>
@@ -869,6 +907,36 @@ Checks if key was pressed</p>
 <dt id="valkyrie.FutureCollision.unit_pos"><code class="name">var <span class="ident">unit_pos</span></code></dt>
 <dd>
 <div class="desc"><p>The unit position at the moment of collision</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="valkyrie.GameHud"><code class="flex name class">
+<span>class <span class="ident">GameHud</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Contains info about the hud in the game</p>
+<p><strong>init</strong>( (object)arg1) -&gt; None :</p>
+<pre><code>C++ signature :
+    void __init__(struct _object *)
+</code></pre></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>Boost.Python.instance</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="valkyrie.GameHud.chat_open"><code class="name">var <span class="ident">chat_open</span></code></dt>
+<dd>
+<div class="desc"><p>True if chat is open</p></div>
+</dd>
+<dt id="valkyrie.GameHud.minimap_pos"><code class="name">var <span class="ident">minimap_pos</span></code></dt>
+<dd>
+<div class="desc"><p>Position of the minimap on the screen</p></div>
+</dd>
+<dt id="valkyrie.GameHud.minimap_size"><code class="name">var <span class="ident">minimap_size</span></code></dt>
+<dd>
+<div class="desc"><p>Size of the minimap on the screen</p></div>
 </dd>
 </dl>
 </dd>
@@ -992,6 +1060,443 @@ Checks if key was pressed</p>
 <li><a title="valkyrie.Obj" href="#valkyrie.Obj">Obj</a></li>
 <li>Boost.Python.instance</li>
 </ul>
+</dd>
+<dt id="valkyrie.Key"><code class="flex name class">
+<span>class <span class="ident">Key</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Hardware key codes</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>Boost.Python.enum</li>
+<li>builtins.int</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="valkyrie.Key.0"><code class="name">var <span class="ident">0</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.1"><code class="name">var <span class="ident">1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.2"><code class="name">var <span class="ident">2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.3"><code class="name">var <span class="ident">3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.4"><code class="name">var <span class="ident">4</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.5"><code class="name">var <span class="ident">5</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.6"><code class="name">var <span class="ident">6</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.7"><code class="name">var <span class="ident">7</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.8"><code class="name">var <span class="ident">8</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.9"><code class="name">var <span class="ident">9</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.a"><code class="name">var <span class="ident">a</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.alt"><code class="name">var <span class="ident">alt</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.b"><code class="name">var <span class="ident">b</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.backslash"><code class="name">var <span class="ident">backslash</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.bs"><code class="name">var <span class="ident">bs</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.c"><code class="name">var <span class="ident">c</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.caps"><code class="name">var <span class="ident">caps</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.center"><code class="name">var <span class="ident">center</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.comma"><code class="name">var <span class="ident">comma</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.ctrl"><code class="name">var <span class="ident">ctrl</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.d"><code class="name">var <span class="ident">d</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.del"><code class="name">var <span class="ident">del</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.dot"><code class="name">var <span class="ident">dot</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.down"><code class="name">var <span class="ident">down</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.e"><code class="name">var <span class="ident">e</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.end"><code class="name">var <span class="ident">end</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.enter"><code class="name">var <span class="ident">enter</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.equal"><code class="name">var <span class="ident">equal</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.esc"><code class="name">var <span class="ident">esc</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f"><code class="name">var <span class="ident">f</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f1"><code class="name">var <span class="ident">f1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f10"><code class="name">var <span class="ident">f10</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f2"><code class="name">var <span class="ident">f2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f3"><code class="name">var <span class="ident">f3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f4"><code class="name">var <span class="ident">f4</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f5"><code class="name">var <span class="ident">f5</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f6"><code class="name">var <span class="ident">f6</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f7"><code class="name">var <span class="ident">f7</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f8"><code class="name">var <span class="ident">f8</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.f9"><code class="name">var <span class="ident">f9</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.frontslash"><code class="name">var <span class="ident">frontslash</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.g"><code class="name">var <span class="ident">g</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.h"><code class="name">var <span class="ident">h</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.home"><code class="name">var <span class="ident">home</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.i"><code class="name">var <span class="ident">i</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.insert"><code class="name">var <span class="ident">insert</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.j"><code class="name">var <span class="ident">j</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.k"><code class="name">var <span class="ident">k</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.l"><code class="name">var <span class="ident">l</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.lbracket"><code class="name">var <span class="ident">lbracket</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.left"><code class="name">var <span class="ident">left</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.lshift"><code class="name">var <span class="ident">lshift</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.m"><code class="name">var <span class="ident">m</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.minus"><code class="name">var <span class="ident">minus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.n"><code class="name">var <span class="ident">n</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.names"><code class="name">var <span class="ident">names</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.no_key"><code class="name">var <span class="ident">no_key</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.num"><code class="name">var <span class="ident">num</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.num_minus"><code class="name">var <span class="ident">num_minus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.o"><code class="name">var <span class="ident">o</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.p"><code class="name">var <span class="ident">p</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.page_down"><code class="name">var <span class="ident">page_down</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.page_up"><code class="name">var <span class="ident">page_up</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.plus"><code class="name">var <span class="ident">plus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.print_screen"><code class="name">var <span class="ident">print_screen</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.q"><code class="name">var <span class="ident">q</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.r"><code class="name">var <span class="ident">r</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.rbracket"><code class="name">var <span class="ident">rbracket</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.right"><code class="name">var <span class="ident">right</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.rshift"><code class="name">var <span class="ident">rshift</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.s"><code class="name">var <span class="ident">s</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.scroll"><code class="name">var <span class="ident">scroll</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.semicolon"><code class="name">var <span class="ident">semicolon</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.single_quote"><code class="name">var <span class="ident">single_quote</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.space"><code class="name">var <span class="ident">space</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.t"><code class="name">var <span class="ident">t</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.tab"><code class="name">var <span class="ident">tab</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.tilde"><code class="name">var <span class="ident">tilde</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.u"><code class="name">var <span class="ident">u</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.up"><code class="name">var <span class="ident">up</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.v"><code class="name">var <span class="ident">v</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.values"><code class="name">var <span class="ident">values</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.w"><code class="name">var <span class="ident">w</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.x"><code class="name">var <span class="ident">x</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.y"><code class="name">var <span class="ident">y</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.z"><code class="name">var <span class="ident">z</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="valkyrie.Keybind"><code class="flex name class">
+<span>class <span class="ident">Keybind</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Contains game keybinds</p>
+<p><strong>init</strong>( (object)arg1) -&gt; None :</p>
+<pre><code>C++ signature :
+    void __init__(struct _object *)
+</code></pre></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>Boost.Python.instance</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="valkyrie.Keybind.cast_d"><code class="name">var <span class="ident">cast_d</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.cast_e"><code class="name">var <span class="ident">cast_e</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.cast_f"><code class="name">var <span class="ident">cast_f</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.cast_q"><code class="name">var <span class="ident">cast_q</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.cast_r"><code class="name">var <span class="ident">cast_r</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.cast_w"><code class="name">var <span class="ident">cast_w</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.recall"><code class="name">var <span class="ident">recall</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.target_champ_only"><code class="name">var <span class="ident">target_champ_only</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.use_item_1"><code class="name">var <span class="ident">use_item_1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.use_item_2"><code class="name">var <span class="ident">use_item_2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.use_item_3"><code class="name">var <span class="ident">use_item_3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.use_item_4"><code class="name">var <span class="ident">use_item_4</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.use_item_5"><code class="name">var <span class="ident">use_item_5</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.use_item_6"><code class="name">var <span class="ident">use_item_6</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Keybind.use_trinket"><code class="name">var <span class="ident">use_trinket</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
 </dd>
 <dt id="valkyrie.MinionObj"><code class="flex name class">
 <span>class <span class="ident">MinionObj</span></span>
@@ -1132,6 +1637,16 @@ Checks if two objects are enemies</p>
 Checks if object is in front of</p>
 <pre><code>C++ signature :
     bool in_front_of(class GameObject {lvalue},class GameObject)
+</code></pre></div>
+</dd>
+<dt id="valkyrie.Obj.menu_draw"><code class="name flex">
+<span>def <span class="ident">menu_draw</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>menu_draw( (Obj)arg1) -&gt; None :
+Draws the object in the current menu</p>
+<pre><code>C++ signature :
+    void menu_draw(class GameObject {lvalue})
 </code></pre></div>
 </dd>
 </dl>
@@ -2721,6 +3236,16 @@ Calculates effective physical damage against target considering armor and armor 
     float effective_phys_dmg(class GameUnit {lvalue},class GameUnit,float)
 </code></pre></div>
 </dd>
+<dt id="valkyrie.UnitObj.has_buff"><code class="name flex">
+<span>def <span class="ident">has_buff</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>has_buff( (UnitObj)arg1, (str)arg2) -&gt; bool :
+Check if champion has buff. The buff name is case sensitive</p>
+<pre><code>C++ signature :
+    bool has_buff(class GameUnit {lvalue},char const *)
+</code></pre></div>
+</dd>
 <dt id="valkyrie.UnitObj.has_tags"><code class="name flex">
 <span>def <span class="ident">has_tags</span></span>(<span>...)</span>
 </code></dt>
@@ -2749,6 +3274,16 @@ Calculates navigation path distance in game units</p>
 Predicts position of unit in X seconds</p>
 <pre><code>C++ signature :
     struct Vector3 predict_position(class GameUnit {lvalue},float)
+</code></pre></div>
+</dd>
+<dt id="valkyrie.UnitObj.reskin"><code class="name flex">
+<span>def <span class="ident">reskin</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>reskin( (UnitObj)arg1, (StyleVar)arg2) -&gt; None :
+Changes the skin of the unit</p>
+<pre><code>C++ signature :
+    void reskin(class GameUnit {lvalue},int)
 </code></pre></div>
 </dd>
 </dl>
@@ -3226,7 +3761,6 @@ Rotates the vector along the z axis</p>
 <ul class="two-column">
 <li><code><a title="valkyrie.ChampionObj.buffs" href="#valkyrie.ChampionObj.buffs">buffs</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.can_cast_spell" href="#valkyrie.ChampionObj.can_cast_spell">can_cast_spell</a></code></li>
-<li><code><a title="valkyrie.ChampionObj.has_buff" href="#valkyrie.ChampionObj.has_buff">has_buff</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.hpbar_pos" href="#valkyrie.ChampionObj.hpbar_pos">hpbar_pos</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.is_clone" href="#valkyrie.ChampionObj.is_clone">is_clone</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.item_slots" href="#valkyrie.ChampionObj.item_slots">item_slots</a></code></li>
@@ -3285,9 +3819,11 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Context.d2m" href="#valkyrie.Context.d2m">d2m</a></code></li>
 <li><code><a title="valkyrie.Context.end_channel" href="#valkyrie.Context.end_channel">end_channel</a></code></li>
 <li><code><a title="valkyrie.Context.error" href="#valkyrie.Context.error">error</a></code></li>
+<li><code><a title="valkyrie.Context.focused" href="#valkyrie.Context.focused">focused</a></code></li>
 <li><code><a title="valkyrie.Context.get_spell_static" href="#valkyrie.Context.get_spell_static">get_spell_static</a></code></li>
 <li><code><a title="valkyrie.Context.hovered" href="#valkyrie.Context.hovered">hovered</a></code></li>
 <li><code><a title="valkyrie.Context.hp_dmg_indicator" href="#valkyrie.Context.hp_dmg_indicator">hp_dmg_indicator</a></code></li>
+<li><code><a title="valkyrie.Context.hud" href="#valkyrie.Context.hud">hud</a></code></li>
 <li><code><a title="valkyrie.Context.image" href="#valkyrie.Context.image">image</a></code></li>
 <li><code><a title="valkyrie.Context.info" href="#valkyrie.Context.info">info</a></code></li>
 <li><code><a title="valkyrie.Context.is_at_spawn" href="#valkyrie.Context.is_at_spawn">is_at_spawn</a></code></li>
@@ -3296,11 +3832,13 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Context.is_under_tower" href="#valkyrie.Context.is_under_tower">is_under_tower</a></code></li>
 <li><code><a title="valkyrie.Context.is_wall_at" href="#valkyrie.Context.is_wall_at">is_wall_at</a></code></li>
 <li><code><a title="valkyrie.Context.jungle" href="#valkyrie.Context.jungle">jungle</a></code></li>
+<li><code><a title="valkyrie.Context.keybinds" href="#valkyrie.Context.keybinds">keybinds</a></code></li>
 <li><code><a title="valkyrie.Context.line" href="#valkyrie.Context.line">line</a></code></li>
 <li><code><a title="valkyrie.Context.minions" href="#valkyrie.Context.minions">minions</a></code></li>
 <li><code><a title="valkyrie.Context.missiles" href="#valkyrie.Context.missiles">missiles</a></code></li>
 <li><code><a title="valkyrie.Context.move" href="#valkyrie.Context.move">move</a></code></li>
 <li><code><a title="valkyrie.Context.move_mouse" href="#valkyrie.Context.move_mouse">move_mouse</a></code></li>
+<li><code><a title="valkyrie.Context.obj_by_net_id" href="#valkyrie.Context.obj_by_net_id">obj_by_net_id</a></code></li>
 <li><code><a title="valkyrie.Context.others" href="#valkyrie.Context.others">others</a></code></li>
 <li><code><a title="valkyrie.Context.pill" href="#valkyrie.Context.pill">pill</a></code></li>
 <li><code><a title="valkyrie.Context.ping" href="#valkyrie.Context.ping">ping</a></code></li>
@@ -3316,6 +3854,8 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Context.raycast" href="#valkyrie.Context.raycast">raycast</a></code></li>
 <li><code><a title="valkyrie.Context.rect" href="#valkyrie.Context.rect">rect</a></code></li>
 <li><code><a title="valkyrie.Context.rect_fill" href="#valkyrie.Context.rect_fill">rect_fill</a></code></li>
+<li><code><a title="valkyrie.Context.resources_loaded" href="#valkyrie.Context.resources_loaded">resources_loaded</a></code></li>
+<li><code><a title="valkyrie.Context.set_key_active" href="#valkyrie.Context.set_key_active">set_key_active</a></code></li>
 <li><code><a title="valkyrie.Context.start_channel" href="#valkyrie.Context.start_channel">start_channel</a></code></li>
 <li><code><a title="valkyrie.Context.text" href="#valkyrie.Context.text">text</a></code></li>
 <li><code><a title="valkyrie.Context.time" href="#valkyrie.Context.time">time</a></code></li>
@@ -3338,6 +3878,14 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.FutureCollision.time_until_impact" href="#valkyrie.FutureCollision.time_until_impact">time_until_impact</a></code></li>
 <li><code><a title="valkyrie.FutureCollision.unit" href="#valkyrie.FutureCollision.unit">unit</a></code></li>
 <li><code><a title="valkyrie.FutureCollision.unit_pos" href="#valkyrie.FutureCollision.unit_pos">unit_pos</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="valkyrie.GameHud" href="#valkyrie.GameHud">GameHud</a></code></h4>
+<ul class="">
+<li><code><a title="valkyrie.GameHud.chat_open" href="#valkyrie.GameHud.chat_open">chat_open</a></code></li>
+<li><code><a title="valkyrie.GameHud.minimap_pos" href="#valkyrie.GameHud.minimap_pos">minimap_pos</a></code></li>
+<li><code><a title="valkyrie.GameHud.minimap_size" href="#valkyrie.GameHud.minimap_size">minimap_size</a></code></li>
 </ul>
 </li>
 <li>
@@ -3371,6 +3919,117 @@ Rotates the vector along the z axis</p>
 <h4><code><a title="valkyrie.JungleMobObj" href="#valkyrie.JungleMobObj">JungleMobObj</a></code></h4>
 </li>
 <li>
+<h4><code><a title="valkyrie.Key" href="#valkyrie.Key">Key</a></code></h4>
+<ul class="two-column">
+<li><code><a title="valkyrie.Key.0" href="#valkyrie.Key.0">0</a></code></li>
+<li><code><a title="valkyrie.Key.1" href="#valkyrie.Key.1">1</a></code></li>
+<li><code><a title="valkyrie.Key.2" href="#valkyrie.Key.2">2</a></code></li>
+<li><code><a title="valkyrie.Key.3" href="#valkyrie.Key.3">3</a></code></li>
+<li><code><a title="valkyrie.Key.4" href="#valkyrie.Key.4">4</a></code></li>
+<li><code><a title="valkyrie.Key.5" href="#valkyrie.Key.5">5</a></code></li>
+<li><code><a title="valkyrie.Key.6" href="#valkyrie.Key.6">6</a></code></li>
+<li><code><a title="valkyrie.Key.7" href="#valkyrie.Key.7">7</a></code></li>
+<li><code><a title="valkyrie.Key.8" href="#valkyrie.Key.8">8</a></code></li>
+<li><code><a title="valkyrie.Key.9" href="#valkyrie.Key.9">9</a></code></li>
+<li><code><a title="valkyrie.Key.a" href="#valkyrie.Key.a">a</a></code></li>
+<li><code><a title="valkyrie.Key.alt" href="#valkyrie.Key.alt">alt</a></code></li>
+<li><code><a title="valkyrie.Key.b" href="#valkyrie.Key.b">b</a></code></li>
+<li><code><a title="valkyrie.Key.backslash" href="#valkyrie.Key.backslash">backslash</a></code></li>
+<li><code><a title="valkyrie.Key.bs" href="#valkyrie.Key.bs">bs</a></code></li>
+<li><code><a title="valkyrie.Key.c" href="#valkyrie.Key.c">c</a></code></li>
+<li><code><a title="valkyrie.Key.caps" href="#valkyrie.Key.caps">caps</a></code></li>
+<li><code><a title="valkyrie.Key.center" href="#valkyrie.Key.center">center</a></code></li>
+<li><code><a title="valkyrie.Key.comma" href="#valkyrie.Key.comma">comma</a></code></li>
+<li><code><a title="valkyrie.Key.ctrl" href="#valkyrie.Key.ctrl">ctrl</a></code></li>
+<li><code><a title="valkyrie.Key.d" href="#valkyrie.Key.d">d</a></code></li>
+<li><code><a title="valkyrie.Key.del" href="#valkyrie.Key.del">del</a></code></li>
+<li><code><a title="valkyrie.Key.dot" href="#valkyrie.Key.dot">dot</a></code></li>
+<li><code><a title="valkyrie.Key.down" href="#valkyrie.Key.down">down</a></code></li>
+<li><code><a title="valkyrie.Key.e" href="#valkyrie.Key.e">e</a></code></li>
+<li><code><a title="valkyrie.Key.end" href="#valkyrie.Key.end">end</a></code></li>
+<li><code><a title="valkyrie.Key.enter" href="#valkyrie.Key.enter">enter</a></code></li>
+<li><code><a title="valkyrie.Key.equal" href="#valkyrie.Key.equal">equal</a></code></li>
+<li><code><a title="valkyrie.Key.esc" href="#valkyrie.Key.esc">esc</a></code></li>
+<li><code><a title="valkyrie.Key.f" href="#valkyrie.Key.f">f</a></code></li>
+<li><code><a title="valkyrie.Key.f1" href="#valkyrie.Key.f1">f1</a></code></li>
+<li><code><a title="valkyrie.Key.f10" href="#valkyrie.Key.f10">f10</a></code></li>
+<li><code><a title="valkyrie.Key.f2" href="#valkyrie.Key.f2">f2</a></code></li>
+<li><code><a title="valkyrie.Key.f3" href="#valkyrie.Key.f3">f3</a></code></li>
+<li><code><a title="valkyrie.Key.f4" href="#valkyrie.Key.f4">f4</a></code></li>
+<li><code><a title="valkyrie.Key.f5" href="#valkyrie.Key.f5">f5</a></code></li>
+<li><code><a title="valkyrie.Key.f6" href="#valkyrie.Key.f6">f6</a></code></li>
+<li><code><a title="valkyrie.Key.f7" href="#valkyrie.Key.f7">f7</a></code></li>
+<li><code><a title="valkyrie.Key.f8" href="#valkyrie.Key.f8">f8</a></code></li>
+<li><code><a title="valkyrie.Key.f9" href="#valkyrie.Key.f9">f9</a></code></li>
+<li><code><a title="valkyrie.Key.frontslash" href="#valkyrie.Key.frontslash">frontslash</a></code></li>
+<li><code><a title="valkyrie.Key.g" href="#valkyrie.Key.g">g</a></code></li>
+<li><code><a title="valkyrie.Key.h" href="#valkyrie.Key.h">h</a></code></li>
+<li><code><a title="valkyrie.Key.home" href="#valkyrie.Key.home">home</a></code></li>
+<li><code><a title="valkyrie.Key.i" href="#valkyrie.Key.i">i</a></code></li>
+<li><code><a title="valkyrie.Key.insert" href="#valkyrie.Key.insert">insert</a></code></li>
+<li><code><a title="valkyrie.Key.j" href="#valkyrie.Key.j">j</a></code></li>
+<li><code><a title="valkyrie.Key.k" href="#valkyrie.Key.k">k</a></code></li>
+<li><code><a title="valkyrie.Key.l" href="#valkyrie.Key.l">l</a></code></li>
+<li><code><a title="valkyrie.Key.lbracket" href="#valkyrie.Key.lbracket">lbracket</a></code></li>
+<li><code><a title="valkyrie.Key.left" href="#valkyrie.Key.left">left</a></code></li>
+<li><code><a title="valkyrie.Key.lshift" href="#valkyrie.Key.lshift">lshift</a></code></li>
+<li><code><a title="valkyrie.Key.m" href="#valkyrie.Key.m">m</a></code></li>
+<li><code><a title="valkyrie.Key.minus" href="#valkyrie.Key.minus">minus</a></code></li>
+<li><code><a title="valkyrie.Key.n" href="#valkyrie.Key.n">n</a></code></li>
+<li><code><a title="valkyrie.Key.names" href="#valkyrie.Key.names">names</a></code></li>
+<li><code><a title="valkyrie.Key.no_key" href="#valkyrie.Key.no_key">no_key</a></code></li>
+<li><code><a title="valkyrie.Key.num" href="#valkyrie.Key.num">num</a></code></li>
+<li><code><a title="valkyrie.Key.num_minus" href="#valkyrie.Key.num_minus">num_minus</a></code></li>
+<li><code><a title="valkyrie.Key.o" href="#valkyrie.Key.o">o</a></code></li>
+<li><code><a title="valkyrie.Key.p" href="#valkyrie.Key.p">p</a></code></li>
+<li><code><a title="valkyrie.Key.page_down" href="#valkyrie.Key.page_down">page_down</a></code></li>
+<li><code><a title="valkyrie.Key.page_up" href="#valkyrie.Key.page_up">page_up</a></code></li>
+<li><code><a title="valkyrie.Key.plus" href="#valkyrie.Key.plus">plus</a></code></li>
+<li><code><a title="valkyrie.Key.print_screen" href="#valkyrie.Key.print_screen">print_screen</a></code></li>
+<li><code><a title="valkyrie.Key.q" href="#valkyrie.Key.q">q</a></code></li>
+<li><code><a title="valkyrie.Key.r" href="#valkyrie.Key.r">r</a></code></li>
+<li><code><a title="valkyrie.Key.rbracket" href="#valkyrie.Key.rbracket">rbracket</a></code></li>
+<li><code><a title="valkyrie.Key.right" href="#valkyrie.Key.right">right</a></code></li>
+<li><code><a title="valkyrie.Key.rshift" href="#valkyrie.Key.rshift">rshift</a></code></li>
+<li><code><a title="valkyrie.Key.s" href="#valkyrie.Key.s">s</a></code></li>
+<li><code><a title="valkyrie.Key.scroll" href="#valkyrie.Key.scroll">scroll</a></code></li>
+<li><code><a title="valkyrie.Key.semicolon" href="#valkyrie.Key.semicolon">semicolon</a></code></li>
+<li><code><a title="valkyrie.Key.single_quote" href="#valkyrie.Key.single_quote">single_quote</a></code></li>
+<li><code><a title="valkyrie.Key.space" href="#valkyrie.Key.space">space</a></code></li>
+<li><code><a title="valkyrie.Key.t" href="#valkyrie.Key.t">t</a></code></li>
+<li><code><a title="valkyrie.Key.tab" href="#valkyrie.Key.tab">tab</a></code></li>
+<li><code><a title="valkyrie.Key.tilde" href="#valkyrie.Key.tilde">tilde</a></code></li>
+<li><code><a title="valkyrie.Key.u" href="#valkyrie.Key.u">u</a></code></li>
+<li><code><a title="valkyrie.Key.up" href="#valkyrie.Key.up">up</a></code></li>
+<li><code><a title="valkyrie.Key.v" href="#valkyrie.Key.v">v</a></code></li>
+<li><code><a title="valkyrie.Key.values" href="#valkyrie.Key.values">values</a></code></li>
+<li><code><a title="valkyrie.Key.w" href="#valkyrie.Key.w">w</a></code></li>
+<li><code><a title="valkyrie.Key.x" href="#valkyrie.Key.x">x</a></code></li>
+<li><code><a title="valkyrie.Key.y" href="#valkyrie.Key.y">y</a></code></li>
+<li><code><a title="valkyrie.Key.z" href="#valkyrie.Key.z">z</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="valkyrie.Keybind" href="#valkyrie.Keybind">Keybind</a></code></h4>
+<ul class="two-column">
+<li><code><a title="valkyrie.Keybind.cast_d" href="#valkyrie.Keybind.cast_d">cast_d</a></code></li>
+<li><code><a title="valkyrie.Keybind.cast_e" href="#valkyrie.Keybind.cast_e">cast_e</a></code></li>
+<li><code><a title="valkyrie.Keybind.cast_f" href="#valkyrie.Keybind.cast_f">cast_f</a></code></li>
+<li><code><a title="valkyrie.Keybind.cast_q" href="#valkyrie.Keybind.cast_q">cast_q</a></code></li>
+<li><code><a title="valkyrie.Keybind.cast_r" href="#valkyrie.Keybind.cast_r">cast_r</a></code></li>
+<li><code><a title="valkyrie.Keybind.cast_w" href="#valkyrie.Keybind.cast_w">cast_w</a></code></li>
+<li><code><a title="valkyrie.Keybind.recall" href="#valkyrie.Keybind.recall">recall</a></code></li>
+<li><code><a title="valkyrie.Keybind.target_champ_only" href="#valkyrie.Keybind.target_champ_only">target_champ_only</a></code></li>
+<li><code><a title="valkyrie.Keybind.use_item_1" href="#valkyrie.Keybind.use_item_1">use_item_1</a></code></li>
+<li><code><a title="valkyrie.Keybind.use_item_2" href="#valkyrie.Keybind.use_item_2">use_item_2</a></code></li>
+<li><code><a title="valkyrie.Keybind.use_item_3" href="#valkyrie.Keybind.use_item_3">use_item_3</a></code></li>
+<li><code><a title="valkyrie.Keybind.use_item_4" href="#valkyrie.Keybind.use_item_4">use_item_4</a></code></li>
+<li><code><a title="valkyrie.Keybind.use_item_5" href="#valkyrie.Keybind.use_item_5">use_item_5</a></code></li>
+<li><code><a title="valkyrie.Keybind.use_item_6" href="#valkyrie.Keybind.use_item_6">use_item_6</a></code></li>
+<li><code><a title="valkyrie.Keybind.use_trinket" href="#valkyrie.Keybind.use_trinket">use_trinket</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="valkyrie.MinionObj" href="#valkyrie.MinionObj">MinionObj</a></code></h4>
 <ul class="">
 <li><code><a title="valkyrie.MinionObj.hpbar_pos" href="#valkyrie.MinionObj.hpbar_pos">hpbar_pos</a></code></li>
@@ -3393,6 +4052,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Obj.in_front_of" href="#valkyrie.Obj.in_front_of">in_front_of</a></code></li>
 <li><code><a title="valkyrie.Obj.index" href="#valkyrie.Obj.index">index</a></code></li>
 <li><code><a title="valkyrie.Obj.last_seen" href="#valkyrie.Obj.last_seen">last_seen</a></code></li>
+<li><code><a title="valkyrie.Obj.menu_draw" href="#valkyrie.Obj.menu_draw">menu_draw</a></code></li>
 <li><code><a title="valkyrie.Obj.name" href="#valkyrie.Obj.name">name</a></code></li>
 <li><code><a title="valkyrie.Obj.net_id" href="#valkyrie.Obj.net_id">net_id</a></code></li>
 <li><code><a title="valkyrie.Obj.pos" href="#valkyrie.Obj.pos">pos</a></code></li>
@@ -3688,6 +4348,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.UnitObj.effective_magic_dmg" href="#valkyrie.UnitObj.effective_magic_dmg">effective_magic_dmg</a></code></li>
 <li><code><a title="valkyrie.UnitObj.effective_phys_dmg" href="#valkyrie.UnitObj.effective_phys_dmg">effective_phys_dmg</a></code></li>
 <li><code><a title="valkyrie.UnitObj.expiry" href="#valkyrie.UnitObj.expiry">expiry</a></code></li>
+<li><code><a title="valkyrie.UnitObj.has_buff" href="#valkyrie.UnitObj.has_buff">has_buff</a></code></li>
 <li><code><a title="valkyrie.UnitObj.has_tags" href="#valkyrie.UnitObj.has_tags">has_tags</a></code></li>
 <li><code><a title="valkyrie.UnitObj.haste" href="#valkyrie.UnitObj.haste">haste</a></code></li>
 <li><code><a title="valkyrie.UnitObj.health" href="#valkyrie.UnitObj.health">health</a></code></li>
@@ -3703,6 +4364,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.UnitObj.path" href="#valkyrie.UnitObj.path">path</a></code></li>
 <li><code><a title="valkyrie.UnitObj.path_distance" href="#valkyrie.UnitObj.path_distance">path_distance</a></code></li>
 <li><code><a title="valkyrie.UnitObj.predict_position" href="#valkyrie.UnitObj.predict_position">predict_position</a></code></li>
+<li><code><a title="valkyrie.UnitObj.reskin" href="#valkyrie.UnitObj.reskin">reskin</a></code></li>
 <li><code><a title="valkyrie.UnitObj.static" href="#valkyrie.UnitObj.static">static</a></code></li>
 <li><code><a title="valkyrie.UnitObj.targetable" href="#valkyrie.UnitObj.targetable">targetable</a></code></li>
 </ul>

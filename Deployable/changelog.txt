@@ -6,8 +6,8 @@
 	* Fixed bug where channeled spells would sometimes get cancelled in aimcast	
 	* More minor bug fixes
 	
-	+ Now you can set if you want to hold or not key menu
-	+ Now aimcast doesnt need separate keys
+	+ Now you can set if you want to hold or not the open menu key
+	+ Now aimcast doesnt need separate keys (if script crashes hit "Reset to Defaults")
 
 	Scripting API:
 		+ Now reading buffs for every unit in the game
