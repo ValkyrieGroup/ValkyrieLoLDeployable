@@ -82,17 +82,14 @@ def cast(ctx, spell, static, end_channel = False):
 	if not target and target_monsters:
 		target = target_sel.get_target(ctx, ctx.jungle.enemy_to(player).targetable().near(player, static.cast_range).get())
 	
-	if not target:
-		if end_channel:
-			ctx.cast_spell(spell, None)
-		return
+	point = None
+	if target:
+		point = ctx.predict_cast_point(player, target, spell)
 	
-	point = ctx.predict_cast_point(player, target, spell)
-	if point:
-		if end_channel:
-			ctx.end_channel(spell, point)
-		else:
-			ctx.cast_spell(spell, point)
+	if end_channel:
+		ctx.end_channel(spell, point)
+	else:
+		ctx.cast_spell(spell, point)
 	
 def valkyrie_exec(ctx) :	     
 	global channels

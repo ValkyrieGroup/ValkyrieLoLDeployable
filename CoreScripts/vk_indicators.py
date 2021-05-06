@@ -115,7 +115,7 @@ def cast_draw_line(ctx, cast_info, static, collisions):
 	
 def cast_draw_area(ctx, cast_info, static):
 	
-	fill_percent = min(1.0, (ctx.time - cast_info.time_begin)/cast_info.cast_time)
+	fill_percent = min(1.0, (ctx.time - cast_info.time_begin)/cast_info.cast_time) if cast_info.cast_time > 0.0 else 1.0
 	ctx.image('circle1', cast_info.end_pos, Vec2(static.cast_radius*2.0, static.cast_radius*2.0), Col.Gray)
 	ctx.circle_fill(cast_info.end_pos, static.cast_radius*fill_percent, 30, Col(0.5, 0.5, 0.5, 0.5))
 	
@@ -247,12 +247,16 @@ def valkyrie_exec(ctx):
 		draw_minion_hit_indicators(ctx)
 	
 	if show_casting_spells:
-		for champ in ctx.champs.casting().enemy_to(ctx.player).near(ctx.player, 3000).get():
+		for champ in ctx.champs.casting().near(ctx.player, 30000).get():
 			draw_cast(ctx, champ)
 	
 	if show_missiles:
-		for missile in ctx.missiles.enemy_to(ctx.player).near(ctx.player, 3000).get():
+		for missile in ctx.missiles.near(ctx.player, 30000).get():
 			draw_missile(ctx, missile)
 			
 	if show_potential_dmg:
 		draw_potential_dmg(ctx)
+		
+	for c in ctx.champs.get():
+		if c.moving:
+			ctx.circle(c.pos, 100.0, 50, 2.0, Col.White)
