@@ -1,3 +1,16 @@
+[Valkyrie v0.36]
+	* Fixed indicators crash
+	* Fixed vlad E charge issue
+	* Now game input is disabled while modifying sliders/text boxes etc
+	+ Modified aimcast to cast spell normally if no enemy is in range
+	+ Added orbwalker dead zone around player (orbwalker will not move if mouse is in this zone)
+
+	Scripting API:
+	* Fixed unit buff methods missing
+	+ Now you can check what is the current map (ex: ctx.map.type == MapType.SRU)
+	+ Now you can hook on the script context in the dev console and access/modify script variables directly (more debug power)
+	+ Now dev console remembers command history (up/down arrow to select history) and doesnt lose focus once a command is sent
+
 [Valkyrie v0.35]
 	* Fixed a bug where skillshots were being cast way off target (if anyone of you still have this please tell me)
 	* Fixed a prediction bug where units "is_moving" flag was set randomly when they were standing still and attacking

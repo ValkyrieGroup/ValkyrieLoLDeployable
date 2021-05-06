@@ -45503,7 +45503,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["Channel", "CastAnywhere", "Area", "AffectAll", "CollideCommon"]
+        "flags": ["Channel", "CastAnywhere", "AffectAll", "CollideCommon"]
     },
     {
         "name": "vladimirq",

@@ -84,10 +84,6 @@
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="valkyrie.ChampionObj.buffs"><code class="name">var <span class="ident">buffs</span></code></dt>
-<dd>
-<div class="desc"><p>List of all the buffs on the champion. Currently buffs are only read for the player champion and enemies due to performance reasons.</p></div>
-</dd>
 <dt id="valkyrie.ChampionObj.hpbar_pos"><code class="name">var <span class="ident">hpbar_pos</span></code></dt>
 <dd>
 <div class="desc"><p>Height position of the HP bar of the champion</p></div>
@@ -119,16 +115,6 @@
 Checks if champion can cast the GameSpell provided</p>
 <pre><code>C++ signature :
     bool can_cast_spell(class GameChampion {lvalue},class GameSpell const *)
-</code></pre></div>
-</dd>
-<dt id="valkyrie.ChampionObj.num_buff_stacks"><code class="name flex">
-<span>def <span class="ident">num_buff_stacks</span></span>(<span>...)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>num_buff_stacks( (ChampionObj)arg1, (str)arg2) -&gt; int :
-Gets the number of stacks for the buff given by the name</p>
-<pre><code>C++ signature :
-    int num_buff_stacks(class GameChampion {lvalue},char const *)
 </code></pre></div>
 </dd>
 </dl>
@@ -370,6 +356,10 @@ Saves a string to the config file</p>
 <dt id="valkyrie.Context.keybinds"><code class="name">var <span class="ident">keybinds</span></code></dt>
 <dd>
 <div class="desc"><p>Keybinds for casting spells/items etc</p></div>
+</dd>
+<dt id="valkyrie.Context.map"><code class="name">var <span class="ident">map</span></code></dt>
+<dd>
+<div class="desc"><p>Currently played map</p></div>
 </dd>
 <dt id="valkyrie.Context.minions"><code class="name">var <span class="ident">minions</span></code></dt>
 <dd>
@@ -1493,6 +1483,59 @@ Checks if key was pressed</p>
 <div class="desc"></div>
 </dd>
 <dt id="valkyrie.Keybind.use_trinket"><code class="name">var <span class="ident">use_trinket</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="valkyrie.Map"><code class="flex name class">
+<span>class <span class="ident">Map</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Object representing the current game map</p>
+<p><strong>init</strong>( (object)arg1) -&gt; None :</p>
+<pre><code>C++ signature :
+    void __init__(struct _object *)
+</code></pre></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>Boost.Python.instance</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="valkyrie.Map.type"><code class="name">var <span class="ident">type</span></code></dt>
+<dd>
+<div class="desc"><p>A enum value representing the currently played map</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="valkyrie.MapType"><code class="flex name class">
+<span>class <span class="ident">MapType</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Map type SRU = Summoners Rift, HA = Howling Abyss</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>Boost.Python.enum</li>
+<li>builtins.int</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="valkyrie.MapType.HA"><code class="name">var <span class="ident">HA</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.MapType.SRU"><code class="name">var <span class="ident">SRU</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.MapType.names"><code class="name">var <span class="ident">names</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.MapType.values"><code class="name">var <span class="ident">values</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -3121,6 +3164,10 @@ Shows the famous imgui demo</p>
 <dd>
 <div class="desc"><p>Bonus move speed of unit</p></div>
 </dd>
+<dt id="valkyrie.UnitObj.buffs"><code class="name">var <span class="ident">buffs</span></code></dt>
+<dd>
+<div class="desc"><p>List of all the buffs on the champion. Currently buffs are only read for the player champion and enemies due to performance reasons.</p></div>
+</dd>
 <dt id="valkyrie.UnitObj.cdr"><code class="name">var <span class="ident">cdr</span></code></dt>
 <dd>
 <div class="desc"><p>Cooldown reduction of unit</p></div>
@@ -3254,6 +3301,16 @@ Check if champion has buff. The buff name is case sensitive</p>
 Checks if the unit has unit tags (see Unit class)</p>
 <pre><code>C++ signature :
     bool has_tags(class GameUnit {lvalue},enum UnitTag)
+</code></pre></div>
+</dd>
+<dt id="valkyrie.UnitObj.num_buff_stacks"><code class="name flex">
+<span>def <span class="ident">num_buff_stacks</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>num_buff_stacks( (UnitObj)arg1, (str)arg2) -&gt; int :
+Gets the number of stacks for the buff given by the name</p>
+<pre><code>C++ signature :
+    int num_buff_stacks(class GameUnit {lvalue},char const *)
 </code></pre></div>
 </dd>
 <dt id="valkyrie.UnitObj.path_distance"><code class="name flex">
@@ -3759,12 +3816,10 @@ Rotates the vector along the z axis</p>
 <li>
 <h4><code><a title="valkyrie.ChampionObj" href="#valkyrie.ChampionObj">ChampionObj</a></code></h4>
 <ul class="two-column">
-<li><code><a title="valkyrie.ChampionObj.buffs" href="#valkyrie.ChampionObj.buffs">buffs</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.can_cast_spell" href="#valkyrie.ChampionObj.can_cast_spell">can_cast_spell</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.hpbar_pos" href="#valkyrie.ChampionObj.hpbar_pos">hpbar_pos</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.is_clone" href="#valkyrie.ChampionObj.is_clone">is_clone</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.item_slots" href="#valkyrie.ChampionObj.item_slots">item_slots</a></code></li>
-<li><code><a title="valkyrie.ChampionObj.num_buff_stacks" href="#valkyrie.ChampionObj.num_buff_stacks">num_buff_stacks</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.recalling" href="#valkyrie.ChampionObj.recalling">recalling</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.spells" href="#valkyrie.ChampionObj.spells">spells</a></code></li>
 </ul>
@@ -3834,6 +3889,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Context.jungle" href="#valkyrie.Context.jungle">jungle</a></code></li>
 <li><code><a title="valkyrie.Context.keybinds" href="#valkyrie.Context.keybinds">keybinds</a></code></li>
 <li><code><a title="valkyrie.Context.line" href="#valkyrie.Context.line">line</a></code></li>
+<li><code><a title="valkyrie.Context.map" href="#valkyrie.Context.map">map</a></code></li>
 <li><code><a title="valkyrie.Context.minions" href="#valkyrie.Context.minions">minions</a></code></li>
 <li><code><a title="valkyrie.Context.missiles" href="#valkyrie.Context.missiles">missiles</a></code></li>
 <li><code><a title="valkyrie.Context.move" href="#valkyrie.Context.move">move</a></code></li>
@@ -4027,6 +4083,21 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Keybind.use_item_5" href="#valkyrie.Keybind.use_item_5">use_item_5</a></code></li>
 <li><code><a title="valkyrie.Keybind.use_item_6" href="#valkyrie.Keybind.use_item_6">use_item_6</a></code></li>
 <li><code><a title="valkyrie.Keybind.use_trinket" href="#valkyrie.Keybind.use_trinket">use_trinket</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="valkyrie.Map" href="#valkyrie.Map">Map</a></code></h4>
+<ul class="">
+<li><code><a title="valkyrie.Map.type" href="#valkyrie.Map.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="valkyrie.MapType" href="#valkyrie.MapType">MapType</a></code></h4>
+<ul class="">
+<li><code><a title="valkyrie.MapType.HA" href="#valkyrie.MapType.HA">HA</a></code></li>
+<li><code><a title="valkyrie.MapType.SRU" href="#valkyrie.MapType.SRU">SRU</a></code></li>
+<li><code><a title="valkyrie.MapType.names" href="#valkyrie.MapType.names">names</a></code></li>
+<li><code><a title="valkyrie.MapType.values" href="#valkyrie.MapType.values">values</a></code></li>
 </ul>
 </li>
 <li>
@@ -4337,6 +4408,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.UnitObj.bonus_atk_speed" href="#valkyrie.UnitObj.bonus_atk_speed">bonus_atk_speed</a></code></li>
 <li><code><a title="valkyrie.UnitObj.bonus_magic_res" href="#valkyrie.UnitObj.bonus_magic_res">bonus_magic_res</a></code></li>
 <li><code><a title="valkyrie.UnitObj.bonus_move_speed" href="#valkyrie.UnitObj.bonus_move_speed">bonus_move_speed</a></code></li>
+<li><code><a title="valkyrie.UnitObj.buffs" href="#valkyrie.UnitObj.buffs">buffs</a></code></li>
 <li><code><a title="valkyrie.UnitObj.cdr" href="#valkyrie.UnitObj.cdr">cdr</a></code></li>
 <li><code><a title="valkyrie.UnitObj.crit" href="#valkyrie.UnitObj.crit">crit</a></code></li>
 <li><code><a title="valkyrie.UnitObj.crit_multi" href="#valkyrie.UnitObj.crit_multi">crit_multi</a></code></li>
@@ -4361,6 +4433,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.UnitObj.max_health" href="#valkyrie.UnitObj.max_health">max_health</a></code></li>
 <li><code><a title="valkyrie.UnitObj.move_speed" href="#valkyrie.UnitObj.move_speed">move_speed</a></code></li>
 <li><code><a title="valkyrie.UnitObj.moving" href="#valkyrie.UnitObj.moving">moving</a></code></li>
+<li><code><a title="valkyrie.UnitObj.num_buff_stacks" href="#valkyrie.UnitObj.num_buff_stacks">num_buff_stacks</a></code></li>
 <li><code><a title="valkyrie.UnitObj.path" href="#valkyrie.UnitObj.path">path</a></code></li>
 <li><code><a title="valkyrie.UnitObj.path_distance" href="#valkyrie.UnitObj.path_distance">path_distance</a></code></li>
 <li><code><a title="valkyrie.UnitObj.predict_position" href="#valkyrie.UnitObj.predict_position">predict_position</a></code></li>
