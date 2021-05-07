@@ -119,7 +119,7 @@ class Attributes:
 
 class ChampionScript:
 	
-	Version = '0.3'
+	Version = '0.4'
 	MinionSelector = TargetSelector(selected = 1)
 	
 	def __init__(self, passive_trigger, combat_rotation, passive_rotation, lasthit_rotation = SpellRotation([]), lanepush_rotation = SpellRotation([]), combat_distance = None, passive_distance = None):
@@ -163,29 +163,34 @@ class ChampionScript:
 		self.use_lasthit_rotation  = ui.checkbox('Use spells in last hit',  self.use_lasthit_rotation)
 		
 	def exec(self, ctx):
-		def champion_target_extractor(ctx, player, spell):
+		def kite_target_extractor(ctx, player, spell):
 			return ctx.champs.enemy_to(player).targetable().near(player, spell.static.cast_range).get()
 		
-		def minion_target_extractor(ctx, player, spell):
+		def lasthit_target_extractor(ctx, player, spell):
 			return ctx.minions.enemy_to(player).targetable().near(player, spell.static.cast_range).get()
 		
+		def lanepush_target_extractor(ctx, player, spell):
+			minions = ctx.minions.enemy_to(player).targetable().near(player, spell.static.cast_range).get()
+			jungle  = ctx.jungle.enemy_to(player).targetable().near(player, spell.static.cast_range).get()
+			return minions + jungle
+		
 		player = ctx.player
-		if Orbwalker.CurrentMode:
+		if not Orbwalker.Attacking and Orbwalker.CurrentMode:
 			if Orbwalker.CurrentMode == Orbwalker.ModeKite:
-				self.combat_rotation.cast(ctx, Orbwalker.SelectorChampion, champion_target_extractor)
+				self.combat_rotation.cast(ctx, Orbwalker.SelectorChampion, kite_target_extractor)
 				return
 				
 			elif self.use_lasthit_rotation and Orbwalker.CurrentMode == Orbwalker.ModeLastHit:
-				self.lasthit_rotation.cast(ctx, self.MinionSelector, minion_target_extractor)
+				self.lasthit_rotation.cast(ctx, self.MinionSelector, lasthit_target_extractor)
 				return
 				
 			elif self.use_lanepush_rotation and Orbwalker.CurrentMode == Orbwalker.ModeLanePush:
-				self.lanepush_rotation.cast(ctx, self.MinionSelector, minion_target_extractor)
+				self.lanepush_rotation.cast(ctx, self.MinionSelector, lanepush_target_extractor)
 				return
 			
 		if self.passive_trigger.check(ctx) and Orbwalker.ModeKite:
 			ctx.pill('Passive', Col.Black, Col.White)
-			self.passive_rotation.cast(ctx, Orbwalker.SelectorChampion, champion_target_extractor)
+			self.passive_rotation.cast(ctx, Orbwalker.SelectorChampion, kite_target_extractor)
 
 		
 	@classmethod

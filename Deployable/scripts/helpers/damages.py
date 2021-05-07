@@ -173,13 +173,30 @@ class JinxRDmage(PhysDamage):
 		
 class VeigarRDamage(MagicDamage):
 
+	def __init__(self, base):
+		self.base = base
+		
 	def calc_against(self, ctx, attacker, target):		
 		p = target.health/target.max_health
 		self.raw_dmg = self.base + self.base * min(0.66, (1.0 - p)*1.5)
 		return super().calc_against(ctx, attacker, target)
 		
+class XerathRDamage(MagicDamage):
+	
 	def __init__(self, base):
 		self.base = base
+		
+	def calc_against(self, ctx, attacker, target):
+		stacks = 0
+		buff = attacker.get_buff('xerathrshots')
+		if not buff:
+			stacks = 2 + attacker.spells[3].lvl
+		else:
+			ctx.info
+			stacks = buff.value
+			
+		self.raw_dmg = stacks*self.base
+		return super().calc_against(ctx, attacker, target)
 
 DamageExtractors = {
 	
@@ -319,15 +336,23 @@ DamageExtractors = {
 	'yasuoe'                 : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'yasuor'                 : lambda calc, champ, skill: PhysDamage(calc.damage(champ, skill)),
 
-        # Yone
+    # Yone
 	'yoneq'                  : lambda calc, champ, skill: PhysDamage(calc.totaldamagecrit(champ, skill)),
 	'yoneq3'                 : lambda calc, champ, skill: PhysDamage(calc.totaldamagecrit(champ, skill)),
 	'yonew'                  : lambda calc, champ, skill: PhysDamage(calc.wdamage(champ, skill)),
 	'yoner'                  : lambda calc, champ, skill: PhysDamage(calc.damage(champ, skill)),
+	
+	# Xerath
+	'xeratharcanopulsechargeup' : lambda calc, champ, skill: MagicDamage(calc.tooltiptotaldamage(champ, skill)),
+	'xeratharcanebarrage2'      : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+	'xerathmagespear'           : lambda calc, champ, skill: MagicDamage(calc.tooltiptotaldamage(champ, skill)),
+	'xerathlocusofpower2'       : lambda calc, champ, skill: XerathRDamage(calc.tooltiptotaldamage(champ, skill)),
+	'xerathrmissilewrapper'     : lambda calc, champ, skill: XerathRDamage(calc.tooltiptotaldamage(champ, skill))
 }
 
 DuplicateMap = {
 	'yasuoq1wrapper': ['yasuoq2wrapper', 'yasuoq3wrapper'],
+	'xerathlocusofpower2': ['xerathrmissilewrapper']
 }
 
 def load_spell_calcs(path):
@@ -340,6 +365,8 @@ def load_spell_calcs(path):
 	
 	for name, vdict in j.items():
 		lname = name.lower()
+		if lname in Calculations:
+			continue
 		
 		obj_dict = {}
 		for dval_name, dval_values in vdict['data_vals'].items():
@@ -352,9 +379,9 @@ def load_spell_calcs(path):
 			
 		obj = type('spell_' + lname, (object, ), obj_dict)()
 		Calculations[lname] = obj
-		if lname in DuplicateMap:
-			for name in DuplicateMap[lname]:
-				Calculations[name] = obj
+		dupes = DuplicateMap.get(lname, [])
+		for name in dupes:
+			Calculations[name] = obj
 
 def calculate_raw_spell_dmg(champ, skill):
 	calculations = Calculations.get(skill.name, None)

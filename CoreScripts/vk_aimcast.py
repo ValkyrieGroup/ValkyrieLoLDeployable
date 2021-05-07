@@ -93,9 +93,12 @@ def cast(ctx, spell, static, end_channel = False):
 	
 def valkyrie_exec(ctx) :	     
 	global channels
-	
+
 	spells = ctx.player.spells
 	for i in range(4):
+		if not keys[i]:
+			continue
+			
 		key = keybinds[i](ctx)
 		
 		spell = spells[i]
@@ -103,7 +106,7 @@ def valkyrie_exec(ctx) :
 		if static == None:
 			continue
 		
-		is_channel = static.has_flag(Spell.ChannelSkill)
+		is_channel = static.has_flag(Spell.ChargeableSkill)
 		
 		if is_channel:
 			if ctx.was_pressed(key):

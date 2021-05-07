@@ -13519,7 +13519,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "Channel"]
+        "flags": ["CastDirection", "Chargeable", "AffectAll"]
     },
     {
         "name": "ireliar2",
@@ -25071,7 +25071,7 @@
         "speed": 2000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "Cone", "CollideWindwall", "AffectAll"]
+        "flags": ["CastDirection", "Cone", "CollideWindwall", "AffectAll", "Channel"]
     },
     {
         "name": "monkeykingcritattack",
@@ -28271,7 +28271,7 @@
         "speed": 2700.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["Channel", "CastDirection", "Line", "AffectAll", "CollideWindwall"]
+        "flags": ["Chargeable", "CastDirection", "Line", "AffectAll", "CollideWindwall"]
     },
     {
         "name": "pantheone",
@@ -28646,7 +28646,7 @@
         "parent": "",
         "icon": "poppy_r",
         "castTime": 0.0,
-        "castRange": 1200.0,
+        "castRange": 1700.0,
         "castRadius": 0.0,
         "castConeAngle": 0.0,
         "castConeDistance": 0.0,
@@ -28655,7 +28655,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["Channel", "CastDirection"]
+        "flags": ["Chargeable", "CastDirection"]
     },
     {
         "name": "poppyq",
@@ -28815,7 +28815,7 @@
         "speed": 2000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["Channel", "CastPoint", "Line", "CollideCommon", "AffectAll"]
+        "flags": ["Chargeable", "CastPoint", "Line", "CollideCommon", "AffectAll"]
     },
     {
         "name": "pykee",
@@ -35382,7 +35382,7 @@
         "parent": "",
         "icon": "sion_q",
         "castTime": 0.0,
-        "castRange": 10000.0,
+        "castRange": 850.0,
         "castRadius": 0.0,
         "castConeAngle": 0.0,
         "castConeDistance": 0.0,
@@ -35391,7 +35391,7 @@
         "speed": 1500.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastDirection", "Chargeable", "AffectAll"]
     },
     {
         "name": "sionqindicatormissile2",
@@ -43599,7 +43599,7 @@
         "speed": 1900.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["Channel", "CastPoint", "Line", "AffectAll", "CollideWindwall"]
+        "flags": ["Chargeable", "CastPoint", "Line", "AffectAll", "CollideWindwall"]
     },
     {
         "name": "varusqmissile",
@@ -44924,10 +44924,10 @@
         "castConeDistance": 100.0,
         "width": 55.0,
         "height": 0.0,
-        "speed": 1500.0,
+        "speed": 1400.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["Chargeable", "AffectAll", "CollideChampion"]
     },
     {
         "name": "vir",
@@ -45503,7 +45503,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["Channel", "CastAnywhere", "AffectAll", "CollideCommon"]
+        "flags": ["Chargeable", "CastAnywhere", "AffectAll", "CollideCommon"]
     },
     {
         "name": "vladimirq",
@@ -46431,7 +46431,7 @@
         "speed": 1500.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["Chargeable", "CastTarget", "AffectAll"]
     },
     {
         "name": "warwickp",
@@ -46847,7 +46847,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.5,
-        "flags": ["Channel", "CastDirection", "Line", "AffectAll"]
+        "flags": ["Chargeable", "CastDirection", "Line", "AffectAll"]
     },
     {
         "name": "xerathlocuspulse",
@@ -46879,7 +46879,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastAnywhere"]
+        "flags": ["CastAnywhere", "Channel"]
     },
     {
         "name": "xerathrmissilewrapper",
@@ -46895,7 +46895,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.627,
-        "flags": ["CastPoint", "Area", "AffectAll"]
+        "flags": ["CastPoint", "Area", "AffectAll", "Channel"]
     },
     {
         "name": "xerathbasicattack2",
@@ -49951,7 +49951,7 @@
         "speed": 1500.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastPoint", "Area", "AffectAll"]
+        "flags": ["CastPoint", "Area", "AffectAll", "Chargeable"]
     },
     {
         "name": "zacbasicattack",

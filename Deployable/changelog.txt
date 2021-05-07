@@ -1,3 +1,15 @@
+[Valkyrie v0.37]
+	* Fixed a bug where activator would try to smite dead jungle monsters
+	* Fixed a bug where aimcast would cast disabled spells resulting in multiple casts and interrupting channeled spells
+	* Fixed a bug where dev console wouldnt scroll down after a command (also dev view has configurable key activation now)
+	* Fixed a bug in scripting API wherebuff count would be 0
+	* Now orbwalker will not move when channeling a spell (ex: Miss fortune R)
+
+	+ Now champion scripts support channeled spells (ex: Xerath's Q)
+	+ Added kill switch key that stops/activates cheat when pressed (request by exploiit)
+	+ Added script editor in dev menu (work in progress not usable currently)
+	+ Added vk_xerath.py
+
 [Valkyrie v0.36]
 	* Fixed indicators crash
 	* Fixed vlad E charge issue

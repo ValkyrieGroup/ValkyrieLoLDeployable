@@ -17,6 +17,8 @@ class Orbwalker:
 	ModeLastHit  = None
 	ModeLanePush = None
 	
+	PauseUntil   = 0
+	
 class KiteFlags:
 	BasicAttackKiting = False
 	SpellKiting       = False

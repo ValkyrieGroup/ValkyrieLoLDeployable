@@ -170,7 +170,13 @@ last_attacked = 0
 
 def valkyrie_exec(ctx):
 	global last_moved, last_attacked
-
+	
+	Orbwalker.CurrentMode = None
+	
+	now = time()
+	if now < Orbwalker.PauseUntil:
+		return
+		
 	# Skip if player dead
 	player = ctx.player   
 	if player.dead:
@@ -179,11 +185,9 @@ def valkyrie_exec(ctx):
 	dead_zone.draw_at(ctx, player.pos)
 
 	# Skip if evading
-	now = time()
 	if now < EvadeFlags.EvadeEndTime:
 		return
-		
-	Orbwalker.CurrentMode = None
+	
 	if key_kite.check(ctx):
 		ctx.pill('Kite', Col.Black, Col.White)
 		Orbwalker.CurrentMode = kite_mode
@@ -207,7 +211,7 @@ def valkyrie_exec(ctx):
 	target = None
 	dt = now - last_attacked
 	
-	if dt > c_atk_time:
+	if not player.channeling and dt > c_atk_time:
 		target = Orbwalker.CurrentMode.get_target(ctx, player.atk_range + player.static.gameplay_radius)
 		if target:
 			Orbwalker.Attacking = True
@@ -218,6 +222,6 @@ def valkyrie_exec(ctx):
 		Orbwalker.Attacking = False
 		
 		# Check if mouse is within dead zone
-		if ctx.w2s(player.pos).distance(ctx.cursor_pos) > dead_zone.radius:
+		if ctx.w2s(player.pos).distance(ctx.cursor_pos) > dead_zone.radius and not player.channeling:
 			ctx.move()
 			last_moved = now

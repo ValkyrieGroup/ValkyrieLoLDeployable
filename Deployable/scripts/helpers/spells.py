@@ -5,6 +5,39 @@ from enum import Enum
 from time import time
 from .flags import Orbwalker, EvadeFlags
 
+class ChannelSpell:
+	def __init__(self, start_dist, end_dist, optimal_channel_time, max_channel_time, dist_calculator):
+		'''
+			@param start_dist, end_dist: the start distance at the start of the channel and at the end
+			@param channel_time: the maximum time in seconds this spell can be channeled
+			@param dist_calculator: must be a lambda with one float argument (the time since the beginning of the channel in seconds). it returns the distance that the spell will travel
+		'''
+		self.start_dist   = start_dist
+		self.end_dist     = end_dist
+		self.max_channel_time = max_channel_time
+		self.optimal_channel_time = optimal_channel_time
+		self.dist_calculator = dist_calculator
+		
+# Just some info about the chargeable spells in the game
+ChargeableSpells = {
+	'xeratharcanopulsechargeup': ChannelSpell(735.0, 1450.0, 0.0,  3.0, lambda t: min(1450.0, 735.0 + 408.0*t)),
+	'varusq'                   : ChannelSpell(825.0, 1595.0, 1.25, 4.0, lambda t: min(1595.0, 825.0 + 560*t)),
+	'pykeq'                    : ChannelSpell(400.0, 1100.0, 0.5,  3.0, lambda t: 400.0 if t <= 0.4 else min(1100.0, 400.0 + 1100*(t - 0.4))),
+	'pantheonq'                : ChannelSpell(575.0, 1200.0, 0.4,  4.0, lambda t: 575 if t <= 0.4 else 1200.0),
+	'sionq'                    : ChannelSpell(500.0, 850,    2.0,  2.0, lambda t: 500.0 if t <= 0.3 else min(850.0, 500.0 + 348*(t - 0.25))),
+	'viq'                      : ChannelSpell(250.0, 715.0,  0.0,  4.0, lambda t: min(715.0, 250.0 + 372.0*t)),
+	'vladimire'                : ChannelSpell(600.0, 600.0,  1.0,  1.5, lambda t: 600.0),
+	'warwickq'                 : ChannelSpell(350.0, 350.0,  0.5,  0.5, lambda t: 350.0),
+	'zace'                     : ChannelSpell(0.0,   1800.0, 1.3,  4.5, lambda t: min(1800.0, 1800*t/2.0)),
+	'poppyr'                   : ChannelSpell(500.0, 1700.0, 0.5,  4.0, lambda t: 500.0 if t <= 0.5 else min(1700.0, 500 + 2400*(t - 0.5))),
+	'ireliaw'                  : ChannelSpell(775.0, 775.0,  1.5,  1.5, lambda t: 775.0)
+}
+
+# Some spells cancel if orbwalker tries to move too fast
+AfterCastPauses = {
+	'xerathlocusofpower2' : 0.2
+}
+
 class CCType:
 	Charm    = 0
 	Stun     = 1
@@ -171,7 +204,7 @@ class RSpell:
 		self.slot = slot
 		self.condition = condition
 		self.predictor = predictor
-	
+		
 	def ui(self, ctx, ui):
 		if not self.condition:
 			return
@@ -224,8 +257,10 @@ class SpellRotation:
 	'''
 		Represents a rotation of spells
 	'''
-	
-	def __init__(self, rotation_spells, mask = None):
+
+	IgnoreCurrentCast = set(['viq', 'zace', 'poppyr', 'ireliaw'])
+
+	def __init__(self, rotation_spells, mask = None, charge_optimally = True):
 		'''
 			rotation_spells: must be an array of RSpell's
 			mask: must be an array of booleans
@@ -235,7 +270,11 @@ class SpellRotation:
 			self.mask = [True for i in range(len(rotation_spells))]
 		else:
 			self.mask = mask
-				
+		
+		self.chargeables = {}
+		self.charge_optimally = charge_optimally
+		self.pause_until = 0
+		
 	def find_spell(self, ctx, target_selector, target_extractor):
 		'''
 			Gets the next castable spell in the rotation. Returns None if nothing found
@@ -264,8 +303,8 @@ class SpellRotation:
 		
 	def get_spell(self, ctx, player, target_selector, target_extractor):
 		if player.curr_casting and player.curr_casting.remaining > 0.0:
-			return None, None
-
+			if player.curr_casting.name not in self.IgnoreCurrentCast:
+				return None, None
 			
 		target, spell, rspell = self.find_spell(ctx, target_selector, target_extractor)
 		if not spell:
@@ -279,12 +318,45 @@ class SpellRotation:
 		
 	def cast(self, ctx, target_selector, target_extractor):
 		player = ctx.player
-
+		now = time()
+		if now < self.pause_until:
+			return
+			
 		spell, point = self.get_spell(ctx, player, target_selector, target_extractor)
 		if spell:
-			ctx.cast_spell(spell, point)
+			if not spell.static.has_flag(Spell.ChannelSkill) and player.channeling:
+				return
+				
+			if spell.static.has_flag(Spell.ChargeableSkill):
+				chargeable_info = ChargeableSpells.get(spell.name, None)
+				if not chargeable_info:
+					return
+					
+				channel_start_time = self.chargeables.get(spell.name, None)
+				if channel_start_time:
+					dist_to_target = player.pos.distance(point) + 50.0
+					dt = now - channel_start_time
+					
+					# Prevents bugs
+					if dt < 0.2:
+						return
+						
+					should_end = dt > chargeable_info.optimal_channel_time if self.charge_optimally else True
+					if should_end and chargeable_info.dist_calculator(dt) > dist_to_target:
+						ctx.end_channel(spell, point)
+						self.chargeables[spell.name] = None
+						
+				elif ctx.start_channel(spell):
+					self.chargeables[spell.name] = now
+			else:
+				if ctx.cast_spell(spell, point):
+					pause = AfterCastPauses.get(spell.name, 0.0)
+					if pause > 0.0:
+						self.pause_until = now + pause
+						Orbwalker.PauseUntil = now + pause
 	
 	def ui(self, ctx, ui):
+		self.charge_optimally = ui.checkbox('Channel chargable spells until damage is maximized', self.charge_optimally)
 		for i in range(len(self.mask)):
 			slot = self.rotation_spells[i].slot
 			slot_str = Slot.to_str(slot)

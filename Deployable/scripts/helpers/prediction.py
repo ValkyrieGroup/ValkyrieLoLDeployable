@@ -53,7 +53,6 @@ def predict_minions_lasthit(ctx, enemy_minions, ally_minions, delay_percent = 0.
 		 
 		hit_dmg		 		= items.get_onhit_physical(player, enemy_minion) + items.get_onhit_magical(player, enemy_minion)
 		t_until_player_hits = basic_atk_delay + player.pos.distance(enemy_minion.pos) / basic_atk_speed
-        #t_until_player_hits *= 1.1 
 		enemy_minion_hp		= predict_minion_health(ctx, enemy_minion, ally_minions, t_until_player_hits, delay_percent, modifiers)
 		
 		if enemy_minion.pos.distance(player.pos) < player_range:
