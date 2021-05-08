@@ -1,3 +1,8 @@
+[Valkyrie v0.38 Hotfix]
+	* Fixed CORE range issues now orbwalker kite is smoother (especially for melee) when enemy is at the edge of the range 
+	* Fixed a HWID issue that would crash the loader/cheat
+	* Added missing prediction for conic spells (ex: cassiopeia R)
+
 [Valkyrie v0.37]
 	* Fixed a bug where activator would try to smite dead jungle monsters
 	* Fixed a bug where aimcast would cast disabled spells resulting in multiple casts and interrupting channeled spells
