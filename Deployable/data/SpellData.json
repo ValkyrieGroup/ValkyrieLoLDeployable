@@ -24223,7 +24223,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastTarget"]
+        "flags": ["CastTarget", "Channel"]
     },
     {
         "name": "malzaharwcancel",
