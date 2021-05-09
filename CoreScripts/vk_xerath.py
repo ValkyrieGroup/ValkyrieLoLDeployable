@@ -49,7 +49,7 @@ xerath = HT.ChampionScript(
 	
 	lanepush_rotation = SpellRotation([
 		RSpell(Slot.Q),
-        RSpell(Slot.W)
+        RSpell(Slot.W, predictor = HT.ClusterSpellPredictor(3))
 	])
 )
 

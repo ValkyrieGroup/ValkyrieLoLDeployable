@@ -9,11 +9,11 @@ from helpers.spells import SpellRotation, RSpell, Slot, SpellCondition
 
 cassiopeia = HT.ChampionScript(
 	passive_trigger   = HT.Enabler.default(),
-	combat_distance   = 900,
-	passive_distance  = 900,
 	
 	combat_rotation = SpellRotation([
-		RSpell(Slot.R, HT.ConditionInFrontOfTarget()), 
+		RSpell(Slot.R, 
+			HT.MixedConditions([HT.ConditionInFrontOfTarget(), HT.ConditionDistanceToTarget(0.0, 700.0)], HT.MixedConditions.All)
+		), 
 		RSpell(Slot.W), 
 		RSpell(Slot.Q), 
 		RSpell(Slot.E)
@@ -29,8 +29,8 @@ cassiopeia = HT.ChampionScript(
 	]),
 	
 	lanepush_rotation = SpellRotation([
-		RSpell(Slot.Q),
-		RSpell(Slot.W),
+		RSpell(Slot.Q, predictor = HT.ClusterSpellPredictor(2)),
+		RSpell(Slot.W, predictor = HT.ClusterSpellPredictor(3)),
 		RSpell(Slot.E)
 	]),
 )

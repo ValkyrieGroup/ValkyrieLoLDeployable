@@ -12,7 +12,7 @@ class Enabler:
 
 	enable_type = ['Always On', 'Key Input']
 
-	def __init__(self, always_on, keyinput):
+	def __init__(self, always_on = True, keyinput = KeyInput()):
 		self.keyinput  = keyinput
 		self.selected  = 0 if always_on else 1
 		
@@ -78,6 +78,67 @@ def attr_solve_atk_speed(unit)  : return unit.atk_speed
 def attr_solve_atk_range(unit)  : return unit.atk_range   
 def attr_solve_lvl(unit)        : return unit.lvl
 
+def clusterize(objs, future, max_dist):
+	
+	positions = [obj.predict_position(future) for obj in objs]
+	distances = []
+	for pos1 in positions:
+		distances.append([pos1.distance(pos2) for pos2 in positions])
+		
+	clusters = []
+	num_pos = len(positions)
+	for i in range(num_pos):
+		
+		added = False
+		for cidx, cluster in enumerate(clusters):
+			if added:
+				break
+				
+			for j in cluster:
+				if distances[i][j] < max_dist:
+					cluster.append(i)
+					added = True
+					break
+		
+		if not added:
+			clusters.append([i])
+		
+	centroids = []
+	for cluster in clusters:
+		centroid = Vec3(0.0, 0.0, 0.0)
+		for i, idx in enumerate(cluster):
+			cluster[i] = objs[idx]
+			centroid = centroid + positions[idx]
+			
+		centroids.append(centroid * (1.0/len(cluster)))
+	
+	return clusters, centroids
+	
+class ClusterSpellPredictor:
+
+	def __init__(self, min_targets = 1):
+		self.min_targets = min_targets
+	
+	def _ui(self, ctx, ui):
+		self.min_targets = ui.sliderint('Minimum AoE targets', self.min_targets, 1, 10)
+	
+	def _predict(self, ctx, player, target, spell):
+		radius = spell.static.cast_radius if spell.static.has_flag(Spell.TypeArea) else spell.static.width
+		targets = []
+		if type(target) == ChampionObj:
+			targets = ctx.champs.targetable().ally_to(target).near(player.pos, spell.static.cast_range).get()
+		elif type(target) == MinionObj:
+			targets = ctx.minions.targetable().ally_to(target).near(player.pos, spell.static.cast_range).get()
+		elif type(target) == JungleMobObj:
+			targets = ctx.jungle.targetable().ally_to(target).near(player.pos, spell.static.cast_range).get()
+		
+		clusters, centroids = clusterize(targets, spell.static.delay + spell.static.cast_time, radius*2.0)
+		for i, cluster in enumerate(clusters):
+			if len(cluster) >= self.min_targets:
+				return centroids[i]
+				
+		return None
+
 class Attributes:
 	Mana              = 0 
 	Health            = 1 
@@ -119,7 +180,7 @@ class Attributes:
 
 class ChampionScript:
 	
-	Version = '0.4'
+	Version = '0.5'
 	MinionSelector = TargetSelector(selected = 1)
 	
 	def __init__(self, passive_trigger, combat_rotation, passive_rotation, lasthit_rotation = SpellRotation([]), lanepush_rotation = SpellRotation([]), combat_distance = None, passive_distance = None):
@@ -279,8 +340,8 @@ class ConditionTargetOutsideTower(SpellCondition):
 		return 'Target outside turret range'
 		
 	def _get_help(self):
-		return 'Triggers when target is outside a turret range'
-		
+		return 'Triggers when target is outside a turret range'	
+
 class ConditionDistanceToTarget(SpellCondition):
 	
 	def __init__(self, distance_min, distance_max):

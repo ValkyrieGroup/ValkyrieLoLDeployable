@@ -68,9 +68,9 @@ kogmaw = HT.ChampionScript(
 	lanepush_rotation = SpellRotation([
 		RSpell(Slot.Q),
 		RSpell(Slot.E),
-		RSpell(Slot.R, HT.MixedConditions(
-			[ConditionKogMawUlt(9, 200), HT.ConditionDistanceToTarget(800.0, 1800.0)],
-			HT.MixedConditions.All)
+		RSpell(Slot.R, 
+			ConditionKogMawUlt(9, 200),
+			predictor = HT.ClusterSpellPredictor(2)
 		)
 	]),
 	

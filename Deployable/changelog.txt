@@ -1,3 +1,13 @@
+[Valkyrie v0.39]
+	* Fixed a issue with prediction where it would shoot a spell randomly when it was not possible to hit the enemy
+	* Fixed a bug where aimcast would target Tristana W on enemy instead of casting W at mouse location
+	
+	+ Added annie script
+	+ Now aoe spells in champ script lane push (only official scripts) have options to target multiple enemies.
+	+ Now aimcast has activation options in menu and also draws a button on champ when active
+	+ Now aimcast will target hovered objects no matter what the target selector says, this was done in order to be able to farm properly with aimcast
+	+ Now aimcast has D, F summoner spells too (use flash on aimcast if you want it to work properly with orbwalker)
+
 [Valkyrie v0.38 Hotfix]
 	* Fixed CORE range issues now orbwalker kite is smoother (especially for melee) when enemy is at the edge of the range 
 	* Fixed a HWID issue that would crash the loader/cheat

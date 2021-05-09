@@ -206,7 +206,12 @@ DamageExtractors = {
 	'ahriseduce'             : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'ahritumble'             : lambda calc, champ, skill: MagicDamage(calc.rcalculateddamage(champ, skill) * 3.0),
 
-        # Chogath
+	# Annie                  
+	'annieq'                 : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+	'anniew'                 : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+	'annier'                 : lambda calc, champ, skill: MagicDamage(calc.initialburstdamage(champ, skill)),
+
+    # Chogath
 	'feast'                  : lambda calc, champ, skill: TrueDamage(calc.rdamage(champ, skill)),
 	
 	# Darius

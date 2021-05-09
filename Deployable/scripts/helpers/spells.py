@@ -206,17 +206,17 @@ class RSpell:
 		self.predictor = predictor
 		
 	def ui(self, ctx, ui):
-		if not self.condition:
-			return
+		self.predictor._ui(ctx, ui)
 		
-		if ui.treenode('Trigger Condition'):
-			ui.pushid(id(self.condition))
-			self.condition.ui(ctx, ui)
-			ui.separator()
-			ui.popid()
-			
-			ui.treepop()
-		ui.help('A trigger condition is logic that applies before casting the spell. For example a simple trigger would be "Target health trigger" that would check if the target HP is below a certain %, if the trigger is True then the spell is cast.')
+		if self.condition:
+			if ui.treenode('Trigger Condition'):
+				ui.pushid(id(self.condition))
+				self.condition.ui(ctx, ui)
+				ui.separator()
+				ui.popid()
+				
+				ui.treepop()
+			ui.help('A trigger condition is logic that applies before casting the spell. For example a simple trigger would be "Target health trigger" that would check if the target HP is below a certain %, if the trigger is True then the spell is cast.')
 		
 	def check_condition(self, ctx, player, target, spell):
 		if not self.condition:

@@ -64,6 +64,10 @@
 <dd>
 <div class="desc"><p>When the buff will end in game time</p></div>
 </dd>
+<dt id="valkyrie.Buff.value"><code class="name">var <span class="ident">value</span></code></dt>
+<dd>
+<div class="desc"><p>Value of the buff</p></div>
+</dd>
 </dl>
 </dd>
 <dt id="valkyrie.ChampionObj"><code class="flex name class">
@@ -84,6 +88,10 @@
 </ul>
 <h3>Instance variables</h3>
 <dl>
+<dt id="valkyrie.ChampionObj.channeling"><code class="name">var <span class="ident">channeling</span></code></dt>
+<dd>
+<div class="desc"><p>True if player is channeling a spell</p></div>
+</dd>
 <dt id="valkyrie.ChampionObj.hpbar_pos"><code class="name">var <span class="ident">hpbar_pos</span></code></dt>
 <dd>
 <div class="desc"><p>Height position of the HP bar of the champion</p></div>
@@ -2017,6 +2025,10 @@ Query objects in vision</p>
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="valkyrie.Spell.ChargeableSkill"><code class="name">var <span class="ident">ChargeableSkill</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="valkyrie.Spell.CollideChampion"><code class="name">var <span class="ident">CollideChampion</span></code></dt>
 <dd>
 <div class="desc"></div>
@@ -3283,6 +3295,16 @@ Calculates effective physical damage against target considering armor and armor 
     float effective_phys_dmg(class GameUnit {lvalue},class GameUnit,float)
 </code></pre></div>
 </dd>
+<dt id="valkyrie.UnitObj.get_buff"><code class="name flex">
+<span>def <span class="ident">get_buff</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get_buff( (UnitObj)arg1, (str)arg2) -&gt; object :
+Gets the buff with the name provided or None if nothing found</p>
+<pre><code>C++ signature :
+    class boost::python::api::object get_buff(class GameUnit {lvalue},char const *)
+</code></pre></div>
+</dd>
 <dt id="valkyrie.UnitObj.has_buff"><code class="name flex">
 <span>def <span class="ident">has_buff</span></span>(<span>...)</span>
 </code></dt>
@@ -3811,12 +3833,14 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Buff.name" href="#valkyrie.Buff.name">name</a></code></li>
 <li><code><a title="valkyrie.Buff.time_begin" href="#valkyrie.Buff.time_begin">time_begin</a></code></li>
 <li><code><a title="valkyrie.Buff.time_end" href="#valkyrie.Buff.time_end">time_end</a></code></li>
+<li><code><a title="valkyrie.Buff.value" href="#valkyrie.Buff.value">value</a></code></li>
 </ul>
 </li>
 <li>
 <h4><code><a title="valkyrie.ChampionObj" href="#valkyrie.ChampionObj">ChampionObj</a></code></h4>
 <ul class="two-column">
 <li><code><a title="valkyrie.ChampionObj.can_cast_spell" href="#valkyrie.ChampionObj.can_cast_spell">can_cast_spell</a></code></li>
+<li><code><a title="valkyrie.ChampionObj.channeling" href="#valkyrie.ChampionObj.channeling">channeling</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.hpbar_pos" href="#valkyrie.ChampionObj.hpbar_pos">hpbar_pos</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.is_clone" href="#valkyrie.ChampionObj.is_clone">is_clone</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.item_slots" href="#valkyrie.ChampionObj.item_slots">item_slots</a></code></li>
@@ -4189,6 +4213,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.Spell.CastPoint" href="#valkyrie.Spell.CastPoint">CastPoint</a></code></li>
 <li><code><a title="valkyrie.Spell.CastTarget" href="#valkyrie.Spell.CastTarget">CastTarget</a></code></li>
 <li><code><a title="valkyrie.Spell.ChannelSkill" href="#valkyrie.Spell.ChannelSkill">ChannelSkill</a></code></li>
+<li><code><a title="valkyrie.Spell.ChargeableSkill" href="#valkyrie.Spell.ChargeableSkill">ChargeableSkill</a></code></li>
 <li><code><a title="valkyrie.Spell.CollideChampion" href="#valkyrie.Spell.CollideChampion">CollideChampion</a></code></li>
 <li><code><a title="valkyrie.Spell.CollideCommon" href="#valkyrie.Spell.CollideCommon">CollideCommon</a></code></li>
 <li><code><a title="valkyrie.Spell.CollideMinion" href="#valkyrie.Spell.CollideMinion">CollideMinion</a></code></li>
@@ -4420,6 +4445,7 @@ Rotates the vector along the z axis</p>
 <li><code><a title="valkyrie.UnitObj.effective_magic_dmg" href="#valkyrie.UnitObj.effective_magic_dmg">effective_magic_dmg</a></code></li>
 <li><code><a title="valkyrie.UnitObj.effective_phys_dmg" href="#valkyrie.UnitObj.effective_phys_dmg">effective_phys_dmg</a></code></li>
 <li><code><a title="valkyrie.UnitObj.expiry" href="#valkyrie.UnitObj.expiry">expiry</a></code></li>
+<li><code><a title="valkyrie.UnitObj.get_buff" href="#valkyrie.UnitObj.get_buff">get_buff</a></code></li>
 <li><code><a title="valkyrie.UnitObj.has_buff" href="#valkyrie.UnitObj.has_buff">has_buff</a></code></li>
 <li><code><a title="valkyrie.UnitObj.has_tags" href="#valkyrie.UnitObj.has_tags">has_tags</a></code></li>
 <li><code><a title="valkyrie.UnitObj.haste" href="#valkyrie.UnitObj.haste">haste</a></code></li>

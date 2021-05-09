@@ -125,7 +125,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastPoint"]
+        "flags": ["CastPoint", "Dash"]
     },
 	{
         "name": "summonerflashperkshextechflashtraptionv2",
@@ -7007,7 +7007,7 @@
         "speed": 1900.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastTarget", "Area", "CollideWall", "AffectAll"]
+        "flags": ["CastPoint", "Area", "CollideWall", "AffectAll"]
     },
     {
         "name": "dianar",
@@ -41775,7 +41775,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["CastPoint", "AffectAll", "Dash"]
     },
     {
         "name": "tristanaq",

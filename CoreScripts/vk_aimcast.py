@@ -1,9 +1,11 @@
 from valkyrie import *			 
 from helpers.targeting import TargetSelector, TargetSet
+from helpers.templates import Enabler
+from helpers.inputs    import KeyInput
 import json
 
 keys = [
-	True, True, True, True
+	True, True, True, True, True, True
 ]
 
 keybinds = {
@@ -11,11 +13,16 @@ keybinds = {
 	1: lambda ctx: ctx.keybinds.cast_w,
 	2: lambda ctx: ctx.keybinds.cast_e,
 	3: lambda ctx: ctx.keybinds.cast_r,
+	4: lambda ctx: ctx.keybinds.cast_d,
+	5: lambda ctx: ctx.keybinds.cast_f
 }
 
 channels = [
 	False, False, False, False
 ]
+
+col_pill = Col(0.3, 0.9, 0.9, 0.9)
+enabler  = Enabler()
 
 target_sel = TargetSelector(0, TargetSet.Champion)
 target_minions  = False
@@ -41,14 +48,17 @@ def valkyrie_menu(ctx):
 	keys[1] = ui.checkbox('Auto aim W', keys[1])
 	keys[2] = ui.checkbox('Auto aim E', keys[2])
 	keys[3] = ui.checkbox('Auto aim R', keys[3])
+	keys[4] = ui.checkbox('Auto aim summoner D', keys[4])
+	keys[5] = ui.checkbox('Auto aim summoner F', keys[5])
 	update_keys(ctx)
 	
 	ui.separator()
-	ui.text("Currently doesnt support ally targeting")
-	ui.text("Some champions arent tested yet")
+	enabler.ui(ui)
+	
+	ui.text("Some champions arent tested yet (please report spells without prediction)", Col.Red)
 	
 def valkyrie_on_load(ctx) :	
-	global keys, target_sel
+	global keys, target_sel, enabler
 	global target_minions, target_monsters, no_aim_when_no_target
 	cfg = ctx.cfg				 
 	
@@ -59,6 +69,7 @@ def valkyrie_on_load(ctx) :
 	target_minions        = cfg.get_bool('target_minions', target_minions)
 	target_monsters       = cfg.get_bool('target_monsters', target_monsters)
 	no_aim_when_no_target = cfg.get_bool('no_aim_when_no_target', no_aim_when_no_target)
+	enabler               = Enabler.from_str(cfg.get_str('enabler', str(enabler)))
 	
 def valkyrie_on_save(ctx) :	 
 	cfg = ctx.cfg				 
@@ -68,6 +79,7 @@ def valkyrie_on_save(ctx) :
 	cfg.set_bool('target_minions', target_minions)
 	cfg.set_bool('target_monsters', target_monsters)
 	cfg.set_bool('no_aim_when_no_target', no_aim_when_no_target)
+	cfg.set_str('enabler', str(enabler))
 	
 def cast(ctx, spell, static, end_channel = False):
 		
@@ -76,16 +88,24 @@ def cast(ctx, spell, static, end_channel = False):
 		return
 	
 	player = ctx.player
-	target = target_sel.get_target(ctx, ctx.champs.enemy_to(player).targetable().near(player, static.cast_range).get())
-	if not target and target_minions:
-		target = target_sel.get_target(ctx, ctx.minions.enemy_to(player).targetable().near(player, static.cast_range).get())
-	if not target and target_monsters:
-		target = target_sel.get_target(ctx, ctx.jungle.enemy_to(player).targetable().near(player, static.cast_range).get())
+	type_hover = type(ctx.hovered)
+	target = None
+	if (type_hover == MinionObj or type_hover == ChampionObj) and ctx.hovered.team != player.team:
+		target = ctx.hovered
+	else:
+		target = target_sel.get_target(ctx, ctx.champs.enemy_to(player).targetable().near(player, static.cast_range).get())
+		if not target and target_minions:
+			target = target_sel.get_target(ctx, ctx.minions.enemy_to(player).targetable().near(player, static.cast_range).get())
+		if not target and target_monsters:
+			target = target_sel.get_target(ctx, ctx.jungle.enemy_to(player).targetable().near(player, static.cast_range).get())
 	
 	point = None
 	if target:
 		point = ctx.predict_cast_point(player, target, spell)
 	
+	if not point and not no_aim_when_no_target:
+		return
+		
 	if end_channel:
 		ctx.end_channel(spell, point)
 	else:
@@ -93,9 +113,14 @@ def cast(ctx, spell, static, end_channel = False):
 	
 def valkyrie_exec(ctx) :	     
 	global channels
-
+	
+	if enabler.check(ctx):
+		ctx.pill('Aimcast', Col.Black, col_pill)
+	else:
+		return
+		
 	spells = ctx.player.spells
-	for i in range(4):
+	for i in range(len(keys)):
 		if not keys[i]:
 			continue
 			

@@ -3,7 +3,7 @@ import json
 
 class KeyInput:
 
-	def __init__(self, key, is_held):
+	def __init__(self, key = Key.no_key, is_held = False):
 		self.key      = key
 		self.is_held  = is_held
 		self.toggled  = False
