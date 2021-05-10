@@ -71,8 +71,12 @@ class EvadeSettings:
 enabler            = Enabler(True, KeyInput(0, False))
 always_evade       = False
 extra_evade_length = 50.0
+
 flash_for_prio     = EvadePriority.Highest
 use_flash          = True
+
+dash_for_prio      = EvadePriority.Lowest
+use_dash           = True
 
 Settings = {
 	'aatrox' : [
@@ -541,16 +545,35 @@ NameToSettings = {}
 
 #EvadeSettings(name = '',  cast_names = [''], missile_names = [''])
 
+def get_available_dashes(player):
+	
+	dashes = []
+	for spell in player.spells:
+		if not spell.static:
+			continue
+		
+		if spell.static.has_flag(Spell.DashSkill) and player.can_cast_spell(spell):
+			dashes.append(spell)
+
+	return dashes
+
 def valkyrie_menu(ctx) :		 
-	global always_evade, enabler, extra_evade_length, flash_for_prio, use_flash
+	global always_evade, enabler, extra_evade_length
+	global flash_for_prio, dash_for_prio, use_flash, use_dash
 	ui = ctx.ui	
 
 	ui.text('Global settings', Col.Purple)
 	enabler.ui(ui)
 	always_evade       = ui.checkbox('Always try to dodge', always_evade)
+	
 	use_flash          = ui.checkbox('Use flash', use_flash)
 	if use_flash:
 		flash_for_prio = ui.sliderenum('Flash for priority atleast', EvadeSettings.PriorityNames[flash_for_prio], flash_for_prio, EvadePriority.Highest)
+	
+	use_dash           = ui.checkbox('Use dashes', use_dash)
+	if use_dash:
+		dash_for_prio = ui.sliderenum('Dash for priority atleast', EvadeSettings.PriorityNames[dash_for_prio], dash_for_prio, EvadePriority.Highest)
+	
 	ui.separator()
 	
 	ui.text('Champions settings', Col.Purple)
@@ -569,23 +592,22 @@ def valkyrie_menu(ctx) :
 	ui.separator()
 	
 	if ui.treenode('Some notes'):
-		ui.text('Most of these will be fixed')
 		ui.text('1. Orbwalker + Evade not fully compatible with all spells')
 		ui.text('2. Currently not evading cones')
-		ui.text('3. Currently no dash support')
-		ui.text('4. Since it simulates clicks it might click an minion. Dont tank the wave and expect evades.')
-		ui.text('5. Doesnt check for walls so it might evade in walls')
 		ui.treepop()
 		
 def valkyrie_on_load(ctx) :	 
-	global always_evade, enabler, extra_evade_length, flash_for_prio, use_flash
+	global always_evade, enabler, extra_evade_length
+	global flash_for_prio, dash_for_prio, use_flash, use_dash
 	global Settings, NameToSettings
 	cfg = ctx.cfg
 	
 	enabler        = Enabler.from_str(cfg.get_str('_enabler', str(enabler)))
 	always_evade   = cfg.get_bool('_always_evade', always_evade)
 	flash_for_prio = cfg.get_int('_flash_for_prio', flash_for_prio)
+	dash_for_prio  = cfg.get_int('_dash_for_prio', dash_for_prio)
 	use_flash      = cfg.get_bool('_use_flash', use_flash)
+	use_dash       = cfg.get_bool('_use_dash', use_dash)
 	for champ, settings in Settings.items():
 		for i, default_setting in enumerate(settings):
 			setting = EvadeSettings.from_str(cfg.get_str(default_setting.name, str(default_setting)))
@@ -602,7 +624,10 @@ def valkyrie_on_save(ctx) :
 	cfg.set_str('_enabler', str(enabler))
 	cfg.set_bool('_always_evade', always_evade)
 	cfg.set_int('_flash_for_prio', flash_for_prio)
+	cfg.set_int('_dash_for_prio',  dash_for_prio)
 	cfg.set_bool('_use_flash', use_flash)
+	cfg.set_bool('_use_dash',  use_dash)
+	
 	for champ, settings in Settings.items():
 		for setting in settings:
 			cfg.set_str(setting.name, str(setting))
@@ -637,6 +662,15 @@ def check_sidestepable(ctx, col, distance, player):
 		return False
 	
 	#ctx.info(f"{col.spell.name} : evade in {time_evade:.2f}, impact in {time_impact:.2f}")
+	return True
+	
+def check_dashable(ctx, col, distance, dash):
+	time_evade = dash.static.cast_time + distance/dash.static.speed
+	time_impact = col.time_until_impact + extra_evade_length / dash.static.speed
+	
+	if time_evade > time_impact:
+		return False
+		
 	return True
 	
 def get_area_evade_point(ctx, player, col):
@@ -716,15 +750,7 @@ def find_collision_to_evade(ctx, collisions):
 	
 	EvadeFlags.CurrentEvadePriority = best_col_prio
 	return best_col, best_col_prio
-	
-def get_flash_spell(player):
-	if player.spells[Slot.D].name == 'summonerflash':
-		return player.spells[Slot.D]
-	elif player.spells[Slot.F].name == 'summonerflash':
-		return player.spells[Slot.F]
-	else:
-		return None
-	
+
 def move(ctx, timenow):
 	global last_moved
 	
@@ -732,20 +758,32 @@ def move(ctx, timenow):
 		ctx.move(EvadeFlags.EvadePoint)
 		last_moved = timenow
 	
-def evade_flash(ctx, player, evade_point, prio):
-	if use_flash and prio >= flash_for_prio:
-		flash = get_flash_spell(player)
-		if flash and player.can_cast_spell(flash):
-			new_evade_point = player.pos + ((evade_point - player.pos).normalize() * player.pos.distance(evade_point)*2.0)
-			ctx.cast_spell(flash, new_evade_point)
-			EvadeFlags.EvadeEndTime = time.time() + 0.1
-			EvadeFlags.EvadePoint = new_evade_point 
-			return True
+def evade_dash(ctx, col, player, evade_point, prio):
+	dashes = get_available_dashes(player)
+	
+	for dash in dashes:
+		if dash.name == 'summonerflash':
+			if not use_flash or prio < flash_for_prio:
+				continue
+		elif not use_dash or prio < dash_for_prio:
+			continue
+		
+		evade_distance = player.pos.distance(evade_point)
+		if not check_dashable(ctx, col, evade_distance, dash):
+			continue
+		
+		new_evade_point = player.pos + ((evade_point - player.pos).normalize() * evade_distance*1.5)
+		ctx.cast_spell(dash, new_evade_point)
+		EvadeFlags.EvadeEndTime = time.time() + 0.1 + dash.static.cast_time + evade_distance/dash.static.speed
+		EvadeFlags.EvadePoint = new_evade_point 
+		
+		return True
+		
 	return False
 	
 def try_evade(ctx, player, evade_point, col, prio):
 	if not check_sidestepable(ctx, col, player.pos.distance(evade_point), player):
-		if evade_flash(ctx, player, evade_point, prio):
+		if evade_dash(ctx, col, player, evade_point, prio):
 			return
 
 		if not always_evade:
@@ -774,7 +812,7 @@ def valkyrie_exec(ctx):
 	
 	now = time.time()
 	if now < EvadeFlags.EvadeEndTime:
-		ctx.pill("Evading", Col.Black, Col.Yellow)
+		ctx.line(ctx.player.pos, EvadeFlags.EvadePoint, 2.0, Col.Yellow)
 		move(ctx, now)
 	
 	ctx.pill("Evade", Col.Black, Col.Green)

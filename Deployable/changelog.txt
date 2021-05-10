@@ -1,3 +1,9 @@
+[Valkyrie v0.40]
+	+ Now evade draws a line to the destination point while evading
+	+ Now evade supports dashes (doesnt support dashes on target like irelia Q)
+	+ First version of the in game Script Editor is released. Enter dev mode ->Script Editor->Select script then edit and press Save or Ctrl + S to save and reload
+	+ Now you can bind valkyrie keys on the mouse side buttons (aimcast doesnt work with mouse side buttons)
+
 [Valkyrie v0.39]
 	* Fixed a issue with prediction where it would shoot a spell randomly when it was not possible to hit the enemy
 	* Fixed a bug where aimcast would target Tristana W on enemy instead of casting W at mouse location
