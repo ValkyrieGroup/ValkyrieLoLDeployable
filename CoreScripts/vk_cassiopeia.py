@@ -43,7 +43,7 @@ def valkyrie_menu(ctx: Context) :
 	
 	cassiopeia.ui(ctx)
 	
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global cassiopeia, last_hit_e
 	cfg = ctx.cfg				 
 	

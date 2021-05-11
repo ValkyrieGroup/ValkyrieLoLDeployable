@@ -59,7 +59,7 @@ def valkyrie_menu(ctx: Context):
 	potential_dmg_mask[2] = ui.checkbox("Include E", potential_dmg_mask[2]); ui.sameline()
 	potential_dmg_mask[3] = ui.checkbox("Include R", potential_dmg_mask[3])
 	
-def valkyrie_menu(ctx: Context):
+def valkyrie_on_load(ctx: Context):
 	global player_circle, show_minion_hit, turret_circle_ally, turret_circle_enemy, focused_circle
 	global show_casting_spells, show_missiles, show_potential_dmg, potential_dmg_mask
 	cfg = ctx.cfg

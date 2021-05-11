@@ -79,12 +79,12 @@ def valkyrie_menu(ctx: Context):
 	draw_settings(ui, traps, "Traps")
 	draw_settings(ui, wards, "Wards")
 
-def valkyrie_menu(ctx: Context):
+def valkyrie_on_load(ctx: Context):
 	global show_clones, show_wards, show_traps, traps, wards
 	global size_clone, size_traps, size_wards
 	global circle_mm, circle_world
 	cfg = ctx.cfg
-	
+
 	show_clones = cfg.get_bool("show_clones", True)
 	show_wards = cfg.get_bool("show_wards", True)
 	show_traps = cfg.get_bool("show_traps", True)

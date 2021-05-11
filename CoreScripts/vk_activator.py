@@ -215,7 +215,7 @@ def valkyrie_menu(ctx: Context):
 			activator.ui(ctx, ui)
 			ui.endmenu()
 
-def valkyrie_menu(ctx: Context):
+def valkyrie_on_load(ctx: Context):
 	global Smite
 	cfg = ctx.cfg
 	

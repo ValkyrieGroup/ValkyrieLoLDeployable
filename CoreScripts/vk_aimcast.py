@@ -57,7 +57,7 @@ def valkyrie_menu(ctx: Context):
 	
 	ui.text("Some champions arent tested yet (please report spells without prediction)", Col.Red)
 	
-def valkyrie_menu(ctx: Context) :	
+def valkyrie_on_load(ctx: Context) :
 	global keys, target_sel, enabler
 	global target_minions, target_monsters, no_aim_when_no_target
 	cfg = ctx.cfg				 

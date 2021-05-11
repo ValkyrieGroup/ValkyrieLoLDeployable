@@ -596,7 +596,7 @@ def valkyrie_menu(ctx: Context) :
 		ui.text('2. Currently not evading cones')
 		ui.treepop()
 		
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global always_evade, enabler, extra_evade_length
 	global flash_for_prio, dash_for_prio, use_flash, use_dash
 	global Settings, NameToSettings

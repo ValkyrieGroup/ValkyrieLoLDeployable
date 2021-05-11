@@ -33,7 +33,7 @@ def valkyrie_menu(ctx: Context) :
 	ui = ctx.ui
 	olaf.ui(ctx)
 								 
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global olaf
 	cfg = ctx.cfg				 
 	olaf = HT.ChampionScript.from_str(cfg.get_str('olaf', str(olaf)))						 

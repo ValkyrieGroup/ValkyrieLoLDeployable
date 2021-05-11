@@ -14,7 +14,7 @@ def valkyrie_menu(ctx: Context) :
 	
 	auto_e_killable = ui.checkbox('Auto E when killable', auto_e_killable)
 	
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global auto_e_killable, draw_e_indicator
 	cfg = ctx.cfg				 
 	

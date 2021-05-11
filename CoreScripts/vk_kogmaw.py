@@ -84,7 +84,7 @@ def valkyrie_menu(ctx: Context) :
 
 	kogmaw.ui(ctx)
 	
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global kogmaw
 	cfg = ctx.cfg				 
 	

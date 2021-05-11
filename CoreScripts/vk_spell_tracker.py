@@ -40,7 +40,7 @@ def valkyrie_menu(ctx: Context):
 			ui.endmenu()
 	
 
-def valkyrie_menu(ctx: Context):
+def valkyrie_on_load(ctx: Context):
 	global show_enemies, show_allies, show_self, settings
 	cfg = ctx.cfg
 	

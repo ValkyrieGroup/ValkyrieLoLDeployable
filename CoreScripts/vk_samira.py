@@ -36,7 +36,7 @@ def valkyrie_menu(ctx: Context) :
 	ui = ctx.ui					 
 	samira.ui(ctx)
 	
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global samira
 	cfg = ctx.cfg				 
 	

@@ -26,7 +26,7 @@ def valkyrie_menu(ctx: Context):
 	show_mock = ui.checkbox("Show test", show_mock)
 	ui.help('Shows the panel with recalls with test data. Click and drag to change location. Use above sliders to change size')
 	
-def valkyrie_menu(ctx: Context):
+def valkyrie_on_load(ctx: Context):
 	global bar_width, bar_height
 	cfg = ctx.cfg
 	

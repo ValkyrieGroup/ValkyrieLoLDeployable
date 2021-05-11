@@ -15,7 +15,7 @@ def valkyrie_menu(ctx: Context) :
 	img_champ.ui('Image champion', ctx)
 	min_path_len = ui.sliderint('Minimum path length for drawing', min_path_len, 0, 2000)
 	
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global line_world, line_map, img_champ
 	global min_path_len
 	cfg = ctx.cfg				 

@@ -27,7 +27,7 @@ def valkyrie_menu(ctx: Context):
 	
 	ui.image("garen_square", Vec2(size_portrait_world, size_portrait_world))
 
-def valkyrie_menu(ctx: Context):
+def valkyrie_on_load(ctx: Context):
 	global max_gank_distance, show_last_seen_mm, show_last_seen_world, show_gank_alerts, show_line
 	global size_portrait_world
 	cfg = ctx.cfg

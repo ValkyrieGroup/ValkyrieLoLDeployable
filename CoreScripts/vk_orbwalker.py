@@ -153,7 +153,7 @@ def valkyrie_menu(ctx: Context):
 	
 	
 
-def valkyrie_menu(ctx: Context):
+def valkyrie_on_load(ctx: Context):
 	global target_selector, max_atk_speed, move_interval, target_selector_monster, delay_percent
 	global key_kite, key_last_hit, key_lane_push, dead_zone
 	cfg = ctx.cfg

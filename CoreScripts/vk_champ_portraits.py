@@ -48,7 +48,7 @@ def valkyrie_menu(ctx: Context) :
 	
 	update_ratios()
 
-def valkyrie_menu(ctx: Context):	 
+def valkyrie_on_load(ctx: Context):
 	global portrait_size
 	global offsetX      
 	global offsetY      

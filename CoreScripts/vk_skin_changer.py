@@ -38,7 +38,7 @@ def valkyrie_menu(ctx: Context) :
 		champ_skin_id = champ_skins[champ_selected_skin]['id']
 		
 	
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global champ_skins, champ_skin_names
 	global champ_selected_skin, champ_selected_chroma, champ_skin_id
 

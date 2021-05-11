@@ -59,7 +59,7 @@ def valkyrie_menu(ctx: Context) :
 	
 	xerath.ui(ctx)
 	
-def valkyrie_menu(ctx: Context) :	 
+def valkyrie_on_load(ctx: Context) :
 	global xerath
 	cfg = ctx.cfg
 	
