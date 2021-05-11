@@ -1028,7 +1028,7 @@ class SpellCast:
                 &#39;&#39;&#39; Name of the spell being cast&#39;&#39;&#39;
                 pass
 
-class MissileObj:
+class MissileObj(Obj):
         &#39;&#39;&#39;None&#39;&#39;&#39;
 
         @property
@@ -1036,7 +1036,7 @@ class MissileObj:
                 &#39;&#39;&#39; The spell of the missile. A spell can have multiple missiles. So this is not necessarily the spell that was cast.&#39;&#39;&#39;
                 pass
 
-class UnitObj:
+class UnitObj(Obj):
         &#39;&#39;&#39;Represents a base unit object&#39;&#39;&#39;
 
         @property
@@ -1255,7 +1255,7 @@ class UnitObj:
                 &#39;&#39;&#39;     Check if champion has buff. The buff name is case sensitive&#39;&#39;&#39;
                 pass
 
-class ChampionObj:
+class ChampionObj(UnitObj):
         &#39;&#39;&#39;Represents a champion object&#39;&#39;&#39;
 
         def can_cast_spell(self, spell: SpellObj) -&gt; bool:
@@ -1292,10 +1292,10 @@ class ChampionObj:
                 &#39;&#39;&#39; True if player is channeling a spell&#39;&#39;&#39;
                 pass
 
-class TurretObj:
+class TurretObj(UnitObj):
         &#39;&#39;&#39;Represents a turret object&#39;&#39;&#39;
 
-class MinionObj:
+class MinionObj(UnitObj):
         &#39;&#39;&#39;Represents a minion object&#39;&#39;&#39;
 
         @property
@@ -1303,7 +1303,7 @@ class MinionObj:
                 &#39;&#39;&#39; Height position of the HP bar of the minion&#39;&#39;&#39;
                 pass
 
-class JungleMobObj:
+class JungleMobObj(UnitObj):
         &#39;&#39;&#39;Represents a jungle mob object&#39;&#39;&#39;
 
 class UI:
@@ -1946,7 +1946,7 @@ def value(self) -&gt; int:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class ChampionObj:
+<pre><code class="python">class ChampionObj(UnitObj):
         &#39;&#39;&#39;Represents a champion object&#39;&#39;&#39;
 
         def can_cast_spell(self, spell: SpellObj) -&gt; bool:
@@ -1983,6 +1983,11 @@ def value(self) -&gt; int:
                 &#39;&#39;&#39; True if player is channeling a spell&#39;&#39;&#39;
                 pass</code></pre>
 </details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="valkyrie.UnitObj" href="#valkyrie.UnitObj">UnitObj</a></li>
+<li><a title="valkyrie.Obj" href="#valkyrie.Obj">Obj</a></li>
+</ul>
 <h3>Instance variables</h3>
 <dl>
 <dt id="valkyrie.ChampionObj.channeling"><code class="name">var <span class="ident">channeling</span> : bool</code></dt>
@@ -3952,9 +3957,14 @@ def phys_dmg(self) -&gt; float:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class JungleMobObj:
+<pre><code class="python">class JungleMobObj(UnitObj):
         &#39;&#39;&#39;Represents a jungle mob object&#39;&#39;&#39;</code></pre>
 </details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="valkyrie.UnitObj" href="#valkyrie.UnitObj">UnitObj</a></li>
+<li><a title="valkyrie.Obj" href="#valkyrie.Obj">Obj</a></li>
+</ul>
 </dd>
 <dt id="valkyrie.Key"><code class="flex name class">
 <span>class <span class="ident">Key</span></span>
@@ -4570,7 +4580,7 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class MinionObj:
+<pre><code class="python">class MinionObj(UnitObj):
         &#39;&#39;&#39;Represents a minion object&#39;&#39;&#39;
 
         @property
@@ -4578,6 +4588,11 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
                 &#39;&#39;&#39; Height position of the HP bar of the minion&#39;&#39;&#39;
                 pass</code></pre>
 </details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="valkyrie.UnitObj" href="#valkyrie.UnitObj">UnitObj</a></li>
+<li><a title="valkyrie.Obj" href="#valkyrie.Obj">Obj</a></li>
+</ul>
 <h3>Instance variables</h3>
 <dl>
 <dt id="valkyrie.MinionObj.hpbar_pos"><code class="name">var <span class="ident">hpbar_pos</span> : float</code></dt>
@@ -4604,7 +4619,7 @@ def hpbar_pos(self) -&gt; float:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class MissileObj:
+<pre><code class="python">class MissileObj(Obj):
         &#39;&#39;&#39;None&#39;&#39;&#39;
 
         @property
@@ -4612,6 +4627,10 @@ def hpbar_pos(self) -&gt; float:
                 &#39;&#39;&#39; The spell of the missile. A spell can have multiple missiles. So this is not necessarily the spell that was cast.&#39;&#39;&#39;
                 pass</code></pre>
 </details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="valkyrie.Obj" href="#valkyrie.Obj">Obj</a></li>
+</ul>
 <h3>Instance variables</h3>
 <dl>
 <dt id="valkyrie.MissileObj.spell"><code class="name">var <span class="ident">spell</span> : <a title="valkyrie.SpellCast" href="#valkyrie.SpellCast">SpellCast</a></code></dt>
@@ -4707,6 +4726,11 @@ def spell(self) -&gt; SpellCast:
                 &#39;&#39;&#39;     Draws the object in the current menu&#39;&#39;&#39;
                 pass</code></pre>
 </details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="valkyrie.MissileObj" href="#valkyrie.MissileObj">MissileObj</a></li>
+<li><a title="valkyrie.UnitObj" href="#valkyrie.UnitObj">UnitObj</a></li>
+</ul>
 <h3>Instance variables</h3>
 <dl>
 <dt id="valkyrie.Obj.bounding_radius"><code class="name">var <span class="ident">bounding_radius</span> : float</code></dt>
@@ -6300,9 +6324,14 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class TurretObj:
+<pre><code class="python">class TurretObj(UnitObj):
         &#39;&#39;&#39;Represents a turret object&#39;&#39;&#39;</code></pre>
 </details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="valkyrie.UnitObj" href="#valkyrie.UnitObj">UnitObj</a></li>
+<li><a title="valkyrie.Obj" href="#valkyrie.Obj">Obj</a></li>
+</ul>
 </dd>
 <dt id="valkyrie.UI"><code class="flex name class">
 <span>class <span class="ident">UI</span></span>
@@ -7504,7 +7533,7 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class UnitObj:
+<pre><code class="python">class UnitObj(Obj):
         &#39;&#39;&#39;Represents a base unit object&#39;&#39;&#39;
 
         @property
@@ -7723,6 +7752,17 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
                 &#39;&#39;&#39;     Check if champion has buff. The buff name is case sensitive&#39;&#39;&#39;
                 pass</code></pre>
 </details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="valkyrie.Obj" href="#valkyrie.Obj">Obj</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="valkyrie.ChampionObj" href="#valkyrie.ChampionObj">ChampionObj</a></li>
+<li><a title="valkyrie.JungleMobObj" href="#valkyrie.JungleMobObj">JungleMobObj</a></li>
+<li><a title="valkyrie.MinionObj" href="#valkyrie.MinionObj">MinionObj</a></li>
+<li><a title="valkyrie.TurretObj" href="#valkyrie.TurretObj">TurretObj</a></li>
+</ul>
 <h3>Instance variables</h3>
 <dl>
 <dt id="valkyrie.UnitObj.ap"><code class="name">var <span class="ident">ap</span> : float</code></dt>

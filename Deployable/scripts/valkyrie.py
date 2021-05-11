@@ -1000,7 +1000,7 @@ class SpellCast:
 		''' Name of the spell being cast'''
 		pass
 
-class MissileObj:
+class MissileObj(Obj):
 	'''None'''
 
 	@property
@@ -1008,7 +1008,7 @@ class MissileObj:
 		''' The spell of the missile. A spell can have multiple missiles. So this is not necessarily the spell that was cast.'''
 		pass
 
-class UnitObj:
+class UnitObj(Obj):
 	'''Represents a base unit object'''
 
 	@property
@@ -1227,7 +1227,7 @@ class UnitObj:
 		'''     Check if champion has buff. The buff name is case sensitive'''
 		pass
 
-class ChampionObj:
+class ChampionObj(UnitObj):
 	'''Represents a champion object'''
 
 	def can_cast_spell(self, spell: SpellObj) -> bool:
@@ -1264,10 +1264,10 @@ class ChampionObj:
 		''' True if player is channeling a spell'''
 		pass
 
-class TurretObj:
+class TurretObj(UnitObj):
 	'''Represents a turret object'''
 
-class MinionObj:
+class MinionObj(UnitObj):
 	'''Represents a minion object'''
 
 	@property
@@ -1275,7 +1275,7 @@ class MinionObj:
 		''' Height position of the HP bar of the minion'''
 		pass
 
-class JungleMobObj:
+class JungleMobObj(UnitObj):
 	'''Represents a jungle mob object'''
 
 class UI:

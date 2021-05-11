@@ -2,8 +2,8 @@
 	* Fixed a bug where orbwalker would try to attack ally rift herald
 
 	+ Changed orbwalker lane push algorithm
-	+ Improved scripting api docs.html
-	+ Added default PyCharm project in scripts folder (for auto completion, will add tutorial soon how to setup)
+	+ Improved readability of scripting API docs
+	+ Added PyCharm project in scripts folder for auto completion (will post a tutorial very soon on how to setup)
 
 [Valkyrie v0.40]
 	+ Now evade draws a line to the destination point while evading
