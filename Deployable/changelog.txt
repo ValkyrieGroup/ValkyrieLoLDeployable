@@ -1,3 +1,8 @@
+[Valkyrie v0.41]
+	* Fixed a bug where orbwalker would try to attack ally rift herald
+
+	+ Changed lane push algorithm
+
 [Valkyrie v0.40]
 	+ Now evade draws a line to the destination point while evading
 	+ Now evade supports dashes (doesnt support dashes on target like irelia Q)

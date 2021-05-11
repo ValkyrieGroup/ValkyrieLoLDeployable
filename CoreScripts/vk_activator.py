@@ -203,7 +203,7 @@ spell_to_activator = {
 	'itemdarkcrystalflask'         : 'Potion'  # Corruption potion
 }
 
-def valkyrie_menu(ctx):
+def valkyrie_menu(ctx: Context):
 	global activators
 	ui = ctx.ui
 	
@@ -215,14 +215,14 @@ def valkyrie_menu(ctx):
 			activator.ui(ctx, ui)
 			ui.endmenu()
 
-def valkyrie_on_load(ctx):
+def valkyrie_menu(ctx: Context):
 	global Smite
 	cfg = ctx.cfg
 	
 	for name, activator in activators.items():
 		activators[name] = eval(f'Activator{name}.from_str(cfg.get_str(name, str(activator)))')
 
-def valkyrie_on_save(ctx):
+def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
 	
 	for name, activator in activators.items():
@@ -244,10 +244,11 @@ def try_activate(ctx, player, spell, item_slot = None):
 			
 	return False
 	
-def valkyrie_exec(ctx):
+def valkyrie_exec(ctx: Context):
+
 	global used_activators
 	player = ctx.player
-	
+
 	if player.dead:
 		return
 	

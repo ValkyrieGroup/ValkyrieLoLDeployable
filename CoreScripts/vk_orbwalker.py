@@ -4,6 +4,7 @@ from helpers.prediction import *
 from helpers.drawings import Circle
 from helpers.inputs import KeyInput
 from helpers.spells import Buffs
+from helpers.items import get_onhit_physical, get_onhit_magical
 from time import time
 from enum import Enum
 import math
@@ -47,6 +48,22 @@ class OrbwalkLanePush:
 	type = Orbwalker.ModeKite
 	allow_champ = False
 	
+	class LanePushInfo:
+		def __init__(self, minion):
+			self.minion = minion
+			self.attackers = [] 
+			
+		def score(self, all_attackers):
+			ph         = self.minion.health/self.minion.max_health
+			pa         = len(self.attackers)/len(all_attackers)
+			
+			hp_comp  = 0.7/(1.0 + ph)
+			atk_comp = 0.3*(1.0 + pa)
+				
+			siege_comp = 0.1 if 'siege' in self.minion.name and ph < 0.15 else 0.0
+			
+			return hp_comp + atk_comp + siege_comp
+	
 	def get_target(self, ctx, distance):
 		player			  = ctx.player
 		
@@ -56,35 +73,45 @@ class OrbwalkLanePush:
 				return target
 		
 		# Try getting jungle mob
-		jungle_target = target_selector_monster.get_target(ctx, ctx.jungle.targetable().near(player, distance).get())
+		jungle_target = target_selector_monster.get_target(ctx, ctx.jungle.targetable().enemy_to(player).near(player, distance).get())
 		if jungle_target:
 			return jungle_target
 			
-		# Try getting the last hit minion
-		lasthits = predict_minions_lasthit(ctx, ctx.minions.alive().enemy_to(ctx.player).on_screen().get(), ctx.minions.alive().ally_to(ctx.player).on_screen().get())
-		if len(lasthits) > 0:
-			
-			lasthits = sorted(lasthits, key = lambda p: p[0].health - p[1], reverse = True)
-			for minion, predicted_hp, player_dmg in lasthits:
-				if predicted_hp - math.floor(player_dmg) <= 0.0:
-					return minion
-			
-			# No last hit, we try to push or wait for last hit
-			basic_atk_speed	 = player.static.basic_atk.speed
-			basic_atk_delay	 = player.static.basic_atk_windup*(1.0 + delay_percent)/ player.atk_speed
+		# Minion logic
+		ally_minions = ctx.minions.targetable().ally_to(player).near(player, distance).get()
+		enemy_minions = ctx.minions.targetable().enemy_to(player).near(player, distance).get()
 		
-			for minion, predicted_hp, player_dmg in lasthits:
-				predicted_dmg = minion.health - predicted_hp
+		# Get attackers
+		minions = { m.index : self.LanePushInfo(m) for m in enemy_minions }
+		for ally_m in ally_minions:
+			if ally_m.curr_casting and ally_m.curr_casting.dest_index in minions:
+				minions[ally_m.curr_casting.dest_index].attackers.append(ally_m)
+		
+		sorted_minions = sorted(minions.values(), key = lambda info: info.score(enemy_minions), reverse = True)
+		if len(sorted_minions) > 0:
+			best_target = sorted_minions[0]
+			if len(best_target.attackers) == 0:
+				return best_target.minion
+			
+			enemy_minion        = best_target.minion
+			hit_dmg		 		= get_onhit_physical(player, enemy_minion) + get_onhit_magical(player, enemy_minion)
+			
+			basic_atk_speed	 = player.static.basic_atk.speed
+			basic_atk_delay	 = player.static.basic_atk_windup / player.atk_speed
+			t_until_player_hits = basic_atk_delay + player.pos.distance(enemy_minion.pos) / basic_atk_speed
+			
+			health = predict_minion_health(ctx, enemy_minion, best_target.attackers, t_until_player_hits, 0.0, MinionModifiers(ctx))
+			health_perc = health/enemy_minion.max_health
+			dmg_speed = (enemy_minion.health - health)/enemy_minion.max_health
+			if health - hit_dmg <= 0.0:
+				return enemy_minion
+			else:
+				possible_dmg = 0.0
+				for attacker in best_target.attackers:
+					possible_dmg += attacker.atk
 				
-				if predicted_dmg == 0.0:
-					return minion
-				
-				# Wait for last hit, this method is heuristic definitely not perfect
-				if predicted_hp - math.floor(player_dmg) < math.floor(player_dmg) + predicted_dmg:
-					break
-				
-				if predicted_hp - math.floor(player_dmg) > predicted_dmg:
-					return minion
+				if (enemy_minion.health - possible_dmg - hit_dmg) > hit_dmg:
+					return enemy_minion
 		
 		# Get turret / other entities
 		possible_targets = ctx.turrets.targetable().enemy_to(player).near(player, distance).get() + ctx.others.targetable().enemy_to(player).near(player, distance).get()
@@ -94,7 +121,7 @@ kite_mode	    = OrbwalkKite()
 last_hit_mode   = OrbwalkLastHit()
 lane_push_mode  = OrbwalkLanePush()
 
-def valkyrie_menu(ctx):
+def valkyrie_menu(ctx: Context):
 	global target_selector, max_atk_speed, move_interval, delay_percent
 	global key_kite, key_last_hit, key_lane_push
 	ui = ctx.ui
@@ -126,7 +153,7 @@ def valkyrie_menu(ctx):
 	
 	
 
-def valkyrie_on_load(ctx):
+def valkyrie_menu(ctx: Context):
 	global target_selector, max_atk_speed, move_interval, target_selector_monster, delay_percent
 	global key_kite, key_last_hit, key_lane_push, dead_zone
 	cfg = ctx.cfg
@@ -150,7 +177,7 @@ def valkyrie_on_load(ctx):
 	Orbwalker.ModeLastHit = last_hit_mode
 	Orbwalker.ModeLanePush = lane_push_mode
 	
-def valkyrie_on_save(ctx):
+def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
 	
 	cfg.set_str("target", str(target_selector))
@@ -168,7 +195,7 @@ def valkyrie_on_save(ctx):
 last_moved	= 0
 last_attacked = 0
 
-def valkyrie_exec(ctx):
+def valkyrie_exec(ctx: Context):
 	global last_moved, last_attacked
 	
 	Orbwalker.CurrentMode = None

@@ -29,20 +29,20 @@ olaf = HT.ChampionScript(
 	])
 )
 					 
-def valkyrie_menu(ctx) :		 
+def valkyrie_menu(ctx: Context) :		 
 	ui = ctx.ui
 	olaf.ui(ctx)
 								 
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global olaf
 	cfg = ctx.cfg				 
 	olaf = HT.ChampionScript.from_str(cfg.get_str('olaf', str(olaf)))						 
 								 
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg				 
 	cfg.set_str('olaf', str(olaf))
 								 
-def valkyrie_exec(ctx) :	     
+def valkyrie_exec(ctx: Context) :	     
 	if not ctx.player.dead:
 		olaf.exec(ctx)						 
 								 

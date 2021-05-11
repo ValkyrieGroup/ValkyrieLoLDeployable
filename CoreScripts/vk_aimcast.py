@@ -34,7 +34,7 @@ def update_keys(ctx):
 	for i, val in enumerate(keys):
 		ctx.set_key_active(keybinds[i](ctx), False if val else True)
 		
-def valkyrie_menu(ctx):
+def valkyrie_menu(ctx: Context):
 	global target_minions, target_monsters, no_aim_when_no_target
 	ui = ctx.ui
 	
@@ -57,7 +57,7 @@ def valkyrie_menu(ctx):
 	
 	ui.text("Some champions arent tested yet (please report spells without prediction)", Col.Red)
 	
-def valkyrie_on_load(ctx) :	
+def valkyrie_menu(ctx: Context) :	
 	global keys, target_sel, enabler
 	global target_minions, target_monsters, no_aim_when_no_target
 	cfg = ctx.cfg				 
@@ -71,7 +71,7 @@ def valkyrie_on_load(ctx) :
 	no_aim_when_no_target = cfg.get_bool('no_aim_when_no_target', no_aim_when_no_target)
 	enabler               = Enabler.from_str(cfg.get_str('enabler', str(enabler)))
 	
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg				 
 	
 	cfg.set_str('keys', json.dumps(keys))
@@ -111,7 +111,7 @@ def cast(ctx, spell, static, end_channel = False):
 	else:
 		ctx.cast_spell(spell, point)
 	
-def valkyrie_exec(ctx) :	     
+def valkyrie_exec(ctx: Context) :	     
 	global channels
 	
 	if enabler.check(ctx):

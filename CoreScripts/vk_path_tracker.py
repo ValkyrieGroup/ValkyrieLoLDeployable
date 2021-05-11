@@ -6,7 +6,7 @@ line_map   = Line(Col.Yellow, 1.0, True)
 img_champ  = Image(Col.White, 10.0, 30.0, True)
 min_path_len = 500
 
-def valkyrie_menu(ctx) :		 
+def valkyrie_menu(ctx: Context) :		 
 	global min_path_len
 	ui = ctx.ui
 	
@@ -15,7 +15,7 @@ def valkyrie_menu(ctx) :
 	img_champ.ui('Image champion', ctx)
 	min_path_len = ui.sliderint('Minimum path length for drawing', min_path_len, 0, 2000)
 	
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global line_world, line_map, img_champ
 	global min_path_len
 	cfg = ctx.cfg				 
@@ -25,7 +25,7 @@ def valkyrie_on_load(ctx) :
 	img_champ  = Image.from_str(cfg.get_str('img_champ', str(img_champ)))
 	min_path_len = cfg.get_int('min_path_len', min_path_len)
 	
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg				 
 	
 	cfg.set_str('line_world', str(line_world))
@@ -54,7 +54,7 @@ def draw_champ_path(ctx, champ):
 		end_pos.y += img_champ.size/2.0 + 8.0
 		ctx.text(end_pos, f'{end_time:.2f}', Col.White)
 				
-def valkyrie_exec(ctx) :	     
+def valkyrie_exec(ctx: Context) :	     
 	
 	for champ in ctx.champs.alive().enemy_to(ctx.player).get():
 		draw_champ_path(ctx, champ)

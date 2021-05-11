@@ -23,7 +23,7 @@ def degree_to_rad(degrees):
 
 _90_DEG_IN_RAD = degree_to_rad(90)
 
-def valkyrie_menu(ctx):
+def valkyrie_menu(ctx: Context):
 	global player_circle, show_minion_hit
 	global show_casting_spells, show_missiles, show_potential_dmg, potential_dmg_mask
 	ui = ctx.ui
@@ -59,7 +59,7 @@ def valkyrie_menu(ctx):
 	potential_dmg_mask[2] = ui.checkbox("Include E", potential_dmg_mask[2]); ui.sameline()
 	potential_dmg_mask[3] = ui.checkbox("Include R", potential_dmg_mask[3])
 	
-def valkyrie_on_load(ctx):
+def valkyrie_menu(ctx: Context):
 	global player_circle, show_minion_hit, turret_circle_ally, turret_circle_enemy, focused_circle
 	global show_casting_spells, show_missiles, show_potential_dmg, potential_dmg_mask
 	cfg = ctx.cfg
@@ -75,7 +75,7 @@ def valkyrie_on_load(ctx):
 	show_potential_dmg    = cfg.get_bool("show_potential_dmg", show_potential_dmg)
 	potential_dmg_mask    = json.loads(cfg.get_str("potential_dmg_mask", json.dumps(potential_dmg_mask)))
 	
-def valkyrie_on_save(ctx):
+def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
 	
 	cfg.set_str("turret_circle_enemy", str(turret_circle_enemy))
@@ -238,7 +238,7 @@ def draw_focused(ctx):
 		focused_circle.radius = ctx.focused.bounding_radius + 50.0
 		focused_circle.draw_at(ctx, ctx.focused.pos)
 		
-def valkyrie_exec(ctx):
+def valkyrie_exec(ctx: Context):
 	draw_player_range(ctx)
 	draw_turret_range(ctx)
 	draw_focused(ctx)
@@ -256,3 +256,4 @@ def valkyrie_exec(ctx):
 			
 	if show_potential_dmg:
 		draw_potential_dmg(ctx)
+		

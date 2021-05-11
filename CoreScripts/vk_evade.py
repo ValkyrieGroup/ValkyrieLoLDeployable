@@ -557,7 +557,7 @@ def get_available_dashes(player):
 
 	return dashes
 
-def valkyrie_menu(ctx) :		 
+def valkyrie_menu(ctx: Context) :		 
 	global always_evade, enabler, extra_evade_length
 	global flash_for_prio, dash_for_prio, use_flash, use_dash
 	ui = ctx.ui	
@@ -596,7 +596,7 @@ def valkyrie_menu(ctx) :
 		ui.text('2. Currently not evading cones')
 		ui.treepop()
 		
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global always_evade, enabler, extra_evade_length
 	global flash_for_prio, dash_for_prio, use_flash, use_dash
 	global Settings, NameToSettings
@@ -618,7 +618,7 @@ def valkyrie_on_load(ctx) :
 			for mis in setting.missile_names:
 				NameToSettings[mis] = setting
 	
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg
 	
 	cfg.set_str('_enabler', str(enabler))
@@ -805,7 +805,7 @@ def debug_show_walls(ctx):
 			
 			ctx.text(w2s, '*', Col.Black if ctx.is_wall_at(pos) else Col.White)
 			
-def valkyrie_exec(ctx):
+def valkyrie_exec(ctx: Context):
 	
 	if not enabler.check(ctx):
 		return

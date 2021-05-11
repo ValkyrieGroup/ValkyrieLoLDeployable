@@ -53,24 +53,24 @@ xerath = HT.ChampionScript(
 	])
 )
 
-def valkyrie_menu(ctx) :		 
+def valkyrie_menu(ctx: Context) :		 
 	global xerath
 	ui = ctx.ui
 	
 	xerath.ui(ctx)
 	
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global xerath
 	cfg = ctx.cfg
 	
 	xerath = HT.ChampionScript.from_str(cfg.get_str('xerath', str(xerath)))
 
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg
 
 	cfg.set_str('xerath', str(xerath))
 	
-def valkyrie_exec(ctx) :
+def valkyrie_exec(ctx: Context) :
         
 	if ctx.player.dead:
                 return

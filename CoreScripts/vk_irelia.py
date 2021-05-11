@@ -100,22 +100,22 @@ irelia = HT.ChampionScript(
 	])
 )
 
-def valkyrie_menu(ctx) :
+def valkyrie_menu(ctx: Context) :
 	ui = ctx.ui					 
 
 	irelia.ui(ctx)
 	
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global irelia
 	cfg = ctx.cfg				 
 	
 	irelia = HT.ChampionScript.from_str(cfg.get_str("irelia", str(irelia)))
 	
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg				 
 	cfg.set_str('irelia', str(irelia))
 	
-def valkyrie_exec(ctx) :	     
+def valkyrie_exec(ctx: Context) :	     
 	if ctx.player.dead:
 		return
 	

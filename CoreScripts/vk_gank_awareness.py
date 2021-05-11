@@ -11,7 +11,7 @@ show_gank_alerts	 = None
 show_last_seen_mm	= None
 show_last_seen_world = None
 
-def valkyrie_menu(ctx):
+def valkyrie_menu(ctx: Context):
 	global max_gank_distance, show_last_seen_mm, show_last_seen_world, show_gank_alerts, show_line
 	global size_portrait_world
 	ui = ctx.ui
@@ -27,7 +27,7 @@ def valkyrie_menu(ctx):
 	
 	ui.image("garen_square", Vec2(size_portrait_world, size_portrait_world))
 
-def valkyrie_on_load(ctx):
+def valkyrie_menu(ctx: Context):
 	global max_gank_distance, show_last_seen_mm, show_last_seen_world, show_gank_alerts, show_line
 	global size_portrait_world
 	cfg = ctx.cfg
@@ -39,7 +39,7 @@ def valkyrie_on_load(ctx):
 	size_portrait_world  = cfg.get_float("size_portrait_world", size_portrait_world)
 	show_line            = cfg.get_bool("show_line", show_line)
 	
-def valkyrie_on_save(ctx):
+def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
 	
 	cfg.set_float("max_gank_distance",   max_gank_distance)
@@ -116,7 +116,7 @@ def set_champ_last_position(champ, new_pos):
 	
 	last_positions[champ.net_id] = [champ.pos, time(), new_pos]
 	
-def valkyrie_exec(ctx):
+def valkyrie_exec(ctx: Context):
 	for champ in ctx.champs.alive().enemy_to(ctx.player).get():
 		
 		if show_gank_alerts:

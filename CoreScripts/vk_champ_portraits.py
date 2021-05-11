@@ -37,7 +37,7 @@ def update_ratios():
 	hpbar_size      = Vec2(50*(portrait_size*0.007), 122*(portrait_size*0.007))
 	hpbar_offset    = Vec2(portrait_size*0.3, -portrait_size*0.05)
 	
-def valkyrie_menu(ctx) :		 
+def valkyrie_menu(ctx: Context) :		 
 	global portrait_size, offsetX, offsetY
 	ui = ctx.ui	
 
@@ -48,7 +48,7 @@ def valkyrie_menu(ctx) :
 	
 	update_ratios()
 
-def valkyrie_on_load(ctx):	 
+def valkyrie_menu(ctx: Context):	 
 	global portrait_size
 	global offsetX      
 	global offsetY      
@@ -60,7 +60,7 @@ def valkyrie_on_load(ctx):
 	
 	update_ratios()
 	
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg				 
 	
 	cfg.set_float('portrait_size', portrait_size)
@@ -90,10 +90,10 @@ def draw_portrait_for(ctx, champ, pos):
 	draw_spell(ctx, champ.spells[4], pos + spell1_offset)
 	draw_spell(ctx, champ.spells[5], pos + spell2_offset)
 				
-def valkyrie_exec(ctx) :	     
+def valkyrie_exec(ctx: Context) :	     
 	
 	hud = ctx.hud
-	start_location = hud.minimap_pos
+	start_location = hud.minimap_pos.clone()
 	start_location.x = hud.minimap_pos.x + hud.minimap_size.x*offsetX
 	start_location.y = hud.minimap_pos.y + hud.minimap_size.y*offsetY
 	

@@ -15,7 +15,7 @@ settings = [
 	["F", [176, -15], 10, 25, True]
 ]
 	
-def valkyrie_menu(ctx):
+def valkyrie_menu(ctx: Context):
 	global show_enemies, show_allies, show_self, settings
 	
 	ui = ctx.ui
@@ -40,7 +40,7 @@ def valkyrie_menu(ctx):
 			ui.endmenu()
 	
 
-def valkyrie_on_load(ctx):
+def valkyrie_menu(ctx: Context):
 	global show_enemies, show_allies, show_self, settings
 	cfg = ctx.cfg
 	
@@ -50,7 +50,7 @@ def valkyrie_on_load(ctx):
 	
 	settings = json.loads(cfg.get_str("settings", json.dumps(settings)))
 	
-def valkyrie_on_save(ctx):
+def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
 	
 	cfg.set_bool("show_enemies", show_enemies)
@@ -67,7 +67,7 @@ def draw_tracker_for(ctx, champ):
 		if show:
 			draw_spell_track(ctx, spells[i], Vec2(pos.x + offset[0], pos.y + offset[1]), size, rounding)
 	
-def valkyrie_exec(ctx):
+def valkyrie_exec(ctx: Context):
 	
 	player = ctx.player
 	if show_self and ctx.is_on_screen(player.pos):

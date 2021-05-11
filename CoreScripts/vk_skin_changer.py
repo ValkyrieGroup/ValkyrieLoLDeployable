@@ -10,7 +10,7 @@ champ_selected_chroma = -1
 champ_skin_id         = -1	
 
 	
-def valkyrie_menu(ctx) :		 
+def valkyrie_menu(ctx: Context) :		 
 	global champ_selected_skin, champ_selected_chroma, champ_skin_id
 	ui = ctx.ui					 
 	
@@ -38,7 +38,7 @@ def valkyrie_menu(ctx) :
 		champ_skin_id = champ_skins[champ_selected_skin]['id']
 		
 	
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global champ_skins, champ_skin_names
 	global champ_selected_skin, champ_selected_chroma, champ_skin_id
 
@@ -60,7 +60,7 @@ def valkyrie_on_load(ctx) :
 	champ_skin_id         = cfg.get_int(champ + '_champ_skin_id'        , champ_skin_id) 
 
 			
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg				 
 	
 	champ = ctx.player.name
@@ -68,7 +68,7 @@ def valkyrie_on_save(ctx) :
 	cfg.set_int(champ + '_champ_selected_chroma', champ_selected_chroma)
 	cfg.set_int(champ + '_champ_skin_id'        , champ_skin_id)   
 								 
-def valkyrie_exec(ctx) :	     
+def valkyrie_exec(ctx: Context) :	     
 	
 	if not ctx.resources_loaded:
 		return

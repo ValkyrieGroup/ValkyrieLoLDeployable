@@ -1,9 +1,10 @@
 from valkyrie import *
 from helpers.drawings import Circle
+from time import time
 import json
 
 show_clones, show_wards, show_traps = None, None, None
-circle_mm	= Circle(0.0, 15, 1.0, Col.Red, False, True)
+circle_mm	= Circle(0.0, 15, 1.0, Col.Red, False, True, mode = 0)
 circle_world = Circle(0.0, 50, 3.0, Col.Red, False, True)
 
 size_clone = 40
@@ -51,7 +52,7 @@ def draw_settings(ui, objs, label):
 			
 			ui.endmenu()
 
-def valkyrie_menu(ctx):
+def valkyrie_menu(ctx: Context):
 	global show_clones, show_wards, show_traps, traps, wards
 	global size_clone, size_traps, size_wards
 	global circle_mm, circle_world
@@ -78,7 +79,7 @@ def valkyrie_menu(ctx):
 	draw_settings(ui, traps, "Traps")
 	draw_settings(ui, wards, "Wards")
 
-def valkyrie_on_load(ctx):
+def valkyrie_menu(ctx: Context):
 	global show_clones, show_wards, show_traps, traps, wards
 	global size_clone, size_traps, size_wards
 	global circle_mm, circle_world
@@ -98,7 +99,7 @@ def valkyrie_on_load(ctx):
 	circle_world = Circle.from_str(cfg.get_str("circle_world", str(circle_world)))
 	circle_mm	= Circle.from_str(cfg.get_str("circle_mm",	str(circle_mm)))
 	
-def valkyrie_on_save(ctx):
+def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
 	
 	cfg.set_bool("show_clones", show_clones)
@@ -113,14 +114,19 @@ def valkyrie_on_save(ctx):
 	
 	cfg.set_int('size_traps', size_traps)
 	cfg.set_int('size_clone', size_clone)
-	cfg.set_int('show_wards', size_wards)
+	cfg.set_int('size_wards', size_wards)
 	
 def draw(ctx, obj, size, radius, show_circle_world, show_circle_map, icon):
 	
 	pos = ctx.w2s(obj.pos)
+
 	if ctx.is_on_screen(pos):
 		duration = obj.expiry + obj.last_seen - ctx.time
-		ctx.image(icon, pos, Vec2(size, size), Col.White, 10)
+		offset = (time()*100 % 200.0)
+		offset = 100.0 - (offset - 100.0) if offset > 100.0 else offset
+		ctx.image(icon, Vec3(obj.pos.x, obj.pos.y + offset, obj.pos.z), Vec2(size, size), Col(1.0, 1.0, 1.0, 0.8))
+		#ctx.image(icon, pos, Vec2(size, size), Col.White, 10)
+		
 		if duration > 0.0:
 			pos.y += size/2 + 8
 			ctx.text(pos, str(int(duration)), Col.White)
@@ -132,9 +138,9 @@ def draw(ctx, obj, size, radius, show_circle_world, show_circle_map, icon):
 		circle_mm.radius = ctx.d2m(radius)
 		circle_mm.draw_at(ctx, ctx.w2m(obj.pos))
 
-def valkyrie_exec(ctx):
-	
-	for obj in ctx.others.alive().enemy_to(ctx.player).get():
+def valkyrie_exec(ctx: Context):
+
+	for obj in ctx.others.alive().get():
 		if show_wards and obj.has_tags(Unit.Ward) and obj.name in wards:
 			draw(ctx, obj, size_wards, *(wards[obj.name]))
 		elif show_traps and obj.has_tags(Unit.SpecialTrap) and obj.name in traps:

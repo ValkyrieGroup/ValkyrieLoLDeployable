@@ -2,7 +2,7 @@ from valkyrie import *
 from helpers.targeting import TargetSelector, TargetSet
 
 import helpers.templates as HT
-from   helpers.spells import SpellRotation, RSpell, Slot, SpellCondition
+from   helpers.spells import SpellRotation, RSpell, Slot, SpellCondition, CCType
 		
 samira = HT.ChampionScript(
 	passive_trigger   = HT.Enabler.default(),
@@ -12,7 +12,7 @@ samira = HT.ChampionScript(
 	combat_rotation = SpellRotation([
 		RSpell(Slot.R), 
 		RSpell(Slot.Q), 
-		RSpell(Slot.W, HT.ConditionIncomingMissiles(0.75)), 
+		RSpell(Slot.W, HT.ConditionCC(CCType.Slow, HT.ConditionCC.Me)),#HT.ConditionIncomingMissiles(0.75)), 
 		RSpell(Slot.E, HT.MixedConditions([
 			HT.ConditionTargetOutsideTower(),
 			HT.MixedConditions([
@@ -32,21 +32,21 @@ leap_under_tower = False
 leap_gap_closer  = True
 leap_below_hp    = 30
 	
-def valkyrie_menu(ctx) :
+def valkyrie_menu(ctx: Context) :
 	ui = ctx.ui					 
 	samira.ui(ctx)
 	
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global samira
 	cfg = ctx.cfg				 
 	
 	samira = HT.ChampionScript.from_str(cfg.get_str('samira', str(samira)))
 	
-def valkyrie_on_save(ctx) :	
+def valkyrie_on_save(ctx: Context) :	
 	cfg = ctx.cfg				 
 	cfg.set_str('samira', str(samira))
 	
-def valkyrie_exec(ctx) :
+def valkyrie_exec(ctx: Context) :
 	
 	if ctx.player.dead:
 		return

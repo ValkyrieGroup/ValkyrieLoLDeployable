@@ -8,24 +8,24 @@ collector_id = 6676
 def calc_collector_dmg(player):
 	return player.health * 0.05
 
-def valkyrie_menu(ctx) :
+def valkyrie_menu(ctx: Context) :
 	global auto_e_killable, draw_e_indicator
 	ui = ctx.ui	
 	
 	auto_e_killable = ui.checkbox('Auto E when killable', auto_e_killable)
 	
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global auto_e_killable, draw_e_indicator
 	cfg = ctx.cfg				 
 	
 	auto_e_killable = cfg.get_bool('auto_e_killable', auto_e_killable)
 	
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg				 
 	
 	cfg.set_bool('auto_e_killable', auto_e_killable)
 	
-def valkyrie_exec(ctx) :
+def valkyrie_exec(ctx: Context) :
 	player = ctx.player
 
 	if not auto_e_killable or player.dead:

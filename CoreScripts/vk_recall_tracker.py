@@ -15,7 +15,7 @@ team_base_pos = {
 	200: Vec3(14500, 0, 14500)
 }
 
-def valkyrie_menu(ctx):
+def valkyrie_menu(ctx: Context):
 	global bar_width, bar_height, show_mock
 	ui = ctx.ui
 	
@@ -26,14 +26,14 @@ def valkyrie_menu(ctx):
 	show_mock = ui.checkbox("Show test", show_mock)
 	ui.help('Shows the panel with recalls with test data. Click and drag to change location. Use above sliders to change size')
 	
-def valkyrie_on_load(ctx):
+def valkyrie_menu(ctx: Context):
 	global bar_width, bar_height
 	cfg = ctx.cfg
 	
 	bar_width = cfg.get_float("bar_width", bar_width)
 	bar_height = cfg.get_float("bar_height", bar_height)
 	
-def valkyrie_on_save(ctx):
+def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
 	
 	cfg.set_float("bar_width", bar_width)
@@ -44,7 +44,7 @@ def draw_bar(ui, champ_name, tleft):
 	ui.sameline()
 	ui.progressbar(tleft/8.0, Vec2(bar_width, bar_height), f"{tleft:.2f}")
 
-def valkyrie_exec(ctx):
+def valkyrie_exec(ctx: Context):
 	global recalls
 	
 	ui = ctx.ui

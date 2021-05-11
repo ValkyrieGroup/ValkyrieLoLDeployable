@@ -69,22 +69,22 @@ annie = HT.ChampionScript(
 	])
 )
 
-def valkyrie_menu(ctx) :		 
+def valkyrie_menu(ctx: Context) :		 
 	global annie
 	ui = ctx.ui
 	
 	annie.ui(ctx)
 	
-def valkyrie_on_load(ctx) :	 
+def valkyrie_menu(ctx: Context) :	 
 	global annie
 	cfg = ctx.cfg
 	
 	annie = HT.ChampionScript.from_str(cfg.get_str('annie', str(annie)))
 
-def valkyrie_on_save(ctx) :	 
+def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg
 
 	cfg.set_str('annie', str(annie))
 	
-def valkyrie_exec(ctx) :
+def valkyrie_exec(ctx: Context) :
 	annie.exec(ctx)
