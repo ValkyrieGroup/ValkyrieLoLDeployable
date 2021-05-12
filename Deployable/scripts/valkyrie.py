@@ -5,42 +5,61 @@ class Config:
 	'''Interface for saving & loading script configurations'''
 
 	def set_int(self, key: str, value: int):
-		'''     Saves an integer to the config file'''
+		'''    Saves an integer to the config file'''
 		pass
 
 	def set_bool(self, key: str, value: bool):
-		'''     Saves a bool to the config file'''
+		'''    Saves a bool to the config file'''
 		pass
 
 	def set_float(self, key: str, value: float):
-		'''     Saves a float to the config file'''
+		'''    Saves a float to the config file'''
 		pass
 
 	def set_str(self, key: str, value: str):
-		'''     Saves a string to the config file'''
+		'''    Saves a string to the config file'''
 		pass
 
 	def get_int(self, key: str, default: int) -> int:
-		'''     Gets an integer from the config file'''
+		'''    Gets an integer from the config file'''
 		pass
 
 	def get_bool(self, key: str, default: bool) -> bool:
-		'''     Gets a bool from the config file'''
+		'''    Gets a bool from the config file'''
 		pass
 
 	def get_float(self, key: str, default: float) -> float:
-		'''     Gets a float from the config file'''
+		'''    Gets a float from the config file'''
 		pass
 
 	def get_str(self, key: str, default: str) -> str:
-		'''     Gets a string from the config file'''
+		'''    Gets a string from the config file'''
 		pass
 
 class Col:
 	'''None'''
 
+	Black : any
+	White : any
+	Red : any
+	DarkRed : any
+	Green : any
+	DarkGreen : any
+	Yellow : any
+	DarkYellow : any
+	Cyan : any
+	Purple : any
+	Gray : any
+	Orange : any
+	Blue : any
+	Brown : any
 	@property
 	def r(self) -> float:
+		''' Red value of color'''
+		pass
+
+	@r.setter
+	def r(self, value):
 		''' Red value of color'''
 		pass
 
@@ -49,13 +68,28 @@ class Col:
 		''' Green value of color'''
 		pass
 
+	@g.setter
+	def g(self, value):
+		''' Green value of color'''
+		pass
+
 	@property
 	def b(self) -> float:
 		''' Blue value of color'''
 		pass
 
+	@b.setter
+	def b(self, value):
+		''' Blue value of color'''
+		pass
+
 	@property
 	def a(self) -> float:
+		''' Alpha value of color'''
+		pass
+
+	@a.setter
+	def a(self, value):
 		''' Alpha value of color'''
 		pass
 
@@ -67,8 +101,18 @@ class Vec4:
 		''''''
 		pass
 
+	@x.setter
+	def x(self, value):
+		''''''
+		pass
+
 	@property
 	def y(self) -> float:
+		''''''
+		pass
+
+	@y.setter
+	def y(self, value):
 		''''''
 		pass
 
@@ -77,8 +121,18 @@ class Vec4:
 		''''''
 		pass
 
+	@z.setter
+	def z(self, value):
+		''''''
+		pass
+
 	@property
 	def w(self) -> float:
+		''''''
+		pass
+
+	@w.setter
+	def w(self, value):
 		''''''
 		pass
 
@@ -106,13 +160,28 @@ class Vec3:
 		''''''
 		pass
 
+	@x.setter
+	def x(self, value):
+		''''''
+		pass
+
 	@property
 	def y(self) -> float:
 		''''''
 		pass
 
+	@y.setter
+	def y(self, value):
+		''''''
+		pass
+
 	@property
 	def z(self) -> float:
+		''''''
+		pass
+
+	@z.setter
+	def z(self, value):
 		''''''
 		pass
 
@@ -129,31 +198,31 @@ class Vec3:
 		pass
 
 	def l1(self, other: Vec3) -> float:
-		'''     L1 Distance'''
+		'''    L1 Distance'''
 		pass
 
 	def rotate_x(self, angle: float) -> Vec3:
-		'''     Rotates the vector along the x axis'''
+		'''    Rotates the vector along the x axis'''
 		pass
 
 	def rotate_y(self, angle: float) -> Vec3:
-		'''     Rotates the vector along the y axis'''
+		'''    Rotates the vector along the y axis'''
 		pass
 
 	def rotate_z(self, angle: float) -> Vec3:
-		'''     Rotates the vector along the z axis'''
+		'''    Rotates the vector along the z axis'''
 		pass
 
 	def angle(self, other: Vec3):
-		'''     Angle between two vectors'''
+		'''    Angle between two vectors'''
 		pass
 
 	def dot(self, other: Vec3) -> float:
-		'''     Calculates dot product'''
+		'''    Calculates dot product'''
 		pass
 
 	def clone(self) -> Vec3:
-		'''     Clones vector'''
+		'''    Clones vector'''
 		pass
 
 class Vec2:
@@ -164,8 +233,18 @@ class Vec2:
 		''''''
 		pass
 
+	@x.setter
+	def x(self, value):
+		''''''
+		pass
+
 	@property
 	def y(self) -> float:
+		''''''
+		pass
+
+	@y.setter
+	def y(self, value):
 		''''''
 		pass
 
@@ -185,21 +264,25 @@ class Vec2:
 		'''     Clones vector'''
 		pass
 
+class Summoner:
+	'''Represents the type of a summoner spell'''
+
+	Smite = 0
+	Ignite = 1
+	Cleanse = 2
+	Teleport = 3
+	Flash = 4
+	HexFlash = 5
+	Snowball = 6
+	Clarity = 7
+	Exhaust = 8
+	Barrier = 9
+	Heal = 10
+	Ghost = 11
+	Unknown = 12
+
 class WindowFlag:
 	'''Represents imgui window flags. These support bitwise operations so WindowFlag.NoResize | WindowFlag.NoMove would yield a flag with both'''
-
-	@property
-	def values(self) -> k:
-		'''dict() -> new empty dictionary
-dict(mapping) -> new dictionary initialized from a mapping object's
-    (key, value) pairs
-dict(iterable) -> new dictionary initialized as if via:
-    d = {}
-    for k, v in iterable:
-        d = v
-dict(**kwargs) -> new dictionary initialized with the name=value pairs
-    in the keyword argument list.  For example:  dict(one=1, two=2)'''
-		pass
 
 	NoFlags = 0
 	NoTitleBar = 1
@@ -229,19 +312,6 @@ dict(**kwargs) -> new dictionary initialized with the name=value pairs
 class RayLayer:
 	'''Represents the objects that a raycast can intercept'''
 
-	@property
-	def values(self) -> k:
-		'''dict() -> new empty dictionary
-dict(mapping) -> new dictionary initialized from a mapping object's
-    (key, value) pairs
-dict(iterable) -> new dictionary initialized as if via:
-    d = {}
-    for k, v in iterable:
-        d = v
-dict(**kwargs) -> new dictionary initialized with the name=value pairs
-    in the keyword argument list.  For example:  dict(one=1, two=2)'''
-		pass
-
 	Champion = 1
 	Minion = 2
 	Turret = 4
@@ -256,19 +326,6 @@ dict(**kwargs) -> new dictionary initialized with the name=value pairs
 
 class StyleVar:
 	'''None'''
-
-	@property
-	def values(self) -> k:
-		'''dict() -> new empty dictionary
-dict(mapping) -> new dictionary initialized from a mapping object's
-    (key, value) pairs
-dict(iterable) -> new dictionary initialized as if via:
-    d = {}
-    for k, v in iterable:
-        d = v
-dict(**kwargs) -> new dictionary initialized with the name=value pairs
-    in the keyword argument list.  For example:  dict(one=1, two=2)'''
-		pass
 
 	Alpha = 0
 	WindowPadding = 1
@@ -295,21 +352,32 @@ dict(**kwargs) -> new dictionary initialized with the name=value pairs
 	ButtonTextAlign = 22
 	SelectableTextAlign = 23
 
+	Alpha : any
+	WindowPadding : any
+	WindowRounding : any
+	WindowBorderSize : any
+	WindowMinSize : any
+	WindowTitleAlign : any
+	ChildRounding : any
+	ChildBorderSize : any
+	PopupRounding : any
+	PopupBorderSize : any
+	FramePadding : any
+	FrameRounding : any
+	FrameBorderSize : any
+	ItemSpacing : any
+	ItemInnerSpacing : any
+	IndentSpacing : any
+	CellPadding : any
+	ScrollbarSize : any
+	ScrollbarRounding : any
+	GrabMinSize : any
+	GrabRounding : any
+	TabRounding : any
+	ButtonTextAlign : any
+	SelectableTextAlign : any
 class Spell:
 	'''Spell flags that specify behaviour and type of a spell'''
-
-	@property
-	def values(self) -> k:
-		'''dict() -> new empty dictionary
-dict(mapping) -> new dictionary initialized from a mapping object's
-    (key, value) pairs
-dict(iterable) -> new dictionary initialized as if via:
-    d = {}
-    for k, v in iterable:
-        d = v
-dict(**kwargs) -> new dictionary initialized with the name=value pairs
-    in the keyword argument list.  For example:  dict(one=1, two=2)'''
-		pass
 
 	CastPoint = 1
 	CastAnywhere = 2
@@ -333,19 +401,6 @@ dict(**kwargs) -> new dictionary initialized with the name=value pairs
 
 class Key:
 	'''Hardware key codes'''
-
-	@property
-	def values(self) -> k:
-		'''dict() -> new empty dictionary
-dict(mapping) -> new dictionary initialized from a mapping object's
-    (key, value) pairs
-dict(iterable) -> new dictionary initialized as if via:
-    d = {}
-    for k, v in iterable:
-        d = v
-dict(**kwargs) -> new dictionary initialized with the name=value pairs
-    in the keyword argument list.  For example:  dict(one=1, two=2)'''
-		pass
 
 	no_key = 0
 	esc = 1
@@ -435,37 +490,11 @@ dict(**kwargs) -> new dictionary initialized with the name=value pairs
 class MapType:
 	'''Map type SRU = Summoners Rift, HA = Howling Abyss'''
 
-	@property
-	def values(self) -> k:
-		'''dict() -> new empty dictionary
-dict(mapping) -> new dictionary initialized from a mapping object's
-    (key, value) pairs
-dict(iterable) -> new dictionary initialized as if via:
-    d = {}
-    for k, v in iterable:
-        d = v
-dict(**kwargs) -> new dictionary initialized with the name=value pairs
-    in the keyword argument list.  For example:  dict(one=1, two=2)'''
-		pass
-
 	SRU = 29299
 	HA = 24936
 
 class Unit:
 	'''Riot unit tags extracted from the game files. These are not compatible with bitwise operations so writing things like Unit.Monster | Unit.Plant will not yield a tag that has both of those.'''
-
-	@property
-	def values(self) -> k:
-		'''dict() -> new empty dictionary
-dict(mapping) -> new dictionary initialized from a mapping object's
-    (key, value) pairs
-dict(iterable) -> new dictionary initialized as if via:
-    d = {}
-    for k, v in iterable:
-        d = v
-dict(**kwargs) -> new dictionary initialized with the name=value pairs
-    in the keyword argument list.  For example:  dict(one=1, two=2)'''
-		pass
 
 	Champion = 2
 	ChampionClone = 3
@@ -529,9 +558,29 @@ class Map:
 		''' A enum value representing the currently played map'''
 		pass
 
+	@type.setter
+	def type(self, value):
+		''' A enum value representing the currently played map'''
+		pass
+
 class Keybind:
 	'''Contains game keybinds'''
 
+	cast_q : any
+	cast_w : any
+	cast_e : any
+	cast_r : any
+	cast_d : any
+	cast_f : any
+	use_item_1 : any
+	use_item_2 : any
+	use_item_3 : any
+	use_item_4 : any
+	use_item_5 : any
+	use_item_6 : any
+	use_trinket : any
+	recall : any
+	target_champ_only : any
 class GameHud:
 	'''Contains info about the hud in the game'''
 
@@ -540,13 +589,28 @@ class GameHud:
 		''' Position of the minimap on the screen'''
 		pass
 
+	@minimap_pos.setter
+	def minimap_pos(self, value):
+		''' Position of the minimap on the screen'''
+		pass
+
 	@property
 	def minimap_size(self) -> Vec2:
 		''' Size of the minimap on the screen'''
 		pass
 
+	@minimap_size.setter
+	def minimap_size(self, value):
+		''' Size of the minimap on the screen'''
+		pass
+
 	@property
 	def chat_open(self) -> bool:
+		''' True if chat is open'''
+		pass
+
+	@chat_open.setter
+	def chat_open(self, value):
 		''' True if chat is open'''
 		pass
 
@@ -558,8 +622,18 @@ class RaycastResult:
 		''' Point of raycast collision'''
 		pass
 
+	@point.setter
+	def point(self, value):
+		''' Point of raycast collision'''
+		pass
+
 	@property
 	def obj(self) -> Obj:
+		''' Object that the raycast collided with. None if it was a wall'''
+		pass
+
+	@obj.setter
+	def obj(self, value):
 		''' Object that the raycast collided with. None if it was a wall'''
 		pass
 
@@ -571,8 +645,18 @@ class FutureCollision:
 		''' The spell in the collision'''
 		pass
 
+	@spell.setter
+	def spell(self, value):
+		''' The spell in the collision'''
+		pass
+
 	@property
 	def unit(self) -> UnitObj:
+		''' The unit in the collision'''
+		pass
+
+	@unit.setter
+	def unit(self, value):
 		''' The unit in the collision'''
 		pass
 
@@ -581,8 +665,18 @@ class FutureCollision:
 		''' The unit position at the moment of collision'''
 		pass
 
+	@unit_pos.setter
+	def unit_pos(self, value):
+		''' The unit position at the moment of collision'''
+		pass
+
 	@property
 	def spell_pos(self) -> Vec3:
+		''' The spell position at the moment of collision'''
+		pass
+
+	@spell_pos.setter
+	def spell_pos(self, value):
 		''' The spell position at the moment of collision'''
 		pass
 
@@ -591,8 +685,18 @@ class FutureCollision:
 		''' True if the projectile will not go further after this collision. Useful for drawing indicators'''
 		pass
 
+	@final.setter
+	def final(self, value):
+		''' True if the projectile will not go further after this collision. Useful for drawing indicators'''
+		pass
+
 	@property
 	def time_until_impact(self) -> float:
+		''' Time in seconds until the collision occurs'''
+		pass
+
+	@time_until_impact.setter
+	def time_until_impact(self, value):
 		''' Time in seconds until the collision occurs'''
 		pass
 
@@ -604,8 +708,18 @@ class Buff:
 		''' Name of the buff'''
 		pass
 
+	@name.setter
+	def name(self, value):
+		''' Name of the buff'''
+		pass
+
 	@property
 	def time_begin(self) -> float:
+		''' When the buff was received in game time'''
+		pass
+
+	@time_begin.setter
+	def time_begin(self, value):
 		''' When the buff was received in game time'''
 		pass
 
@@ -614,13 +728,28 @@ class Buff:
 		''' When the buff will end in game time'''
 		pass
 
+	@time_end.setter
+	def time_end(self, value):
+		''' When the buff will end in game time'''
+		pass
+
 	@property
 	def count(self) -> int:
 		''' Number of stacks of the buff'''
 		pass
 
+	@count.setter
+	def count(self, value):
+		''' Number of stacks of the buff'''
+		pass
+
 	@property
 	def value(self) -> int:
+		''' Value of the buff'''
+		pass
+
+	@value.setter
+	def value(self, value):
 		''' Value of the buff'''
 		pass
 
@@ -632,8 +761,18 @@ class UnitStatic:
 		''' The height at which the health bar starts'''
 		pass
 
+	@hp_bar_height.setter
+	def hp_bar_height(self, value):
+		''' The height at which the health bar starts'''
+		pass
+
 	@property
 	def movement_speed(self) -> float:
+		''' Base movement speed'''
+		pass
+
+	@movement_speed.setter
+	def movement_speed(self, value):
 		''' Base movement speed'''
 		pass
 
@@ -642,8 +781,18 @@ class UnitStatic:
 		''' Base attack range'''
 		pass
 
+	@base_atk_range.setter
+	def base_atk_range(self, value):
+		''' Base attack range'''
+		pass
+
 	@property
 	def base_atk_speed(self) -> float:
+		''' Base attack speed'''
+		pass
+
+	@base_atk_speed.setter
+	def base_atk_speed(self, value):
 		''' Base attack speed'''
 		pass
 
@@ -652,8 +801,18 @@ class UnitStatic:
 		''' Attack speed ratio'''
 		pass
 
+	@atk_speed_ratio.setter
+	def atk_speed_ratio(self, value):
+		''' Attack speed ratio'''
+		pass
+
 	@property
 	def acquisition_radius(self) -> float:
+		''' Acquisition radius. See league wiki for more info'''
+		pass
+
+	@acquisition_radius.setter
+	def acquisition_radius(self, value):
 		''' Acquisition radius. See league wiki for more info'''
 		pass
 
@@ -662,8 +821,18 @@ class UnitStatic:
 		''' Selection radius. See league wiki for more info'''
 		pass
 
+	@selection_radius.setter
+	def selection_radius(self, value):
+		''' Selection radius. See league wiki for more info'''
+		pass
+
 	@property
 	def pathing_radius(self) -> float:
+		''' Pathing radius. See league wiki for more info'''
+		pass
+
+	@pathing_radius.setter
+	def pathing_radius(self, value):
 		''' Pathing radius. See league wiki for more info'''
 		pass
 
@@ -672,8 +841,18 @@ class UnitStatic:
 		''' Gameplay radius. See league wiki for more info'''
 		pass
 
+	@gameplay_radius.setter
+	def gameplay_radius(self, value):
+		''' Gameplay radius. See league wiki for more info'''
+		pass
+
 	@property
 	def basic_atk(self) -> SpellStatic:
+		''' Default basic attack on the unit'''
+		pass
+
+	@basic_atk.setter
+	def basic_atk(self, value):
 		''' Default basic attack on the unit'''
 		pass
 
@@ -682,8 +861,18 @@ class UnitStatic:
 		''' Basic attack windup. See league wiki for more info'''
 		pass
 
+	@basic_atk_windup.setter
+	def basic_atk_windup(self, value):
+		''' Basic attack windup. See league wiki for more info'''
+		pass
+
 	@property
 	def basic_atk_cast_time(self) -> float:
+		''' Basic attack cast time. See league wiki for more info'''
+		pass
+
+	@basic_atk_cast_time.setter
+	def basic_atk_cast_time(self, value):
 		''' Basic attack cast time. See league wiki for more info'''
 		pass
 
@@ -695,13 +884,28 @@ class ItemSlot:
 		''' Charges of item (example: corruption potion charges, number of red potions etc)'''
 		pass
 
+	@charges.setter
+	def charges(self, value):
+		''' Charges of item (example: corruption potion charges, number of red potions etc)'''
+		pass
+
 	@property
 	def item(self) -> ItemStatic:
 		''' Static data of the item. If there is no item on the slot then this is None otherwise it is an ItemStatic instance'''
 		pass
 
+	@item.setter
+	def item(self, value):
+		''' Static data of the item. If there is no item on the slot then this is None otherwise it is an ItemStatic instance'''
+		pass
+
 	@property
 	def active(self) -> SpellObj:
+		''' Spell active of the item. None if item doesnt have active'''
+		pass
+
+	@active.setter
+	def active(self, value):
 		''' Spell active of the item. None if item doesnt have active'''
 		pass
 
@@ -713,8 +917,18 @@ class ItemStatic:
 		''' Item internal id'''
 		pass
 
+	@id.setter
+	def id(self, value):
+		''' Item internal id'''
+		pass
+
 	@property
 	def cost(self) -> float:
+		''' Cost of item in gold coins'''
+		pass
+
+	@cost.setter
+	def cost(self, value):
 		''' Cost of item in gold coins'''
 		pass
 
@@ -723,8 +937,18 @@ class ItemStatic:
 		''' Flat movement speed given by item'''
 		pass
 
+	@mov_speed.setter
+	def mov_speed(self, value):
+		''' Flat movement speed given by item'''
+		pass
+
 	@property
 	def health(self) -> float:
+		''' Flat health given by item'''
+		pass
+
+	@health.setter
+	def health(self, value):
 		''' Flat health given by item'''
 		pass
 
@@ -733,8 +957,18 @@ class ItemStatic:
 		''' Crit chance given by item'''
 		pass
 
+	@crit.setter
+	def crit(self, value):
+		''' Crit chance given by item'''
+		pass
+
 	@property
 	def ap(self) -> float:
+		''' Flat ability power given by item'''
+		pass
+
+	@ap.setter
+	def ap(self, value):
 		''' Flat ability power given by item'''
 		pass
 
@@ -743,8 +977,18 @@ class ItemStatic:
 		''' Flat mana given by item'''
 		pass
 
+	@mana.setter
+	def mana(self, value):
+		''' Flat mana given by item'''
+		pass
+
 	@property
 	def armor(self) -> float:
+		''' Flat armour given by item'''
+		pass
+
+	@armor.setter
+	def armor(self, value):
 		''' Flat armour given by item'''
 		pass
 
@@ -753,8 +997,18 @@ class ItemStatic:
 		''' Flat magic resist given by item'''
 		pass
 
+	@magic_res.setter
+	def magic_res(self, value):
+		''' Flat magic resist given by item'''
+		pass
+
 	@property
 	def phys_dmg(self) -> float:
+		''' Flat physical damage given by item'''
+		pass
+
+	@phys_dmg.setter
+	def phys_dmg(self, value):
 		''' Flat physical damage given by item'''
 		pass
 
@@ -763,8 +1017,18 @@ class ItemStatic:
 		''' Attack speed percent given by item'''
 		pass
 
+	@atk_speed.setter
+	def atk_speed(self, value):
+		''' Attack speed percent given by item'''
+		pass
+
 	@property
 	def life_steal(self) -> float:
+		''' Life steal percent given by item'''
+		pass
+
+	@life_steal.setter
+	def life_steal(self, value):
 		''' Life steal percent given by item'''
 		pass
 
@@ -773,8 +1037,18 @@ class ItemStatic:
 		''' Health regen percent given by item'''
 		pass
 
+	@hp_regen.setter
+	def hp_regen(self, value):
+		''' Health regen percent given by item'''
+		pass
+
 	@property
 	def mov_speed_percent(self) -> float:
+		''' Movement speed percent given by item'''
+		pass
+
+	@mov_speed_percent.setter
+	def mov_speed_percent(self, value):
 		''' Movement speed percent given by item'''
 		pass
 
@@ -786,8 +1060,18 @@ class SpellStatic:
 		''' Name of the spell in lower case'''
 		pass
 
+	@name.setter
+	def name(self, value):
+		''' Name of the spell in lower case'''
+		pass
+
 	@property
 	def icon(self) -> str:
+		''' Icon name of the spell in lowercase'''
+		pass
+
+	@icon.setter
+	def icon(self, value):
 		''' Icon name of the spell in lowercase'''
 		pass
 
@@ -796,8 +1080,18 @@ class SpellStatic:
 		''' Cast time of spell'''
 		pass
 
+	@cast_time.setter
+	def cast_time(self, value):
+		''' Cast time of spell'''
+		pass
+
 	@property
 	def cast_range(self) -> float:
+		''' Cast range of the spell. Can mean multiple things, the range of a skillshot or the cast range of targeted spell'''
+		pass
+
+	@cast_range.setter
+	def cast_range(self, value):
 		''' Cast range of the spell. Can mean multiple things, the range of a skillshot or the cast range of targeted spell'''
 		pass
 
@@ -806,8 +1100,18 @@ class SpellStatic:
 		''' Cast radius of the spell (e.g Ziggs R area of effect)'''
 		pass
 
+	@cast_radius.setter
+	def cast_radius(self, value):
+		''' Cast radius of the spell (e.g Ziggs R area of effect)'''
+		pass
+
 	@property
 	def cast_cone_angle(self) -> float:
+		''' If spell is conic this is the cone angle'''
+		pass
+
+	@cast_cone_angle.setter
+	def cast_cone_angle(self, value):
 		''' If spell is conic this is the cone angle'''
 		pass
 
@@ -816,8 +1120,18 @@ class SpellStatic:
 		''' If the spell is conic this is the cone length'''
 		pass
 
+	@cast_cone_distance.setter
+	def cast_cone_distance(self, value):
+		''' If the spell is conic this is the cone length'''
+		pass
+
 	@property
 	def delay(self) -> float:
+		''' Additional delay besides the cast_time. Also if a missile has fixed travel time the value will be added here.'''
+		pass
+
+	@delay.setter
+	def delay(self, value):
 		''' Additional delay besides the cast_time. Also if a missile has fixed travel time the value will be added here.'''
 		pass
 
@@ -826,13 +1140,28 @@ class SpellStatic:
 		''' Width of the spell'''
 		pass
 
+	@width.setter
+	def width(self, value):
+		''' Width of the spell'''
+		pass
+
 	@property
 	def height_augment(self) -> float:
 		''' For drawing purposes. Height of the missile/spell must be augmented by this value'''
 		pass
 
+	@height_augment.setter
+	def height_augment(self, value):
+		''' For drawing purposes. Height of the missile/spell must be augmented by this value'''
+		pass
+
 	@property
 	def speed(self) -> float:
+		''' Speed of the spell. Used mostly by missile spells'''
+		pass
+
+	@speed.setter
+	def speed(self, value):
 		''' Speed of the spell. Used mostly by missile spells'''
 		pass
 
@@ -848,8 +1177,18 @@ class Obj:
 		''' Name of the object in lower case'''
 		pass
 
+	@name.setter
+	def name(self, value):
+		''' Name of the object in lower case'''
+		pass
+
 	@property
 	def index(self) -> int:
+		''' Index of the object. This is not a unique id, you use this for targeted spells to find who the target is'''
+		pass
+
+	@index.setter
+	def index(self, value):
 		''' Index of the object. This is not a unique id, you use this for targeted spells to find who the target is'''
 		pass
 
@@ -858,8 +1197,18 @@ class Obj:
 		''' Network id. This is a unique id of the object'''
 		pass
 
+	@net_id.setter
+	def net_id(self, value):
+		''' Network id. This is a unique id of the object'''
+		pass
+
 	@property
 	def team(self) -> int:
+		''' Team of the object: possible values 100, 200 and 300 for jungle side. Use ally_to/enemy_to functions instead of this'''
+		pass
+
+	@team.setter
+	def team(self, value):
 		''' Team of the object: possible values 100, 200 and 300 for jungle side. Use ally_to/enemy_to functions instead of this'''
 		pass
 
@@ -868,8 +1217,18 @@ class Obj:
 		''' Position of the object'''
 		pass
 
+	@pos.setter
+	def pos(self, value):
+		''' Position of the object'''
+		pass
+
 	@property
 	def visible(self) -> bool:
+		''' True if object is visible'''
+		pass
+
+	@visible.setter
+	def visible(self, value):
 		''' True if object is visible'''
 		pass
 
@@ -878,8 +1237,18 @@ class Obj:
 		''' Timestamp in game time for when the object was last visible'''
 		pass
 
+	@last_seen.setter
+	def last_seen(self, value):
+		''' Timestamp in game time for when the object was last visible'''
+		pass
+
 	@property
 	def first_seen(self) -> float:
+		''' When the object was first seen'''
+		pass
+
+	@first_seen.setter
+	def first_seen(self, value):
 		''' When the object was first seen'''
 		pass
 
@@ -888,25 +1257,35 @@ class Obj:
 		''' Direction the object is facing as a normalized Vec3'''
 		pass
 
+	@dir.setter
+	def dir(self, value):
+		''' Direction the object is facing as a normalized Vec3'''
+		pass
+
 	@property
 	def bounding_radius(self) -> float:
 		''' The bounding radius of the object a.k.a the hitbox (but its actually a circle)'''
 		pass
 
+	@bounding_radius.setter
+	def bounding_radius(self, value):
+		''' The bounding radius of the object a.k.a the hitbox (but its actually a circle)'''
+		pass
+
 	def in_front_of(self, other: Obj) -> bool:
-		'''     Checks if object is in front of another object'''
+		'''    Checks if object is in front of another object'''
 		pass
 
 	def ally_to(self, other: Obj) -> bool:
-		'''     Checks if two objects are allied'''
+		'''    Checks if two objects are allied'''
 		pass
 
 	def enemy_to(self, other: Obj) -> bool:
-		'''     Checks if two objects are enemies'''
+		'''    Checks if two objects are enemies'''
 		pass
 
 	def menu_draw(self) -> bool:
-		'''     Draws the object in the current menu'''
+		'''    Draws the object in the current menu'''
 		pass
 
 class SpellObj:
@@ -917,8 +1296,18 @@ class SpellObj:
 		''' Name of the spell in lower case'''
 		pass
 
+	@name.setter
+	def name(self, value):
+		''' Name of the spell in lower case'''
+		pass
+
 	@property
 	def lvl(self) -> int:
+		''' Level of the spell. Has value 0 when spell is not learned'''
+		pass
+
+	@lvl.setter
+	def lvl(self, value):
 		''' Level of the spell. Has value 0 when spell is not learned'''
 		pass
 
@@ -927,8 +1316,18 @@ class SpellObj:
 		''' Timestamp in game time for when the cooldown of the spell ends'''
 		pass
 
+	@ready_at.setter
+	def ready_at(self, value):
+		''' Timestamp in game time for when the cooldown of the spell ends'''
+		pass
+
 	@property
 	def value(self) -> float:
+		''' Value of spells. Holds the value of the spell for summoner spells like ignite/smite it holds the damage. For champion spells this value is usually 0'''
+		pass
+
+	@value.setter
+	def value(self, value):
 		''' Value of spells. Holds the value of the spell for summoner spells like ignite/smite it holds the damage. For champion spells this value is usually 0'''
 		pass
 
@@ -937,8 +1336,18 @@ class SpellObj:
 		''' The remaining cooldown of the spell. Internally it is calculated using ready_at'''
 		pass
 
+	@cd.setter
+	def cd(self, value):
+		''' The remaining cooldown of the spell. Internally it is calculated using ready_at'''
+		pass
+
 	@property
 	def mana(self) -> float:
+		''' Mana necessarry for casting the spell'''
+		pass
+
+	@mana.setter
+	def mana(self, value):
 		''' Mana necessarry for casting the spell'''
 		pass
 
@@ -947,6 +1356,25 @@ class SpellObj:
 		''' Gets static information loaded at runtime about the spell. Can be None but normally shouldn't. If you find a object for which this is null please contact a dev'''
 		pass
 
+	@static.setter
+	def static(self, value):
+		''' Gets static information loaded at runtime about the spell. Can be None but normally shouldn't. If you find a object for which this is null please contact a dev'''
+		pass
+
+	@property
+	def key(self) -> Key:
+		''' Key bound to this spell'''
+		pass
+
+	@key.setter
+	def key(self, value):
+		''' Key bound to this spell'''
+		pass
+
+class SummonerSpell(SpellObj):
+	'''Represents a summoner spell'''
+
+	type : any
 class SpellCast:
 	'''Has data about a spell being cast.'''
 
@@ -955,8 +1383,18 @@ class SpellCast:
 		''' Start position of the spell. Usually the position of the caster'''
 		pass
 
+	@start_pos.setter
+	def start_pos(self, value):
+		''' Start position of the spell. Usually the position of the caster'''
+		pass
+
 	@property
 	def end_pos(self) -> Vec3:
+		''' End position of the spell. Use this to get the direction of the spell. Remarks: this might not always be the real endpoint check SpellStatic project_endpoint field for more information.'''
+		pass
+
+	@end_pos.setter
+	def end_pos(self, value):
 		''' End position of the spell. Use this to get the direction of the spell. Remarks: this might not always be the real endpoint check SpellStatic project_endpoint field for more information.'''
 		pass
 
@@ -965,8 +1403,18 @@ class SpellCast:
 		''' Direction the spell is facing (in case of missiles)'''
 		pass
 
+	@dir.setter
+	def dir(self, value):
+		''' Direction the spell is facing (in case of missiles)'''
+		pass
+
 	@property
 	def src_index(self) -> int:
+		''' Index of the object who is casting'''
+		pass
+
+	@src_index.setter
+	def src_index(self, value):
 		''' Index of the object who is casting'''
 		pass
 
@@ -975,8 +1423,18 @@ class SpellCast:
 		''' If casting a targeted spell this holds the index of the target object'''
 		pass
 
+	@dest_index.setter
+	def dest_index(self, value):
+		''' If casting a targeted spell this holds the index of the target object'''
+		pass
+
 	@property
 	def time_begin(self) -> float:
+		''' Start timestamp in game time of the casting'''
+		pass
+
+	@time_begin.setter
+	def time_begin(self, value):
 		''' Start timestamp in game time of the casting'''
 		pass
 
@@ -985,8 +1443,18 @@ class SpellCast:
 		''' Total cast time'''
 		pass
 
+	@cast_time.setter
+	def cast_time(self, value):
+		''' Total cast time'''
+		pass
+
 	@property
 	def remaining(self) -> float:
+		''' Remaining cast time. This can go into negatives since casts arent removed from memory always'''
+		pass
+
+	@remaining.setter
+	def remaining(self, value):
 		''' Remaining cast time. This can go into negatives since casts arent removed from memory always'''
 		pass
 
@@ -995,8 +1463,18 @@ class SpellCast:
 		''' Static data of the spell being cast. Can be None but normally shouldn't. If you find a object for which this is null please contact a dev'''
 		pass
 
+	@static.setter
+	def static(self, value):
+		''' Static data of the spell being cast. Can be None but normally shouldn't. If you find a object for which this is null please contact a dev'''
+		pass
+
 	@property
 	def name(self) -> str:
+		''' Name of the spell being cast'''
+		pass
+
+	@name.setter
+	def name(self, value):
 		''' Name of the spell being cast'''
 		pass
 
@@ -1008,6 +1486,11 @@ class MissileObj(Obj):
 		''' The spell of the missile. A spell can have multiple missiles. So this is not necessarily the spell that was cast.'''
 		pass
 
+	@spell.setter
+	def spell(self, value):
+		''' The spell of the missile. A spell can have multiple missiles. So this is not necessarily the spell that was cast.'''
+		pass
+
 class UnitObj(Obj):
 	'''Represents a base unit object'''
 
@@ -1016,8 +1499,18 @@ class UnitObj(Obj):
 		''' Used to check if unit is dead'''
 		pass
 
+	@dead.setter
+	def dead(self, value):
+		''' Used to check if unit is dead'''
+		pass
+
 	@property
 	def targetable(self) -> bool:
+		''' Used to check if unit is targetable'''
+		pass
+
+	@targetable.setter
+	def targetable(self, value):
 		''' Used to check if unit is targetable'''
 		pass
 
@@ -1026,8 +1519,18 @@ class UnitObj(Obj):
 		''' Used to check if unit is invulnerable'''
 		pass
 
+	@invulnerable.setter
+	def invulnerable(self, value):
+		''' Used to check if unit is invulnerable'''
+		pass
+
 	@property
 	def mana(self) -> float:
+		''' Current mana of the unit'''
+		pass
+
+	@mana.setter
+	def mana(self, value):
 		''' Current mana of the unit'''
 		pass
 
@@ -1036,8 +1539,18 @@ class UnitObj(Obj):
 		''' Current health of the unit'''
 		pass
 
+	@health.setter
+	def health(self, value):
+		''' Current health of the unit'''
+		pass
+
 	@property
 	def max_health(self) -> float:
+		''' Max health of the unit'''
+		pass
+
+	@max_health.setter
+	def max_health(self, value):
 		''' Max health of the unit'''
 		pass
 
@@ -1046,8 +1559,18 @@ class UnitObj(Obj):
 		''' Total armor of the unit'''
 		pass
 
+	@armor.setter
+	def armor(self, value):
+		''' Total armor of the unit'''
+		pass
+
 	@property
 	def magic_res(self) -> float:
+		''' Total magic resist of the unit'''
+		pass
+
+	@magic_res.setter
+	def magic_res(self, value):
 		''' Total magic resist of the unit'''
 		pass
 
@@ -1056,8 +1579,18 @@ class UnitObj(Obj):
 		''' Total attack damage of the unit'''
 		pass
 
+	@atk.setter
+	def atk(self, value):
+		''' Total attack damage of the unit'''
+		pass
+
 	@property
 	def lethality(self) -> float:
+		''' Lethality of unit'''
+		pass
+
+	@lethality.setter
+	def lethality(self, value):
 		''' Lethality of unit'''
 		pass
 
@@ -1066,8 +1599,18 @@ class UnitObj(Obj):
 		''' Haste of unit'''
 		pass
 
+	@haste.setter
+	def haste(self, value):
+		''' Haste of unit'''
+		pass
+
 	@property
 	def cdr(self) -> float:
+		''' Cooldown reduction of unit'''
+		pass
+
+	@cdr.setter
+	def cdr(self, value):
 		''' Cooldown reduction of unit'''
 		pass
 
@@ -1076,8 +1619,18 @@ class UnitObj(Obj):
 		''' Base physical damage of the unit'''
 		pass
 
+	@base_atk.setter
+	def base_atk(self, value):
+		''' Base physical damage of the unit'''
+		pass
+
 	@property
 	def move_speed(self) -> float:
+		''' Movement speed of the unit'''
+		pass
+
+	@move_speed.setter
+	def move_speed(self, value):
 		''' Movement speed of the unit'''
 		pass
 
@@ -1086,8 +1639,18 @@ class UnitObj(Obj):
 		''' Level of the unit'''
 		pass
 
+	@lvl.setter
+	def lvl(self, value):
+		''' Level of the unit'''
+		pass
+
 	@property
 	def expiry(self) -> float:
+		''' Expiration duration in seconds. Used for units like wards'''
+		pass
+
+	@expiry.setter
+	def expiry(self, value):
 		''' Expiration duration in seconds. Used for units like wards'''
 		pass
 
@@ -1096,8 +1659,18 @@ class UnitObj(Obj):
 		''' Crit chance of the unit as a decimal'''
 		pass
 
+	@crit.setter
+	def crit(self, value):
+		''' Crit chance of the unit as a decimal'''
+		pass
+
 	@property
 	def crit_multi(self) -> float:
+		''' Crit multi of the unit as a decimal'''
+		pass
+
+	@crit_multi.setter
+	def crit_multi(self, value):
 		''' Crit multi of the unit as a decimal'''
 		pass
 
@@ -1106,8 +1679,18 @@ class UnitObj(Obj):
 		''' Flat ability power of the unit'''
 		pass
 
+	@ap.setter
+	def ap(self, value):
+		''' Flat ability power of the unit'''
+		pass
+
 	@property
 	def atk_speed_multi(self) -> float:
+		''' Attack speed multiplier of the unit as a decimal. Multiply this with base attack speed to get current attack speed'''
+		pass
+
+	@atk_speed_multi.setter
+	def atk_speed_multi(self, value):
 		''' Attack speed multiplier of the unit as a decimal. Multiply this with base attack speed to get current attack speed'''
 		pass
 
@@ -1116,8 +1699,18 @@ class UnitObj(Obj):
 		''' Attack range of the unit'''
 		pass
 
+	@atk_range.setter
+	def atk_range(self, value):
+		''' Attack range of the unit'''
+		pass
+
 	@property
 	def atk_speed(self) -> float:
+		''' Calculates the attack speed of the unit'''
+		pass
+
+	@atk_speed.setter
+	def atk_speed(self, value):
 		''' Calculates the attack speed of the unit'''
 		pass
 
@@ -1126,8 +1719,18 @@ class UnitObj(Obj):
 		''' Bonus move speed of unit'''
 		pass
 
+	@bonus_move_speed.setter
+	def bonus_move_speed(self, value):
+		''' Bonus move speed of unit'''
+		pass
+
 	@property
 	def bonus_armor(self) -> float:
+		''' Bonus armor of the unit'''
+		pass
+
+	@bonus_armor.setter
+	def bonus_armor(self, value):
 		''' Bonus armor of the unit'''
 		pass
 
@@ -1136,8 +1739,18 @@ class UnitObj(Obj):
 		''' Bonus magic resist of the unit'''
 		pass
 
+	@bonus_magic_res.setter
+	def bonus_magic_res(self, value):
+		''' Bonus magic resist of the unit'''
+		pass
+
 	@property
 	def bonus_atk(self) -> float:
+		''' Bonus physical damage of the unit (from items, buffs etc)'''
+		pass
+
+	@bonus_atk.setter
+	def bonus_atk(self, value):
 		''' Bonus physical damage of the unit (from items, buffs etc)'''
 		pass
 
@@ -1146,8 +1759,18 @@ class UnitObj(Obj):
 		''' Bonus attack speed of the unit'''
 		pass
 
+	@bonus_atk_speed.setter
+	def bonus_atk_speed(self, value):
+		''' Bonus attack speed of the unit'''
+		pass
+
 	@property
 	def curr_casting(self) -> SpellCast:
+		''' Currently casting spell by the unit'''
+		pass
+
+	@curr_casting.setter
+	def curr_casting(self, value):
 		''' Currently casting spell by the unit'''
 		pass
 
@@ -1156,8 +1779,18 @@ class UnitObj(Obj):
 		''' Static data loaded at runtime of the unit. Can be None but normally shouldn't. If you find a object for which this is null please contact a dev'''
 		pass
 
+	@static.setter
+	def static(self, value):
+		''' Static data loaded at runtime of the unit. Can be None but normally shouldn't. If you find a object for which this is null please contact a dev'''
+		pass
+
 	@property
 	def is_ranged(self) -> bool:
+		''' True if unit is ranged'''
+		pass
+
+	@is_ranged.setter
+	def is_ranged(self, value):
 		''' True if unit is ranged'''
 		pass
 
@@ -1166,8 +1799,18 @@ class UnitObj(Obj):
 		''' List of all the buffs on the champion. Currently buffs are only read for the player champion and enemies due to performance reasons.'''
 		pass
 
+	@buffs.setter
+	def buffs(self, value):
+		''' List of all the buffs on the champion. Currently buffs are only read for the player champion and enemies due to performance reasons.'''
+		pass
+
 	@property
 	def moving(self) -> bool:
+		''' True if unit is moving'''
+		pass
+
+	@moving.setter
+	def moving(self, value):
 		''' True if unit is moving'''
 		pass
 
@@ -1176,8 +1819,18 @@ class UnitObj(Obj):
 		''' True if unit is dashing'''
 		pass
 
+	@dashing.setter
+	def dashing(self, value):
+		''' True if unit is dashing'''
+		pass
+
 	@property
 	def dash_speed(self) -> float:
+		''' Similar to move speed but when dashing'''
+		pass
+
+	@dash_speed.setter
+	def dash_speed(self, value):
 		''' Similar to move speed but when dashing'''
 		pass
 
@@ -1186,56 +1839,83 @@ class UnitObj(Obj):
 		''' Navigation path of the unit'''
 		pass
 
+	@path.setter
+	def path(self, value):
+		''' Navigation path of the unit'''
+		pass
+
 	@property
 	def destination(self) -> Vec3:
 		''' Navigation destination of the unit'''
 		pass
 
+	@destination.setter
+	def destination(self, value):
+		''' Navigation destination of the unit'''
+		pass
+
 	def get_buff(self, name : str) -> Buff:
-		'''     Gets the buff with the name provided or None if nothing found'''
+		'''    Gets the buff with the name provided or None if nothing found'''
 		pass
 
 	def num_buff_stacks(self, name : str) -> int:
-		'''     Gets the number of stacks for the buff given by the name'''
+		'''    Gets the number of stacks for the buff given by the name'''
 		pass
 
 	def effective_phys_dmg(self, target: UnitObj, raw_dmg: float) -> float:
-		'''     Calculates effective physical damage against target considering armor and armor penetration'''
+		'''    Calculates effective physical damage against target considering armor and armor penetration'''
 		pass
 
 	def effective_magic_dmg(self, target: UnitObj, raw_dmg: float) -> float:
-		'''     Calculates effective magic damage against target considering magic res and magic res penetration'''
+		'''    Calculates effective magic damage against target considering magic res and magic res penetration'''
 		pass
 
 	def has_tags(self, tag_flag: Unit) -> bool:
-		'''     Checks if the unit has unit tags (see Unit class)'''
+		'''    Checks if the unit has unit tags (see Unit class)'''
 		pass
 
 	def path_distance(self) -> float:
-		'''     Calculates navigation path distance in game units'''
+		'''    Calculates navigation path distance in game units'''
 		pass
 
 	def predict_position(self, time_future: float) -> float:
-		'''     Predicts position of unit in X seconds'''
+		'''    Predicts position of unit in X seconds'''
 		pass
 
 	def reskin(self, id: int):
-		'''     Changes the skin of the unit'''
+		'''    Changes the skin of the unit'''
 		pass
 
 	def has_buff(self, buff: str) -> bool:
-		'''     Check if champion has buff. The buff name is case sensitive'''
+		'''    Check if champion has buff. The buff name is case sensitive'''
 		pass
 
 class ChampionObj(UnitObj):
 	'''Represents a champion object'''
 
+	def get_summoner(type: Summoner) -> SummonerSpell:
+		'''    Gets the summoner spell with the specified type. Returns None if player doesnt have that summoner spell'''
+		pass
+
 	def can_cast_spell(self, spell: SpellObj) -> bool:
-		'''     Checks if champion can cast the GameSpell provided'''
+		'''    Checks if champion can cast the GameSpell provided'''
+		pass
+
+	def has_item(self, item_id: int) -> bool:
+		'''    Check if champion has item with item id'''
+		pass
+
+	def get_item(self, item_id: int) -> ItemSlot:
+		'''    Gets item slot that contains the item with the given id. If no item is found None is returned'''
 		pass
 
 	@property
 	def spells(self) -> list[SpellObj]:
+		''' List of all the champion spells. Remarks: First 4 spells are Q,W,E,R. Next two are D,F.The next 6 are item spells. Use Context.cast_spell to cast them. Only enemies and local player have item actives read for performance reasons'''
+		pass
+
+	@spells.setter
+	def spells(self, value):
 		''' List of all the champion spells. Remarks: First 4 spells are Q,W,E,R. Next two are D,F.The next 6 are item spells. Use Context.cast_spell to cast them. Only enemies and local player have item actives read for performance reasons'''
 		pass
 
@@ -1244,8 +1924,58 @@ class ChampionObj(UnitObj):
 		''' List of inventory slots. If an item is on the slot then the value is an Item object otherwise None. Only local player and enemies have items read for performance reasons'''
 		pass
 
+	@item_slots.setter
+	def item_slots(self, value):
+		''' List of inventory slots. If an item is on the slot then the value is an Item object otherwise None. Only local player and enemies have items read for performance reasons'''
+		pass
+
+	@property
+	def Q(self) -> SpellObj:
+		''' Get Q spell'''
+		pass
+
+	@Q.setter
+	def Q(self, value):
+		''' Get Q spell'''
+		pass
+
+	@property
+	def W(self) -> SpellObj:
+		''' Get W spell'''
+		pass
+
+	@W.setter
+	def W(self, value):
+		''' Get W spell'''
+		pass
+
+	@property
+	def E(self) -> SpellObj:
+		''' Get E spell'''
+		pass
+
+	@E.setter
+	def E(self, value):
+		''' Get E spell'''
+		pass
+
+	@property
+	def R(self) -> SpellObj:
+		''' Get R spell'''
+		pass
+
+	@R.setter
+	def R(self, value):
+		''' Get R spell'''
+		pass
+
 	@property
 	def hpbar_pos(self) -> float:
+		''' Height position of the HP bar of the champion'''
+		pass
+
+	@hpbar_pos.setter
+	def hpbar_pos(self, value):
 		''' Height position of the HP bar of the champion'''
 		pass
 
@@ -1254,13 +1984,28 @@ class ChampionObj(UnitObj):
 		''' True if champion is recalling'''
 		pass
 
+	@recalling.setter
+	def recalling(self, value):
+		''' True if champion is recalling'''
+		pass
+
 	@property
 	def is_clone(self) -> bool:
 		''' Checks if the champion is a clone'''
 		pass
 
+	@is_clone.setter
+	def is_clone(self, value):
+		''' Checks if the champion is a clone'''
+		pass
+
 	@property
 	def channeling(self) -> bool:
+		''' True if player is channeling a spell'''
+		pass
+
+	@channeling.setter
+	def channeling(self, value):
 		''' True if player is channeling a spell'''
 		pass
 
@@ -1272,6 +2017,11 @@ class MinionObj(UnitObj):
 
 	@property
 	def hpbar_pos(self) -> float:
+		''' Height position of the HP bar of the minion'''
+		pass
+
+	@hpbar_pos.setter
+	def hpbar_pos(self, value):
 		''' Height position of the HP bar of the minion'''
 		pass
 
@@ -1325,6 +2075,10 @@ class UI:
 		'''     '''
 		pass
 
+	def text_color(self, txt: str, color: Col):
+		'''     '''
+		pass
+
 	def labeltext(self, label: str, txt: str):
 		'''     '''
 		pass
@@ -1362,7 +2116,7 @@ class UI:
 		pass
 
 	def image(self, id: str, size: Vec2, color: Col):
-		'''     '''
+		'''     Draws an image in the menu'''
 		pass
 
 	def header(self, text: str) -> bool:
@@ -1481,78 +2235,83 @@ class ObjectQuery:
 		pass
 
 	def has_tag(self, tag: Unit) -> ObjectQuery:
-		'''     Query units with specified tag'''
+		'''    Query units with specified tag'''
 		pass
 
 	def ally_to(self, other: Obj) -> ObjectQuery:
-		'''     Query allies'''
+		'''    Query allies'''
 		pass
 
 	def enemy_to(self, other: Obj) -> ObjectQuery:
-		'''     Query enemies'''
+		'''    Query enemies'''
 		pass
 
 	def near(self, obj: Obj) -> ObjectQuery:
-		'''     Query objects within distance of another object'''
+		'''    Query objects within distance of another object'''
 		pass
 
 	def targetable(self) -> ObjectQuery:
-		'''     Query targetable. Not equivalent to UnitObj.targetable. This checks if obj is alive, targetable and not invulnerable'''
+		'''    Query targetable. Not equivalent to UnitObj.targetable. This checks if obj is alive, targetable and not invulnerable'''
 		pass
 
 	def untargetable(self) -> ObjectQuery:
-		'''     Query untargetable'''
+		'''    Query untargetable'''
 		pass
 
 	def visible(self) -> ObjectQuery:
-		'''     Query objects in vision'''
+		'''    Query objects in vision'''
 		pass
 
 	def invisible(self) -> ObjectQuery:
-		'''     Query objects out of vision'''
+		'''    Query objects out of vision'''
 		pass
 
 	def alive(self) -> ObjectQuery:
-		'''     Query alive objects'''
+		'''    Query alive objects'''
 		pass
 
 	def dead(self) -> ObjectQuery:
-		'''     Query dead objects'''
+		'''    Query dead objects'''
 		pass
 
 	def clone(self) -> ObjectQuery:
-		'''     Query clone objects'''
+		'''    Query clone objects'''
 		pass
 
 	def not_clone(self) -> ObjectQuery:
-		'''     Query non clone objects'''
+		'''    Query non clone objects'''
 		pass
 
 	def on_screen(self) -> ObjectQuery:
-		'''     Query objects on screen'''
+		'''    Query objects on screen'''
 		pass
 
 	def casting(self) -> ObjectQuery:
-		'''     Query units casting a spell'''
+		'''    Query units casting a spell'''
 		pass
 
 class Context:
 	'''Contains everything necessarry to create scripts. From utility functions to game data'''
 
 	def info(self, msg: str):
-		'''     Logs an info message to the console & file log'''
+		'''    Logs an info message to the console & file log'''
 		pass
 
 	def warn(self, msg: str):
-		'''     Logs a warning message to the console & file log'''
+		'''    Logs a warning message to the console & file log'''
 		pass
 
 	def error(self, msg: str):
-		'''     Logs a error message to the console & file log. The file log will be flushed. Use this in absolute worse cases'''
+		'''    Logs a error message to the console & file log. The file log will be flushed. Use this in absolute worse cases'''
 		pass
 
 	@property
 	def resources_loaded(self) -> bool:
+		''' True if all valkyrie resources are loaded (images/jsons etc)'''
+		pass
+
+	@resources_loaded.setter
+	def resources_loaded(self, value):
 		''' True if all valkyrie resources are loaded (images/jsons etc)'''
 		pass
 
@@ -1561,8 +2320,18 @@ class Context:
 		''' UI interface for drawing menus based on imgui'''
 		pass
 
+	@ui.setter
+	def ui(self, value):
+		''' UI interface for drawing menus based on imgui'''
+		pass
+
 	@property
 	def cfg(self) -> Config:
+		''' The script config interface. Used to load/save settings'''
+		pass
+
+	@cfg.setter
+	def cfg(self, value):
 		''' The script config interface. Used to load/save settings'''
 		pass
 
@@ -1571,8 +2340,18 @@ class Context:
 		''' Current game duration in seconds'''
 		pass
 
+	@time.setter
+	def time(self, value):
+		''' Current game duration in seconds'''
+		pass
+
 	@property
 	def ping(self) -> float:
+		''' Current ping of the game'''
+		pass
+
+	@ping.setter
+	def ping(self, value):
 		''' Current ping of the game'''
 		pass
 
@@ -1581,8 +2360,18 @@ class Context:
 		''' Gets the current position of the mouse'''
 		pass
 
+	@cursor_pos.setter
+	def cursor_pos(self, value):
+		''' Gets the current position of the mouse'''
+		pass
+
 	@property
 	def map(self) -> Map:
+		''' Currently played map'''
+		pass
+
+	@map.setter
+	def map(self, value):
 		''' Currently played map'''
 		pass
 
@@ -1591,8 +2380,18 @@ class Context:
 		''' Keybinds for casting spells/items etc'''
 		pass
 
+	@keybinds.setter
+	def keybinds(self, value):
+		''' Keybinds for casting spells/items etc'''
+		pass
+
 	@property
 	def hud(self) -> GameHud:
+		''' Gets the game HUD'''
+		pass
+
+	@hud.setter
+	def hud(self, value):
 		''' Gets the game HUD'''
 		pass
 
@@ -1601,8 +2400,18 @@ class Context:
 		''' Gets the game object under the mouse'''
 		pass
 
+	@hovered.setter
+	def hovered(self, value):
+		''' Gets the game object under the mouse'''
+		pass
+
 	@property
 	def focused(self) -> Obj:
+		''' Gets the game object focused (the object that was last clicked). None if last click was not on a object'''
+		pass
+
+	@focused.setter
+	def focused(self, value):
 		''' Gets the game object focused (the object that was last clicked). None if last click was not on a object'''
 		pass
 
@@ -1611,8 +2420,18 @@ class Context:
 		''' The champion used by the local player. In replays this will be a random champion'''
 		pass
 
+	@player.setter
+	def player(self, value):
+		''' The champion used by the local player. In replays this will be a random champion'''
+		pass
+
 	@property
 	def champs(self) -> ObjectQuery:
+		''' Returns champion query builder'''
+		pass
+
+	@champs.setter
+	def champs(self, value):
 		''' Returns champion query builder'''
 		pass
 
@@ -1621,8 +2440,18 @@ class Context:
 		''' Returns turrets query builder'''
 		pass
 
+	@turrets.setter
+	def turrets(self, value):
+		''' Returns turrets query builder'''
+		pass
+
 	@property
 	def missiles(self) -> ObjectQuery:
+		''' Returns missiles query builder'''
+		pass
+
+	@missiles.setter
+	def missiles(self, value):
 		''' Returns missiles query builder'''
 		pass
 
@@ -1631,13 +2460,28 @@ class Context:
 		''' Returns minions query builder'''
 		pass
 
+	@minions.setter
+	def minions(self, value):
+		''' Returns minions query builder'''
+		pass
+
 	@property
 	def jungle(self) -> ObjectQuery:
 		''' Returns jungle monster query builder'''
 		pass
 
+	@jungle.setter
+	def jungle(self, value):
+		''' Returns jungle monster query builder'''
+		pass
+
 	@property
 	def others(self) -> ObjectQuery:
+		''' Returns other uncategorized objects query builder'''
+		pass
+
+	@others.setter
+	def others(self, value):
 		''' Returns other uncategorized objects query builder'''
 		pass
 
@@ -1650,107 +2494,135 @@ class Context:
 		pass
 
 	def is_wall_at(self, position: Vec3) -> bool:
-		'''     Checks if there is a wall at the specified position'''
+		'''    Checks if there is a wall at the specified position'''
 		pass
 
 	def collisions_for(unit: UnitObj)-> list[FutureCollision]:
-		'''     Gets a list of future collisions for a unit'''
+		'''    Gets a list of future collisions for a unit'''
+		pass
+
+	def collisions_for_unit(unit: UnitObj)-> list[FutureCollision]:
+		'''    Gets a list of future collisions for a unit'''
+		pass
+
+	def collisions_for_spell(spell: SpellCast)-> list[FutureCollision]:
+		'''    Gets a list of future collisions for a spell cast'''
 		pass
 
 	def attack(self, target: UnitObj):
-		'''     Makes the player attack the given unit'''
+		'''    Makes the player attack the given unit'''
 		pass
 
 	def move(self, location: Vec3):
-		'''     Moves the player to the given location'''
+		'''    Moves the player to the given location'''
+		pass
+
+	def move_to_location(self, location: Vec3):
+		'''    Moves the player to where the mouse cursor is'''
+		pass
+
+	def move_to_mouse(self):
+		'''    Moves the player to where the mouse cursor is'''
 		pass
 
 	def move_mouse(self, location: Vec3):
-		'''     Moves the mouse location to the specified game world coordinate'''
+		'''    Moves the mouse location to the specified game world coordinate'''
 		pass
 
 	def is_held(self, key: Key) -> bool:
-		'''     Checks if key is held down'''
+		'''    Checks if key is held down'''
 		pass
 
 	def was_pressed(self, key: Key) -> bool:
-		'''     Checks if key was pressed'''
+		'''    Checks if key was pressed'''
 		pass
 
 	def set_key_active(self, key: Key, active: bool):
-		'''     Programatically disable/enable game keys. This means nothing will happen in game when the key gets pressed but valkyrie will still recognize that key. Use ctx.keybinds to get keys'''
+		'''    Programatically disable/enable game keys. This means nothing will happen in game when the key gets pressed but valkyrie will still recognize that key. Use ctx.keybinds to get keys'''
 		pass
 
 	def start_channel(self, spell: SpellObj) -> bool:
-		'''     Starts a channeled spell'''
+		'''    Starts a channeled spell'''
 		pass
 
 	def end_channel(self, spell: SpellObj, location: Vec3) -> bool:
-		'''     Ends and casts the channeled spell at the target location'''
+		'''    Ends and casts the channeled spell at the target location'''
 		pass
 
 	def cast_spell(self, spell: SpellObj, location: Vec3) -> bool:
-		'''     Casts a spell on a location. If second argument is None, it will cast at the current mouse position. This function will check if spell is castable automatically. It doesnt check for item charge availability.'''
+		'''    Casts a spell on a location. If second argument is None, it will cast at the current mouse position. This function will check if spell is castable automatically. It doesnt check for item charge availability.'''
+		pass
+
+	def cast_spell_on_unit(self, spell: SpellObj, target: UnitObj) -> bool:
+		'''    Casts a spell on a unit using prediction. If spell cannot be cast for some reason (no mana, unable to hit target etc) it will return False'''
 		pass
 
 	def predict_cast_point(self, caster: UnitObj, target: UnitObj, spell: SpellObj) -> Vec3:
-		'''     Predicts a cast point such that the spell will hit the target. Returns None if doesnt find such a point'''
+		'''    Predicts a cast point such that the spell will hit the target. Returns None if doesnt find such a point'''
 		pass
 
 	def get_spell_static(self, spell_name: str) -> SpellStatic:
-		'''     Gets static spell info. Argument must be lower case'''
+		'''    Gets static spell info. Argument must be lower case'''
 		pass
 
 	def is_under_tower(self, obj: Obj) -> bool:
-		'''     True if the game object is under tower'''
+		'''    True if the game object is under tower'''
 		pass
 
 	def is_at_spawn(self, obj: Obj) -> bool:
-		'''     Checks if the object is in the fountain of his team'''
+		'''    Checks if the object is in the fountain of his team'''
 		pass
 
 	def is_on_screen(self, point: Vec2) -> bool:
-		'''     True if point is on screen'''
+		'''    True if point is on screen'''
+		pass
+
+	def is_scren_point_on_screen(self, point: Vec2) -> bool:
+		'''    True if point is on screen'''
+		pass
+
+	def is_world_point_on_screen(self, point: Vec3) -> bool:
+		'''    True if point is on screen'''
 		pass
 
 	def w2s(self, position: Vec3) -> Vec2:
-		'''     Converts a world space point to screen space'''
+		'''    Converts a world space point to screen space'''
 		pass
 
 	def w2m(self, position: Vec3) -> Vec2:
-		'''     Converts a world space point to minimap space'''
+		'''    Converts a world space point to minimap space'''
 		pass
 
 	def d2m(self, distance: float) -> float:
-		'''     Converts a distance value from world space to minimap space'''
+		'''    Converts a distance value from world space to minimap space'''
 		pass
 
 	def ping_normal(self, location: Vec3):
-		'''     Issues a `normal` ping at the target location. For this ping type riot moves the cursor position to the ping location after ping has been issued'''
+		'''    Issues a `normal` ping at the target location. For this ping type riot moves the cursor position to the ping location after ping has been issued'''
 		pass
 
 	def ping_warn(self, location: Vec3):
-		'''     Issues a `back` ping at the target location. For this ping type riot moves the cursor position to the ping location after ping has been issued'''
+		'''    Issues a `back` ping at the target location. For this ping type riot moves the cursor position to the ping location after ping has been issued'''
 		pass
 
 	def ping_danger(self, location: Vec3):
-		'''     Issues a `danger` ping at the target location'''
+		'''    Issues a `danger` ping at the target location'''
 		pass
 
 	def ping_mia(self, location: Vec3):
-		'''     Issues a `enemy missing` ping at the target location'''
+		'''    Issues a `enemy missing` ping at the target location'''
 		pass
 
 	def ping_omw(self, location: Vec3):
-		'''     Issues a `on my way` ping at the target location'''
+		'''    Issues a `on my way` ping at the target location'''
 		pass
 
 	def ping_vision(self, location: Vec3):
-		'''     Issues a `warded` ping at the target location'''
+		'''    Issues a `warded` ping at the target location'''
 		pass
 
 	def ping_assist(self, location: Vec3):
-		'''     Issues a `help` ping at the target location'''
+		'''    Issues a `help` ping at the target location'''
 		pass
 
 	def line(self, start: Vec2, end: Vec2, thickness: float, color: Col):
@@ -1786,6 +2658,34 @@ class Context:
 		pass
 
 	def image(self, id: str, position: Vec2, size: Vec2, color: Col):
+		'''    '''
+		pass
+
+	def circle_world(self, center: Vec3, radius: float, num_pts: int, thickness: float, color: Col):
+		'''    '''
+		pass
+
+	def circle_world_fill(self, center: Vec3, radius: float, num_pts: int, color: Col):
+		'''    '''
+		pass
+
+	def rect_world(self, p1: Vec3, p2: Vec3, p3: Vec3, p4: Vec3, thickness: float, color: Col):
+		'''    '''
+		pass
+
+	def image_uvs(self, id: str, position: Vec2, uv1: Vec2, uv2: Vec2, size: Vec2, color: Col):
+		'''    '''
+		pass
+
+	def image_rounded(self, id: str, position: Vec2, size: Vec2, color: Col, rounding: float):
+		'''    '''
+		pass
+
+	def image_world(self, id: str, position: Vec3, size: Vec2, color: Col):
+		'''    '''
+		pass
+
+	def image_world_fixed(self, id: str, p1: Vec3, p2: Vec3, p3: Vec3, p4: Vec4, color: Col):
 		'''    '''
 		pass
 

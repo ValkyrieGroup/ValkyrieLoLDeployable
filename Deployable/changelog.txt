@@ -1,3 +1,11 @@
+[Valkyrie v0.42]
+	* Update for league patch 11.10
+	* Fixed orbwalker crashing when farming with orianna
+	* Fixed missing prediction on cassiopeia Q
+
+	+ Added new stuff to scripting API (champ.Q,champ.W,champ.E,champ.R,champ.get_summoner,champ.has_item,champ.get_item etc)
+	+ Added missing classes/methods from scripting API docs
+
 [Valkyrie v0.41]
 	* Fixed a bug where orbwalker would try to attack ally rift herald
 
