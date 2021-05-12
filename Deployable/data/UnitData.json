@@ -4362,7 +4362,7 @@
         "gameplayRadius": 65.0,
         "basicAtkWindup": 0.1754385933279991,
         "basicAtkCastTime": 0.43771929666399956,
-        "basicAtk": "oriannanoballbasicattack",
+        "basicAtk": "oriannabasicattack",
         "tags": [
             "Unit_Champion"
         ]
