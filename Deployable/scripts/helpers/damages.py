@@ -72,7 +72,9 @@ class TwitchExpungeDamage(MixedDamage):
 		self.magic = magic
 		
 	def calc_against(self, ctx, attacker, target):
-		stacks = target.num_buff_stacks('TwitchDeadlyVenom')
+		stacks = 0
+		if target.has_buff('TwitchDeadlyVenom'):
+			stacks = target.get_buff('TwitchDeadlyVenom').value
 		
 		return self.base.calc_against(ctx, attacker, target) + stacks*self.phys.calc_against(ctx, attacker, target) + stacks*self.magic.calc_against(ctx, attacker, target)
 
