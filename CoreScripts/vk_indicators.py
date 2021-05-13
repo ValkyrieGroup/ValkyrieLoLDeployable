@@ -2,7 +2,7 @@ from valkyrie import *
 from helpers.drawings import Circle
 from helpers.prediction import *
 from helpers.items import *
-from helpers.damages import calculate_raw_spell_dmg
+from helpers.damages import calculate_raw_spell_dmg, calculate_onhit_dmg
 from time import time
 import json
 
@@ -192,7 +192,7 @@ def draw_minion_hit_indicators(ctx):
 	
 	
 	for minion in minions:
-		hit_dmg = get_onhit_physical(player, minion) + items.get_onhit_magical(player, minion)
+		hit_dmg = calculate_onhit_dmg(ctx, player, minion)
 		
 		percent_curr = minion.health/minion.max_health
 		percent_after_hit = (minion.health - hit_dmg)/minion.max_health

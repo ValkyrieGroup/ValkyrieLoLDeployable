@@ -1,3 +1,18 @@
+[Valkyrie v0.44]
+	* Now orbwalker calculates last hit damage using lethality/armor pen etc too
+	* Now orbwalker calculates damage from passives for quinn, orianna, kalista (if you know other champs that have on hit passives tell me)
+	
+	+ Added base ult script for Ezreal, Jinx, Ashe, Draven, Senna, I don't know if there are more
+	+ Now you can disable/enable scripts directly from game without having to uninstall them
+
+[Valkyrie v0.43]
+	* Fixed activator smite damage problem
+	* Added ignite to activator (thanks to "KexChoklad ;D")
+	* Updated spell values for latest patch in spell calculations & fixed lethality calculation errors
+	* Fixed issue with some spells not drawing/not being evaded (issue since last patch)
+	
+	+ Now orbwalker last hit prioritizes cannons
+
 [Valkyrie v0.42]
 	* Update for league patch 11.10
 	* Fixed orbwalker crashing when farming with orianna

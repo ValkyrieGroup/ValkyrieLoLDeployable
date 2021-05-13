@@ -12,7 +12,7 @@ samira = HT.ChampionScript(
 	combat_rotation = SpellRotation([
 		RSpell(Slot.R), 
 		RSpell(Slot.Q), 
-		RSpell(Slot.W, HT.ConditionCC(CCType.Slow, HT.ConditionCC.Me)),#HT.ConditionIncomingMissiles(0.75)), 
+		RSpell(Slot.W, HT.ConditionIncomingMissiles(0.75)),#, 
 		RSpell(Slot.E, HT.MixedConditions([
 			HT.ConditionTargetOutsideTower(),
 			HT.MixedConditions([
@@ -31,11 +31,11 @@ samira = HT.ChampionScript(
 leap_under_tower = False
 leap_gap_closer  = True
 leap_below_hp    = 30
-	
+
 def valkyrie_menu(ctx: Context) :
 	ui = ctx.ui					 
 	samira.ui(ctx)
-	
+
 def valkyrie_on_load(ctx: Context) :
 	global samira
 	cfg = ctx.cfg				 

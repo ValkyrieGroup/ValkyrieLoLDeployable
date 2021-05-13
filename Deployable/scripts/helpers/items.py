@@ -55,24 +55,18 @@ OnHit_Magical = {
 	3091: onhit_wits_end
 }
 
-def get_onhit_physical(source, target):
-	global OnHit_Physical
-	
-	phys = source.base_atk + source.bonus_atk
+def get_items_onhit_damage(source, target) -> (int, int):
+	''' Returns raw on hit damage from items as atuple (physical_damage, magical_damage) '''
+
+	magic, phys = 0.0, 0.0
 	for slot in source.item_slots:
 		item = slot.item
-		if item and item.id in OnHit_Physical:
+		if not item:
+			continue
+
+		if item.id in OnHit_Magical:
+			magic += OnHit_Magical[item.id](source, target)
+		if item.id in OnHit_Physical:
 			phys += OnHit_Physical[item.id](source, target)
-			
-	return (phys*100.0)/(100.0 + target.armor)
-	
-def get_onhit_magical(source, target):
-	global OnHit_Magical
-	
-	magical = 0.0
-	for slot in source.item_slots:
-		item = slot.item
-		if item and item.id in OnHit_Magical:
-			magical += OnHit_Magical[item.id](source, target)
-			
-	return (magical*100.0)/(100.0 + target.magic_res)
+
+	return phys, magic

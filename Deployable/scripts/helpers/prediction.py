@@ -1,34 +1,34 @@
 from valkyrie  import *
-from .		   import items
+from .damages import calculate_onhit_dmg
 import math
 
 class MinionModifiers:
-	
+
 	LANE_TOP = 0
 	LANE_MID = 1
 	LANE_BOT = 2
-	
+
 	def __init__(self, ctx):
-		
+
 
 		# Calculate level advantages
 		callies = ctx.champs.ally_to(ctx.player).get()
 		cenemies = ctx.champs.enemy_to(ctx.player).get()
-		
+
 		ally_lvl = 0 if len(callies) == 0 else sum([c.lvl for c in callies])/len(callies)
 		enemy_lvl = 0 if len(cenemies) == 0 else sum([c.lvl for c in cenemies])/len(cenemies)
-		
+
 		self.ally_level_advantage = min(3, max(0, ally_lvl - enemy_lvl))
 		self.enemy_level_advantage = min(3, max(0, enemy_lvl - ally_lvl))
-		
+
 		# Calculate turret advantages
 		tallies  = len(ctx.turrets.ally_to(ctx.player).alive().get())
 		tenemies = len(ctx.turrets.enemy_to(ctx.player).alive().get())
-		
+
         # Always assumes that turret advantage is 0, MUST FIX
 		self.ally_turret_advantage  = 0.0
 		self.enemy_turret_advantage = 0.0
-		
+
 		self.ally_dmg_modifier = 1.0 + (0.05 + (0.05 * self.ally_turret_advantage)) * self.ally_level_advantage
 		self.enemy_dmg_modifier = 1.0 + (0.05 + (0.05 * self.enemy_turret_advantage)) * self.enemy_level_advantage
 		self.ally_dmg_reduction = 1.0 + (self.ally_level_advantage * self.ally_turret_advantage)
@@ -41,17 +41,17 @@ def predict_minions_lasthit(ctx, enemy_minions, ally_minions, delay_percent = 0.
 			new_health -> is the health of the minion after its been hit by the player
 			hit_dmg	-> the hit dmg from the player
 	'''
-	
+
 	player			 = ctx.player
 	player_range	 = ctx.player.atk_range + ctx.player.static.gameplay_radius
 	basic_atk_speed	 = player.static.basic_atk.speed if player.is_ranged else 20000.0
 	basic_atk_delay	 = player.static.basic_atk_windup / player.atk_speed
 	result = []
-	
+
 	modifiers = MinionModifiers(ctx)
 	for enemy_minion in enemy_minions:
-		 
-		hit_dmg		 		= items.get_onhit_physical(player, enemy_minion) + items.get_onhit_magical(player, enemy_minion)
+
+		hit_dmg		 		= calculate_onhit_dmg(ctx, player, enemy_minion)
 		t_until_player_hits = basic_atk_delay + player.pos.distance(enemy_minion.pos) / basic_atk_speed
 		enemy_minion_hp		= predict_minion_health(ctx, enemy_minion, ally_minions, t_until_player_hits, delay_percent, modifiers)
 		

@@ -140,12 +140,11 @@ def draw(ctx, obj, size, radius, show_circle_world, show_circle_map, icon):
 
 def valkyrie_exec(ctx: Context):
 
-	for obj in ctx.others.alive().get():
+	for obj in ctx.others.alive().enemy_to(ctx.player).get():
 		if show_wards and obj.has_tags(Unit.Ward) and obj.name in wards:
 			draw(ctx, obj, size_wards, *(wards[obj.name]))
 		elif show_traps and obj.has_tags(Unit.SpecialTrap) and obj.name in traps:
 			draw(ctx, obj, size_traps, *(traps[obj.name]))
-	
 	
 	if show_clones:
 		for champ in ctx.champs.clone().alive().enemy_to(ctx.player).get():

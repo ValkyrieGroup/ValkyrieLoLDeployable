@@ -1,10 +1,10 @@
 from valkyrie import *
-from helpers.targeting import *
+from helpers.targeting  import *
 from helpers.prediction import *
-from helpers.drawings import Circle
-from helpers.inputs import KeyInput
-from helpers.spells import Buffs
-from helpers.items import get_onhit_physical, get_onhit_magical
+from helpers.drawings   import Circle
+from helpers.inputs     import KeyInput
+from helpers.spells     import Buffs
+from helpers.damages    import calculate_onhit_dmg
 from time import time
 from enum import Enum
 import math
@@ -31,18 +31,38 @@ class OrbwalkKite:
 
 class OrbwalkLastHit:
 	type = Orbwalker.ModeKite
-	
+
+	def last_hit_score(self, minion: MinionObj, enemy_minions: list[MinionObj]):
+		''' Returns a priority score for last hitting, first siege above all then the minion that is most attacked '''
+
+		if 'siege' in minion.name:
+			return 10000
+		else:
+			num_attackers = 0
+			for m in enemy_minions:
+				if m.curr_casting and m.curr_casting.dest_index == minion.index:
+					num_attackers += 1
+
+			return num_attackers
+
 	def get_target(self, ctx, distance):
 		lasthits = predict_minions_lasthit(ctx, ctx.minions.alive().enemy_to(ctx.player).on_screen().get(), ctx.minions.alive().ally_to(ctx.player).on_screen().get())
 		if len(lasthits) == 0:
 			return None
-			
+
+		# Find last hittable minions
 		lasthits = sorted(lasthits, key = lambda p: p[0].health - p[1], reverse = True)
+		last_hittable = []
 		for minion, predicted_hp, player_dmg in lasthits:
 			if predicted_hp - math.floor(player_dmg) <= 0.0:
-				return minion
-			
-		return None
+				last_hittable.append(minion)
+
+		if len(last_hittable) == 0:
+			return None
+
+		# Get best last hit
+		ally_minions = ctx.minions.alive().ally_to(ctx.player).on_screen().get();
+		return max(last_hittable, key = lambda m: self.last_hit_score(m, ally_minions))
 
 class OrbwalkLanePush:
 	type = Orbwalker.ModeKite
@@ -94,7 +114,7 @@ class OrbwalkLanePush:
 				return best_target.minion
 			
 			enemy_minion        = best_target.minion
-			hit_dmg		 		= get_onhit_physical(player, enemy_minion) + get_onhit_magical(player, enemy_minion)
+			hit_dmg		 		= calculate_onhit_dmg(ctx, player, enemy_minion)
 			
 			basic_atk_speed	 = player.static.basic_atk.speed
 			basic_atk_delay	 = player.static.basic_atk_windup / player.atk_speed

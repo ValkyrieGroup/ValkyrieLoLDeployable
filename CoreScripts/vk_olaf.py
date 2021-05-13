@@ -44,5 +44,5 @@ def valkyrie_on_save(ctx: Context) :
 								 
 def valkyrie_exec(ctx: Context) :	     
 	if not ctx.player.dead:
-		olaf.exec(ctx)						 
-								 
+		olaf.exec(ctx)
+

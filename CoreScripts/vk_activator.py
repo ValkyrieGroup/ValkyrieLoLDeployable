@@ -1,7 +1,7 @@
-from valkyrie          import *
+from valkyrie		  import *
 from helpers.targeting import *
-from helpers.inputs    import KeyInput
-from helpers.spells    import Buffs, BuffType, CCType
+from helpers.inputs	import KeyInput
+from helpers.spells	import Buffs, BuffType, CCType
 from helpers.templates import Enabler
 
 import time
@@ -30,18 +30,18 @@ rechargable_actives = {
 
 class ActivatorQSS:
 	
-	all_cleanses         = { 'summonerboost', 'quicksilversash', '6035_spell', 'itemmercurial' }
-	cleanses_suppress    = { 'quicksilversash', '6035_spell', 'itemmercurial' }
+	all_cleanses		 = { 'summonerboost', 'quicksilversash', '6035_spell', 'itemmercurial' }
+	cleanses_suppress	= { 'quicksilversash', '6035_spell', 'itemmercurial' }
 	
 	default_enable = { str(type): True for type in CCType.Names.keys() }
 	
 	def __init__(self, enabler = Enabler(True, KeyInput(0, False)), delay = 0.1, min_cc_duration = 1.0, min_slow_duration = 2.0, ms_breakpoint = 200.0, buff_settings = default_enable):
-		self.enabler           = enabler 
-		self.delay             = delay
+		self.enabler		   = enabler 
+		self.delay			 = delay
 		self.min_cc_duration   = min_cc_duration
 		self.min_slow_duration = min_slow_duration
-		self.ms_breakpoint     = ms_breakpoint
-		self.buff_settings     = buff_settings
+		self.ms_breakpoint	 = ms_breakpoint
+		self.buff_settings	 = buff_settings
 		
 	def ui(self, ctx, ui):
 		self.enabler.ui(ui)
@@ -49,16 +49,16 @@ class ActivatorQSS:
 			self.buff_settings[buff] = ui.checkbox(f'Cleanse on {CCType.Names[int(buff)]}', enabled)
 		
 		ui.separator()
-		self.delay             = ui.sliderfloat('Cast delay (secs)', self.delay, 0.0, 1.0)
+		self.delay			 = ui.sliderfloat('Cast delay (secs)', self.delay, 0.0, 1.0)
 		self.min_cc_duration   = ui.sliderfloat('Minimum CC duration (secs)', self.min_cc_duration, 0.0, 3.0)
 		self.min_slow_duration = ui.sliderfloat("Minimum slow duration (secs)", self.min_slow_duration, 0.0, 5.0)
-		self.ms_breakpoint     = ui.sliderfloat('Movement speed less than (when slowed)', self.ms_breakpoint, 50.0, 300.0)
+		self.ms_breakpoint	 = ui.sliderfloat('Movement speed less than (when slowed)', self.ms_breakpoint, 50.0, 300.0)
 		
 	def check(self, ctx, spell):
 		
 		if not self.enabler.check(ctx):
 			return None
-		
+
 		#ctx.pill('QSS', Col.Black, Col.Cyan)
 		for buff in ctx.player.buffs:
 			buff_info = Buffs.get(buff.name)
@@ -96,9 +96,7 @@ class ActivatorQSS:
 		return ActivatorQSS(enabler = Enabler.from_str(j[0]), delay = j[1], min_cc_duration = j[2], min_slow_duration = j[3], ms_breakpoint = j[4], buff_settings = j[5])
 		
 class ActivatorSmite:
-	
-	smite_dmg       = [390, 410, 430, 450, 480, 510, 540, 570, 600, 640, 680, 720, 760, 800, 850, 900, 950, 1000]
-	
+
 	def __init__(self, enabler = Enabler(False, KeyInput(0, False)), selector_monster = TargetSelector(0, TargetSet.Monster)):
 		self.enabler = enabler
 		self.sel_monster = selector_monster
@@ -112,11 +110,15 @@ class ActivatorSmite:
 			ctx.pill('Smite', Col.Black, Col.Yellow)
 			
 			target = self.sel_monster.get_target(ctx, ctx.jungle.targetable().near(ctx.player, 500).get())
-			if target and target.health - self.smite_dmg[ctx.player.lvl - 1] <= 0.0 and (target.has_tags(Unit.MonsterLarge) or target.has_tags(Unit.MonsterEpic)):
+			if target and target.health - self.get_smite_damage(ctx.player) <= 0.0 and (target.has_tags(Unit.MonsterLarge) or target.has_tags(Unit.MonsterEpic)):
 				return target
 			
 		return None
-		
+
+	def get_smite_damage(self, player):
+		smite = player.get_summoner(Summoner.Smite)
+		return smite.value if smite else 0.0
+
 	def get_icon(self):
 		return 'summoner_smite'
 		
@@ -132,12 +134,50 @@ class ActivatorSmite:
 		
 		return ActivatorSmite(Enabler.from_str(j[0]), TargetSelector.from_str(j[1]))
 		
+class ActivatorIgnite:
+
+	def __init__(self, enabler=Enabler(True, KeyInput(0, False)),
+				 selector_champion=TargetSelector(0, TargetSet.Champion)):
+		self.enabler = enabler
+		self.sel_champion = selector_champion
+
+	def ui(self, ctx, ui):
+		self.enabler.ui(ui)
+		self.sel_champion.ui('Targeting Champions', ctx, ui)
+
+	def check(self, ctx, spell):
+		if self.enabler.check(ctx):
+			target = self.sel_champion.get_target(ctx, ctx.champs.enemy_to(ctx.player).targetable().near(ctx.player, 600).get())
+			if target and target.health - self.get_ignite_damage(ctx.player) <= 0.0:
+				return target
+
+		return None
+		
+	def get_ignite_damage(self, player):
+		dot = player.get_summoner(Summoner.Ignite)
+		return dot.value if dot else 0.0
+
+	def get_icon(self):
+		return 'summonerignite'
+
+	def get_name(self):
+		return 'Ignite'
+
+	def __str__(self):
+		return json.dumps([str(self.enabler), str(self.sel_champion)])
+
+	@classmethod
+	def from_str(self, s):
+		j = json.loads(s)
+
+		return ActivatorIgnite(Enabler.from_str(j[0]), TargetSelector.from_str(j[1]))
+
 class ActivatorPotion:
 
 	pot_buffs = {
-		'item2010'             : 'Item2010',
-		'item2003'             : 'Item2003',
-		'itemcrystalflask'     : 'ItemCrystalFlask',
+		'item2010'			 : 'Item2010',
+		'item2003'			 : 'Item2003',
+		'itemcrystalflask'	 : 'ItemCrystalFlask',
 		'itemdarkcrystalflask' : 'ItemDarkCrystalFlask'
 	}
 
@@ -182,25 +222,28 @@ class ActivatorPotion:
 		return ActivatorPotion(enabler = Enabler.from_str(j[0]), hp_breakpoint = j[1])
 
 activators = {
-	'Smite': ActivatorSmite(),
-	'QSS'  : ActivatorQSS(),
-	'Potion' : ActivatorPotion()
+	'QSS'    : ActivatorQSS(),
+	'Smite'  : ActivatorSmite(),
+	'Potion' : ActivatorPotion(enabler = Enabler(False, KeyInput(0, False))),
+	'Ignite' : ActivatorIgnite()
 }
 
 spell_to_activator = {
-	'summonersmite'                : 'Smite',
-	's5_summonersmiteduel'         : 'Smite',
+	'summonersmite'				   : 'Smite',
+	's5_summonersmiteduel'		   : 'Smite',
 	's5_summonersmiteplayerganker' : 'Smite',
+
+	'summonerdot'               : 'Ignite',
+
+	'summonerboost'				: 'QSS',
+	'quicksilversash'			: 'QSS', # Quicksilver active
+	'6035_spell'				: 'QSS', # Silvermere Dawn active
+	'itemmercurial'				: 'QSS', # Mercurial active
 	
-	'summonerboost'                : 'QSS',
-	'quicksilversash'              : 'QSS', # Quicksilver active
-	'6035_spell'                   : 'QSS', # Silvermere Dawn active
-	'itemmercurial'                : 'QSS', # Mercurial active
-	
-	'item2010'                     : 'Potion', # Biscuit
-	'item2003'                     : 'Potion', # Red potion
-	'itemcrystalflask'             : 'Potion', # Refillable potion
-	'itemdarkcrystalflask'         : 'Potion'  # Corruption potion
+	'item2010'					 : 'Potion', # Biscuit
+	'item2003'					 : 'Potion', # Red potion
+	'itemcrystalflask'			 : 'Potion', # Refillable potion
+	'itemdarkcrystalflask'		 : 'Potion'  # Corruption potion
 }
 
 def valkyrie_menu(ctx: Context):
@@ -237,7 +280,7 @@ def try_activate(ctx, player, spell, item_slot = None):
 	if activator_name and activator_name not in used_activators:
 		used_activators.add(activator_name)
 		activator = activators[activator_name]
-		target    = activator.check(ctx, spell)
+		target	= activator.check(ctx, spell)
 		if target and ctx.cast_spell(spell, target.pos):
 			ctx.info(f"Casted spell {spell.name}")
 			return True
@@ -260,7 +303,7 @@ def valkyrie_exec(ctx: Context):
 		return
 	
 	for slot in player.item_slots:
-		if not slot.active or ctx.is_at_spawn(player):
+		if not slot.active or ctx.is_at_spawn(player) or not player.can_cast_spell(slot.active):
 			continue
 		if slot.item.id in rechargable_actives and slot.charges == 0:
 			continue
