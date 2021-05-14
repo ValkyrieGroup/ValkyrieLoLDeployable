@@ -9087,7 +9087,7 @@
         "speed": 2000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": [ "CastDirection", "Line", "CollideCommon", "AffectAll" ]
+        "flags": [ "CastDirection", "Line", "CollideCommon", "AffectAll", "AppliesOnHit" ]
     },
     {
         "name": "ezrealr",
@@ -9711,7 +9711,7 @@
         "speed": 1100.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "Dash"]
+        "flags": ["CastDirection", "Dash", "AppliesOnHit"]
     },
     {
         "name": "fiorar",
@@ -9887,7 +9887,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastTarget"]
+        "flags": ["CastTarget", "AppliesOnHit"]
     },
     {
         "name": "fizzr",
@@ -13471,7 +13471,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastTarget"]
+        "flags": ["CastTarget", "AppliesOnHit"]
     },
     {
         "name": "ireliabasicattack",
@@ -24895,7 +24895,7 @@
         "speed": 1400.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastTarget"]
+        "flags": ["CastTarget", "AppliesOnHit"]
     },
     {
         "name": "missfortunericochetshotdud",
@@ -30815,7 +30815,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["AppliesOnHit"]
     },
     {
         "name": "renektonexecute",
@@ -34479,7 +34479,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["AppliesOnHit"]
     },
     {
         "name": "shyvanadoubleattackhitdragon2",
@@ -34495,7 +34495,7 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["AppliesOnHit"]
     },
     {
         "name": "shyvanatransformsizebuff",
@@ -46431,7 +46431,7 @@
         "speed": 1500.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["Chargeable", "CastTarget", "AffectAll"]
+        "flags": ["Chargeable", "CastTarget", "AffectAll", "AppliesOnHit"]
     },
     {
         "name": "warwickp",
@@ -47359,7 +47359,7 @@
         "speed": 1200.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "Line", "CollideWindwall", "AffectAll"]
+        "flags": ["CastDirection", "Line", "CollideWindwall", "AffectAll", "AppliesOnHit"]
     },
     {
         "name": "odysseyaugments_yasuoedash",
@@ -47903,7 +47903,7 @@
         "speed": 1500.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "Line", "AffectAll"]
+        "flags": ["CastDirection", "Line", "AffectAll", "AppliesOnHit"]
     },
     {
         "name": "yasuocritattack5",
@@ -48207,7 +48207,7 @@
         "speed": 1500.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "Line", "AffectAll"]
+        "flags": ["CastDirection", "Line", "AffectAll", "AppliesOnHit"]
     },
     {
         "name": "odysseyaugments_yasuoq3mis_growing",
@@ -48911,7 +48911,7 @@
         "speed": 8700.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "Line", "AffectAll"]
+        "flags": ["CastDirection", "Line", "AffectAll", "AppliesOnHit"]
     },
     {
         "name": "yonew",

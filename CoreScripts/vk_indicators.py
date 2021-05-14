@@ -1,9 +1,6 @@
 from valkyrie import *
 from helpers.drawings import Circle
-from helpers.prediction import *
-from helpers.items import *
-from helpers.damages import calculate_raw_spell_dmg, calculate_onhit_dmg
-from time import time
+from helpers.damages import calculate_raw_spell_dmg, calculate_onhit_dmg, MixedDamage
 import json
 
 player_circle	     = Circle(0.0, 80, 3.0, Col(0.1, 1.0, 0.1, 0.7),  True, True)
@@ -216,22 +213,20 @@ def draw_player_range(ctx):
 	player_circle.draw_at(ctx, ctx.player.pos)
 	
 def draw_potential_dmg(ctx):
-	
-	dmgs = []
+
 	player = ctx.player
+	damage = MixedDamage()
 	for i in range(4):
 		if not potential_dmg_mask[i]:
 			continue
 			
 		spell = player.spells[i]
 		if player.can_cast_spell(spell):
-			dmgs.append(calculate_raw_spell_dmg(player, spell))
+			damage = damage + calculate_raw_spell_dmg(player, spell)
 	
 	for target in ctx.champs.enemy_to(player).targetable().on_screen().get():
-		total_dmg = 0.0
-		for dmg in dmgs:
-			total_dmg += dmg.calc_against(ctx, player, target)
-		ctx.hp_dmg_indicator(target, total_dmg, Col(1.0, 0.5, 0.1, 0.5))
+		ctx.hp_dmg_indicator(target, damage.calc_against(ctx, player, target), Col(1.0, 0.5, 0.1, 0.5))
+
 		
 def draw_focused(ctx):
 	if ctx.focused:
