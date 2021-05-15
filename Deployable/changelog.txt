@@ -1,4 +1,8 @@
 [Valkyrie v0.45]
+	* Fixed senna orbwalking
+	* Fixed jhin orbwalking
+
+	+ Now aimcast saves settings for each champion separetely (only the "Auto aim" ones)
 	+ Now valkyrie is able to calculate on hit damage for the following items: lich bane, trinity, sunderer, essence reaver, kraken slayer.
 	+ Now on hit effects are calculated for spells like Ezreal Q, Irelia Q etc. Not all champions with on hit setup because we dont have them all in damage lib
 
