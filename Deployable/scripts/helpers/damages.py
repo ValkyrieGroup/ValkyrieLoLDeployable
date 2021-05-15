@@ -260,6 +260,30 @@ class DivineSundererDamage(PhysDamage):
 		self.raw_dmg = max(attacker.base_atk * 1.5, target.max_health * 0.1)
 		return super().calc_against(ctx, attacker, target)
 
+class BotrkDamage(PhysDamage):
+
+	def __init__(self):
+		self.raw_dmg = 0.0
+
+	def calc_against(self, ctx, attacker, target):
+		dmg = target.health * (0.06 if attacker.is_ranged else 0.1)
+		if dmg > 60.0 and not target.has_tags(Unit.Champion):
+			self.raw_dmg = 60.0
+		else:
+			self.raw_dmg = dmg
+
+		return super().calc_against(ctx, attacker, target)
+
+class NoonquiverDamage(PhysDamage):
+
+	def __init__(self):
+		self.raw_dmg = 0.0
+
+	def calc_against(self, ctx, attacker, target):
+		self.raw_dmg = 0.0 if target.has_tags(Unit.Champion) else 20.0
+
+		return super().calc_against(ctx, attacker, target)
+
 DamageExtractors = {
 
 	# Ahri
@@ -465,7 +489,7 @@ def load_spell_calcs(path):
 
 class OnHitCalculator:
 	def calculate(self, source, target) -> (int, int):
-		return get_items_onhit_damage(source, target) + PhysDamage(source.base_atk + source.bonus_atk)
+		return get_items_onhit_damage(source) + PhysDamage(source.base_atk + source.bonus_atk)
 
 class KalistaOnHitCalculator(OnHitCalculator):
 	def calculate(self, source, target) -> (int, int):
@@ -494,11 +518,11 @@ class OriannaOnHitCalculator(OnHitCalculator):
 
 class OnHitInfo:
 
-	def __init__(self, damage_solver = lambda src, target, spell: PhysDamage(0.0), only_basics=False):
+	def __init__(self, damage_solver = lambda src, spell: PhysDamage(0.0), only_basics=False):
 		self.damage_solver = damage_solver
 		self.only_basics = only_basics
 
-	def get_damage(self, slot, source, target, spell):
+	def get_damage(self, slot, source, spell):
 		if spell:
 			if self.only_basics or not spell.static.has_flag(Spell.AppliesOnHit):
 				return PhysDamage(0.0)
@@ -506,9 +530,9 @@ class OnHitInfo:
 			if not slot.active or slot.active.cd > 0.0:
 				return PhysDamage(0.0)
 
-			return self.damage_solver(source, target, spell)
+			return self.damage_solver(source, spell)
 
-		return self.damage_solver(source, target, None)
+		return self.damage_solver(source, None)
 
 def crit_from_items(item_slots):
 	crit = 0.0
@@ -518,78 +542,74 @@ def crit_from_items(item_slots):
 	return crit
 
 
-def onhit_guinsoo(src, target, spell):
+def onhit_guinsoo(src, spell):
 	return PhysDamage(min(200.0, min(crit_from_items(src.item_slots), 1.0) * 100.0 * 2.0))
 
 
-def onhit_rageknife(src, target, spell):
+def onhit_rageknife(src, spell):
 	return PhysDamage(min(175.0, min(crit_from_items(src.item_slots), 1.0) * 100.0 * 1.75))
 
 
-def onhit_noonquiver(src, target, spell):
-	return PhysDamage(0.0) if target.has_tags(Unit.Champion) else PhysDamage(20.0)
+def onhit_noonquiver(src, spell):
+	return NoonquiverDamage()
 
 
-def onhit_recurve_bow(src, target, spell):
+def onhit_recurve_bow(src, spell):
 	return PhysDamage(15.0)
 
 
-def onhit_botrk(src, target, spell):
-	dmg = target.health * (0.06 if src.is_ranged else 0.1)
-	if dmg > 60.0 and not target.has_tags(Unit.Champion):
-		return 60.0
-	return PhysDamage(dmg)
+def onhit_botrk(src, spell):
+	return BotrkDamage()
 
-
-def onhit_doran_ring(src, target, spell):
+def onhit_doran_ring(src, spell):
 	return PhysDamage(5.0)
 
 
-def onhit_nashors(src, target, spell):
+def onhit_nashors(src, spell):
 	return MagicDamage(15.0 + 0.2 * src.ap)
 
 
-def onhit_wits_end(src, target, spell):
+def onhit_wits_end(src, spell):
 	return MagicDamage(15.0 + 3.82 * (src.lvl - 1))
 
 
-def onhit_titanic_hydra(src, target, spell):
+def onhit_titanic_hydra(src, spell):
 	dmg = 3.75 if src.is_ranged else 5
 	dmg += (src.max_health * 0.01125 if src.is_ranged else 0.015)
 
 	return PhysDamage(dmg)
 
 
-def onhit_sheen(src, target, spell):
+def onhit_sheen(src, spell):
 	if spell or src.has_buff('sheen'):
 		return PhysDamage(src.base_atk)
 	return PhysDamage(0.0)
 
 
-def onhit_trinity(src, target, spell):
+def onhit_trinity(src, spell):
 	if spell or src.has_buff('3078trinityforce'):
 		return PhysDamage(2.0 * src.base_atk)
 	return PhysDamage(0.0)
 
 
-def onhit_kraken(src, target, spell):
+def onhit_kraken(src, spell):
 	buff = src.get_buff('6672buff')
 	if buff and buff.value == 2:
 		return TrueDamage(60.0 + 0.45 * src.bonus_atk)
 	return PhysDamage(0.0)
 
 
-def onhit_divine_sunderer(src, target, spell):
+def onhit_divine_sunderer(src, spell):
 	if spell or src.has_buff('6632buff'):
 		return DivineSundererDamage()
 	return PhysDamage(0.0)
 
-def onhit_lichbane(src, target, spell):
+def onhit_lichbane(src, spell):
 	if spell or src.has_buff('lichbane'):
 		return MagicDamage(1.5 * src.base_atk + 0.4 * src.ap)
 	return MagicDamage(0.0)
 
-def onhit_essence_reaver(src, target, spell):
+def onhit_essence_reaver(src, spell):
 	if spell or src.has_buff('3508buff'):
 		return PhysDamage(src.base_atk + 0.4*src.bonus_atk)
 	return PhysDamage(0.0)
@@ -620,7 +640,7 @@ ChampionOnHitCalculators = {
 	'orianna' : OriannaOnHitCalculator()
 }
 
-def get_items_onhit_damage(source, target, spell=None) -> MixedDamage:
+def get_items_onhit_damage(source, spell=None) -> MixedDamage:
 	''' Returns raw on hit damage from items as atuple (physical_damage, magical_damage) '''
 
 	dmg = MixedDamage()
@@ -633,7 +653,7 @@ def get_items_onhit_damage(source, target, spell=None) -> MixedDamage:
 		if not calculator:
 			continue
 
-		dmg = dmg + calculator.get_damage(slot, source, target, spell)
+		dmg = dmg + calculator.get_damage(slot, source, spell)
 
 	return dmg
 
@@ -651,7 +671,7 @@ def calculate_raw_spell_dmg(champ: ChampionObj, spell: SpellObj) -> Damage:
 
 	dmg = extractor(calculations, champ, spell)
 	if spell.static.has_flag(Spell.AppliesOnHit):
-		return get_items_onhit_damage(champ, None, spell) + dmg
+		return get_items_onhit_damage(champ, spell) + dmg
 
 	return dmg
 

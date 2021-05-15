@@ -1,6 +1,7 @@
 [Valkyrie v0.45]
 	* Fixed senna orbwalking
 	* Fixed jhin orbwalking
+	* Fixed saving problem with disabled scripts
 
 	+ Now aimcast saves settings for each champion separetely (only the "Auto aim" ones)
 	+ Now valkyrie is able to calculate on hit damage for the following items: lich bane, trinity, sunderer, essence reaver, kraken slayer.
