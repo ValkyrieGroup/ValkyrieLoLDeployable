@@ -211,7 +211,7 @@ def draw_turret_range(ctx):
 def draw_player_range(ctx):
 	player_circle.radius = ctx.player.atk_range + ctx.player.static.gameplay_radius
 	player_circle.draw_at(ctx, ctx.player.pos)
-	
+
 def draw_potential_dmg(ctx):
 
 	player = ctx.player

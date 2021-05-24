@@ -75,3 +75,9 @@ def valkyrie_exec(ctx: Context) :
 	
 	if champ_skin_id > -1:
 		ctx.player.reskin(champ_skin_id)
+
+		# Reskin quinn bird
+		if ctx.player.name == 'quinn':
+			for obj in ctx.others.get():
+				if obj.name == 'quinnvalor':
+					obj.reskin(champ_skin_id)

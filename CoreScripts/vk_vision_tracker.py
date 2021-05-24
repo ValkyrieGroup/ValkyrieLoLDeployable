@@ -146,6 +146,7 @@ def valkyrie_exec(ctx: Context):
 		elif show_traps and obj.has_tags(Unit.SpecialTrap) and obj.name in traps:
 			draw(ctx, obj, size_traps, *(traps[obj.name]))
 	
+	
 	if show_clones:
 		for champ in ctx.champs.clone().alive().enemy_to(ctx.player).get():
 			if champ.name in clones:

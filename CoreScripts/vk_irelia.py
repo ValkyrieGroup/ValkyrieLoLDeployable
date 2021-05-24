@@ -74,6 +74,9 @@ class IreliaEPredictor:
 		else:
 			return ctx.predict_cast_point(player, target, spell)
 
+	def _ui(self, ctx, ui):
+		pass
+
 
 irelia = HT.ChampionScript(
 	passive_trigger   = HT.Enabler.default(),

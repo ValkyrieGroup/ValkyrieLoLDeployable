@@ -352,7 +352,13 @@ DamageExtractors = {
 	'jinxw'                  : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
 	'jinxe'                  : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'jinxr'                  : lambda calc, champ, skill: JinxRDmage(calc.damagemax(champ, skill)),
-
+	
+    # Katarina
+    'katarinapassive'        : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+    'katarinaq'              : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+    'katarinaewrapper'       : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+    'katarinar'              : lambda calc, champ, skill: MixedDamage(phys = PhysDamage(calc.totaladdamagecalc(champ, skill)), magic = MagicDamage(calc.totaldamagecalc(champ, skill))),
+	
 	# Kayle
 	'kayleq'                 : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'kayler'                 : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),

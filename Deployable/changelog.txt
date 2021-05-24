@@ -1,3 +1,9 @@
+[Valkyrie v0.46]
+	* Fixed a bug where prediction would fuck up when camera was suddenly moved
+
+	+ Updated skins for skin changer
+	+ Added Context.raycast_multiple method in scripting API (requested)
+
 [Valkyrie v0.45]
 	* Fixed senna orbwalking
 	* Fixed jhin orbwalking

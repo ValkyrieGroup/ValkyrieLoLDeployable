@@ -5,7 +5,9 @@ from helpers.inputs    import KeyInput
 import json
 
 keys = [
-	True, True, True, True, True, True
+	True, True, True, True, # Abilities
+	True, True,             # Summoners
+	False, False, False, False, False, False, False # Items
 ]
 
 keybinds = {
@@ -13,8 +15,17 @@ keybinds = {
 	1: lambda ctx: ctx.keybinds.cast_w,
 	2: lambda ctx: ctx.keybinds.cast_e,
 	3: lambda ctx: ctx.keybinds.cast_r,
+
 	4: lambda ctx: ctx.keybinds.cast_d,
-	5: lambda ctx: ctx.keybinds.cast_f
+	5: lambda ctx: ctx.keybinds.cast_f,
+
+	6: lambda ctx: ctx.keybinds.use_item_1,
+	7: lambda ctx: ctx.keybinds.use_item_2,
+	8: lambda ctx: ctx.keybinds.use_item_3,
+	9: lambda ctx: ctx.keybinds.use_item_4,
+	10: lambda ctx: ctx.keybinds.use_item_5,
+	11: lambda ctx: ctx.keybinds.use_item_6,
+	12: lambda ctx: ctx.keybinds.use_trinket,
 }
 
 channels = [
@@ -27,7 +38,7 @@ enabler  = Enabler()
 target_sel = TargetSelector(0, TargetSet.Champion)
 target_minions  = False
 target_monsters = True
-no_aim_when_no_target = False
+no_aim_when_no_target = True
 
 
 def update_keys(ctx):
@@ -62,7 +73,7 @@ def valkyrie_on_load(ctx: Context) :
 	global target_minions, target_monsters, no_aim_when_no_target
 	cfg = ctx.cfg				 
 	
-	keys = json.loads(cfg.get_str('keys', json.dumps(keys)))
+	keys = json.loads(cfg.get_str(ctx.player.name + '_keys', json.dumps(keys)))
 	update_keys(ctx)
 	
 	target_sel            = TargetSelector.from_str(cfg.get_str('target_sel', str(target_sel)))
@@ -74,7 +85,7 @@ def valkyrie_on_load(ctx: Context) :
 def valkyrie_on_save(ctx: Context) :	 
 	cfg = ctx.cfg				 
 	
-	cfg.set_str('keys', json.dumps(keys))
+	cfg.set_str(ctx.player.name + '_keys', json.dumps(keys))
 	cfg.set_str('target_sel', str(target_sel))
 	cfg.set_bool('target_minions', target_minions)
 	cfg.set_bool('target_monsters', target_monsters)

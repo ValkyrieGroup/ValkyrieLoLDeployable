@@ -14,8 +14,8 @@ class ConditionKogMawUlt(SpellCondition):
 		self.min_mana = min_mana
 		
 	def _ui(self, ctx, ui):
-		self.max_stacks = ui.sliderint('Max R stacks', self.max_stacks, 1, 9)
-		self.min_mana   = ui.sliderfloat('Minimum mana for R', self.min_mana, 100, 1000.0)
+		self.max_stacks = ui.sliderint('Max R Stacks', self.max_stacks, 1, 9)
+		self.min_mana   = ui.sliderfloat('Minimum Mana for R', self.min_mana, 100, 1000.0)
 		
 	def _check(self, ctx, player, target, spell):
 		
@@ -27,6 +27,12 @@ class ConditionKogMawUlt(SpellCondition):
 			return False
 		
 		num_stacks = player.num_buff_stacks('kogmawlivingartillerycost')
+
+		pAtk_range = (player.atk_range) + 200
+
+		if player.pos.distance(target.pos) < pAtk_range:
+			return False
+
 		if num_stacks*spell.mana > player.mana:
 			return False
 			
@@ -36,10 +42,10 @@ class ConditionKogMawUlt(SpellCondition):
 		return True
 		
 	def _get_name(self):
-		return 'Kogmaw ult management'
+		return 'Kogmaw [R]'
 		
 	def _get_help(self):
-		return 'Condition for kogmaw ult management'
+		return 'Kogmaw [R] Conditions'
 
 kogmaw = HT.ChampionScript(
 	passive_trigger   = HT.Enabler.default(),
