@@ -517,7 +517,7 @@ class OriannaOnHitCalculator(OnHitCalculator):
 	def calculate(self, source, target) -> (int, int):
 		dmg = super().calculate(source, target)
 
-		orianna_buff = source.get_buff('oriannapstack')
+		orianna_buff = target.get_buff('oriannapstack')
 
 		if orianna_buff:
 			buff_dmg = orianna_buff.count * (14 + 11.2 * int(source.lvl / 3) + source.ap * 0.20)
