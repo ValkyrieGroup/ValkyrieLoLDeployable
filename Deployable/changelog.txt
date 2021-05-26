@@ -1,3 +1,9 @@
+[Valkyrie v0.48]
+	* Fixed orianna passive damage calculation crashing orbwalker
+	* Fixed fountain tower range circle drawing
+	
+	+ Updated valkyrie for league patch 11.11
+
 [Valkyrie v0.47]
 	* Fixed bug where some champ scripts would try to orbwalker while dead
 	* Fixed orbwalking delayed attacks for jhin

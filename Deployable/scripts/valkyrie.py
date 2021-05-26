@@ -398,6 +398,7 @@ class Spell:
 	DashSkill = 524288
 	ChannelSkill = 2097152
 	ChargeableSkill = 1048576
+	AppliesOnHit = 4194304
 
 class Key:
 	'''Hardware key codes'''
@@ -1535,6 +1536,16 @@ class UnitObj(Obj):
 		pass
 
 	@property
+	def max_mana(self) -> float:
+		''' Max mana of the unit'''
+		pass
+
+	@max_mana.setter
+	def max_mana(self, value):
+		''' Max mana of the unit'''
+		pass
+
+	@property
 	def health(self) -> float:
 		''' Current health of the unit'''
 		pass
@@ -1987,6 +1998,16 @@ class ChampionObj(UnitObj):
 	@recalling.setter
 	def recalling(self, value):
 		''' True if champion is recalling'''
+		pass
+
+	@property
+	def recall_start_time(self) -> float:
+		''' Start time of the recall in game time. Use this only if recalling flag is True'''
+		pass
+
+	@recall_start_time.setter
+	def recall_start_time(self, value):
+		''' Start time of the recall in game time. Use this only if recalling flag is True'''
 		pass
 
 	@property
@@ -2493,6 +2514,10 @@ class Context:
 		'''     Launches a ray that stops on the first object specified by RayLayer'''
 		pass
 
+	def raycast(self, begin: Vec3, direction: Vec3, length: float, width: float, layers: RayLayer) -> RaycastResult:
+		'''     Same as Context.Raycast but returns a list with all collision instead of the first collision.'''
+		pass
+
 	def is_wall_at(self, position: Vec3) -> bool:
 		'''    Checks if there is a wall at the specified position'''
 		pass
@@ -2623,6 +2648,10 @@ class Context:
 
 	def ping_assist(self, location: Vec3):
 		'''    Issues a `help` ping at the target location'''
+		pass
+
+	def hp_dmg_indicator(self, champ: ChampionObj, dmg: float, color: Col):
+		'''     Draws an damage indicator with a specified color for an amount of damage on a champion hp bar.'''
 		pass
 
 	def line(self, start: Vec2, end: Vec2, thickness: float, color: Col):

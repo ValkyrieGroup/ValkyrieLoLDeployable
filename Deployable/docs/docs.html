@@ -426,6 +426,7 @@ class Spell:
         DashSkill = 524288
         ChannelSkill = 2097152
         ChargeableSkill = 1048576
+        AppliesOnHit = 4194304
 
 class Key:
         &#39;&#39;&#39;Hardware key codes&#39;&#39;&#39;
@@ -1563,6 +1564,16 @@ class UnitObj(Obj):
                 pass
 
         @property
+        def max_mana(self) -&gt; float:
+                &#39;&#39;&#39; Max mana of the unit&#39;&#39;&#39;
+                pass
+
+        @max_mana.setter
+        def max_mana(self, value):
+                &#39;&#39;&#39; Max mana of the unit&#39;&#39;&#39;
+                pass
+
+        @property
         def health(self) -&gt; float:
                 &#39;&#39;&#39; Current health of the unit&#39;&#39;&#39;
                 pass
@@ -2015,6 +2026,16 @@ class ChampionObj(UnitObj):
         @recalling.setter
         def recalling(self, value):
                 &#39;&#39;&#39; True if champion is recalling&#39;&#39;&#39;
+                pass
+
+        @property
+        def recall_start_time(self) -&gt; float:
+                &#39;&#39;&#39; Start time of the recall in game time. Use this only if recalling flag is True&#39;&#39;&#39;
+                pass
+
+        @recall_start_time.setter
+        def recall_start_time(self, value):
+                &#39;&#39;&#39; Start time of the recall in game time. Use this only if recalling flag is True&#39;&#39;&#39;
                 pass
 
         @property
@@ -2521,6 +2542,10 @@ class Context:
                 &#39;&#39;&#39;     Launches a ray that stops on the first object specified by RayLayer&#39;&#39;&#39;
                 pass
 
+        def raycast(self, begin: Vec3, direction: Vec3, length: float, width: float, layers: RayLayer) -&gt; RaycastResult:
+                &#39;&#39;&#39;     Same as Context.Raycast but returns a list with all collision instead of the first collision.&#39;&#39;&#39;
+                pass
+
         def is_wall_at(self, position: Vec3) -&gt; bool:
                 &#39;&#39;&#39;    Checks if there is a wall at the specified position&#39;&#39;&#39;
                 pass
@@ -2651,6 +2676,10 @@ class Context:
 
         def ping_assist(self, location: Vec3):
                 &#39;&#39;&#39;    Issues a `help` ping at the target location&#39;&#39;&#39;
+                pass
+
+        def hp_dmg_indicator(self, champ: ChampionObj, dmg: float, color: Col):
+                &#39;&#39;&#39;     Draws an damage indicator with a specified color for an amount of damage on a champion hp bar.&#39;&#39;&#39;
                 pass
 
         def line(self, start: Vec2, end: Vec2, thickness: float, color: Col):
@@ -2971,6 +3000,16 @@ def value(self) -&gt; int:
                 pass
 
         @property
+        def recall_start_time(self) -&gt; float:
+                &#39;&#39;&#39; Start time of the recall in game time. Use this only if recalling flag is True&#39;&#39;&#39;
+                pass
+
+        @recall_start_time.setter
+        def recall_start_time(self, value):
+                &#39;&#39;&#39; Start time of the recall in game time. Use this only if recalling flag is True&#39;&#39;&#39;
+                pass
+
+        @property
         def is_clone(self) -&gt; bool:
                 &#39;&#39;&#39; Checks if the champion is a clone&#39;&#39;&#39;
                 pass
@@ -3098,6 +3137,19 @@ def is_clone(self) -&gt; bool:
 <pre><code class="python">@property
 def item_slots(self) -&gt; list[ItemSlot]:
         &#39;&#39;&#39; List of inventory slots. If an item is on the slot then the value is an Item object otherwise None. Only local player and enemies have items read for performance reasons&#39;&#39;&#39;
+        pass</code></pre>
+</details>
+</dd>
+<dt id="valkyrie.ChampionObj.recall_start_time"><code class="name">var <span class="ident">recall_start_time</span> : float</code></dt>
+<dd>
+<div class="desc"><p>Start time of the recall in game time. Use this only if recalling flag is True</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def recall_start_time(self) -&gt; float:
+        &#39;&#39;&#39; Start time of the recall in game time. Use this only if recalling flag is True&#39;&#39;&#39;
         pass</code></pre>
 </details>
 </dd>
@@ -3741,6 +3793,10 @@ def r(self) -&gt; float:
                 &#39;&#39;&#39;     Launches a ray that stops on the first object specified by RayLayer&#39;&#39;&#39;
                 pass
 
+        def raycast(self, begin: Vec3, direction: Vec3, length: float, width: float, layers: RayLayer) -&gt; RaycastResult:
+                &#39;&#39;&#39;     Same as Context.Raycast but returns a list with all collision instead of the first collision.&#39;&#39;&#39;
+                pass
+
         def is_wall_at(self, position: Vec3) -&gt; bool:
                 &#39;&#39;&#39;    Checks if there is a wall at the specified position&#39;&#39;&#39;
                 pass
@@ -3871,6 +3927,10 @@ def r(self) -&gt; float:
 
         def ping_assist(self, location: Vec3):
                 &#39;&#39;&#39;    Issues a `help` ping at the target location&#39;&#39;&#39;
+                pass
+
+        def hp_dmg_indicator(self, champ: ChampionObj, dmg: float, color: Col):
+                &#39;&#39;&#39;     Draws an damage indicator with a specified color for an amount of damage on a champion hp bar.&#39;&#39;&#39;
                 pass
 
         def line(self, start: Vec2, end: Vec2, thickness: float, color: Col):
@@ -4376,6 +4436,20 @@ def ui(self) -&gt; UI:
         pass</code></pre>
 </details>
 </dd>
+<dt id="valkyrie.Context.hp_dmg_indicator"><code class="name flex">
+<span>def <span class="ident">hp_dmg_indicator</span></span>(<span>self, champ: <a title="valkyrie.ChampionObj" href="#valkyrie.ChampionObj">ChampionObj</a>, dmg: float, color: <a title="valkyrie.Col" href="#valkyrie.Col">Col</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws an damage indicator with a specified color for an amount of damage on a champion hp bar.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hp_dmg_indicator(self, champ: ChampionObj, dmg: float, color: Col):
+        &#39;&#39;&#39;     Draws an damage indicator with a specified color for an amount of damage on a champion hp bar.&#39;&#39;&#39;
+        pass</code></pre>
+</details>
+</dd>
 <dt id="valkyrie.Context.image"><code class="name flex">
 <span>def <span class="ident">image</span></span>(<span>self, id: str, position: <a title="valkyrie.Vec2" href="#valkyrie.Vec2">Vec2</a>, size: <a title="valkyrie.Vec2" href="#valkyrie.Vec2">Vec2</a>, color: <a title="valkyrie.Col" href="#valkyrie.Col">Col</a>)</span>
 </code></dt>
@@ -4772,13 +4846,13 @@ def ui(self) -&gt; UI:
 <span>def <span class="ident">raycast</span></span>(<span>self, begin: <a title="valkyrie.Vec3" href="#valkyrie.Vec3">Vec3</a>, direction: <a title="valkyrie.Vec3" href="#valkyrie.Vec3">Vec3</a>, length: float, width: float, layers: <a title="valkyrie.RayLayer" href="#valkyrie.RayLayer">RayLayer</a>) ‑> <a title="valkyrie.RaycastResult" href="#valkyrie.RaycastResult">RaycastResult</a></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Launches a ray that stops on the first object specified by RayLayer</p></div>
+<div class="desc"><p>Same as Context.Raycast but returns a list with all collision instead of the first collision.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def raycast(self, begin: Vec3, direction: Vec3, length: float, width: float, layers: RayLayer) -&gt; RaycastResult:
-        &#39;&#39;&#39;     Launches a ray that stops on the first object specified by RayLayer&#39;&#39;&#39;
+        &#39;&#39;&#39;     Same as Context.Raycast but returns a list with all collision instead of the first collision.&#39;&#39;&#39;
         pass</code></pre>
 </details>
 </dd>
@@ -7108,7 +7182,8 @@ def point(self) -&gt; Vec3:
         AffectAllUnits = 458752
         DashSkill = 524288
         ChannelSkill = 2097152
-        ChargeableSkill = 1048576</code></pre>
+        ChargeableSkill = 1048576
+        AppliesOnHit = 4194304</code></pre>
 </details>
 <h3>Class variables</h3>
 <dl>
@@ -7125,6 +7200,10 @@ def point(self) -&gt; Vec3:
 <div class="desc"></div>
 </dd>
 <dt id="valkyrie.Spell.AffectMonster"><code class="name">var <span class="ident">AffectMonster</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Spell.AppliesOnHit"><code class="name">var <span class="ident">AppliesOnHit</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -9433,6 +9512,16 @@ def width(self) -&gt; float:
                 pass
 
         @property
+        def max_mana(self) -&gt; float:
+                &#39;&#39;&#39; Max mana of the unit&#39;&#39;&#39;
+                pass
+
+        @max_mana.setter
+        def max_mana(self, value):
+                &#39;&#39;&#39; Max mana of the unit&#39;&#39;&#39;
+                pass
+
+        @property
         def health(self) -&gt; float:
                 &#39;&#39;&#39; Current health of the unit&#39;&#39;&#39;
                 pass
@@ -10201,6 +10290,19 @@ def mana(self) -&gt; float:
 <pre><code class="python">@property
 def max_health(self) -&gt; float:
         &#39;&#39;&#39; Max health of the unit&#39;&#39;&#39;
+        pass</code></pre>
+</details>
+</dd>
+<dt id="valkyrie.UnitObj.max_mana"><code class="name">var <span class="ident">max_mana</span> : float</code></dt>
+<dd>
+<div class="desc"><p>Max mana of the unit</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def max_mana(self) -&gt; float:
+        &#39;&#39;&#39; Max mana of the unit&#39;&#39;&#39;
         pass</code></pre>
 </details>
 </dd>
@@ -11453,6 +11555,7 @@ def z(self) -&gt; float:
 <li><code><a title="valkyrie.ChampionObj.hpbar_pos" href="#valkyrie.ChampionObj.hpbar_pos">hpbar_pos</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.is_clone" href="#valkyrie.ChampionObj.is_clone">is_clone</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.item_slots" href="#valkyrie.ChampionObj.item_slots">item_slots</a></code></li>
+<li><code><a title="valkyrie.ChampionObj.recall_start_time" href="#valkyrie.ChampionObj.recall_start_time">recall_start_time</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.recalling" href="#valkyrie.ChampionObj.recalling">recalling</a></code></li>
 <li><code><a title="valkyrie.ChampionObj.spells" href="#valkyrie.ChampionObj.spells">spells</a></code></li>
 </ul>
@@ -11515,6 +11618,7 @@ def z(self) -&gt; float:
 <li><code><a title="valkyrie.Context.focused" href="#valkyrie.Context.focused">focused</a></code></li>
 <li><code><a title="valkyrie.Context.get_spell_static" href="#valkyrie.Context.get_spell_static">get_spell_static</a></code></li>
 <li><code><a title="valkyrie.Context.hovered" href="#valkyrie.Context.hovered">hovered</a></code></li>
+<li><code><a title="valkyrie.Context.hp_dmg_indicator" href="#valkyrie.Context.hp_dmg_indicator">hp_dmg_indicator</a></code></li>
 <li><code><a title="valkyrie.Context.hud" href="#valkyrie.Context.hud">hud</a></code></li>
 <li><code><a title="valkyrie.Context.image" href="#valkyrie.Context.image">image</a></code></li>
 <li><code><a title="valkyrie.Context.image_rounded" href="#valkyrie.Context.image_rounded">image_rounded</a></code></li>
@@ -11824,6 +11928,7 @@ def z(self) -&gt; float:
 <li><code><a title="valkyrie.Spell.AffectChampion" href="#valkyrie.Spell.AffectChampion">AffectChampion</a></code></li>
 <li><code><a title="valkyrie.Spell.AffectMinion" href="#valkyrie.Spell.AffectMinion">AffectMinion</a></code></li>
 <li><code><a title="valkyrie.Spell.AffectMonster" href="#valkyrie.Spell.AffectMonster">AffectMonster</a></code></li>
+<li><code><a title="valkyrie.Spell.AppliesOnHit" href="#valkyrie.Spell.AppliesOnHit">AppliesOnHit</a></code></li>
 <li><code><a title="valkyrie.Spell.CastAnywhere" href="#valkyrie.Spell.CastAnywhere">CastAnywhere</a></code></li>
 <li><code><a title="valkyrie.Spell.CastDirection" href="#valkyrie.Spell.CastDirection">CastDirection</a></code></li>
 <li><code><a title="valkyrie.Spell.CastPoint" href="#valkyrie.Spell.CastPoint">CastPoint</a></code></li>
@@ -12092,6 +12197,7 @@ def z(self) -&gt; float:
 <li><code><a title="valkyrie.UnitObj.magic_res" href="#valkyrie.UnitObj.magic_res">magic_res</a></code></li>
 <li><code><a title="valkyrie.UnitObj.mana" href="#valkyrie.UnitObj.mana">mana</a></code></li>
 <li><code><a title="valkyrie.UnitObj.max_health" href="#valkyrie.UnitObj.max_health">max_health</a></code></li>
+<li><code><a title="valkyrie.UnitObj.max_mana" href="#valkyrie.UnitObj.max_mana">max_mana</a></code></li>
 <li><code><a title="valkyrie.UnitObj.move_speed" href="#valkyrie.UnitObj.move_speed">move_speed</a></code></li>
 <li><code><a title="valkyrie.UnitObj.moving" href="#valkyrie.UnitObj.moving">moving</a></code></li>
 <li><code><a title="valkyrie.UnitObj.num_buff_stacks" href="#valkyrie.UnitObj.num_buff_stacks">num_buff_stacks</a></code></li>
