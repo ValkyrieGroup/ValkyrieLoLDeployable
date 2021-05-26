@@ -222,12 +222,8 @@ def valkyrie_on_save(ctx: Context):
 	cfg.set_bool("lane_push_mode.allow_champ", lane_push_mode.allow_champ)
 	cfg.set_str("dead_zone", str(dead_zone))
 
-last_moved	= 0
-last_attacked = 0
 
 def valkyrie_exec(ctx: Context):
-	global last_moved, last_attacked
-	
 	Orbwalker.CurrentMode = None
 	
 	now = time()
@@ -272,19 +268,19 @@ def valkyrie_exec(ctx: Context):
 	b_windup_time    = player.static.basic_atk_windup*c_atk_time						
 	
 	target = None
-	dt = now - last_attacked - extra_delay
+	dt = now - Orbwalker.LastAttacked - extra_delay
 	
 	if not player.channeling and dt > c_atk_time:
 		target = Orbwalker.CurrentMode.get_target(ctx, player.atk_range + player.static.gameplay_radius)
 		if target:
 			Orbwalker.Attacking = True
 			ctx.attack(target)
-			last_attacked = now
+			Orbwalker.LastAttacked = now
 			
-	if not target and dt > b_windup_time and now - last_moved > move_interval:	
+	if not target and dt > b_windup_time and now - Orbwalker.LastMoved > move_interval:	
 		Orbwalker.Attacking = False
 		
 		# Check if mouse is within dead zone
 		if ctx.w2s(player.pos).distance(ctx.cursor_pos) > dead_zone.radius and not player.channeling:
 			ctx.move()
-			last_moved = now
+			Orbwalker.LastMoved = now
