@@ -205,7 +205,9 @@ def draw_minion_hit_indicators(ctx):
 def draw_turret_range(ctx):
 	for turret in ctx.turrets.alive().on_screen().get():
 		circle = turret_circle_ally if turret.ally_to(ctx.player) else turret_circle_enemy
-		circle.radius = turret.static.base_atk_range + turret.static.gameplay_radius
+		circle.radius = turret.static.base_atk_range + turret.static.gameplay_radius + 45
+		if turret.health > 9000:
+			turret.pos.y = 100
 		circle.draw_at(ctx, turret.pos)
 		
 def draw_player_range(ctx):
