@@ -236,6 +236,9 @@ class ChampionScript:
 			return minions + jungle
 		
 		player = ctx.player
+		if player.dead:
+			return
+
 		if not Orbwalker.Attacking and Orbwalker.CurrentMode:
 			if Orbwalker.CurrentMode == Orbwalker.ModeKite:
 				self.combat_rotation.cast(ctx, Orbwalker.SelectorChampion, kite_target_extractor)

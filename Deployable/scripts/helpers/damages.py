@@ -284,6 +284,19 @@ class NoonquiverDamage(PhysDamage):
 
 		return super().calc_against(ctx, attacker, target)
 
+class JhinRShotDamage(PhysDamage):
+
+	def __init__(self, base, shots):
+		self.base = base
+		self.shots = shots
+
+	def calc_against(self, ctx, attacker, target):
+		missing_hp = 1.0 - (target.health/target.max_health)
+		self.raw_dmg = self.base + self.base * (3.0 * missing_hp)
+		self.raw_dmg *= self.shots
+
+		return super().calc_against(ctx, attacker, target)
+
 DamageExtractors = {
 
 	# Ahri
@@ -319,7 +332,7 @@ DamageExtractors = {
 	'dianateleport'          : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'dianar'                 : lambda calc, champ, skill: DianaRDamage(calc.rexplosiondamage(champ, skill), calc.rmultihitamplification(champ, skill)),
 
-        # Draven
+	# Draven
 	'dravenrcast'            : lambda calc, champ, skill: PhysDamage(calc.rcalculateddamage(champ, skill)),
 
 	# Ezreal
@@ -347,6 +360,13 @@ DamageExtractors = {
 	'ireliaw'                : lambda calc, champ, skill: PhysDamage(calc.maxdamagecalc(champ, skill)),
 	'ireliae'                : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
 	'ireliar'                : lambda calc, champ, skill: MagicDamage(calc.missiledamage(champ, skill)),
+
+	# Jhin
+	'jhinq'                  : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
+	'jhinw'                  : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
+	'jhine'                  : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+	'jhinr'                  : lambda calc, champ, skill: JhinRShotDamage(calc.damagecalc(champ, skill), 4.0),
+	'jhinrshot'              : lambda calc, champ, skill: JhinRShotDamage(calc.damagecalc(champ, skill), 1.0),
 
 	# Jinx
 	'jinxw'                  : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
@@ -462,7 +482,8 @@ DamageExtractors = {
 
 DuplicateMap = {
 	'yasuoq1wrapper': ['yasuoq2wrapper', 'yasuoq3wrapper'],
-	'xerathlocusofpower2': ['xerathrmissilewrapper']
+	'xerathlocusofpower2': ['xerathrmissilewrapper'],
+	'jhinr' : ['jhinrshot']
 }
 
 def load_spell_calcs(path):

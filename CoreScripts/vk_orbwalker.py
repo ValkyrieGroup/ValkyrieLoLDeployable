@@ -24,7 +24,7 @@ delay_percent = 0.115
 
 # Exceptions
 extra_delay     = 0.0
-fixed_atk_speed = None
+atk_speed_override = None
 
 class OrbwalkKite:
 	type = Orbwalker.ModeKite
@@ -179,7 +179,7 @@ def valkyrie_menu(ctx: Context):
 
 def valkyrie_on_load(ctx: Context):
 	global target_selector, max_atk_speed, move_interval, target_selector_monster, delay_percent
-	global key_kite, key_last_hit, key_lane_push, dead_zone, extra_delay, fixed_atk_speed
+	global key_kite, key_last_hit, key_lane_push, dead_zone, extra_delay, atk_speed_override
 	cfg = ctx.cfg
 	
 	target_selector		      = TargetSelector.from_str(cfg.get_str("target", str(target_selector)))
@@ -201,10 +201,11 @@ def valkyrie_on_load(ctx: Context):
 	Orbwalker.ModeLastHit = last_hit_mode
 	Orbwalker.ModeLanePush = lane_push_mode
 
+	atk_speed_override = None
 	if ctx.player.name == 'senna':
 		extra_delay = 0.18
 	if ctx.player.name == 'jhin':
-		fixed_atk_speed = 0.65
+		atk_speed_override = lambda player: 0.625 + 0.0177 * player.lvl
 	
 def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
@@ -257,10 +258,12 @@ def valkyrie_exec(ctx: Context):
 		return
 
 	has_lethal_tempo = Buffs.has_buff(player, 'LethalTempo')
-	atk_speed        = fixed_atk_speed
+	atk_speed        = 0.6
 
-	if not atk_speed:
+	if not atk_speed_override:
 		atk_speed = player.atk_speed if has_lethal_tempo else min(player.atk_speed, 2.5)
+	else:
+		atk_speed = atk_speed_override(player)
 
 	if atk_speed == 0.0:
 		return

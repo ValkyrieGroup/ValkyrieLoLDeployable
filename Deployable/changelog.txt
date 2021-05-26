@@ -1,3 +1,10 @@
+[Valkyrie v0.47]
+	* Fixed bug where some champ scripts would try to orbwalker while dead
+	* Fixed orbwalking delayed attacks for jhin
+	* Champ scripts now overshoot a little bit chargeable skills so they dont hit right behind the target
+	
+	+ Updated damage lib for couple more champions
+
 [Valkyrie v0.46]
 	* Fixed a bug where prediction would fuck up when camera was suddenly moved
 

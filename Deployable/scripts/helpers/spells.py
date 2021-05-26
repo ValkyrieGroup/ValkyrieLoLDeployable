@@ -334,7 +334,7 @@ class SpellRotation:
 					
 				channel_start_time = self.chargeables.get(spell.name, None)
 				if channel_start_time:
-					dist_to_target = player.pos.distance(point) + 50.0
+					dist_to_target = player.pos.distance(point) + chargeable_info.dist_calculator(chargeable_info.max_channel_time)*0.1
 					dt = now - channel_start_time
 					
 					# Prevents bugs
