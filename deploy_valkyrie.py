@@ -1,22 +1,24 @@
 import boto3, os
-from zipfile import ZipFile
+from zipfile import ZipFile, ZIP_DEFLATED
 from io import BytesIO
 
 # Create zip file of the files to be deployed
 print('Creating zip')
 
 zip_stream = BytesIO()
-zip = ZipFile(zip_stream, mode='w')
-for root, dirs, files in os.walk('Deployable'):
-    if root != 'Deployable':
-        zip.write(root)
-    else:
-        root = ''
+zip = ZipFile(zip_stream, mode='w', compression=ZIP_DEFLATED)
+path_skip_len = len('Deployable')
 
+for root, dirs, files in os.walk('Deployable'):
     for filename in files:
-        zip.write(os.path.join(root, filename))
+        arc_root = root[path_skip_len:]
+        zip.write(os.path.join(root, filename), os.path.join(arc_root, filename))
+
 zip.close()
 zip_stream.seek(0)
+
+with open('shit.zip', 'wb') as f:
+    f.write(zip_stream.read())
 
 # Create s3 client
 print('Creating S3 client')
