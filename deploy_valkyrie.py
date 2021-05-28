@@ -24,4 +24,4 @@ s3 = boto3.client(
 )
 
 print('Uploading zip')
-s3.upload_fileobj(zip_bytes, aws_bucket, 'latest.zip')
+s3.upload_fileobj(zip_bytes, os.environ['aws-deploy-bucket'], 'latest.zip')
