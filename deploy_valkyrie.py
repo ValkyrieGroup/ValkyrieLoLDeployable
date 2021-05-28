@@ -17,9 +17,6 @@ for root, dirs, files in os.walk('Deployable'):
 zip.close()
 zip_stream.seek(0)
 
-with open('shit.zip', 'wb') as f:
-    f.write(zip_stream.read())
-
 # Create s3 client
 print('Creating S3 client')
 s3 = boto3.client(
