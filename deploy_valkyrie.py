@@ -13,7 +13,6 @@ for root, dirs, files in os.walk('Deployable'):
         zip.write(os.path.join(root, filename))
 zip.close()
 zip_stream.seek(0)
-zip_bytes = zip_stream.read()
 
 # Create s3 client
 print('Creating S3 client')
@@ -24,4 +23,4 @@ s3 = boto3.client(
 )
 
 print('Uploading zip')
-s3.upload_fileobj(zip_bytes, os.environ['aws-deploy-bucket'], 'latest.zip')
+s3.upload_fileobj(zip_stream, os.environ['aws-deploy-bucket'], 'latest.zip')
