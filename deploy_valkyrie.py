@@ -12,7 +12,7 @@ path_skip_len = len('Deployable')
 for root, dirs, files in os.walk('Deployable'):
     for filename in files:
         arc_root = root[path_skip_len:]
-        zip.write(os.path.join(root, filename), os.path.join(arc_root, filename))
+        zip.write(filename=os.path.join(root, filename), arcname=os.path.join(arc_root, filename))
 
 zip.close()
 zip_stream.seek(0)
