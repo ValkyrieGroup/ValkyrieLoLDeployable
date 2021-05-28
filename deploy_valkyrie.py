@@ -8,7 +8,11 @@ print('Creating zip')
 zip_stream = BytesIO()
 zip = ZipFile(zip_stream, mode='w')
 for root, dirs, files in os.walk('Deployable'):
-    zip.write(root)
+    if root != 'Deployable':
+        zip.write(root)
+    else:
+        root = ''
+
     for filename in files:
         zip.write(os.path.join(root, filename))
 zip.close()
