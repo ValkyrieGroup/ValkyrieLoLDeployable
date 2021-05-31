@@ -115,6 +115,7 @@ class Buffs:
 		Buff('LuxQRoot',             'LuxLightBindingMis',         BuffType.CC,      CCType.Root),
 		Buff('RyzeWRoot',            'ryzewroot',                  BuffType.CC,      CCType.Root),
 		Buff('SingedEWRoot',         'megaadhevisesnare',          BuffType.CC,      CCType.Root),
+		Buff('MorganaQ',             'MorganaQ',                   BuffType.CC,      CCType.Root),
 								 
 		# Masteries                  
 		Buff('LethalTempo',          'ASSETS/Perks/Styles/Precision/LethalTempo/LethalTempoEmpowered.lua', BuffType.Mastery),

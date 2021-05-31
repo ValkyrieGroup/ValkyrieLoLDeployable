@@ -1,3 +1,7 @@
+[Valkyrie v0.58]
+	+ Added mouse 3D world position to API (ctx.hud.mouse_world_pos)
+	+ Added more champs in damages lib and spells lib	
+
 [Valkyrie v0.48]
 	* Fixed orianna passive damage calculation crashing orbwalker
 	* Fixed fountain tower range circle drawing
