@@ -21,6 +21,8 @@ class Orbwalker:
 	LastAttacked = 0
 	LastMoved    = 0
 
+	DisableAttack = False
+
 class KiteFlags:
 	BasicAttackKiting = False
 	SpellKiting       = False
