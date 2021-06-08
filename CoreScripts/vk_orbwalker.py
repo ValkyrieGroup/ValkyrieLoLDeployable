@@ -270,7 +270,7 @@ def valkyrie_exec(ctx: Context):
 	target = None
 	dt = now - Orbwalker.LastAttacked - extra_delay
 	
-	if not player.channeling and dt > c_atk_time:
+	if not player.channeling and dt > c_atk_time and not Orbwalker.DisableAttack:
 		target = Orbwalker.CurrentMode.get_target(ctx, player.atk_range + player.static.gameplay_radius)
 		if target:
 			Orbwalker.Attacking = True
