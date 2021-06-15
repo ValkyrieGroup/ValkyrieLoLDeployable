@@ -26,6 +26,75 @@ delay_percent = 0.115
 extra_delay     = 0.0
 atk_speed_override = None
 
+not_attacks = [
+	"asheqattacknoonhit",
+	"volleyattackwithsound",
+	"volleyattack",
+	"annietibbersbasicattack",
+	"annietibbersbasicattack2",
+	"azirsoldierbasicattack",
+	"azirsundiscbasicattack",
+	"elisespiderlingbasicattack",
+	"gravesbasicattackspread",
+	"gravesautoattackrecoil",
+	"heimertyellowbasicattack",
+	"heimertyellowbasicattack2",
+	"heimertbluebasicattack",
+	"jarvanivcataclysmattack",
+	"kindredwolfbasicattack",
+	"malzaharvoidlingbasicattack",
+	"malzaharvoidlingbasicattack2",
+	"malzaharvoidlingbasicattack3",
+	"shyvanadoubleattack",
+	"shyvanadoubleattackdragon",
+	"sivirwattackbounce",
+	"monkeykingdoubleattack",
+	"yorickspectralghoulbasicattack",
+	"yorickdecayedghoulbasicattack",
+	"yorickravenousghoulbasicattack",
+	"zyragraspingplantattack",
+	"zyragraspingplantattack2",
+	"zyragraspingplantattackfire",
+	"zyragraspingplantattack2fire"
+]
+
+class SpellTracker:
+	spell_instance = None
+	name = ""
+	begin_time = 0
+	remaining_time = 0
+
+	auto_instance = None
+	auto_begin = 0
+	auto_windup_remaining = 0
+	auto_last_attempt = 0
+	auto_time_of_cancel = 0
+	auto_attempt_interval = .5
+
+	def update(self, ctx):
+		current_casting = ctx.player.curr_casting
+
+		if current_casting:
+			spell_name = current_casting.name.lower()
+			if "attack" not in spell_name and spell_name not in not_attacks:
+				self.spell_instance = current_casting
+				self.name = spell_name
+				self.begin_time = current_casting.time_begin
+				self.remaining_time = current_casting.remaining
+			else:
+				self.auto_instance = current_casting
+				self.auto_windup_remaining = current_casting.remaining
+				self.auto_begin = current_casting.time_begin
+		else:
+			self.spell_instance = None
+			self.name = ""
+			self.begin_time = 0
+			self.remaining_time = 0
+
+			if self.auto_instance:
+				self.auto_time_of_cancel = ctx.time
+			self.auto_instance = None
+
 class OrbwalkKite:
 	type = Orbwalker.ModeKite
 	
@@ -144,6 +213,7 @@ class OrbwalkLanePush:
 kite_mode	    = OrbwalkKite()
 last_hit_mode   = OrbwalkLastHit()
 lane_push_mode  = OrbwalkLanePush()
+spell_tracker 	= SpellTracker()
 
 def valkyrie_menu(ctx: Context):
 	global target_selector, max_atk_speed, move_interval, delay_percent
@@ -236,6 +306,7 @@ def valkyrie_exec(ctx: Context):
 		return
 		
 	dead_zone.draw_at(ctx, player.pos)
+	spell_tracker.update(ctx)
 
 	# Skip if evading
 	if now < EvadeFlags.EvadeEndTime:
@@ -266,21 +337,52 @@ def valkyrie_exec(ctx: Context):
 		
 	c_atk_time	     = (1.0 + delay_percent)/atk_speed
 	b_windup_time    = player.static.basic_atk_windup*c_atk_time						
-	
+
+	# moon gliding, animation canceling at perfect time
+	for missile in ctx.missiles.near(ctx.player, 4000).get():
+		mis_obj: MissileObj = missile
+
+		if mis_obj.spell.src_index == player.index:
+			mis_name = mis_obj.name.lower()
+			if "attack" in mis_name and mis_name not in not_attacks:
+				if ctx.time - mis_obj.first_seen > 0.15:
+					b_windup_time = 0
+
 	target = None
-	dt = now - Orbwalker.LastAttacked - extra_delay
-	
-	if not player.channeling and dt > c_atk_time and not Orbwalker.DisableAttack:
+	dt = ctx.time - Orbwalker.LastAttacked - extra_delay
+	can_auto = spell_tracker.remaining_time <= 0 and dt > c_atk_time
+
+	auto_begin_t = ctx.time - spell_tracker.auto_begin
+	auto_last_attempt_t = ctx.time - SpellTracker.auto_last_attempt
+	auto_cancel_t = ctx.time - spell_tracker.auto_time_of_cancel
+
+	# happens when you're casting a spell
+	spell_reset = spell_tracker.spell_instance and spell_tracker.remaining_time <= 0 and \
+				  auto_last_attempt_t > spell_tracker.auto_attempt_interval \
+				  and c_atk_time > auto_begin_t and dt < b_windup_time + 0.25  # buffer for after cast check
+
+	# happens when u manually click to move while winding up
+	auto_canceled = not spell_tracker.auto_instance and auto_last_attempt_t > 0.05 and \
+					(
+						(auto_cancel_t > 0.05 and auto_begin_t < b_windup_time)
+						# TODO: check for orb attack with no windup due to manual clicks
+					)
+
+	if not player.channeling and (can_auto or spell_reset or auto_canceled) and not Orbwalker.DisableAttack:
 		target = Orbwalker.CurrentMode.get_target(ctx, player.atk_range + player.static.gameplay_radius)
 		if target:
 			Orbwalker.Attacking = True
+			Orbwalker.LastAttacked = ctx.time
 			ctx.attack(target)
-			Orbwalker.LastAttacked = now
-			
-	if not target and dt > b_windup_time and now - Orbwalker.LastMoved > move_interval:	
+			if spell_reset or auto_canceled:
+				SpellTracker.auto_last_attempt = ctx.time
+			return
+
+	can_move = dt > b_windup_time
+	if not target and can_move and ctx.time - Orbwalker.LastMoved > move_interval:
 		Orbwalker.Attacking = False
-		
+
 		# Check if mouse is within dead zone
 		if ctx.w2s(player.pos).distance(ctx.cursor_pos) > dead_zone.radius and not player.channeling:
 			ctx.move()
-			Orbwalker.LastMoved = now
+			Orbwalker.LastMoved = ctx.time
