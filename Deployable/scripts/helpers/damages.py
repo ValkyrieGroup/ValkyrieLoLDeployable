@@ -397,8 +397,13 @@ DamageExtractors = {
 	# Olaf
 	'olafaxethrowcast'       : lambda calc, champ, skill: PhysDamage(calc.totaldamage(champ, skill)),
 	'olafrecklessstrike'     : lambda calc, champ, skill: TrueDamage(calc.totaldamage(champ, skill)),
-
-        # Pyke
+	
+	# Orianna
+	'orianaizunacommand'     : lambda calc, champ, skill: MagicDamage(calc.totaldamagetooltip(champ, skill)),
+	'orianadissonancecommand': lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+	'orianadetonatecommand'  : lambda calc, champ, skill: MagicDamage(calc.totaldamage(champ, skill)),
+	
+    # Pyke
 	'pyker'                  : lambda calc, champ, skill: PhysDamage(calc.rdamage(champ, skill)),
 
 	# Samira

@@ -615,6 +615,16 @@ class GameHud:
 		''' True if chat is open'''
 		pass
 
+	@property
+	def cursor_world_pos(self) -> Vec3:
+		''' Position of mouse cursor in world coordinates'''
+		pass
+
+	@cursor_world_pos.setter
+	def cursor_world_pos(self, value):
+		''' Position of mouse cursor in world coordinates'''
+		pass
+
 class RaycastResult:
 	'''Represents the result of a raycast'''
 
