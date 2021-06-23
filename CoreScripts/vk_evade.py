@@ -154,7 +154,7 @@ Settings = {
 		EvadeSettings(name = 'Draven R',              cast_names = ['dravenrcast'],               missile_names = ['dravenr'])
 	],
 	'drmundo': [
-		EvadeSettings(name = 'Dr.Mundo Q',            cast_names = ['infectedcleavermissile'],    missile_names = ['infectedcleavermissile'])
+		EvadeSettings(name = 'Dr.Mundo Q',            cast_names = ['drmundoq'],                  missile_names = ['drmundoq'])
 	],
 	'ekko': [
 		EvadeSettings(name = 'Ekko Q',                cast_names = ['ekkoq'],                     missile_names = ['ekkoqmis']),
