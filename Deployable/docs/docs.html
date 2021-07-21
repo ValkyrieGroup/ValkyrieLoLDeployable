@@ -514,13 +514,51 @@ class Key:
         down = 80
         page_down = 81
         insert = 82
-        delte = 83
+        delete = 83
+        mouse_left = 84
+        mouse_right = 85
 
 class MapType:
         &#39;&#39;&#39;Map type SRU = Summoners Rift, HA = Howling Abyss&#39;&#39;&#39;
 
         SRU = 29299
         HA = 24936
+
+class GameBuffType:
+        &#39;&#39;&#39;Game buff type (use this instead of buffs from spells.py)&#39;&#39;&#39;
+
+        Internal = 1
+        Aura = 2
+        CombatBuff = 3
+        CombatDebuff = 4
+        SpellShield = 5
+        Stun = 6
+        Invisibility = 7
+        Silence = 8
+        Taunt = 9
+        Polymorph = 10
+        Slow = 11
+        Snare = 12
+        Damage = 13
+        Heal = 14
+        Haste = 15
+        SpellImmunity = 16
+        PhysicalImmunity = 17
+        Invulnerability = 18
+        Sleep = 19
+        NearSight = 20
+        Frenzy = 21
+        Fear = 22
+        Charm = 23
+        Poison = 24
+        Suppression = 25
+        Blind = 26
+        Counter = 27
+        Shred = 28
+        Flee = 29
+        Knockup = 30
+        Knockback = 31
+        Disarm = 32
 
 class Unit:
         &#39;&#39;&#39;Riot unit tags extracted from the game files. These are not compatible with bitwise operations so writing things like Unit.Monster | Unit.Plant will not yield a tag that has both of those.&#39;&#39;&#39;
@@ -634,6 +672,16 @@ class GameHud:
                 pass
 
         @property
+        def cursor_world_pos(self) -&gt; Vec3:
+                &#39;&#39;&#39; Position of mouse cursor in world coordinates&#39;&#39;&#39;
+                pass
+
+        @cursor_world_pos.setter
+        def cursor_world_pos(self, value):
+                &#39;&#39;&#39; Position of mouse cursor in world coordinates&#39;&#39;&#39;
+                pass
+
+        @property
         def chat_open(self) -&gt; bool:
                 &#39;&#39;&#39; True if chat is open&#39;&#39;&#39;
                 pass
@@ -731,6 +779,16 @@ class FutureCollision:
 
 class Buff:
         &#39;&#39;&#39;Contains data related to a buff on a champion&#39;&#39;&#39;
+
+        @property
+        def type(self) -&gt; GameBuffType:
+                &#39;&#39;&#39; Type of buff&#39;&#39;&#39;
+                pass
+
+        @type.setter
+        def type(self, value):
+                &#39;&#39;&#39; Type of buff&#39;&#39;&#39;
+                pass
 
         @property
         def name(self) -&gt; str:
@@ -2773,6 +2831,16 @@ class Context:
         &#39;&#39;&#39;Contains data related to a buff on a champion&#39;&#39;&#39;
 
         @property
+        def type(self) -&gt; GameBuffType:
+                &#39;&#39;&#39; Type of buff&#39;&#39;&#39;
+                pass
+
+        @type.setter
+        def type(self, value):
+                &#39;&#39;&#39; Type of buff&#39;&#39;&#39;
+                pass
+
+        @property
         def name(self) -&gt; str:
                 &#39;&#39;&#39; Name of the buff&#39;&#39;&#39;
                 pass
@@ -2873,6 +2941,19 @@ def time_begin(self) -&gt; float:
 <pre><code class="python">@property
 def time_end(self) -&gt; float:
         &#39;&#39;&#39; When the buff will end in game time&#39;&#39;&#39;
+        pass</code></pre>
+</details>
+</dd>
+<dt id="valkyrie.Buff.type"><code class="name">var <span class="ident">type</span> : <a title="valkyrie.GameBuffType" href="#valkyrie.GameBuffType">GameBuffType</a></code></dt>
+<dd>
+<div class="desc"><p>Type of buff</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def type(self) -&gt; GameBuffType:
+        &#39;&#39;&#39; Type of buff&#39;&#39;&#39;
         pass</code></pre>
 </details>
 </dd>
@@ -5180,6 +5261,183 @@ def unit_pos(self) -&gt; Vec3:
 </dd>
 </dl>
 </dd>
+<dt id="valkyrie.GameBuffType"><code class="flex name class">
+<span>class <span class="ident">GameBuffType</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Game buff type (use this instead of buffs from spells.py)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GameBuffType:
+        &#39;&#39;&#39;Game buff type (use this instead of buffs from spells.py)&#39;&#39;&#39;
+
+        Internal = 1
+        Aura = 2
+        CombatBuff = 3
+        CombatDebuff = 4
+        SpellShield = 5
+        Stun = 6
+        Invisibility = 7
+        Silence = 8
+        Taunt = 9
+        Polymorph = 10
+        Slow = 11
+        Snare = 12
+        Damage = 13
+        Heal = 14
+        Haste = 15
+        SpellImmunity = 16
+        PhysicalImmunity = 17
+        Invulnerability = 18
+        Sleep = 19
+        NearSight = 20
+        Frenzy = 21
+        Fear = 22
+        Charm = 23
+        Poison = 24
+        Suppression = 25
+        Blind = 26
+        Counter = 27
+        Shred = 28
+        Flee = 29
+        Knockup = 30
+        Knockback = 31
+        Disarm = 32</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="valkyrie.GameBuffType.Aura"><code class="name">var <span class="ident">Aura</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Blind"><code class="name">var <span class="ident">Blind</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Charm"><code class="name">var <span class="ident">Charm</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.CombatBuff"><code class="name">var <span class="ident">CombatBuff</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.CombatDebuff"><code class="name">var <span class="ident">CombatDebuff</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Counter"><code class="name">var <span class="ident">Counter</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Damage"><code class="name">var <span class="ident">Damage</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Disarm"><code class="name">var <span class="ident">Disarm</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Fear"><code class="name">var <span class="ident">Fear</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Flee"><code class="name">var <span class="ident">Flee</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Frenzy"><code class="name">var <span class="ident">Frenzy</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Haste"><code class="name">var <span class="ident">Haste</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Heal"><code class="name">var <span class="ident">Heal</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Internal"><code class="name">var <span class="ident">Internal</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Invisibility"><code class="name">var <span class="ident">Invisibility</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Invulnerability"><code class="name">var <span class="ident">Invulnerability</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Knockback"><code class="name">var <span class="ident">Knockback</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Knockup"><code class="name">var <span class="ident">Knockup</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.NearSight"><code class="name">var <span class="ident">NearSight</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.PhysicalImmunity"><code class="name">var <span class="ident">PhysicalImmunity</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Poison"><code class="name">var <span class="ident">Poison</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Polymorph"><code class="name">var <span class="ident">Polymorph</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Shred"><code class="name">var <span class="ident">Shred</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Silence"><code class="name">var <span class="ident">Silence</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Sleep"><code class="name">var <span class="ident">Sleep</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Slow"><code class="name">var <span class="ident">Slow</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Snare"><code class="name">var <span class="ident">Snare</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.SpellImmunity"><code class="name">var <span class="ident">SpellImmunity</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.SpellShield"><code class="name">var <span class="ident">SpellShield</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Stun"><code class="name">var <span class="ident">Stun</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Suppression"><code class="name">var <span class="ident">Suppression</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.GameBuffType.Taunt"><code class="name">var <span class="ident">Taunt</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
 <dt id="valkyrie.GameHud"><code class="flex name class">
 <span>class <span class="ident">GameHud</span></span>
 </code></dt>
@@ -5213,6 +5471,16 @@ def unit_pos(self) -&gt; Vec3:
                 pass
 
         @property
+        def cursor_world_pos(self) -&gt; Vec3:
+                &#39;&#39;&#39; Position of mouse cursor in world coordinates&#39;&#39;&#39;
+                pass
+
+        @cursor_world_pos.setter
+        def cursor_world_pos(self, value):
+                &#39;&#39;&#39; Position of mouse cursor in world coordinates&#39;&#39;&#39;
+                pass
+
+        @property
         def chat_open(self) -&gt; bool:
                 &#39;&#39;&#39; True if chat is open&#39;&#39;&#39;
                 pass
@@ -5234,6 +5502,19 @@ def unit_pos(self) -&gt; Vec3:
 <pre><code class="python">@property
 def chat_open(self) -&gt; bool:
         &#39;&#39;&#39; True if chat is open&#39;&#39;&#39;
+        pass</code></pre>
+</details>
+</dd>
+<dt id="valkyrie.GameHud.cursor_world_pos"><code class="name">var <span class="ident">cursor_world_pos</span> : <a title="valkyrie.Vec3" href="#valkyrie.Vec3">Vec3</a></code></dt>
+<dd>
+<div class="desc"><p>Position of mouse cursor in world coordinates</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def cursor_world_pos(self) -&gt; Vec3:
+        &#39;&#39;&#39; Position of mouse cursor in world coordinates&#39;&#39;&#39;
         pass</code></pre>
 </details>
 </dd>
@@ -5801,7 +6082,9 @@ def phys_dmg(self) -&gt; float:
         down = 80
         page_down = 81
         insert = 82
-        delte = 83</code></pre>
+        delete = 83
+        mouse_left = 84
+        mouse_right = 85</code></pre>
 </details>
 <h3>Class variables</h3>
 <dl>
@@ -5849,7 +6132,7 @@ def phys_dmg(self) -&gt; float:
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="valkyrie.Key.delte"><code class="name">var <span class="ident">delte</span></code></dt>
+<dt id="valkyrie.Key.delete"><code class="name">var <span class="ident">delete</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -5978,6 +6261,14 @@ def phys_dmg(self) -&gt; float:
 <div class="desc"></div>
 </dd>
 <dt id="valkyrie.Key.minus"><code class="name">var <span class="ident">minus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.mouse_left"><code class="name">var <span class="ident">mouse_left</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valkyrie.Key.mouse_right"><code class="name">var <span class="ident">mouse_right</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -11532,11 +11823,12 @@ def z(self) -&gt; float:
 <ul>
 <li>
 <h4><code><a title="valkyrie.Buff" href="#valkyrie.Buff">Buff</a></code></h4>
-<ul class="">
+<ul class="two-column">
 <li><code><a title="valkyrie.Buff.count" href="#valkyrie.Buff.count">count</a></code></li>
 <li><code><a title="valkyrie.Buff.name" href="#valkyrie.Buff.name">name</a></code></li>
 <li><code><a title="valkyrie.Buff.time_begin" href="#valkyrie.Buff.time_begin">time_begin</a></code></li>
 <li><code><a title="valkyrie.Buff.time_end" href="#valkyrie.Buff.time_end">time_end</a></code></li>
+<li><code><a title="valkyrie.Buff.type" href="#valkyrie.Buff.type">type</a></code></li>
 <li><code><a title="valkyrie.Buff.value" href="#valkyrie.Buff.value">value</a></code></li>
 </ul>
 </li>
@@ -11687,9 +11979,47 @@ def z(self) -&gt; float:
 </ul>
 </li>
 <li>
+<h4><code><a title="valkyrie.GameBuffType" href="#valkyrie.GameBuffType">GameBuffType</a></code></h4>
+<ul class="two-column">
+<li><code><a title="valkyrie.GameBuffType.Aura" href="#valkyrie.GameBuffType.Aura">Aura</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Blind" href="#valkyrie.GameBuffType.Blind">Blind</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Charm" href="#valkyrie.GameBuffType.Charm">Charm</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.CombatBuff" href="#valkyrie.GameBuffType.CombatBuff">CombatBuff</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.CombatDebuff" href="#valkyrie.GameBuffType.CombatDebuff">CombatDebuff</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Counter" href="#valkyrie.GameBuffType.Counter">Counter</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Damage" href="#valkyrie.GameBuffType.Damage">Damage</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Disarm" href="#valkyrie.GameBuffType.Disarm">Disarm</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Fear" href="#valkyrie.GameBuffType.Fear">Fear</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Flee" href="#valkyrie.GameBuffType.Flee">Flee</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Frenzy" href="#valkyrie.GameBuffType.Frenzy">Frenzy</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Haste" href="#valkyrie.GameBuffType.Haste">Haste</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Heal" href="#valkyrie.GameBuffType.Heal">Heal</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Internal" href="#valkyrie.GameBuffType.Internal">Internal</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Invisibility" href="#valkyrie.GameBuffType.Invisibility">Invisibility</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Invulnerability" href="#valkyrie.GameBuffType.Invulnerability">Invulnerability</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Knockback" href="#valkyrie.GameBuffType.Knockback">Knockback</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Knockup" href="#valkyrie.GameBuffType.Knockup">Knockup</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.NearSight" href="#valkyrie.GameBuffType.NearSight">NearSight</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.PhysicalImmunity" href="#valkyrie.GameBuffType.PhysicalImmunity">PhysicalImmunity</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Poison" href="#valkyrie.GameBuffType.Poison">Poison</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Polymorph" href="#valkyrie.GameBuffType.Polymorph">Polymorph</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Shred" href="#valkyrie.GameBuffType.Shred">Shred</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Silence" href="#valkyrie.GameBuffType.Silence">Silence</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Sleep" href="#valkyrie.GameBuffType.Sleep">Sleep</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Slow" href="#valkyrie.GameBuffType.Slow">Slow</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Snare" href="#valkyrie.GameBuffType.Snare">Snare</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.SpellImmunity" href="#valkyrie.GameBuffType.SpellImmunity">SpellImmunity</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.SpellShield" href="#valkyrie.GameBuffType.SpellShield">SpellShield</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Stun" href="#valkyrie.GameBuffType.Stun">Stun</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Suppression" href="#valkyrie.GameBuffType.Suppression">Suppression</a></code></li>
+<li><code><a title="valkyrie.GameBuffType.Taunt" href="#valkyrie.GameBuffType.Taunt">Taunt</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="valkyrie.GameHud" href="#valkyrie.GameHud">GameHud</a></code></h4>
 <ul class="">
 <li><code><a title="valkyrie.GameHud.chat_open" href="#valkyrie.GameHud.chat_open">chat_open</a></code></li>
+<li><code><a title="valkyrie.GameHud.cursor_world_pos" href="#valkyrie.GameHud.cursor_world_pos">cursor_world_pos</a></code></li>
 <li><code><a title="valkyrie.GameHud.minimap_pos" href="#valkyrie.GameHud.minimap_pos">minimap_pos</a></code></li>
 <li><code><a title="valkyrie.GameHud.minimap_size" href="#valkyrie.GameHud.minimap_size">minimap_size</a></code></li>
 </ul>
@@ -11738,7 +12068,7 @@ def z(self) -&gt; float:
 <li><code><a title="valkyrie.Key.comma" href="#valkyrie.Key.comma">comma</a></code></li>
 <li><code><a title="valkyrie.Key.ctrl" href="#valkyrie.Key.ctrl">ctrl</a></code></li>
 <li><code><a title="valkyrie.Key.d" href="#valkyrie.Key.d">d</a></code></li>
-<li><code><a title="valkyrie.Key.delte" href="#valkyrie.Key.delte">delte</a></code></li>
+<li><code><a title="valkyrie.Key.delete" href="#valkyrie.Key.delete">delete</a></code></li>
 <li><code><a title="valkyrie.Key.dot" href="#valkyrie.Key.dot">dot</a></code></li>
 <li><code><a title="valkyrie.Key.down" href="#valkyrie.Key.down">down</a></code></li>
 <li><code><a title="valkyrie.Key.e" href="#valkyrie.Key.e">e</a></code></li>
@@ -11771,6 +12101,8 @@ def z(self) -&gt; float:
 <li><code><a title="valkyrie.Key.lshift" href="#valkyrie.Key.lshift">lshift</a></code></li>
 <li><code><a title="valkyrie.Key.m" href="#valkyrie.Key.m">m</a></code></li>
 <li><code><a title="valkyrie.Key.minus" href="#valkyrie.Key.minus">minus</a></code></li>
+<li><code><a title="valkyrie.Key.mouse_left" href="#valkyrie.Key.mouse_left">mouse_left</a></code></li>
+<li><code><a title="valkyrie.Key.mouse_right" href="#valkyrie.Key.mouse_right">mouse_right</a></code></li>
 <li><code><a title="valkyrie.Key.n" href="#valkyrie.Key.n">n</a></code></li>
 <li><code><a title="valkyrie.Key.n0" href="#valkyrie.Key.n0">n0</a></code></li>
 <li><code><a title="valkyrie.Key.n1" href="#valkyrie.Key.n1">n1</a></code></li>

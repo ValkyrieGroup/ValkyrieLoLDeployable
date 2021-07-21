@@ -486,13 +486,51 @@ class Key:
 	down = 80
 	page_down = 81
 	insert = 82
-	delte = 83
+	delete = 83
+	mouse_left = 84
+	mouse_right = 85
 
 class MapType:
 	'''Map type SRU = Summoners Rift, HA = Howling Abyss'''
 
 	SRU = 29299
 	HA = 24936
+
+class GameBuffType:
+	'''Game buff type (use this instead of buffs from spells.py)'''
+
+	Internal = 1
+	Aura = 2
+	CombatBuff = 3
+	CombatDebuff = 4
+	SpellShield = 5
+	Stun = 6
+	Invisibility = 7
+	Silence = 8
+	Taunt = 9
+	Polymorph = 10
+	Slow = 11
+	Snare = 12
+	Damage = 13
+	Heal = 14
+	Haste = 15
+	SpellImmunity = 16
+	PhysicalImmunity = 17
+	Invulnerability = 18
+	Sleep = 19
+	NearSight = 20
+	Frenzy = 21
+	Fear = 22
+	Charm = 23
+	Poison = 24
+	Suppression = 25
+	Blind = 26
+	Counter = 27
+	Shred = 28
+	Flee = 29
+	Knockup = 30
+	Knockback = 31
+	Disarm = 32
 
 class Unit:
 	'''Riot unit tags extracted from the game files. These are not compatible with bitwise operations so writing things like Unit.Monster | Unit.Plant will not yield a tag that has both of those.'''
@@ -606,16 +644,6 @@ class GameHud:
 		pass
 
 	@property
-	def chat_open(self) -> bool:
-		''' True if chat is open'''
-		pass
-
-	@chat_open.setter
-	def chat_open(self, value):
-		''' True if chat is open'''
-		pass
-
-	@property
 	def cursor_world_pos(self) -> Vec3:
 		''' Position of mouse cursor in world coordinates'''
 		pass
@@ -623,6 +651,16 @@ class GameHud:
 	@cursor_world_pos.setter
 	def cursor_world_pos(self, value):
 		''' Position of mouse cursor in world coordinates'''
+		pass
+
+	@property
+	def chat_open(self) -> bool:
+		''' True if chat is open'''
+		pass
+
+	@chat_open.setter
+	def chat_open(self, value):
+		''' True if chat is open'''
 		pass
 
 class RaycastResult:
@@ -713,6 +751,16 @@ class FutureCollision:
 
 class Buff:
 	'''Contains data related to a buff on a champion'''
+
+	@property
+	def type(self) -> GameBuffType:
+		''' Type of buff'''
+		pass
+
+	@type.setter
+	def type(self, value):
+		''' Type of buff'''
+		pass
 
 	@property
 	def name(self) -> str:
