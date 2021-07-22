@@ -8812,8 +8812,7 @@
         "basicAtkCastTime": 0.4541499987244606,
         "basicAtk": "zacrebirthblobletbasicattack",
         "tags": [
-            "Unit_Minion",
-            "Unit_Minion_Summon"
+			"Unit_Champion"
         ]
     },
     {
@@ -8994,8 +8993,6 @@
         "basicAtkCastTime": 0.4541499987244606,
         "basicAtk": "zyraseedbasicattack",
         "tags": [
-            "Unit_Minion_SummonName_game_character_displayname_ZyraSeed",
-            "Unit_Minion"
         ]
     },
     {

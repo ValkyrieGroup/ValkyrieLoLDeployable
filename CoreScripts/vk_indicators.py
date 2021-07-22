@@ -11,6 +11,7 @@ focused_circle       = Circle(0.0, 80, 3.0, Col(0.8, 0.8, 0.1, 0.7),  True, True
 show_minion_hit      = True
 show_casting_spells  = True
 show_missiles        = True
+show_items_worth     = True
 
 show_potential_dmg   = True
 potential_dmg_mask   = [True, True, True, True, True, True]
@@ -21,7 +22,7 @@ def degree_to_rad(degrees):
 _90_DEG_IN_RAD = degree_to_rad(90)
 
 def valkyrie_menu(ctx: Context):
-	global player_circle, show_minion_hit
+	global player_circle, show_minion_hit, show_items_worth
 	global show_casting_spells, show_missiles, show_potential_dmg, potential_dmg_mask
 	ui = ctx.ui
 	
@@ -35,7 +36,10 @@ def valkyrie_menu(ctx: Context):
 	ui.text('Others', Col.Purple)
 	show_minion_hit     = ui.checkbox("Show minion hit damage indicator", show_minion_hit)
 	ui.help('Shows an indicator over the health bar of the minions of how much damage you deal per basic attack')
-	
+
+	show_items_worth    = ui.checkbox("Show items worth", show_items_worth)
+	ui.help('Shows the cost of items of players')
+
 	show_casting_spells = ui.checkbox("Draw nearby casting skills", show_casting_spells)
 	ui.help('Draws nearby skills being cast (these might get intrerupted). Most of these are skillshots')
 	
@@ -58,7 +62,7 @@ def valkyrie_menu(ctx: Context):
 	
 def valkyrie_on_load(ctx: Context):
 	global player_circle, show_minion_hit, turret_circle_ally, turret_circle_enemy, focused_circle
-	global show_casting_spells, show_missiles, show_potential_dmg, potential_dmg_mask
+	global show_casting_spells, show_missiles, show_potential_dmg, potential_dmg_mask, show_items_worth
 	cfg = ctx.cfg
 	
 	player_circle         = Circle.from_str(cfg.get_str("player_circle", str(player_circle)))	  
@@ -70,8 +74,9 @@ def valkyrie_on_load(ctx: Context):
 	show_missiles         = cfg.get_bool("show_missiles", show_missiles)
 	show_casting_spells   = cfg.get_bool("show_casting_spells", show_casting_spells)
 	show_potential_dmg    = cfg.get_bool("show_potential_dmg", show_potential_dmg)
+	show_items_worth      = cfg.get_bool("show_items_worth", show_items_worth)
 	potential_dmg_mask    = json.loads(cfg.get_str("potential_dmg_mask", json.dumps(potential_dmg_mask)))
-	
+
 def valkyrie_on_save(ctx: Context):
 	cfg = ctx.cfg
 	
@@ -84,6 +89,7 @@ def valkyrie_on_save(ctx: Context):
 	cfg.set_bool("show_missiles", show_missiles)
 	cfg.set_bool("show_casting_spells", show_casting_spells)
 	cfg.set_bool("show_potential_dmg", show_potential_dmg)
+	cfg.set_bool("show_items_worth", show_items_worth)
 	cfg.set_str("potential_dmg_mask", json.dumps(potential_dmg_mask))
 
 def draw_rect(ctx, start_pos, end_pos, radius, color):
@@ -234,7 +240,22 @@ def draw_focused(ctx):
 	if ctx.focused:
 		focused_circle.radius = ctx.focused.bounding_radius + 50.0
 		focused_circle.draw_at(ctx, ctx.focused.pos)
-		
+
+def calculate_items_worth(champ):
+	result = 0.0
+	slot: ItemSlot
+	for slot in champ.item_slots:
+		if slot.item:
+			result += slot.item.cost
+
+	return result
+
+def draw_items_worth(ctx):
+
+	for champ in ctx.champs.targetable().get():
+		if ctx.is_on_screen(champ.pos):
+			ctx.text(champ.hpbar_pos + Vec2(50.0, -35.0), f'${calculate_items_worth(champ):.0f}', Col.Yellow)
+
 def valkyrie_exec(ctx: Context):
 	draw_player_range(ctx)
 	draw_turret_range(ctx)
@@ -253,4 +274,6 @@ def valkyrie_exec(ctx: Context):
 			
 	if show_potential_dmg:
 		draw_potential_dmg(ctx)
-		
+
+	if show_items_worth:
+		draw_items_worth(ctx)
