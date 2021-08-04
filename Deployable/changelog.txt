@@ -6,7 +6,7 @@
 	+ Added vk_tf_cards (Twisted Fate Card Picker) script
 	+ Added functionality to show player total gold in vk_indicators script
 	+ Added buff types to scripting API (access it with buff.type, it is of type GameBuffType)
-	+ Added ability to disable mouse buttons to scripting API (someone needed for evade ?)
+	+ Added ability to disable mouse buttons to scripting API (example use: ctx.set_key_active(Key.mouse_left, False), False to disable, True to enable)
 
 [Valkyrie v0.59]
 	* Fixed buff reading issue now buff.value works properly
