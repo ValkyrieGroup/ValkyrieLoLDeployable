@@ -53703,14 +53703,14 @@
         "speed": 100000.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": ["CastDirection", "CollideWindwall", "Line"]
+        "flags": ["CastDirection", "CollideWindwall", "Line", "AffectAll"]
     },
     {
         "name": "akshanqmissile",
         "parent": "",
         "icon": "",
         "castTime": 0.0,
-        "castRange": 25000.0,
+        "castRange": 850.0,
         "castRadius": 0.0,
         "castConeAngle": 0.0,
         "castConeDistance": 0.0,
@@ -53719,7 +53719,7 @@
         "speed": 1500.0,
         "travelTime": 0.0,
         "delay": 0.0,
-        "flags": []
+        "flags": ["Line", "CastDirection", "CollideWindwall", "AffectAll"]
     },
     {
         "name": "akshanw",
